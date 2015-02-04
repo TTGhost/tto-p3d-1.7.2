@@ -28,16 +28,8 @@ paranoid-clock 1
 
 window-title Toontown Online
 
-###########################
-# SERVER CONFIG
-# DO NOT EDIT
-
-# DIFFERENCES FROM DEV
-# SERVER ACCOUNT TYPE
-
 air-connect 127.0.0.1
 eventlog-host 127.0.0.1
-###########################
 
 dc-file tth.dc
 want-dev #f
@@ -51,9 +43,7 @@ cursor-filename phase_3/etc/toonmono.cur
 
 default-directnotify-level info
 
-cog-thief-ortho 0
 show-total-population #t
-want-mat-all-tailors #t
 estate-day-night #t
 want-karts #t
 want-pets #t
@@ -63,9 +53,6 @@ want-housing #t
 want-old-fireworks #t
 want-instant-parties #t
 want-silly-meter #t
-want-game-tables #t
-want-lawbot-cogdo #f
-want-emblems #f
 
 want-classic-chars #t
 want-mickey #t
@@ -87,9 +74,7 @@ ai-sleep .01
 log-stack-dump #f
 
 account-db-type server
-mega-invasion-shards 401 402
 want-top-toons #t
 ban-do-ban #t
 
 forbid-surfers-game #t
-metagame-min-2-players #f

@@ -30,21 +30,11 @@ hardware-animated-vertices 0
 
 window-title Toontown Online
 
-###########################
-SERVER CONFIG
-DO NOT EDIT
-USE ARGS INSTEAD:
-
-CUSTOM SERVER: run -s IP
-CUSTOM TOKEN: run -t TOKEN
-###########################
 game-server 127.0.0.1
 download-server http://s3.amazonaws.com/ttadls/
 eventlog-host 127.0.0.1
 server-version 1.0.1
-###########################
 
-#Game
 dc-file tth.dc
 want-dev #f
 
@@ -58,8 +48,6 @@ cursor-filename toonmono.cur
 
 default-directnotify-level info
 
-#Core Features
-cog-thief-ortho 0
 show-total-population #t
 want-mat-all-tailors #t
 estate-day-night #t
@@ -78,12 +66,6 @@ want-top-toons #t
 want-golf-karts #t
 want-parties #t
 want-new-pat #f
-
-#CogDominiums
-want-emblems #t
-cogdo-want-barrel-room #t
-want-lawbot-cogdo #t
-want-house-types #t
 
 #Disney Characters
 want-classic-chars #t
@@ -108,6 +90,4 @@ log-stack-dump #f
 
 account-db-type local
 force-black-cat-mgr #t
-mega-invasion-shards 401
 want-instant-delivery #t
-metagame-min-2-players #f
