@@ -1,0 +1,2678 @@
+1145555640
+2 2
+10 libphysics 4 9fJJ 12 pandaphysics 
+188
+258 13 PhysicsObject 4 446 28 PhysicsObject::PhysicsObject 0 2 1 2 463
+////////////////////////////////////////////////////////////////////
+//     Function : PhysicsObject
+//       Access : Public
+//  Description : Default Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : PhysicsObject
+//       Access : Public
+//  Description : copy constructor
+////////////////////////////////////////////////////////////////////
+35
+PhysicsObject::PhysicsObject(void);
+
+259 10 operator = 4 446 25 PhysicsObject::operator = 0 1 3 218
+////////////////////////////////////////////////////////////////////
+//     Function : Assignment operator
+//       Access : Public
+//  Description :
+////////////////////////////////////////////////////////////////////
+75
+PhysicsObject const &PhysicsObject::operator =(PhysicsObject const &other);
+
+260 10 set_active 4 446 25 PhysicsObject::set_active 0 1 4 230
+////////////////////////////////////////////////////////////////////
+//    Function : set_active
+//      Access : Public
+// Description : Process Flag assignment
+////////////////////////////////////////////////////////////////////
+49
+inline void PhysicsObject::set_active(bool flag);
+
+261 10 get_active 4 446 25 PhysicsObject::get_active 0 1 5 225
+////////////////////////////////////////////////////////////////////
+//    Function : get_active
+//      Access : Public
+// Description : Process Flag Query
+////////////////////////////////////////////////////////////////////
+50
+inline bool PhysicsObject::get_active(void) const;
+
+262 8 set_mass 4 446 23 PhysicsObject::set_mass 0 1 6 921
+// Filename: physicsObject.I
+// Created by:  charles (13Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : set_mass
+//      Access : Public
+// Description : Set the mass in slugs (or kilograms).
+////////////////////////////////////////////////////////////////////
+44
+inline void PhysicsObject::set_mass(float );
+
+263 8 get_mass 4 446 23 PhysicsObject::get_mass 0 1 7 242
+////////////////////////////////////////////////////////////////////
+//    Function : get_mass
+//      Access : Public
+// Description : Get the mass in slugs (or kilograms).
+////////////////////////////////////////////////////////////////////
+49
+inline float PhysicsObject::get_mass(void) const;
+
+264 12 set_position 4 446 27 PhysicsObject::set_position 0 2 8 9 683
+//INLINE void set_center_of_mass(const LPoint3f &pos); use set_position.
+
+//INLINE void set_center_of_mass(const LPoint3f &pos); use set_position.
+
+////////////////////////////////////////////////////////////////////
+//    Function : set_position
+//      Access : Public
+// Description : Vector position assignment.  This is also used as
+//               the center of mass.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : set_position
+//      Access : Public
+// Description : Piecewise position assignment
+////////////////////////////////////////////////////////////////////
+61
+inline void PhysicsObject::set_position(LPoint3f const &pos);
+
+265 12 get_position 4 446 27 PhysicsObject::get_position 0 1 10 223
+////////////////////////////////////////////////////////////////////
+//    Function : get_position
+//      Access : Public
+// Description : Position Query
+////////////////////////////////////////////////////////////////////
+56
+inline LPoint3f PhysicsObject::get_position(void) const;
+
+266 14 reset_position 4 446 29 PhysicsObject::reset_position 0 1 11 349
+////////////////////////////////////////////////////////////////////
+//    Function : reset_position
+//      Access : Public
+// Description : use this to place an object in a completely new
+//               position, that has nothing to do with its last
+//               position.
+////////////////////////////////////////////////////////////////////
+63
+inline void PhysicsObject::reset_position(LPoint3f const &pos);
+
+267 17 set_last_position 4 446 32 PhysicsObject::set_last_position 0 1 12 238
+////////////////////////////////////////////////////////////////////
+//    Function : set_last_position
+//      Access : Public
+// Description : Last position assignment
+////////////////////////////////////////////////////////////////////
+66
+inline void PhysicsObject::set_last_position(LPoint3f const &pos);
+
+268 17 get_last_position 4 446 32 PhysicsObject::get_last_position 0 1 13 313
+////////////////////////////////////////////////////////////////////
+//    Function : get_last_position
+//      Access : Public
+// Description : Get the position of the physics object at the start
+//               of the most recent do_physics.
+////////////////////////////////////////////////////////////////////
+61
+inline LPoint3f PhysicsObject::get_last_position(void) const;
+
+269 12 set_velocity 4 446 27 PhysicsObject::set_velocity 0 2 14 15 475
+////////////////////////////////////////////////////////////////////
+//    Function : set_velocity
+//      Access : Public
+// Description : Vector velocity assignment
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : set_velocity
+//      Access : Public
+// Description : Piecewise velocity assignment
+////////////////////////////////////////////////////////////////////
+62
+inline void PhysicsObject::set_velocity(LVector3f const &vel);
+
+270 12 get_velocity 4 446 27 PhysicsObject::get_velocity 0 1 16 234
+////////////////////////////////////////////////////////////////////
+//    Function : get_velocity
+//      Access : Public
+// Description : Velocity Query per second
+////////////////////////////////////////////////////////////////////
+57
+inline LVector3f PhysicsObject::get_velocity(void) const;
+
+271 21 get_implicit_velocity 4 446 36 PhysicsObject::get_implicit_velocity 0 1 17 249
+////////////////////////////////////////////////////////////////////
+//    Function : get_implicit_velocity
+//      Access : Public
+// Description : Velocity Query over the last dt
+////////////////////////////////////////////////////////////////////
+66
+inline LVector3f PhysicsObject::get_implicit_velocity(void) const;
+
+272 10 add_torque 4 446 25 PhysicsObject::add_torque 0 1 18 477
+// Global instantanious forces
+
+////////////////////////////////////////////////////////////////////
+//    Function : add_torque
+//      Access : Public
+// Description : Adds an torque force (i.e. an instantanious change
+//               in velocity).  This is a quicker way to get the 
+//               angular velocity, add a vector to it and set that
+//               value to be the new angular velocity.
+////////////////////////////////////////////////////////////////////
+64
+inline void PhysicsObject::add_torque(LRotationf const &torque);
+
+273 11 add_impulse 4 446 26 PhysicsObject::add_impulse 0 1 19 463
+// Global instantanious forces
+
+////////////////////////////////////////////////////////////////////
+//    Function : add_impulse
+//      Access : Public
+// Description : Adds an impulse force (i.e. an instantanious change
+//               in velocity).  This is a quicker way to get the 
+//               velocity, add a vector to it and set that value to
+//               be the new velocity.
+////////////////////////////////////////////////////////////////////
+65
+inline void PhysicsObject::add_impulse(LVector3f const &impulse);
+
+274 10 add_impact 4 446 25 PhysicsObject::add_impact 0 1 20 656
+////////////////////////////////////////////////////////////////////
+//    Function : add_impact
+//      Access : Public
+// Description : Adds an impulse and/or torque (i.e. an instantanious
+//               change in velocity) based on how well the offset and
+//               impulse align with the center of mass (aka position).
+//               If you wanted to immitate this function you could
+//               work out the impulse and torque and call add_impulse
+//               and add_torque respectively.
+//               offset and force are in global (or parent) coordinates.
+////////////////////////////////////////////////////////////////////
+109
+virtual void PhysicsObject::add_impact(LPoint3f const &offset_from_center_of_mass, LVector3f const &impulse);
+
+275 16 add_local_torque 4 446 31 PhysicsObject::add_local_torque 0 1 21 482
+// Local instantanious forces
+
+////////////////////////////////////////////////////////////////////
+//    Function : add_local_torque
+//      Access : Public
+// Description : Adds an torque force (i.e. an instantanious change
+//               in velocity).  This is a quicker way to get the 
+//               angular velocity, add a vector to it and set that
+//               value to be the new angular velocity.
+////////////////////////////////////////////////////////////////////
+70
+inline void PhysicsObject::add_local_torque(LRotationf const &torque);
+
+276 17 add_local_impulse 4 446 32 PhysicsObject::add_local_impulse 0 1 22 468
+// Local instantanious forces
+
+////////////////////////////////////////////////////////////////////
+//    Function : add_local_impulse
+//      Access : Public
+// Description : Adds an impulse force (i.e. an instantanious change
+//               in velocity).  This is a quicker way to get the 
+//               velocity, add a vector to it and set that value to
+//               be the new velocity.
+////////////////////////////////////////////////////////////////////
+71
+inline void PhysicsObject::add_local_impulse(LVector3f const &impulse);
+
+277 16 add_local_impact 4 446 31 PhysicsObject::add_local_impact 0 1 23 649
+////////////////////////////////////////////////////////////////////
+//    Function : add_local_impact
+//      Access : Public
+// Description : Adds an impulse and/or torque (i.e. an instantanious
+//               change in velocity) based on how well the offset and
+//               impulse align with the center of mass (aka position).
+//               If you wanted to immitate this function you could
+//               work out the impulse and torque and call add_impulse
+//               and add_torque respectively.
+//               offset and force are in local coordinates.
+////////////////////////////////////////////////////////////////////
+115
+virtual void PhysicsObject::add_local_impact(LPoint3f const &offset_from_center_of_mass, LVector3f const &impulse);
+
+278 21 set_terminal_velocity 4 446 36 PhysicsObject::set_terminal_velocity 0 1 24 231
+////////////////////////////////////////////////////////////////////
+//    Function : set_terminal_velocity
+//      Access : Public
+// Description : tv assignment
+////////////////////////////////////////////////////////////////////
+59
+inline void PhysicsObject::set_terminal_velocity(float tv);
+
+279 21 get_terminal_velocity 4 446 36 PhysicsObject::get_terminal_velocity 0 1 25 226
+////////////////////////////////////////////////////////////////////
+//    Function : get_terminal_velocity
+//      Access : Public
+// Description : tv query
+////////////////////////////////////////////////////////////////////
+62
+inline float PhysicsObject::get_terminal_velocity(void) const;
+
+280 12 set_oriented 4 446 27 PhysicsObject::set_oriented 0 1 26 334
+////////////////////////////////////////////////////////////////////
+//    Function : set_oriented
+//      Access : Public
+// Description : Set flag to determine whether this object should do
+//               any rotation or orientation calculations.  Optimization.
+////////////////////////////////////////////////////////////////////
+51
+inline void PhysicsObject::set_oriented(bool flag);
+
+281 12 get_oriented 4 446 27 PhysicsObject::get_oriented 0 1 27 228
+////////////////////////////////////////////////////////////////////
+//    Function : get_oriented
+//      Access : Public
+// Description : See set_oriented().
+////////////////////////////////////////////////////////////////////
+52
+inline bool PhysicsObject::get_oriented(void) const;
+
+282 15 set_orientation 4 446 30 PhysicsObject::set_orientation 0 1 28 211
+////////////////////////////////////////////////////////////////////
+//    Function : set_orientation
+//      Access : Public
+// Description :
+////////////////////////////////////////////////////////////////////
+77
+inline void PhysicsObject::set_orientation(LOrientationf const &orientation);
+
+283 15 get_orientation 4 446 30 PhysicsObject::get_orientation 0 1 29 236
+////////////////////////////////////////////////////////////////////
+//    Function : get_orientation
+//      Access : Public
+// Description : get current orientation.
+////////////////////////////////////////////////////////////////////
+64
+inline LOrientationf PhysicsObject::get_orientation(void) const;
+
+284 17 reset_orientation 4 446 32 PhysicsObject::reset_orientation 0 1 30 288
+////////////////////////////////////////////////////////////////////
+//    Function : reset_orientation
+//      Access : Public
+// Description : set the orientation while clearing the rotation
+//               velocity.
+////////////////////////////////////////////////////////////////////
+79
+inline void PhysicsObject::reset_orientation(LOrientationf const &orientation);
+
+285 12 set_rotation 4 446 27 PhysicsObject::set_rotation 0 1 31 255
+////////////////////////////////////////////////////////////////////
+//    Function : set_rotation
+//      Access : Public
+// Description : set rotation as a quaternion delta per second.
+////////////////////////////////////////////////////////////////////
+68
+inline void PhysicsObject::set_rotation(LRotationf const &rotation);
+
+286 12 get_rotation 4 446 27 PhysicsObject::get_rotation 0 1 32 233
+////////////////////////////////////////////////////////////////////
+//    Function : get_rotation
+//      Access : Public
+// Description : get rotation per second.
+////////////////////////////////////////////////////////////////////
+58
+inline LRotationf PhysicsObject::get_rotation(void) const;
+
+287 19 get_inertial_tensor 4 446 34 PhysicsObject::get_inertial_tensor 0 1 33 318
+////////////////////////////////////////////////////////////////////
+//     Function : get_inertial_tensor
+//       Access : Public
+//  Description : returns a transform matrix that represents the
+//                object's willingness to be forced.
+////////////////////////////////////////////////////////////////////
+65
+virtual LMatrix4f PhysicsObject::get_inertial_tensor(void) const;
+
+288 7 get_lcs 4 446 22 PhysicsObject::get_lcs 0 1 34 293
+////////////////////////////////////////////////////////////////////
+//     Function : get_lcs
+//       Access : Public
+//  Description : returns a transform matrix to this object's
+//                local coordinate system.
+////////////////////////////////////////////////////////////////////
+53
+virtual LMatrix4f PhysicsObject::get_lcs(void) const;
+
+289 9 make_copy 4 446 24 PhysicsObject::make_copy 0 1 35 231
+////////////////////////////////////////////////////////////////////
+//     Function : make_copy
+//       Access : Public, virtual
+//  Description : dynamic copy.
+////////////////////////////////////////////////////////////////////
+60
+virtual PhysicsObject *PhysicsObject::make_copy(void) const;
+
+290 8 set_name 4 446 23 PhysicsObject::set_name 0 1 36 0
+63
+void PhysicsObject::set_name(basic_string< char > const &name);
+
+291 8 get_name 4 446 23 PhysicsObject::get_name 0 1 37 0
+58
+basic_string< char > const &PhysicsObject::get_name(void);
+
+292 6 output 4 446 21 PhysicsObject::output 0 1 38 280
+////////////////////////////////////////////////////////////////////
+//     Function : output
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+55
+virtual void PhysicsObject::output(ostream &out) const;
+
+293 5 write 4 446 20 PhysicsObject::write 0 2 39 40 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+81
+virtual void PhysicsObject::write(ostream &out, unsigned int indent = (0)) const;
+
+294 14 get_class_type 4 446 29 PhysicsObject::get_class_type 0 1 41 0
+54
+static TypeHandle PhysicsObject::get_class_type(void);
+
+295 10 get_active 4 448 21 BaseForce::get_active 0 1 42 189
+////////////////////////////////////////////////////////////////////
+//    Function : get_active
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+46
+inline bool BaseForce::get_active(void) const;
+
+296 10 set_active 4 448 21 BaseForce::set_active 0 1 43 189
+////////////////////////////////////////////////////////////////////
+//    Function : set_active
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+47
+inline void BaseForce::set_active(bool active);
+
+297 9 is_linear 4 448 20 BaseForce::is_linear 0 1 44 0
+50
+virtual bool BaseForce::is_linear(void) const = 0;
+
+298 14 get_force_node 4 448 25 BaseForce::get_force_node 0 1 45 868
+// Filename: baseForce.I
+// Created by:  charles (08Aug00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : get_force_node
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+56
+inline ForceNode *BaseForce::get_force_node(void) const;
+
+299 6 output 4 448 17 BaseForce::output 0 1 46 280
+////////////////////////////////////////////////////////////////////
+//     Function : output
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+51
+virtual void BaseForce::output(ostream &out) const;
+
+300 5 write 4 448 16 BaseForce::write 0 2 47 48 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+77
+virtual void BaseForce::write(ostream &out, unsigned int indent = (0)) const;
+
+301 14 get_class_type 4 448 25 BaseForce::get_class_type 0 1 49 0
+50
+static TypeHandle BaseForce::get_class_type(void);
+
+302 13 set_amplitude 4 449 26 LinearForce::set_amplitude 0 1 50 869
+// Filename: linearForce.I
+// Created by:  charles (13Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : set_amplitude
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+54
+inline void LinearForce::set_amplitude(float const a);
+
+303 18 set_mass_dependent 4 449 31 LinearForce::set_mass_dependent 0 1 51 197
+////////////////////////////////////////////////////////////////////
+//    Function : set_mass_Dependent
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+52
+inline void LinearForce::set_mass_dependent(bool m);
+
+304 13 get_amplitude 4 449 26 LinearForce::get_amplitude 0 1 52 192
+////////////////////////////////////////////////////////////////////
+//    Function : get_amplitude
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+52
+inline float LinearForce::get_amplitude(void) const;
+
+305 18 get_mass_dependent 4 449 31 LinearForce::get_mass_dependent 0 1 53 197
+////////////////////////////////////////////////////////////////////
+//    Function : get_mass_dependent
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+56
+inline bool LinearForce::get_mass_dependent(void) const;
+
+306 16 set_vector_masks 4 449 29 LinearForce::set_vector_masks 0 1 54 195
+////////////////////////////////////////////////////////////////////
+//    Function : set_vector_masks
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+66
+inline void LinearForce::set_vector_masks(bool x, bool y, bool z);
+
+307 10 get_vector 4 449 23 LinearForce::get_vector 0 1 55 189
+////////////////////////////////////////////////////////////////////
+//    Function : get_vector
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+59
+LVector3f LinearForce::get_vector(PhysicsObject const *po);
+
+308 9 make_copy 4 449 22 LinearForce::make_copy 0 1 56 0
+54
+virtual LinearForce *LinearForce::make_copy(void) = 0;
+
+309 14 get_class_type 4 449 27 LinearForce::get_class_type 0 1 57 0
+52
+static TypeHandle LinearForce::get_class_type(void);
+
+310 9 make_copy 4 450 23 AngularForce::make_copy 0 1 58 0
+62
+virtual AngularForce *AngularForce::make_copy(void) const = 0;
+
+311 8 get_quat 4 450 22 AngularForce::get_quat 0 1 59 217
+////////////////////////////////////////////////////////////////////
+//    Function : get_quat
+//      Access : public
+// Description : access query
+////////////////////////////////////////////////////////////////////
+59
+LRotationf AngularForce::get_quat(PhysicsObject const *po);
+
+312 14 get_class_type 4 450 28 AngularForce::get_class_type 0 1 60 0
+53
+static TypeHandle AngularForce::get_class_type(void);
+
+313 8 Physical 4 451 18 Physical::Physical 0 4 61 62 63 64 1257
+////////////////////////////////////////////////////////////////////
+//     Function : Physical
+//       Access : Public
+//  Description : Default Constructor
+//
+//                The idea here is that most physicals will NOT 
+//                be collections of sets (i.e. particle systems 
+//                and whatever else).  Because of this, the default 
+//                constructor, unless otherwise specified, will 
+//                automatically allocate and initialize one 
+//                PhysicalObject.  This makes it easier for 
+//                high-level work.
+//
+//                pre-alloc is ONLY for multiple-object physicals, 
+//                and if true, fills the physics_object vector 
+//                with dead nodes, pre-allocating for the speed
+//                end of the speed-vs-overhead deal.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : Physical
+//       Access : Public
+//  Description : copy constructor (note- does deep copy of pn's)
+//                but does NOT attach itself to its template's
+//                physicsmanager.
+////////////////////////////////////////////////////////////////////
+66
+Physical::Physical(int total_objects = (1), bool pre_alloc = (0));
+
+314 19 get_physics_manager 4 451 29 Physical::get_physics_manager 0 1 65 210
+// helpers
+
+////////////////////////////////////////////////////////////////////
+//    Function : get_physics_manager
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+65
+inline PhysicsManager *Physical::get_physics_manager(void) const;
+
+315 17 get_physical_node 4 451 27 Physical::get_physical_node 0 1 66 208
+// helpers
+
+////////////////////////////////////////////////////////////////////
+//    Function : get_physical_node
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+61
+inline PhysicalNode *Physical::get_physical_node(void) const;
+
+316 13 get_phys_body 4 451 23 Physical::get_phys_body 0 1 67 192
+////////////////////////////////////////////////////////////////////
+//    Function : get_phys_body
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+58
+inline PhysicsObject *Physical::get_phys_body(void) const;
+
+317 19 clear_linear_forces 4 451 29 Physical::clear_linear_forces 0 1 68 244
+////////////////////////////////////////////////////////////////////
+//    Function : clear_linear_forces
+//      Access : Public
+// Description : Erases the linear force list
+////////////////////////////////////////////////////////////////////
+48
+inline void Physical::clear_linear_forces(void);
+
+318 20 clear_angular_forces 4 451 30 Physical::clear_angular_forces 0 1 69 246
+////////////////////////////////////////////////////////////////////
+//    Function : clear_angular_forces
+//      Access : Public
+// Description : Erases the angular force list
+////////////////////////////////////////////////////////////////////
+49
+inline void Physical::clear_angular_forces(void);
+
+319 21 clear_physics_objects 4 451 31 Physical::clear_physics_objects 0 1 70 240
+////////////////////////////////////////////////////////////////////
+//    Function : clear_physics_objects
+//      Access : Public
+// Description : Erases the object list
+////////////////////////////////////////////////////////////////////
+50
+inline void Physical::clear_physics_objects(void);
+
+320 16 add_linear_force 4 451 26 Physical::add_linear_force 0 1 71 250
+////////////////////////////////////////////////////////////////////
+//    Function : add_linear_force
+//      Access : Public
+// Description : Adds a linear force to the force list
+////////////////////////////////////////////////////////////////////
+55
+inline void Physical::add_linear_force(LinearForce *f);
+
+321 17 add_angular_force 4 451 27 Physical::add_angular_force 0 1 72 253
+////////////////////////////////////////////////////////////////////
+//    Function : add_angular_force
+//      Access : Public
+// Description : Adds an angular force to the force list
+////////////////////////////////////////////////////////////////////
+57
+inline void Physical::add_angular_force(AngularForce *f);
+
+322 18 add_physics_object 4 451 28 Physical::add_physics_object 0 1 73 258
+////////////////////////////////////////////////////////////////////
+//    Function : add_physics_object
+//      Access : Public
+// Description : Adds an object to the physics object vector
+////////////////////////////////////////////////////////////////////
+60
+inline void Physical::add_physics_object(PhysicsObject *po);
+
+323 19 remove_linear_force 4 451 29 Physical::remove_linear_force 0 1 74 258
+////////////////////////////////////////////////////////////////////
+//    Function : remove_linear_force
+//      Access : Public
+// Description : removes a linear force from the force list
+////////////////////////////////////////////////////////////////////
+58
+inline void Physical::remove_linear_force(LinearForce *f);
+
+324 20 remove_angular_force 4 451 30 Physical::remove_angular_force 0 1 75 261
+////////////////////////////////////////////////////////////////////
+//    Function : remove_angular_force
+//      Access : Public
+// Description : removes an angular force from the force list
+////////////////////////////////////////////////////////////////////
+60
+inline void Physical::remove_angular_force(AngularForce *f);
+
+325 21 get_num_linear_forces 4 451 31 Physical::get_num_linear_forces 0 1 76 200
+////////////////////////////////////////////////////////////////////
+//    Function : get_num_linear_forces
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+55
+inline int Physical::get_num_linear_forces(void) const;
+
+326 16 get_linear_force 4 451 26 Physical::get_linear_force 0 1 77 195
+////////////////////////////////////////////////////////////////////
+//    Function : get_linear_force
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+76
+inline PointerTo< LinearForce > Physical::get_linear_force(int index) const;
+
+327 22 get_num_angular_forces 4 451 32 Physical::get_num_angular_forces 0 1 78 201
+////////////////////////////////////////////////////////////////////
+//    Function : get_num_angular_forces
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+56
+inline int Physical::get_num_angular_forces(void) const;
+
+328 17 get_angular_force 4 451 27 Physical::get_angular_force 0 1 79 196
+////////////////////////////////////////////////////////////////////
+//    Function : get_angular_force
+//      Access : Public
+////////////////////////////////////////////////////////////////////
+78
+inline PointerTo< AngularForce > Physical::get_angular_force(int index) const;
+
+329 13 set_viscosity 4 451 23 Physical::set_viscosity 0 1 80 234
+////////////////////////////////////////////////////////////////////
+//    Function : set_viscosity
+//      Access : Public
+// Description : Set the local viscosity.
+////////////////////////////////////////////////////////////////////
+53
+inline void Physical::set_viscosity(float viscosity);
+
+330 13 get_viscosity 4 451 23 Physical::get_viscosity 0 1 81 234
+////////////////////////////////////////////////////////////////////
+//    Function : get_viscosity
+//      Access : Public
+// Description : Get the local viscosity.
+////////////////////////////////////////////////////////////////////
+49
+inline float Physical::get_viscosity(void) const;
+
+331 6 output 4 451 16 Physical::output 0 2 82 83 280
+////////////////////////////////////////////////////////////////////
+//     Function : output
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+59
+virtual void Physical::output(ostream &out = (cout)) const;
+
+332 21 write_physics_objects 4 451 31 Physical::write_physics_objects 0 3 84 85 86 295
+////////////////////////////////////////////////////////////////////
+//     Function : write_physics_objects
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+101
+virtual void Physical::write_physics_objects(ostream &out = (cout), unsigned int indent = (0)) const;
+
+333 19 write_linear_forces 4 451 29 Physical::write_linear_forces 0 3 87 88 89 293
+////////////////////////////////////////////////////////////////////
+//     Function : write_linear_forces
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+99
+virtual void Physical::write_linear_forces(ostream &out = (cout), unsigned int indent = (0)) const;
+
+334 20 write_angular_forces 4 451 30 Physical::write_angular_forces 0 3 90 91 92 294
+////////////////////////////////////////////////////////////////////
+//     Function : write_angular_forces
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+100
+virtual void Physical::write_angular_forces(ostream &out = (cout), unsigned int indent = (0)) const;
+
+335 5 write 4 451 15 Physical::write 0 3 93 94 95 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+85
+virtual void Physical::write(ostream &out = (cout), unsigned int indent = (0)) const;
+
+336 14 get_class_type 4 451 24 Physical::get_class_type 0 1 96 0
+49
+static TypeHandle Physical::get_class_type(void);
+
+337 12 PhysicalNode 4 452 26 PhysicalNode::PhysicalNode 0 1 97 464
+////////////////////////////////////////////////////////////////////
+//     Function : PhysicalNode
+//       Access : public
+//  Description : default constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : PhysicalNode
+//       Access : protected
+//  Description : copy constructor
+////////////////////////////////////////////////////////////////////
+61
+PhysicalNode::PhysicalNode(basic_string< char > const &name);
+
+338 5 clear 4 452 19 PhysicalNode::clear 0 1 98 858
+// Filename: physicalNode.I
+// Created by:  charles (01Aug00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//  Function : clear
+//    Access : public
+////////////////////////////////////////////////////////////////////
+38
+inline void PhysicalNode::clear(void);
+
+339 12 get_physical 4 452 26 PhysicalNode::get_physical 0 1 99 187
+////////////////////////////////////////////////////////////////////
+//  Function : get_physical
+//    Access : public
+////////////////////////////////////////////////////////////////////
+61
+inline Physical *PhysicalNode::get_physical(int index) const;
+
+340 17 get_num_physicals 4 452 31 PhysicalNode::get_num_physicals 0 1 100 192
+////////////////////////////////////////////////////////////////////
+//  Function : get_num_physicals
+//    Access : public
+////////////////////////////////////////////////////////////////////
+55
+inline int PhysicalNode::get_num_physicals(void) const;
+
+341 12 add_physical 4 452 26 PhysicalNode::add_physical 0 1 101 187
+////////////////////////////////////////////////////////////////////
+//  Function : add_physical
+//    Access : public
+////////////////////////////////////////////////////////////////////
+59
+inline void PhysicalNode::add_physical(Physical *physical);
+
+342 18 add_physicals_from 4 452 32 PhysicalNode::add_physicals_from 0 1 102 234
+////////////////////////////////////////////////////////////////////
+//     Function : add_physicals_from
+//       Access : public
+//  Description : append operation
+////////////////////////////////////////////////////////////////////
+65
+void PhysicalNode::add_physicals_from(PhysicalNode const &other);
+
+343 15 remove_physical 4 452 29 PhysicalNode::remove_physical 0 2 103 104 464
+////////////////////////////////////////////////////////////////////
+//     Function : remove_physical
+//       Access : public
+//  Description : remove operation
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : remove_physical
+//       Access : public
+//  Description : remove operation
+////////////////////////////////////////////////////////////////////
+55
+void PhysicalNode::remove_physical(Physical *physical);
+
+344 5 write 4 452 19 PhysicalNode::write 0 2 105 106 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+80
+virtual void PhysicalNode::write(ostream &out, unsigned int indent = (0)) const;
+
+345 14 get_class_type 4 452 28 PhysicalNode::get_class_type 0 1 107 0
+53
+static TypeHandle PhysicalNode::get_class_type(void);
+
+346 9 ActorNode 4 454 20 ActorNode::ActorNode 0 3 108 109 110 448
+////////////////////////////////////////////////////////////////////
+//     Function : ActorNode
+//       Access : public
+//  Description : Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : ActorNode
+//       Access : public
+//  Description : Copy Constructor.
+////////////////////////////////////////////////////////////////////
+62
+ActorNode::ActorNode(basic_string< char > const &name = (""));
+
+347 18 get_physics_object 4 454 29 ActorNode::get_physics_object 0 1 111 0
+51
+PhysicsObject *ActorNode::get_physics_object(void);
+
+348 18 set_contact_vector 4 454 29 ActorNode::set_contact_vector 0 1 112 890
+// Filename: actorNode.I
+// Created by:  charles (07Aug00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : set_contact_vector
+//      Access : Public
+// Description : 
+////////////////////////////////////////////////////////////////////
+68
+void ActorNode::set_contact_vector(LVector3f const &contact_vector);
+
+349 18 get_contact_vector 4 454 29 ActorNode::get_contact_vector 0 1 113 215
+////////////////////////////////////////////////////////////////////
+//    Function : get_contact_vector
+//      Access : Public
+// Description : 
+////////////////////////////////////////////////////////////////////
+59
+LVector3f const &ActorNode::get_contact_vector(void) const;
+
+350 16 update_transform 4 454 27 ActorNode::update_transform 0 1 114 510
+// update the parent scene graph node with PhysicsObject information
+// i.e. copy from PhysicsObject to PandaNode
+
+////////////////////////////////////////////////////////////////////
+//     Function : update_transform
+//       Access : public
+//  Description : this sets the transform generated by the contained
+//                Physical, moving the node and subsequent geometry.
+//                i.e. copy from PhysicsObject to PandaNode
+////////////////////////////////////////////////////////////////////
+39
+void ActorNode::update_transform(void);
+
+351 14 get_class_type 4 454 25 ActorNode::get_class_type 0 1 115 0
+50
+static TypeHandle ActorNode::get_class_type(void);
+
+352 22 AngularEulerIntegrator 4 457 46 AngularEulerIntegrator::AngularEulerIntegrator 0 1 116 0
+53
+AngularEulerIntegrator::AngularEulerIntegrator(void);
+
+353 18 AngularVectorForce 4 458 38 AngularVectorForce::AngularVectorForce 0 3 117 118 119 687
+////////////////////////////////////////////////////////////////////
+//    Function : AngularVectorForce
+//      Access : public
+// Description : constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : AngularVectorForce
+//      Access : public
+// Description : constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : AngularVectorForce
+//      Access : public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+63
+AngularVectorForce::AngularVectorForce(LRotationf const &quat);
+
+354 8 set_quat 4 458 28 AngularVectorForce::set_quat 0 1 120 865
+// Filename: angularVectorForce.I
+// Created by:  charles (09Aug00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Function : set_quat
+//   Access : public
+////////////////////////////////////////////////////////////////////
+65
+inline void AngularVectorForce::set_quat(LRotationf const &quat);
+
+355 7 set_hpr 4 458 27 AngularVectorForce::set_hpr 0 1 121 180
+////////////////////////////////////////////////////////////////////
+// Function : set_hpr
+//   Access : public
+////////////////////////////////////////////////////////////////////
+67
+inline void AngularVectorForce::set_hpr(float h, float p, float r);
+
+356 14 get_local_quat 4 458 34 AngularVectorForce::get_local_quat 0 1 122 187
+////////////////////////////////////////////////////////////////////
+// Function : get_local_quat
+//   Access : public
+////////////////////////////////////////////////////////////////////
+65
+inline LRotationf AngularVectorForce::get_local_quat(void) const;
+
+357 14 get_class_type 4 458 34 AngularVectorForce::get_class_type 0 1 123 0
+59
+static TypeHandle AngularVectorForce::get_class_type(void);
+
+358 9 ForceNode 4 459 20 ForceNode::ForceNode 0 1 124 458
+////////////////////////////////////////////////////////////////////
+//     Function : ForceNode
+//       Access : public
+//  Description : default constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : ForceNode
+//       Access : protected
+//  Description : copy constructor
+////////////////////////////////////////////////////////////////////
+55
+ForceNode::ForceNode(basic_string< char > const &name);
+
+359 5 clear 4 459 16 ForceNode::clear 0 1 125 855
+// Filename: forceNode.I
+// Created by:  charles (02Aug00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//  Function : clear
+//    Access : public
+////////////////////////////////////////////////////////////////////
+35
+inline void ForceNode::clear(void);
+
+360 9 get_force 4 459 20 ForceNode::get_force 0 1 126 184
+////////////////////////////////////////////////////////////////////
+//  Function : get_force
+//    Access : public
+////////////////////////////////////////////////////////////////////
+56
+inline BaseForce *ForceNode::get_force(int index) const;
+
+361 14 get_num_forces 4 459 25 ForceNode::get_num_forces 0 1 127 189
+////////////////////////////////////////////////////////////////////
+//  Function : get_num_forces
+//    Access : public
+////////////////////////////////////////////////////////////////////
+49
+inline int ForceNode::get_num_forces(void) const;
+
+362 9 add_force 4 459 20 ForceNode::add_force 0 1 128 184
+////////////////////////////////////////////////////////////////////
+//  Function : add_force
+//    Access : public
+////////////////////////////////////////////////////////////////////
+51
+inline void ForceNode::add_force(BaseForce *force);
+
+363 15 add_forces_from 4 459 26 ForceNode::add_forces_from 0 1 129 231
+////////////////////////////////////////////////////////////////////
+//     Function : add_forces_from
+//       Access : public
+//  Description : append operation
+////////////////////////////////////////////////////////////////////
+56
+void ForceNode::add_forces_from(ForceNode const &other);
+
+364 12 remove_force 4 459 23 ForceNode::remove_force 0 2 130 131 458
+////////////////////////////////////////////////////////////////////
+//     Function : remove_force
+//       Access : public
+//  Description : remove operation
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : remove_force
+//       Access : public
+//  Description : remove operation
+////////////////////////////////////////////////////////////////////
+43
+void ForceNode::remove_force(BaseForce *f);
+
+365 12 write_forces 4 459 23 ForceNode::write_forces 0 2 132 133 293
+////////////////////////////////////////////////////////////////////
+//     Function : write_linear_forces
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+84
+virtual void ForceNode::write_forces(ostream &out, unsigned int indent = (0)) const;
+
+366 5 write 4 459 16 ForceNode::write 0 2 134 135 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+77
+virtual void ForceNode::write(ostream &out, unsigned int indent = (0)) const;
+
+367 14 get_class_type 4 459 25 ForceNode::get_class_type 0 1 136 0
+50
+static TypeHandle ForceNode::get_class_type(void);
+
+368 18 LinearControlForce 4 460 38 LinearControlForce::LinearControlForce 0 5 137 138 139 140 141 472
+////////////////////////////////////////////////////////////////////
+//     Function : LinearControlForce
+//       Access : Public
+//  Description : Vector Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : LinearControlForce
+//       Access : Public
+//  Description : Copy Constructor
+////////////////////////////////////////////////////////////////////
+102
+LinearControlForce::LinearControlForce(PhysicsObject const *po = (0), float a = (1), bool mass = (0));
+
+369 20 clear_physics_object 4 460 40 LinearControlForce::clear_physics_object 0 1 142 924
+// Filename: linearControlForce.I
+// Created by: Dave Schuyler (2006)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : clear_physics_object
+//      Access : Public
+// Description : encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+59
+inline void LinearControlForce::clear_physics_object(void);
+
+370 18 set_physics_object 4 460 38 LinearControlForce::set_physics_object 0 1 143 236
+////////////////////////////////////////////////////////////////////
+//    Function : set_physics_object
+//      Access : Public
+// Description : encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+76
+inline void LinearControlForce::set_physics_object(PhysicsObject const *po);
+
+371 18 get_physics_object 4 460 38 LinearControlForce::get_physics_object 0 1 144 246
+////////////////////////////////////////////////////////////////////
+//    Function : get_physics_object
+//      Access : Public
+// Description : piecewise encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+90
+inline ConstPointerTo< PhysicsObject > LinearControlForce::get_physics_object(void) const;
+
+372 10 set_vector 4 460 30 LinearControlForce::set_vector 0 2 145 146 468
+////////////////////////////////////////////////////////////////////
+//    Function : set_vector
+//      Access : Public
+// Description : encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : set_vector
+//      Access : Public
+// Description : piecewise encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+63
+inline void LinearControlForce::set_vector(LVector3f const &v);
+
+373 16 get_local_vector 4 460 36 LinearControlForce::get_local_vector 0 1 147 212
+////////////////////////////////////////////////////////////////////
+//    Function : get_local_vector
+//      Access : Public
+// Description :
+////////////////////////////////////////////////////////////////////
+66
+inline LVector3f LinearControlForce::get_local_vector(void) const;
+
+374 14 get_class_type 4 460 34 LinearControlForce::get_class_type 0 1 148 0
+59
+static TypeHandle LinearControlForce::get_class_type(void);
+
+375 25 LinearCylinderVortexForce 4 461 52 LinearCylinderVortexForce::LinearCylinderVortexForce 0 7 149 150 151 152 153 154 155 480
+////////////////////////////////////////////////////////////////////
+//    Function : LinearCylinderVortexForce
+//      Access : public
+// Description : Simple Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearCylinderVortexForce
+//      Access : public
+// Description : copy Constructor
+////////////////////////////////////////////////////////////////////
+141
+LinearCylinderVortexForce::LinearCylinderVortexForce(float radius = (1), float length = (0), float coef = (1), float a = (1), bool md = (0));
+
+376 8 set_coef 4 461 35 LinearCylinderVortexForce::set_coef 0 1 156 181
+////////////////////////////////////////////////////////////////////
+// Function : set_coef
+//   Access : public
+////////////////////////////////////////////////////////////////////
+60
+inline void LinearCylinderVortexForce::set_coef(float coef);
+
+377 8 get_coef 4 461 35 LinearCylinderVortexForce::get_coef 0 1 157 181
+////////////////////////////////////////////////////////////////////
+// Function : get_coef
+//   Access : public
+////////////////////////////////////////////////////////////////////
+61
+inline float LinearCylinderVortexForce::get_coef(void) const;
+
+378 10 set_radius 4 461 37 LinearCylinderVortexForce::set_radius 0 1 158 874
+// Filename: linearCylinderVortexForce.I
+// Created by:  charles (24Jul00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Function : set_radius
+//   Access : public
+////////////////////////////////////////////////////////////////////
+64
+inline void LinearCylinderVortexForce::set_radius(float radius);
+
+379 10 get_radius 4 461 37 LinearCylinderVortexForce::get_radius 0 1 159 183
+////////////////////////////////////////////////////////////////////
+// Function : get_radius
+//   Access : public
+////////////////////////////////////////////////////////////////////
+63
+inline float LinearCylinderVortexForce::get_radius(void) const;
+
+380 10 set_length 4 461 37 LinearCylinderVortexForce::set_length 0 1 160 183
+////////////////////////////////////////////////////////////////////
+// Function : set_length
+//   Access : public
+////////////////////////////////////////////////////////////////////
+64
+inline void LinearCylinderVortexForce::set_length(float length);
+
+381 10 get_length 4 461 37 LinearCylinderVortexForce::get_length 0 1 161 183
+////////////////////////////////////////////////////////////////////
+// Function : get_length
+//   Access : public
+////////////////////////////////////////////////////////////////////
+63
+inline float LinearCylinderVortexForce::get_length(void) const;
+
+382 14 get_class_type 4 461 41 LinearCylinderVortexForce::get_class_type 0 1 162 0
+66
+static TypeHandle LinearCylinderVortexForce::get_class_type(void);
+
+383 10 set_radius 4 462 31 LinearDistanceForce::set_radius 0 1 163 221
+////////////////////////////////////////////////////////////////////
+//    Function : set_radius
+//      Access : Public
+// Description : set the radius
+////////////////////////////////////////////////////////////////////
+53
+inline void LinearDistanceForce::set_radius(float r);
+
+384 16 set_falloff_type 4 462 37 LinearDistanceForce::set_falloff_type 0 1 164 929
+// Filename: linearDistanceForce.I
+// Created by:  charles (21Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : set_falloff_type
+//      Access : Public
+// Description : falloff_type encapsulating wrap
+////////////////////////////////////////////////////////////////////
+87
+inline void LinearDistanceForce::set_falloff_type(LinearDistanceForce::FalloffType ft);
+
+385 16 set_force_center 4 462 37 LinearDistanceForce::set_force_center 0 1 165 233
+////////////////////////////////////////////////////////////////////
+//    Function : set_force_center
+//      Access : Public
+// Description : set the force center
+////////////////////////////////////////////////////////////////////
+69
+inline void LinearDistanceForce::set_force_center(LPoint3f const &p);
+
+386 10 get_radius 4 462 31 LinearDistanceForce::get_radius 0 1 166 219
+////////////////////////////////////////////////////////////////////
+//    Function : get_radius
+//      Access : public
+// Description : radius query
+////////////////////////////////////////////////////////////////////
+57
+inline float LinearDistanceForce::get_radius(void) const;
+
+387 16 get_falloff_type 4 462 37 LinearDistanceForce::get_falloff_type 0 1 167 231
+////////////////////////////////////////////////////////////////////
+//    Function : get_falloff_type
+//      Access : public
+// Description : falloff_type query
+////////////////////////////////////////////////////////////////////
+90
+inline LinearDistanceForce::FalloffType LinearDistanceForce::get_falloff_type(void) const;
+
+388 16 get_force_center 4 462 37 LinearDistanceForce::get_force_center 0 1 168 231
+////////////////////////////////////////////////////////////////////
+//    Function : get_force_center
+//      Access : public
+// Description : force_center query
+////////////////////////////////////////////////////////////////////
+66
+inline LPoint3f LinearDistanceForce::get_force_center(void) const;
+
+389 15 get_scalar_term 4 462 36 LinearDistanceForce::get_scalar_term 0 1 169 248
+////////////////////////////////////////////////////////////////////
+//    Function : get_scalar_term
+//      Access : private
+// Description : calculate the term based on falloff
+////////////////////////////////////////////////////////////////////
+62
+inline float LinearDistanceForce::get_scalar_term(void) const;
+
+390 14 get_class_type 4 462 35 LinearDistanceForce::get_class_type 0 1 170 0
+60
+static TypeHandle LinearDistanceForce::get_class_type(void);
+
+391 21 LinearEulerIntegrator 4 465 44 LinearEulerIntegrator::LinearEulerIntegrator 0 1 171 0
+51
+LinearEulerIntegrator::LinearEulerIntegrator(void);
+
+392 19 LinearFrictionForce 4 466 40 LinearFrictionForce::LinearFrictionForce 0 5 172 173 174 175 176 461
+////////////////////////////////////////////////////////////////////
+//    Function : LinearFrictionForce
+//      Access : Public
+// Description : Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearFrictionForce
+//      Access : Public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+88
+LinearFrictionForce::LinearFrictionForce(float coef = (1), float a = (1), bool m = (0));
+
+393 8 set_coef 4 466 29 LinearFrictionForce::set_coef 0 1 177 866
+// Filename: linearFrictionForce.I
+// Created by:  charles (31Jul00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Function : set_coef
+//   Access : public
+////////////////////////////////////////////////////////////////////
+54
+inline void LinearFrictionForce::set_coef(float coef);
+
+394 8 get_coef 4 466 29 LinearFrictionForce::get_coef 0 1 178 181
+////////////////////////////////////////////////////////////////////
+// Function : get_coef
+//   Access : public
+////////////////////////////////////////////////////////////////////
+55
+inline float LinearFrictionForce::get_coef(void) const;
+
+395 14 get_class_type 4 466 35 LinearFrictionForce::get_class_type 0 1 179 0
+60
+static TypeHandle LinearFrictionForce::get_class_type(void);
+
+396 14 get_class_type 4 467 33 LinearRandomForce::get_class_type 0 1 180 0
+58
+static TypeHandle LinearRandomForce::get_class_type(void);
+
+397 17 LinearJitterForce 4 468 36 LinearJitterForce::LinearJitterForce 0 4 181 182 183 184 457
+////////////////////////////////////////////////////////////////////
+//    Function : LinearJitterForce
+//      Access : Public
+// Description : constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearJitterForce
+//      Access : Public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+66
+LinearJitterForce::LinearJitterForce(float a = (1), bool m = (0));
+
+398 14 get_class_type 4 468 33 LinearJitterForce::get_class_type 0 1 185 0
+58
+static TypeHandle LinearJitterForce::get_class_type(void);
+
+399 16 LinearNoiseForce 4 469 34 LinearNoiseForce::LinearNoiseForce 0 4 186 187 188 189 461
+////////////////////////////////////////////////////////////////////
+//     Function : LinearNoiseForce
+//       Access : Public
+//  Description : constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : LinearNoiseForce
+//       Access : Public
+//  Description : copy constructor
+////////////////////////////////////////////////////////////////////
+64
+LinearNoiseForce::LinearNoiseForce(float a = (1), bool m = (0));
+
+400 14 get_class_type 4 469 32 LinearNoiseForce::get_class_type 0 1 190 0
+57
+static TypeHandle LinearNoiseForce::get_class_type(void);
+
+401 15 LinearSinkForce 4 470 32 LinearSinkForce::LinearSinkForce 0 5 191 192 193 194 195 692
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSinkForce
+//      Access : Public
+// Description : Simple constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSinkForce
+//      Access : Public
+// Description : Simple constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSinkForce
+//      Access : Public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+126
+LinearSinkForce::LinearSinkForce(LPoint3f const &p, LinearDistanceForce::FalloffType f, float r, float a = (1), bool m = (1));
+
+402 14 get_class_type 4 470 31 LinearSinkForce::get_class_type 0 1 196 0
+56
+static TypeHandle LinearSinkForce::get_class_type(void);
+
+403 17 LinearSourceForce 4 471 36 LinearSourceForce::LinearSourceForce 0 5 197 198 199 200 201 698
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSourceForce
+//      Access : Public
+// Description : Simple constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSourceForce
+//      Access : Public
+// Description : Simple constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearSourceForce
+//      Access : Public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+133
+LinearSourceForce::LinearSourceForce(LPoint3f const &p, LinearDistanceForce::FalloffType f, float r, float a = (1), bool mass = (1));
+
+404 14 get_class_type 4 471 33 LinearSourceForce::get_class_type 0 1 202 0
+58
+static TypeHandle LinearSourceForce::get_class_type(void);
+
+405 22 LinearUserDefinedForce 4 472 46 LinearUserDefinedForce::LinearUserDefinedForce 0 2 203 204 467
+////////////////////////////////////////////////////////////////////
+//    Function : LinearUserDefinedForce
+//      Access : public
+// Description : constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : LinearUserDefinedForce
+//      Access : public
+// Description : copy constructor
+////////////////////////////////////////////////////////////////////
+135
+LinearUserDefinedForce::LinearUserDefinedForce(LVector3f (*proc)(PhysicsObject const *) = ((void *)(0)), float a = (1), bool md = (0));
+
+406 8 set_proc 4 472 32 LinearUserDefinedForce::set_proc 0 0 869
+// Filename: linearUserDefinedForce.I
+// Created by:  charles (31Jul00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Function : set_proc
+//   Access : public
+////////////////////////////////////////////////////////////////////
+87
+inline void LinearUserDefinedForce::set_proc(LVector3f (*proc)(PhysicsObject const *));
+
+407 14 get_class_type 4 472 38 LinearUserDefinedForce::get_class_type 0 1 205 0
+63
+static TypeHandle LinearUserDefinedForce::get_class_type(void);
+
+408 17 LinearVectorForce 4 473 36 LinearVectorForce::LinearVectorForce 0 10 206 207 208 209 210 211 212 213 214 215 718
+////////////////////////////////////////////////////////////////////
+//     Function : LinearVectorForce
+//       Access : Public
+//  Description : Vector Constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : LinearVectorForce
+//       Access : Public
+//  Description : Default/Piecewise constructor
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function : LinearVectorForce
+//       Access : Public
+//  Description : Copy Constructor
+////////////////////////////////////////////////////////////////////
+91
+LinearVectorForce::LinearVectorForce(LVector3f const &vec, float a = (1), bool mass = (0));
+
+409 10 set_vector 4 473 29 LinearVectorForce::set_vector 0 2 216 217 1151
+// Filename: linearVectorForce.I
+// Created by:  charles (21Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : set_vector
+//      Access : Public
+// Description : encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//    Function : set_vector
+//      Access : Public
+// Description : piecewise encapsulating wrapper
+////////////////////////////////////////////////////////////////////
+62
+inline void LinearVectorForce::set_vector(LVector3f const &v);
+
+410 16 get_local_vector 4 473 35 LinearVectorForce::get_local_vector 0 1 218 212
+////////////////////////////////////////////////////////////////////
+//    Function : get_local_vector
+//      Access : Public
+// Description :
+////////////////////////////////////////////////////////////////////
+65
+inline LVector3f LinearVectorForce::get_local_vector(void) const;
+
+411 14 get_class_type 4 473 33 LinearVectorForce::get_class_type 0 1 219 0
+58
+static TypeHandle LinearVectorForce::get_class_type(void);
+
+412 23 PhysicsCollisionHandler 4 474 48 PhysicsCollisionHandler::PhysicsCollisionHandler 0 1 220 232
+////////////////////////////////////////////////////////////////////
+//     Function: PhysicsCollisionHandler::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+PhysicsCollisionHandler::PhysicsCollisionHandler(void);
+
+413 27 set_almost_stationary_speed 4 474 52 PhysicsCollisionHandler::set_almost_stationary_speed 0 1 221 48
+// These setters and getter are a bit of a hack:
+78
+inline void PhysicsCollisionHandler::set_almost_stationary_speed(float speed);
+
+414 27 get_almost_stationary_speed 4 474 52 PhysicsCollisionHandler::get_almost_stationary_speed 0 1 222 48
+// These setters and getter are a bit of a hack:
+72
+inline float PhysicsCollisionHandler::get_almost_stationary_speed(void);
+
+415 24 set_static_friction_coef 4 474 49 PhysicsCollisionHandler::set_static_friction_coef 0 1 223 0
+74
+inline void PhysicsCollisionHandler::set_static_friction_coef(float coef);
+
+416 24 get_static_friction_coef 4 474 49 PhysicsCollisionHandler::get_static_friction_coef 0 1 224 0
+69
+inline float PhysicsCollisionHandler::get_static_friction_coef(void);
+
+417 25 set_dynamic_friction_coef 4 474 50 PhysicsCollisionHandler::set_dynamic_friction_coef 0 1 225 0
+75
+inline void PhysicsCollisionHandler::set_dynamic_friction_coef(float coef);
+
+418 25 get_dynamic_friction_coef 4 474 50 PhysicsCollisionHandler::get_dynamic_friction_coef 0 1 226 0
+70
+inline float PhysicsCollisionHandler::get_dynamic_friction_coef(void);
+
+419 14 get_class_type 4 474 39 PhysicsCollisionHandler::get_class_type 0 1 227 0
+64
+static TypeHandle PhysicsCollisionHandler::get_class_type(void);
+
+420 14 PhysicsManager 4 476 30 PhysicsManager::PhysicsManager 0 1 228 300
+////////////////////////////////////////////////////////////////////
+//     Function : PhysicsManager
+//       Access : Public
+//  Description : Default Constructor.  NOTE: EulerIntegrator is
+//                the standard default.
+////////////////////////////////////////////////////////////////////
+37
+PhysicsManager::PhysicsManager(void);
+
+421 15 ~PhysicsManager 4 476 31 PhysicsManager::~PhysicsManager 0 0 232
+////////////////////////////////////////////////////////////////////
+//     Function : ~PhysicsManager
+//       Access : Public
+//  Description : Simple Destructor
+////////////////////////////////////////////////////////////////////
+46
+virtual PhysicsManager::~PhysicsManager(void);
+
+422 24 attach_linear_integrator 4 476 40 PhysicsManager::attach_linear_integrator 0 1 229 263
+////////////////////////////////////////////////////////////////////
+//    Function : attach_linear_integrator
+//      Access : Public
+// Description : Hooks a linear integrator into the manager
+////////////////////////////////////////////////////////////////////
+74
+inline void PhysicsManager::attach_linear_integrator(LinearIntegrator *i);
+
+423 25 attach_angular_integrator 4 476 41 PhysicsManager::attach_angular_integrator 0 1 230 266
+////////////////////////////////////////////////////////////////////
+//    Function : attach_angular_integrator
+//      Access : Public
+// Description : Hooks an angular integrator into the manager
+////////////////////////////////////////////////////////////////////
+76
+inline void PhysicsManager::attach_angular_integrator(AngularIntegrator *i);
+
+424 15 attach_physical 4 476 31 PhysicsManager::attach_physical 0 1 231 935
+// Filename: physicsManager.I
+// Created by:  charles (14Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//    Function : attach_physical
+//      Access : Public
+// Description : Registers a Physical class with the manager
+////////////////////////////////////////////////////////////////////
+57
+inline void PhysicsManager::attach_physical(Physical *p);
+
+425 19 attach_physicalnode 4 476 35 PhysicsManager::attach_physicalnode 0 1 232 257
+////////////////////////////////////////////////////////////////////
+//    Function : attach_physicalnode
+//      Access : Public
+// Description : Please call attach_physical_node instead.
+////////////////////////////////////////////////////////////////////
+65
+inline void PhysicsManager::attach_physicalnode(PhysicalNode *p);
+
+426 20 attach_physical_node 4 476 36 PhysicsManager::attach_physical_node 0 1 233 296
+// use attach_physical_node instead.
+
+////////////////////////////////////////////////////////////////////
+//    Function : attach_physical_node
+//      Access : Public
+// Description : Registers a physicalnode with the manager
+////////////////////////////////////////////////////////////////////
+66
+inline void PhysicsManager::attach_physical_node(PhysicalNode *p);
+
+427 16 add_linear_force 4 476 32 PhysicsManager::add_linear_force 0 1 234 303
+// use attach_physical_node instead.
+
+////////////////////////////////////////////////////////////////////
+//    Function : attach_linear_force
+//      Access : Public
+// Description : Adds a global linear force to the physics manager
+////////////////////////////////////////////////////////////////////
+61
+inline void PhysicsManager::add_linear_force(LinearForce *f);
+
+428 17 add_angular_force 4 476 33 PhysicsManager::add_angular_force 0 1 235 267
+////////////////////////////////////////////////////////////////////
+//    Function : attach_angular_force
+//      Access : Public
+// Description : Adds a global angular force to the physics manager
+////////////////////////////////////////////////////////////////////
+63
+inline void PhysicsManager::add_angular_force(AngularForce *f);
+
+429 19 clear_linear_forces 4 476 35 PhysicsManager::clear_linear_forces 0 1 236 255
+////////////////////////////////////////////////////////////////////
+//    Function : clear_linear_forces
+//      Access : Public
+// Description : Resets the physics manager force vector
+////////////////////////////////////////////////////////////////////
+54
+inline void PhysicsManager::clear_linear_forces(void);
+
+430 20 clear_angular_forces 4 476 36 PhysicsManager::clear_angular_forces 0 1 237 256
+////////////////////////////////////////////////////////////////////
+//    Function : clear_angular_forces
+//      Access : Public
+// Description : Resets the physics manager force vector
+////////////////////////////////////////////////////////////////////
+55
+inline void PhysicsManager::clear_angular_forces(void);
+
+431 15 clear_physicals 4 476 31 PhysicsManager::clear_physicals 0 1 238 253
+////////////////////////////////////////////////////////////////////
+//    Function : clear_physicals
+//      Access : Public
+// Description : Resets the physics manager objects vector
+////////////////////////////////////////////////////////////////////
+50
+inline void PhysicsManager::clear_physicals(void);
+
+432 13 set_viscosity 4 476 29 PhysicsManager::set_viscosity 0 1 239 235
+////////////////////////////////////////////////////////////////////
+//    Function : set_viscosity
+//      Access : Public
+// Description : Set the global viscosity.
+////////////////////////////////////////////////////////////////////
+59
+inline void PhysicsManager::set_viscosity(float viscosity);
+
+433 13 get_viscosity 4 476 29 PhysicsManager::get_viscosity 0 1 240 235
+////////////////////////////////////////////////////////////////////
+//    Function : get_viscosity
+//      Access : Public
+// Description : Get the global viscosity.
+////////////////////////////////////////////////////////////////////
+55
+inline float PhysicsManager::get_viscosity(void) const;
+
+434 15 remove_physical 4 476 31 PhysicsManager::remove_physical 0 1 241 254
+////////////////////////////////////////////////////////////////////
+//     Function : remove_physical
+//       Access : Public
+//  Description : takes a physical out of the object list
+////////////////////////////////////////////////////////////////////
+50
+void PhysicsManager::remove_physical(Physical *p);
+
+435 20 remove_physical_node 4 476 36 PhysicsManager::remove_physical_node 0 1 242 256
+////////////////////////////////////////////////////////////////////
+//    Function : remove_physical_node
+//      Access : Public
+// Description : Removes a physicalnode from the manager
+////////////////////////////////////////////////////////////////////
+59
+void PhysicsManager::remove_physical_node(PhysicalNode *p);
+
+436 19 remove_linear_force 4 476 35 PhysicsManager::remove_linear_force 0 1 243 263
+////////////////////////////////////////////////////////////////////
+//     Function : remove_linear_force
+//       Access : Public
+//  Description : takes a linear force out of the physics list
+////////////////////////////////////////////////////////////////////
+57
+void PhysicsManager::remove_linear_force(LinearForce *f);
+
+437 20 remove_angular_force 4 476 36 PhysicsManager::remove_angular_force 0 1 244 266
+////////////////////////////////////////////////////////////////////
+//     Function : remove_angular_force
+//       Access : Public
+//  Description : takes an angular force out of the physics list
+////////////////////////////////////////////////////////////////////
+59
+void PhysicsManager::remove_angular_force(AngularForce *f);
+
+438 10 do_physics 4 476 26 PhysicsManager::do_physics 0 1 245 314
+////////////////////////////////////////////////////////////////////
+//     Function : DoPhysics
+//       Access : Public
+//  Description : This is the main high-level API call.  Performs
+//                integration on every attached Physical.
+////////////////////////////////////////////////////////////////////
+42
+void PhysicsManager::do_physics(float dt);
+
+439 16 init_random_seed 4 476 32 PhysicsManager::init_random_seed 0 1 246 388
+////////////////////////////////////////////////////////////////////
+//     Function : InitRandomSeed
+//       Access : Public
+//  Description : One-time config function, sets up the random seed
+//                used by the physics and particle systems.
+//                For synchronizing across distributed computers
+////////////////////////////////////////////////////////////////////
+44
+void PhysicsManager::init_random_seed(void);
+
+440 6 output 4 476 22 PhysicsManager::output 0 1 247 280
+////////////////////////////////////////////////////////////////////
+//     Function : output
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+56
+virtual void PhysicsManager::output(ostream &out) const;
+
+441 15 write_physicals 4 476 31 PhysicsManager::write_physicals 0 2 248 249 289
+////////////////////////////////////////////////////////////////////
+//     Function : write_physicals
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+92
+virtual void PhysicsManager::write_physicals(ostream &out, unsigned int indent = (0)) const;
+
+442 19 write_linear_forces 4 476 35 PhysicsManager::write_linear_forces 0 2 250 251 286
+////////////////////////////////////////////////////////////////////
+//     Function : write_forces
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+96
+virtual void PhysicsManager::write_linear_forces(ostream &out, unsigned int indent = (0)) const;
+
+443 20 write_angular_forces 4 476 36 PhysicsManager::write_angular_forces 0 2 252 253 294
+////////////////////////////////////////////////////////////////////
+//     Function : write_angular_forces
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+97
+virtual void PhysicsManager::write_angular_forces(ostream &out, unsigned int indent = (0)) const;
+
+444 5 write 4 476 21 PhysicsManager::write 0 2 254 255 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+82
+virtual void PhysicsManager::write(ostream &out, unsigned int indent = (0)) const;
+
+445 12 debug_output 4 476 28 PhysicsManager::debug_output 0 2 256 257 279
+////////////////////////////////////////////////////////////////////
+//     Function : write
+//       Access : Public
+//  Description : Write a string representation of this instance to
+//                <out>.
+////////////////////////////////////////////////////////////////////
+89
+virtual void PhysicsManager::debug_output(ostream &out, unsigned int indent = (0)) const;
+
+257
+1 14 Dtool_9fJJ19Dv 7 3 477 0 14 Dtool_9fJJ19Dv 0 
+2 14 Dtool_9fJJniDU 7 3 477 0 14 Dtool_9fJJniDU 1 4 copy 1 478  
+3 14 Dtool_9fJJK_qc 7 4 477 0 14 Dtool_9fJJK_qc 2 4 this 3 477  5 other 1 478  
+4 14 Dtool_9fJJk3K1 4 5 481 0 14 Dtool_9fJJk3K1 2 4 this 3 477  4 flag 1 480  
+5 14 Dtool_9fJJA4xf 6 6 480 0 14 Dtool_9fJJA4xf 1 4 this 3 478  
+6 14 Dtool_9fJJ7Zyt 4 7 481 0 14 Dtool_9fJJ7Zyt 2 4 this 3 477  6 param0 0 482  
+7 14 Dtool_9fJJ4psm 6 8 482 0 14 Dtool_9fJJ4psm 1 4 this 3 478  
+8 14 Dtool_9fJJxgAg 4 9 481 0 14 Dtool_9fJJxgAg 2 4 this 3 477  3 pos 1 483  
+9 14 Dtool_9fJJ2VGQ 4 9 481 0 14 Dtool_9fJJ2VGQ 4 4 this 3 477  1 x 1 482  1 y 1 482  1 z 1 482  
+10 14 Dtool_9fJJ2Mf1 7 10 486 0 14 Dtool_9fJJ2Mf1 1 4 this 3 478  
+11 14 Dtool_9fJJrXx9 4 11 481 0 14 Dtool_9fJJrXx9 2 4 this 3 477  3 pos 1 483  
+12 14 Dtool_9fJJy9P2 4 12 481 0 14 Dtool_9fJJy9P2 2 4 this 3 477  3 pos 1 483  
+13 14 Dtool_9fJJfPBj 7 13 486 0 14 Dtool_9fJJfPBj 1 4 this 3 478  
+14 14 Dtool_9fJJZTzH 4 14 481 0 14 Dtool_9fJJZTzH 2 4 this 3 477  3 vel 1 487  
+15 14 Dtool_9fJJAJOH 4 14 481 0 14 Dtool_9fJJAJOH 4 4 this 3 477  1 x 1 482  1 y 1 482  1 z 1 482  
+16 14 Dtool_9fJJYDns 7 15 490 0 14 Dtool_9fJJYDns 1 4 this 3 478  
+17 14 Dtool_9fJJm1Ut 7 16 490 0 14 Dtool_9fJJm1Ut 1 4 this 3 478  
+18 14 Dtool_9fJJfYuT 4 17 481 0 14 Dtool_9fJJfYuT 2 4 this 3 477  6 torque 1 491  
+19 14 Dtool_9fJJuEW4 4 18 481 0 14 Dtool_9fJJuEW4 2 4 this 3 477  7 impulse 1 487  
+20 14 Dtool_9fJJpp9_ 4 19 481 0 14 Dtool_9fJJpp9_ 3 4 this 3 477  26 offset_from_center_of_mass 1 483  7 impulse 1 487  
+21 14 Dtool_9fJJQTAy 4 20 481 0 14 Dtool_9fJJQTAy 2 4 this 3 477  6 torque 1 491  
+22 14 Dtool_9fJJyfsY 4 21 481 0 14 Dtool_9fJJyfsY 2 4 this 3 477  7 impulse 1 487  
+23 14 Dtool_9fJJ4miC 4 22 481 0 14 Dtool_9fJJ4miC 3 4 this 3 477  26 offset_from_center_of_mass 1 483  7 impulse 1 487  
+24 14 Dtool_9fJJcEdt 4 23 481 0 14 Dtool_9fJJcEdt 2 4 this 3 477  2 tv 1 482  
+25 14 Dtool_9fJJVEE2 6 24 482 0 14 Dtool_9fJJVEE2 1 4 this 3 478  
+26 14 Dtool_9fJJ_NXG 4 25 481 0 14 Dtool_9fJJ_NXG 2 4 this 3 477  4 flag 1 480  
+27 14 Dtool_9fJJeb01 6 26 480 0 14 Dtool_9fJJeb01 1 4 this 3 478  
+28 14 Dtool_9fJJQXq_ 4 27 481 0 14 Dtool_9fJJQXq_ 2 4 this 3 477  11 orientation 1 494  
+29 14 Dtool_9fJJLaE6 7 28 497 0 14 Dtool_9fJJLaE6 1 4 this 3 478  
+30 14 Dtool_9fJJueOQ 4 29 481 0 14 Dtool_9fJJueOQ 2 4 this 3 477  11 orientation 1 494  
+31 14 Dtool_9fJJnwCa 4 30 481 0 14 Dtool_9fJJnwCa 2 4 this 3 477  8 rotation 1 491  
+32 14 Dtool_9fJJYNx7 7 31 498 0 14 Dtool_9fJJYNx7 1 4 this 3 478  
+33 14 Dtool_9fJJ2KW7 7 32 500 0 14 Dtool_9fJJ2KW7 1 4 this 3 478  
+34 14 Dtool_9fJJj4Kt 7 33 500 0 14 Dtool_9fJJj4Kt 1 4 this 3 478  
+35 14 Dtool_9fJJWP2J 7 34 477 0 14 Dtool_9fJJWP2J 1 4 this 3 478  
+36 14 Dtool_9fJJ0yLq 4 35 481 0 14 Dtool_9fJJ0yLq 2 4 this 3 477  4 name 1 501  
+37 14 Dtool_9fJJXpFK 6 36 501 0 14 Dtool_9fJJXpFK 1 4 this 3 477  
+38 14 Dtool_9fJJkx3h 4 37 481 0 14 Dtool_9fJJkx3h 2 4 this 3 478  3 out 1 502  
+39 14 Dtool_9fJJygbI 4 38 481 0 14 Dtool_9fJJygbI 3 4 this 3 478  3 out 1 502  6 indent 1 504  
+40 14 Dtool_9fJJax5t 4 38 481 0 14 Dtool_9fJJax5t 2 4 this 3 478  3 out 1 502  
+41 14 Dtool_9fJJbfoM 7 39 506 0 14 Dtool_9fJJbfoM 0 
+42 14 Dtool_9fJJkE3t 6 41 480 0 14 Dtool_9fJJkE3t 1 4 this 3 507  
+43 14 Dtool_9fJJQQYE 4 42 481 0 14 Dtool_9fJJQQYE 2 4 this 3 509  6 active 1 480  
+44 14 Dtool_9fJJw2t9 6 43 480 0 14 Dtool_9fJJw2t9 1 4 this 3 507  
+45 14 Dtool_9fJJ_1U0 6 44 510 0 14 Dtool_9fJJ_1U0 1 4 this 3 507  
+46 14 Dtool_9fJJbo8P 4 45 481 0 14 Dtool_9fJJbo8P 2 4 this 3 507  3 out 1 502  
+47 14 Dtool_9fJJ_ya5 4 46 481 0 14 Dtool_9fJJ_ya5 3 4 this 3 507  3 out 1 502  6 indent 1 504  
+48 14 Dtool_9fJJeSbQ 4 46 481 0 14 Dtool_9fJJeSbQ 2 4 this 3 507  3 out 1 502  
+49 14 Dtool_9fJJ1Xv7 7 47 506 0 14 Dtool_9fJJ1Xv7 0 
+50 14 Dtool_9fJJak2L 4 49 481 0 14 Dtool_9fJJak2L 2 4 this 3 511  1 a 1 482  
+51 14 Dtool_9fJJK6uI 4 50 481 0 14 Dtool_9fJJK6uI 2 4 this 3 511  1 m 1 480  
+52 14 Dtool_9fJJUWPK 6 51 482 0 14 Dtool_9fJJUWPK 1 4 this 3 512  
+53 14 Dtool_9fJJbO05 6 52 480 0 14 Dtool_9fJJbO05 1 4 this 3 512  
+54 14 Dtool_9fJJI9tL 4 53 481 0 14 Dtool_9fJJI9tL 4 4 this 3 511  1 x 1 480  1 y 1 480  1 z 1 480  
+55 14 Dtool_9fJJVARA 7 54 490 0 14 Dtool_9fJJVARA 2 4 this 3 511  2 po 1 478  
+56 14 Dtool_9fJJyEgT 7 55 511 0 14 Dtool_9fJJyEgT 1 4 this 3 511  
+57 14 Dtool_9fJJEdvs 7 56 506 0 14 Dtool_9fJJEdvs 0 
+58 14 Dtool_9fJJqGln 7 58 516 0 14 Dtool_9fJJqGln 1 4 this 3 514  
+59 14 Dtool_9fJJGNn4 7 59 498 0 14 Dtool_9fJJGNn4 2 4 this 3 516  2 po 1 478  
+60 14 Dtool_9fJJlQpj 7 60 506 0 14 Dtool_9fJJlQpj 0 
+61 14 Dtool_9fJJrW30 7 62 519 0 14 Dtool_9fJJrW30 1 4 copy 1 517  
+62 14 Dtool_9fJJvRxK 7 62 519 0 14 Dtool_9fJJvRxK 2 13 total_objects 1 520  9 pre_alloc 1 480  
+63 14 Dtool_9fJJ36xJ 7 62 519 0 14 Dtool_9fJJ36xJ 1 13 total_objects 1 520  
+64 14 Dtool_9fJJSZEx 7 62 519 0 14 Dtool_9fJJSZEx 0 
+65 14 Dtool_9fJJGnHU 6 63 521 0 14 Dtool_9fJJGnHU 1 4 this 3 517  
+66 14 Dtool_9fJJ_v4Q 6 64 522 0 14 Dtool_9fJJ_v4Q 1 4 this 3 517  
+67 14 Dtool_9fJJQp7H 7 65 477 0 14 Dtool_9fJJQp7H 1 4 this 3 517  
+68 14 Dtool_9fJJkJZ_ 4 66 481 0 14 Dtool_9fJJkJZ_ 1 4 this 3 519  
+69 14 Dtool_9fJJY7oN 4 67 481 0 14 Dtool_9fJJY7oN 1 4 this 3 519  
+70 14 Dtool_9fJJJunY 4 68 481 0 14 Dtool_9fJJJunY 1 4 this 3 519  
+71 14 Dtool_9fJJYy0c 4 69 481 0 14 Dtool_9fJJYy0c 2 4 this 3 519  1 f 1 511  
+72 14 Dtool_9fJJoNNk 4 70 481 0 14 Dtool_9fJJoNNk 2 4 this 3 519  1 f 1 516  
+73 14 Dtool_9fJJGrhr 4 71 481 0 14 Dtool_9fJJGrhr 2 4 this 3 519  2 po 1 477  
+74 14 Dtool_9fJJlkU3 4 72 481 0 14 Dtool_9fJJlkU3 2 4 this 3 519  1 f 1 511  
+75 14 Dtool_9fJJ3L9H 4 73 481 0 14 Dtool_9fJJ3L9H 2 4 this 3 519  1 f 1 516  
+76 14 Dtool_9fJJ5ygv 6 74 520 0 14 Dtool_9fJJ5ygv 1 4 this 3 517  
+77 14 Dtool_9fJJPUJj 7 75 511 0 14 Dtool_9fJJPUJj 2 4 this 3 517  5 index 1 520  
+78 14 Dtool_9fJJJtUr 6 76 520 0 14 Dtool_9fJJJtUr 1 4 this 3 517  
+79 14 Dtool_9fJJBVLw 7 77 516 0 14 Dtool_9fJJBVLw 2 4 this 3 517  5 index 1 520  
+80 14 Dtool_9fJJPcA4 4 78 481 0 14 Dtool_9fJJPcA4 2 4 this 3 519  9 viscosity 1 482  
+81 14 Dtool_9fJJNx2x 6 79 482 0 14 Dtool_9fJJNx2x 1 4 this 3 517  
+82 14 Dtool_9fJJ9XnP 4 80 481 0 14 Dtool_9fJJ9XnP 2 4 this 3 517  3 out 1 502  
+83 14 Dtool_9fJJqVpa 4 80 481 0 14 Dtool_9fJJqVpa 1 4 this 3 517  
+84 14 Dtool_9fJJPTed 4 81 481 0 14 Dtool_9fJJPTed 3 4 this 3 517  3 out 1 502  6 indent 1 504  
+85 14 Dtool_9fJJ0ZIV 4 81 481 0 14 Dtool_9fJJ0ZIV 2 4 this 3 517  3 out 1 502  
+86 14 Dtool_9fJJfDUt 4 81 481 0 14 Dtool_9fJJfDUt 1 4 this 3 517  
+87 14 Dtool_9fJJclJe 4 82 481 0 14 Dtool_9fJJclJe 3 4 this 3 517  3 out 1 502  6 indent 1 504  
+88 14 Dtool_9fJJW_4i 4 82 481 0 14 Dtool_9fJJW_4i 2 4 this 3 517  3 out 1 502  
+89 14 Dtool_9fJJ_CeX 4 82 481 0 14 Dtool_9fJJ_CeX 1 4 this 3 517  
+90 14 Dtool_9fJJHy5h 4 83 481 0 14 Dtool_9fJJHy5h 3 4 this 3 517  3 out 1 502  6 indent 1 504  
+91 14 Dtool_9fJJXdr3 4 83 481 0 14 Dtool_9fJJXdr3 2 4 this 3 517  3 out 1 502  
+92 14 Dtool_9fJJ_tdK 4 83 481 0 14 Dtool_9fJJ_tdK 1 4 this 3 517  
+93 14 Dtool_9fJJq83C 4 84 481 0 14 Dtool_9fJJq83C 3 4 this 3 517  3 out 1 502  6 indent 1 504  
+94 14 Dtool_9fJJTZoV 4 84 481 0 14 Dtool_9fJJTZoV 2 4 this 3 517  3 out 1 502  
+95 14 Dtool_9fJJ1xAo 4 84 481 0 14 Dtool_9fJJ1xAo 1 4 this 3 517  
+96 14 Dtool_9fJJ4K_k 7 85 506 0 14 Dtool_9fJJ4K_k 0 
+97 14 Dtool_9fJJQNir 7 88 522 0 14 Dtool_9fJJQNir 1 4 name 1 501  
+98 14 Dtool_9fJJvC_W 4 89 481 0 14 Dtool_9fJJvC_W 1 4 this 3 522  
+99 14 Dtool_9fJJGi58 7 90 519 0 14 Dtool_9fJJGi58 2 4 this 3 523  5 index 1 520  
+100 14 Dtool_9fJJHtda 6 91 520 0 14 Dtool_9fJJHtda 1 4 this 3 523  
+101 14 Dtool_9fJJmr3_ 4 92 481 0 14 Dtool_9fJJmr3_ 2 4 this 3 522  8 physical 1 519  
+102 14 Dtool_9fJJG36z 4 93 481 0 14 Dtool_9fJJG36z 2 4 this 3 522  5 other 1 523  
+103 14 Dtool_9fJJz6iS 4 94 481 0 14 Dtool_9fJJz6iS 2 4 this 3 522  8 physical 1 519  
+104 14 Dtool_9fJJOXfn 4 94 481 0 14 Dtool_9fJJOXfn 2 4 this 3 522  5 index 1 520  
+105 14 Dtool_9fJJXwip 4 95 481 0 14 Dtool_9fJJXwip 3 4 this 3 523  3 out 1 502  6 indent 1 504  
+106 14 Dtool_9fJJOEwa 4 95 481 0 14 Dtool_9fJJOEwa 2 4 this 3 523  3 out 1 502  
+107 14 Dtool_9fJJohu_ 7 96 506 0 14 Dtool_9fJJohu_ 0 
+108 14 Dtool_9fJJGS52 7 98 527 0 14 Dtool_9fJJGS52 1 4 copy 1 525  
+109 14 Dtool_9fJJy4dn 7 98 527 0 14 Dtool_9fJJy4dn 1 4 name 1 501  
+110 14 Dtool_9fJJI6QP 7 98 527 0 14 Dtool_9fJJI6QP 0 
+111 14 Dtool_9fJJDMRz 7 99 477 0 14 Dtool_9fJJDMRz 1 4 this 3 527  
+112 14 Dtool_9fJJYUGc 4 100 481 0 14 Dtool_9fJJYUGc 2 4 this 3 527  14 contact_vector 1 487  
+113 14 Dtool_9fJJjR9_ 6 101 487 0 14 Dtool_9fJJjR9_ 1 4 this 3 525  
+114 14 Dtool_9fJJ__bD 4 102 481 0 14 Dtool_9fJJ__bD 1 4 this 3 527  
+115 14 Dtool_9fJJ2_Zr 7 103 506 0 14 Dtool_9fJJ2_Zr 0 
+116 14 Dtool_9fJJ4P7V 7 107 528 0 14 Dtool_9fJJ4P7V 0 
+117 14 Dtool_9fJJaKTX 7 109 531 0 14 Dtool_9fJJaKTX 1 4 copy 1 529  
+118 14 Dtool_9fJJfSG2 7 109 531 0 14 Dtool_9fJJfSG2 1 4 quat 1 491  
+119 14 Dtool_9fJJW9fj 7 109 531 0 14 Dtool_9fJJW9fj 3 1 h 1 482  1 p 1 482  1 r 1 482  
+120 14 Dtool_9fJJzyUf 4 110 481 0 14 Dtool_9fJJzyUf 2 4 this 3 531  4 quat 1 491  
+121 14 Dtool_9fJJl6zM 4 111 481 0 14 Dtool_9fJJl6zM 4 4 this 3 531  1 h 1 482  1 p 1 482  1 r 1 482  
+122 14 Dtool_9fJJlqTY 7 112 498 0 14 Dtool_9fJJlqTY 1 4 this 3 529  
+123 14 Dtool_9fJJu8B7 7 113 506 0 14 Dtool_9fJJu8B7 0 
+124 14 Dtool_9fJJPBy9 7 115 510 0 14 Dtool_9fJJPBy9 1 4 name 1 501  
+125 14 Dtool_9fJJcXNM 4 116 481 0 14 Dtool_9fJJcXNM 1 4 this 3 510  
+126 14 Dtool_9fJJRzsU 7 117 509 0 14 Dtool_9fJJRzsU 2 4 this 3 532  5 index 1 520  
+127 14 Dtool_9fJJLpP4 6 118 520 0 14 Dtool_9fJJLpP4 1 4 this 3 532  
+128 14 Dtool_9fJJYnvh 4 119 481 0 14 Dtool_9fJJYnvh 2 4 this 3 510  5 force 1 509  
+129 14 Dtool_9fJJxhJz 4 120 481 0 14 Dtool_9fJJxhJz 2 4 this 3 510  5 other 1 532  
+130 14 Dtool_9fJJhgaF 4 121 481 0 14 Dtool_9fJJhgaF 2 4 this 3 510  1 f 1 509  
+131 14 Dtool_9fJJ_QKj 4 121 481 0 14 Dtool_9fJJ_QKj 2 4 this 3 510  5 index 1 520  
+132 14 Dtool_9fJJGWKp 4 122 481 0 14 Dtool_9fJJGWKp 3 4 this 3 532  3 out 1 502  6 indent 1 504  
+133 14 Dtool_9fJJ6BRM 4 122 481 0 14 Dtool_9fJJ6BRM 2 4 this 3 532  3 out 1 502  
+134 14 Dtool_9fJJuw7S 4 123 481 0 14 Dtool_9fJJuw7S 3 4 this 3 532  3 out 1 502  6 indent 1 504  
+135 14 Dtool_9fJJOb8p 4 123 481 0 14 Dtool_9fJJOb8p 2 4 this 3 532  3 out 1 502  
+136 14 Dtool_9fJJGQOV 7 124 506 0 14 Dtool_9fJJGQOV 0 
+137 14 Dtool_9fJJdEHh 7 126 536 0 14 Dtool_9fJJdEHh 1 4 copy 1 534  
+138 14 Dtool_9fJJnvpE 7 126 536 0 14 Dtool_9fJJnvpE 3 2 po 1 478  1 a 1 482  4 mass 1 480  
+139 14 Dtool_9fJJOXT4 7 126 536 0 14 Dtool_9fJJOXT4 2 2 po 1 478  1 a 1 482  
+140 14 Dtool_9fJJzzhR 7 126 536 0 14 Dtool_9fJJzzhR 1 2 po 1 478  
+141 14 Dtool_9fJJrBGx 7 126 536 0 14 Dtool_9fJJrBGx 0 
+142 14 Dtool_9fJJBcIH 4 127 481 0 14 Dtool_9fJJBcIH 1 4 this 3 536  
+143 14 Dtool_9fJJdZiu 4 128 481 0 14 Dtool_9fJJdZiu 2 4 this 3 536  2 po 1 478  
+144 14 Dtool_9fJJkeFq 7 129 478 0 14 Dtool_9fJJkeFq 1 4 this 3 534  
+145 14 Dtool_9fJJac16 4 130 481 0 14 Dtool_9fJJac16 2 4 this 3 536  1 v 1 487  
+146 14 Dtool_9fJJ_tD1 4 130 481 0 14 Dtool_9fJJ_tD1 4 4 this 3 536  1 x 1 482  1 y 1 482  1 z 1 482  
+147 14 Dtool_9fJJsAOU 7 131 490 0 14 Dtool_9fJJsAOU 1 4 this 3 534  
+148 14 Dtool_9fJJ6Mgp 7 132 506 0 14 Dtool_9fJJ6Mgp 0 
+149 14 Dtool_9fJJx55x 7 134 539 0 14 Dtool_9fJJx55x 1 4 copy 1 537  
+150 14 Dtool_9fJJnCN4 7 134 539 0 14 Dtool_9fJJnCN4 5 6 radius 1 482  6 length 1 482  4 coef 1 482  1 a 1 482  2 md 1 480  
+151 14 Dtool_9fJJCnEA 7 134 539 0 14 Dtool_9fJJCnEA 4 6 radius 1 482  6 length 1 482  4 coef 1 482  1 a 1 482  
+152 14 Dtool_9fJJStkP 7 134 539 0 14 Dtool_9fJJStkP 3 6 radius 1 482  6 length 1 482  4 coef 1 482  
+153 14 Dtool_9fJJfl9B 7 134 539 0 14 Dtool_9fJJfl9B 2 6 radius 1 482  6 length 1 482  
+154 14 Dtool_9fJJQc4_ 7 134 539 0 14 Dtool_9fJJQc4_ 1 6 radius 1 482  
+155 14 Dtool_9fJJE3hd 7 134 539 0 14 Dtool_9fJJE3hd 0 
+156 14 Dtool_9fJJBlCt 4 135 481 0 14 Dtool_9fJJBlCt 2 4 this 3 539  4 coef 1 482  
+157 14 Dtool_9fJJZM30 6 136 482 0 14 Dtool_9fJJZM30 1 4 this 3 537  
+158 14 Dtool_9fJJeg2d 4 137 481 0 14 Dtool_9fJJeg2d 2 4 this 3 539  6 radius 1 482  
+159 14 Dtool_9fJJObDi 6 138 482 0 14 Dtool_9fJJObDi 1 4 this 3 537  
+160 14 Dtool_9fJJuquM 4 139 481 0 14 Dtool_9fJJuquM 2 4 this 3 539  6 length 1 482  
+161 14 Dtool_9fJJ_n8Q 6 140 482 0 14 Dtool_9fJJ_n8Q 1 4 this 3 537  
+162 14 Dtool_9fJJdafq 7 141 506 0 14 Dtool_9fJJdafq 0 
+163 14 Dtool_9fJJnZ9d 4 144 481 0 14 Dtool_9fJJnZ9d 2 4 this 3 540  1 r 1 482  
+164 14 Dtool_9fJJsEHZ 4 145 481 0 14 Dtool_9fJJsEHZ 2 4 this 3 540  2 ft 1 463  
+165 14 Dtool_9fJJjHEK 4 146 481 0 14 Dtool_9fJJjHEK 2 4 this 3 540  1 p 1 483  
+166 14 Dtool_9fJJ6NAO 6 147 482 0 14 Dtool_9fJJ6NAO 1 4 this 3 541  
+167 14 Dtool_9fJJfx6e 6 148 463 0 14 Dtool_9fJJfx6e 1 4 this 3 541  
+168 14 Dtool_9fJJXLIy 7 149 486 0 14 Dtool_9fJJXLIy 1 4 this 3 541  
+169 14 Dtool_9fJJSM3k 6 150 482 0 14 Dtool_9fJJSM3k 1 4 this 3 541  
+170 14 Dtool_9fJJ4jKf 7 151 506 0 14 Dtool_9fJJ4jKf 0 
+171 14 Dtool_9fJJbpBu 7 154 543 0 14 Dtool_9fJJbpBu 0 
+172 14 Dtool_9fJJt_V5 7 156 546 0 14 Dtool_9fJJt_V5 1 4 copy 1 544  
+173 14 Dtool_9fJJ1Aho 7 156 546 0 14 Dtool_9fJJ1Aho 3 4 coef 1 482  1 a 1 482  1 m 1 480  
+174 14 Dtool_9fJJfgK3 7 156 546 0 14 Dtool_9fJJfgK3 2 4 coef 1 482  1 a 1 482  
+175 14 Dtool_9fJJZk3b 7 156 546 0 14 Dtool_9fJJZk3b 1 4 coef 1 482  
+176 14 Dtool_9fJJvrU5 7 156 546 0 14 Dtool_9fJJvrU5 0 
+177 14 Dtool_9fJJ6iox 4 157 481 0 14 Dtool_9fJJ6iox 2 4 this 3 546  4 coef 1 482  
+178 14 Dtool_9fJJOTwt 6 158 482 0 14 Dtool_9fJJOTwt 1 4 this 3 544  
+179 14 Dtool_9fJJxun1 7 159 506 0 14 Dtool_9fJJxun1 0 
+180 14 Dtool_9fJJD0XP 7 161 506 0 14 Dtool_9fJJD0XP 0 
+181 14 Dtool_9fJJXcP8 7 163 549 0 14 Dtool_9fJJXcP8 1 4 copy 1 547  
+182 14 Dtool_9fJJ0EEl 7 163 549 0 14 Dtool_9fJJ0EEl 2 1 a 1 482  1 m 1 480  
+183 14 Dtool_9fJJkctU 7 163 549 0 14 Dtool_9fJJkctU 1 1 a 1 482  
+184 14 Dtool_9fJJE51r 7 163 549 0 14 Dtool_9fJJE51r 0 
+185 14 Dtool_9fJJDAAU 7 164 506 0 14 Dtool_9fJJDAAU 0 
+186 14 Dtool_9fJJif_B 7 166 552 0 14 Dtool_9fJJif_B 1 4 copy 1 550  
+187 14 Dtool_9fJJgrE1 7 166 552 0 14 Dtool_9fJJgrE1 2 1 a 1 482  1 m 1 480  
+188 14 Dtool_9fJJN_EG 7 166 552 0 14 Dtool_9fJJN_EG 1 1 a 1 482  
+189 14 Dtool_9fJJpAku 7 166 552 0 14 Dtool_9fJJpAku 0 
+190 14 Dtool_9fJJfpMh 7 167 506 0 14 Dtool_9fJJfpMh 0 
+191 14 Dtool_9fJJgiE_ 7 169 553 0 14 Dtool_9fJJgiE_ 0 
+192 14 Dtool_9fJJaAMU 7 169 553 0 14 Dtool_9fJJaAMU 5 1 p 1 483  1 f 1 463  1 r 1 482  1 a 1 482  1 m 1 480  
+193 14 Dtool_9fJJ1Nsz 7 169 553 0 14 Dtool_9fJJ1Nsz 4 1 p 1 483  1 f 1 463  1 r 1 482  1 a 1 482  
+194 14 Dtool_9fJJ9kox 7 169 553 0 14 Dtool_9fJJ9kox 3 1 p 1 483  1 f 1 463  1 r 1 482  
+195 14 Dtool_9fJJjL1w 7 169 553 0 14 Dtool_9fJJjL1w 1 4 copy 1 554  
+196 14 Dtool_9fJJ_dB3 7 170 506 0 14 Dtool_9fJJ_dB3 0 
+197 14 Dtool_9fJJ76nW 7 172 556 0 14 Dtool_9fJJ76nW 0 
+198 14 Dtool_9fJJSjwD 7 172 556 0 14 Dtool_9fJJSjwD 5 1 p 1 483  1 f 1 463  1 r 1 482  1 a 1 482  4 mass 1 480  
+199 14 Dtool_9fJJMEul 7 172 556 0 14 Dtool_9fJJMEul 4 1 p 1 483  1 f 1 463  1 r 1 482  1 a 1 482  
+200 14 Dtool_9fJJmKnZ 7 172 556 0 14 Dtool_9fJJmKnZ 3 1 p 1 483  1 f 1 463  1 r 1 482  
+201 14 Dtool_9fJJmBjF 7 172 556 0 14 Dtool_9fJJmBjF 1 4 copy 1 557  
+202 14 Dtool_9fJJQ1Mb 7 173 506 0 14 Dtool_9fJJQ1Mb 0 
+203 14 Dtool_9fJJosNC 7 175 559 0 14 Dtool_9fJJosNC 0 
+204 14 Dtool_9fJJOyYN 7 175 559 0 14 Dtool_9fJJOyYN 1 4 copy 1 560  
+205 14 Dtool_9fJJnYsf 7 177 506 0 14 Dtool_9fJJnYsf 0 
+206 14 Dtool_9fJJn_HH 7 179 562 0 14 Dtool_9fJJn_HH 3 3 vec 1 487  1 a 1 482  4 mass 1 480  
+207 14 Dtool_9fJJ5pxV 7 179 562 0 14 Dtool_9fJJ5pxV 2 3 vec 1 487  1 a 1 482  
+208 14 Dtool_9fJJ51f6 7 179 562 0 14 Dtool_9fJJ51f6 1 3 vec 1 487  
+209 14 Dtool_9fJJ2TTR 7 179 562 0 14 Dtool_9fJJ2TTR 1 4 copy 1 563  
+210 14 Dtool_9fJJ_9B9 7 179 562 0 14 Dtool_9fJJ_9B9 5 1 x 1 482  1 y 1 482  1 z 1 482  1 a 1 482  4 mass 1 480  
+211 14 Dtool_9fJJzxk3 7 179 562 0 14 Dtool_9fJJzxk3 4 1 x 1 482  1 y 1 482  1 z 1 482  1 a 1 482  
+212 14 Dtool_9fJJpPZK 7 179 562 0 14 Dtool_9fJJpPZK 3 1 x 1 482  1 y 1 482  1 z 1 482  
+213 14 Dtool_9fJJf8n5 7 179 562 0 14 Dtool_9fJJf8n5 2 1 x 1 482  1 y 1 482  
+214 14 Dtool_9fJJ1Z3E 7 179 562 0 14 Dtool_9fJJ1Z3E 1 1 x 1 482  
+215 14 Dtool_9fJJnFAc 7 179 562 0 14 Dtool_9fJJnFAc 0 
+216 14 Dtool_9fJJlk_l 4 180 481 0 14 Dtool_9fJJlk_l 2 4 this 3 562  1 v 1 487  
+217 14 Dtool_9fJJVGyt 4 180 481 0 14 Dtool_9fJJVGyt 4 4 this 3 562  1 x 1 482  1 y 1 482  1 z 1 482  
+218 14 Dtool_9fJJM4vu 7 181 490 0 14 Dtool_9fJJM4vu 1 4 this 3 563  
+219 14 Dtool_9fJJlzdJ 7 182 506 0 14 Dtool_9fJJlzdJ 0 
+220 14 Dtool_9fJJ4b5t 7 185 565 0 14 Dtool_9fJJ4b5t 0 
+221 14 Dtool_9fJJbPFH 4 186 481 0 14 Dtool_9fJJbPFH 2 4 this 3 565  5 speed 1 482  
+222 14 Dtool_9fJJkpbd 6 187 482 0 14 Dtool_9fJJkpbd 1 4 this 3 565  
+223 14 Dtool_9fJJnSD1 4 188 481 0 14 Dtool_9fJJnSD1 2 4 this 3 565  4 coef 1 482  
+224 14 Dtool_9fJJDybx 6 189 482 0 14 Dtool_9fJJDybx 1 4 this 3 565  
+225 14 Dtool_9fJJ_3NV 4 190 481 0 14 Dtool_9fJJ_3NV 2 4 this 3 565  4 coef 1 482  
+226 14 Dtool_9fJJXqrD 6 191 482 0 14 Dtool_9fJJXqrD 1 4 this 3 565  
+227 14 Dtool_9fJJm1_7 7 192 506 0 14 Dtool_9fJJm1_7 0 
+228 14 Dtool_9fJJPQAe 7 194 521 421 14 Dtool_9fJJPQAe 0 
+229 14 Dtool_9fJJ42XZ 4 196 481 0 14 Dtool_9fJJ42XZ 2 4 this 3 521  1 i 1 566  
+230 14 Dtool_9fJJwg3X 4 197 481 0 14 Dtool_9fJJwg3X 2 4 this 3 521  1 i 1 567  
+231 14 Dtool_9fJJWVm7 4 198 481 0 14 Dtool_9fJJWVm7 2 4 this 3 521  1 p 1 519  
+232 14 Dtool_9fJJBiJv 4 199 481 0 14 Dtool_9fJJBiJv 2 4 this 3 521  1 p 1 522  
+233 14 Dtool_9fJJTnRZ 4 200 481 0 14 Dtool_9fJJTnRZ 2 4 this 3 521  1 p 1 522  
+234 14 Dtool_9fJJCQEN 4 201 481 0 14 Dtool_9fJJCQEN 2 4 this 3 521  1 f 1 511  
+235 14 Dtool_9fJJLLwm 4 202 481 0 14 Dtool_9fJJLLwm 2 4 this 3 521  1 f 1 516  
+236 14 Dtool_9fJJpFDw 4 203 481 0 14 Dtool_9fJJpFDw 1 4 this 3 521  
+237 14 Dtool_9fJJbGDA 4 204 481 0 14 Dtool_9fJJbGDA 1 4 this 3 521  
+238 14 Dtool_9fJJL5GU 4 205 481 0 14 Dtool_9fJJL5GU 1 4 this 3 521  
+239 14 Dtool_9fJJNgcX 4 206 481 0 14 Dtool_9fJJNgcX 2 4 this 3 521  9 viscosity 1 482  
+240 14 Dtool_9fJJ_DJO 6 207 482 0 14 Dtool_9fJJ_DJO 1 4 this 3 568  
+241 14 Dtool_9fJJR29e 4 208 481 0 14 Dtool_9fJJR29e 2 4 this 3 521  1 p 1 519  
+242 14 Dtool_9fJJQym8 4 209 481 0 14 Dtool_9fJJQym8 2 4 this 3 521  1 p 1 522  
+243 14 Dtool_9fJJ_0ov 4 210 481 0 14 Dtool_9fJJ_0ov 2 4 this 3 521  1 f 1 511  
+244 14 Dtool_9fJJgZkY 4 211 481 0 14 Dtool_9fJJgZkY 2 4 this 3 521  1 f 1 516  
+245 14 Dtool_9fJJRoJp 4 212 481 0 14 Dtool_9fJJRoJp 2 4 this 3 521  2 dt 1 482  
+246 14 Dtool_9fJJ_sOL 4 213 481 0 14 Dtool_9fJJ_sOL 1 4 this 3 521  
+247 14 Dtool_9fJJiQi_ 4 214 481 0 14 Dtool_9fJJiQi_ 2 4 this 3 568  3 out 1 502  
+248 14 Dtool_9fJJHsEB 4 215 481 0 14 Dtool_9fJJHsEB 3 4 this 3 568  3 out 1 502  6 indent 1 504  
+249 14 Dtool_9fJJGCw4 4 215 481 0 14 Dtool_9fJJGCw4 2 4 this 3 568  3 out 1 502  
+250 14 Dtool_9fJJJKvl 4 216 481 0 14 Dtool_9fJJJKvl 3 4 this 3 568  3 out 1 502  6 indent 1 504  
+251 14 Dtool_9fJJqHRR 4 216 481 0 14 Dtool_9fJJqHRR 2 4 this 3 568  3 out 1 502  
+252 14 Dtool_9fJJAG8W 4 217 481 0 14 Dtool_9fJJAG8W 3 4 this 3 568  3 out 1 502  6 indent 1 504  
+253 14 Dtool_9fJJ_gRG 4 217 481 0 14 Dtool_9fJJ_gRG 2 4 this 3 568  3 out 1 502  
+254 14 Dtool_9fJJKfjR 4 218 481 0 14 Dtool_9fJJKfjR 3 4 this 3 568  3 out 1 502  6 indent 1 504  
+255 14 Dtool_9fJJble_ 4 218 481 0 14 Dtool_9fJJble_ 2 4 this 3 568  3 out 1 502  
+256 14 Dtool_9fJJM4Pj 4 219 481 0 14 Dtool_9fJJM4Pj 3 4 this 3 568  3 out 1 502  6 indent 1 504  
+257 14 Dtool_9fJJ3rbp 4 219 481 0 14 Dtool_9fJJ3rbp 2 4 this 3 568  3 out 1 502  
+125
+446 13 PhysicsObject 75777 13 PhysicsObject 13 PhysicsObject 0 0 0 1 258 0 0 36 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 0 1 0 447 0 0 0 0 373
+////////////////////////////////////////////////////////////////////
+//       Class : PhysicsObject
+// Description : A body on which physics will be applied.  If you're
+//               looking to add physical motion to your class, do
+//               NOT derive from this.  Derive from Physical instead.
+////////////////////////////////////////////////////////////////////
+
+447 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+448 9 BaseForce 75777 9 BaseForce 9 BaseForce 0 0 0 0 0 0 7 295 296 297 298 299 300 301 0 1 0 447 0 0 0 0 267
+////////////////////////////////////////////////////////////////////
+//        Class : BaseForce
+//  Description : pure virtual base class for all forces that could
+//                POSSIBLY exist.
+////////////////////////////////////////////////////////////////////
+
+449 11 LinearForce 75777 11 LinearForce 11 LinearForce 0 0 0 0 0 0 8 302 303 304 305 306 307 308 309 0 1 0 448 0 0 0 0 0
+
+450 12 AngularForce 75777 12 AngularForce 12 AngularForce 0 0 0 0 0 0 3 310 311 312 0 1 0 448 0 0 0 0 0
+
+451 8 Physical 75777 8 Physical 8 Physical 0 0 0 1 313 0 0 23 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 0 1 0 447 0 0 0 0 326
+////////////////////////////////////////////////////////////////////
+//       Class : Physical
+// Description : Defines a set of physically modeled attributes.
+//               If you want physics applied to your class, derive
+//               it from this.
+////////////////////////////////////////////////////////////////////
+
+452 12 PhysicalNode 75777 12 PhysicalNode 12 PhysicalNode 0 0 0 1 337 0 0 8 338 339 340 341 342 343 344 345 0 1 0 453 0 0 0 0 0
+
+453 9 PandaNode 2049 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+454 9 ActorNode 75777 9 ActorNode 9 ActorNode 0 0 0 1 346 0 0 5 347 348 349 350 351 0 1 0 452 0 0 0 0 0
+
+455 17 AngularIntegrator 75777 17 AngularIntegrator 17 AngularIntegrator 0 0 0 0 0 0 0 0 1 0 456 0 0 0 0 337
+////////////////////////////////////////////////////////////////////
+//       Class : BaseAngularIntegrator
+// Description : Pure virtual base class for physical modeling.
+//               Takes physically modelable objects and applies
+//               forces to them.
+////////////////////////////////////////////////////////////////////
+
+456 14 BaseIntegrator 1050625 14 BaseIntegrator 14 BaseIntegrator 0 0 0 0 0 0 0 0 0 0 0 354
+////////////////////////////////////////////////////////////////////
+//       Class : BaseIntegrator
+// Description : pure virtual integrator class that holds cached
+//               matrix information that really should be common to
+//               any possible child implementation.
+////////////////////////////////////////////////////////////////////
+
+457 22 AngularEulerIntegrator 75777 22 AngularEulerIntegrator 22 AngularEulerIntegrator 0 0 0 1 352 0 0 0 0 1 0 455 0 0 0 0 0
+
+458 18 AngularVectorForce 75777 18 AngularVectorForce 18 AngularVectorForce 0 0 0 1 353 0 0 4 354 355 356 357 0 1 0 450 0 0 0 0 0
+
+459 9 ForceNode 75777 9 ForceNode 9 ForceNode 0 0 0 1 358 0 0 9 359 360 361 362 363 364 365 366 367 0 1 0 453 0 0 0 0 0
+
+460 18 LinearControlForce 75777 18 LinearControlForce 18 LinearControlForce 0 0 0 1 368 0 0 6 369 370 371 372 373 374 0 1 0 449 0 0 0 0 0
+
+461 25 LinearCylinderVortexForce 75777 25 LinearCylinderVortexForce 25 LinearCylinderVortexForce 0 0 0 1 375 0 0 7 376 377 378 379 380 381 382 0 1 0 449 0 0 0 0 0
+
+462 19 LinearDistanceForce 43009 19 LinearDistanceForce 19 LinearDistanceForce 0 0 0 0 0 0 8 383 384 385 386 387 388 389 390 0 1 0 449 0 0 0 1 463 232
+////////////////////////////////////////////////////////////////////
+//       Class : LinearDistanceForce
+// Description : Pure virtual class for sinks and sources
+////////////////////////////////////////////////////////////////////
+
+463 11 FalloffType 794624 32 LinearDistanceForce::FalloffType 32 LinearDistanceForce::FalloffType 462 0 0 0 0 0 0 0 0 3 13 FT_ONE_OVER_R 34 LinearDistanceForce::FT_ONE_OVER_R 0 21 FT_ONE_OVER_R_SQUARED 42 LinearDistanceForce::FT_ONE_OVER_R_SQUARED 1 19 FT_ONE_OVER_R_CUBED 40 LinearDistanceForce::FT_ONE_OVER_R_CUBED 2 0 0
+
+464 16 LinearIntegrator 75777 16 LinearIntegrator 16 LinearIntegrator 0 0 0 0 0 0 0 0 1 0 456 0 0 0 0 332
+////////////////////////////////////////////////////////////////////
+//       Class : LinearIntegrator
+// Description : Pure virtual base class for physical modeling.
+//               Takes physically modelable objects and applies
+//               forces to them.
+////////////////////////////////////////////////////////////////////
+
+465 21 LinearEulerIntegrator 75777 21 LinearEulerIntegrator 21 LinearEulerIntegrator 0 0 0 1 391 0 0 0 0 1 0 464 0 0 0 0 0
+
+466 19 LinearFrictionForce 75777 19 LinearFrictionForce 19 LinearFrictionForce 0 0 0 1 392 0 0 3 393 394 395 0 1 0 449 0 0 0 0 0
+
+467 17 LinearRandomForce 75777 17 LinearRandomForce 17 LinearRandomForce 0 0 0 0 0 0 1 396 0 1 0 449 0 0 0 0 0
+
+468 17 LinearJitterForce 75777 17 LinearJitterForce 17 LinearJitterForce 0 0 0 1 397 0 0 1 398 0 1 0 467 0 0 0 0 0
+
+469 16 LinearNoiseForce 75777 16 LinearNoiseForce 16 LinearNoiseForce 0 0 0 1 399 0 0 1 400 0 1 0 467 0 0 0 0 218
+////////////////////////////////////////////////////////////////////
+//       Class : LinearNoiseForce
+// Description : Repeating noise force vector.
+////////////////////////////////////////////////////////////////////
+
+470 15 LinearSinkForce 75777 15 LinearSinkForce 15 LinearSinkForce 0 0 0 1 401 0 0 1 402 0 1 0 462 0 0 0 0 0
+
+471 17 LinearSourceForce 75777 17 LinearSourceForce 17 LinearSourceForce 0 0 0 1 403 0 0 1 404 0 1 0 462 0 0 0 0 0
+
+472 22 LinearUserDefinedForce 75777 22 LinearUserDefinedForce 22 LinearUserDefinedForce 0 0 0 1 405 0 0 2 406 407 0 1 0 449 0 0 0 0 0
+
+473 17 LinearVectorForce 75777 17 LinearVectorForce 17 LinearVectorForce 0 0 0 1 408 0 0 3 409 410 411 0 1 0 449 0 0 0 0 0
+
+474 23 PhysicsCollisionHandler 75777 23 PhysicsCollisionHandler 23 PhysicsCollisionHandler 0 0 0 1 412 0 0 7 413 414 415 416 417 418 419 0 1 0 475 0 0 0 0 389
+////////////////////////////////////////////////////////////////////
+//       Class : PhysicsCollisionHandler
+// Description : A specialized kind of CollisionHandler that simply
+//               pushes back on things that attempt to move into solid
+//               walls.  This also puts forces onto the physics objects
+////////////////////////////////////////////////////////////////////
+
+475 22 CollisionHandlerPusher 2049 22 CollisionHandlerPusher 22 CollisionHandlerPusher 0 0 0 0 0 0 0 0 0 0 0 425
+////////////////////////////////////////////////////////////////////
+//       Class : CollisionHandlerPusher
+// Description : A specialized kind of CollisionHandler that simply
+//               pushes back on things that attempt to move into solid
+//               walls.  This is the simplest kind of "real-world"
+//               collisions you can have.
+////////////////////////////////////////////////////////////////////
+
+476 14 PhysicsManager 26625 14 PhysicsManager 14 PhysicsManager 0 0 0 1 420 421 0 24 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 0 0 0 0 358
+////////////////////////////////////////////////////////////////////
+//       Class : PhysicsManager
+// Description : Physics don't get much higher-level than this.
+//               Attach as many Physicals (particle systems, etc..)
+//               as you want, pick an integrator and go.
+////////////////////////////////////////////////////////////////////
+
+477 15 PhysicsObject * 8576 15 PhysicsObject * 15 PhysicsObject * 0 0 446 0 0 0 0 0 0 0 0 0
+
+478 21 PhysicsObject const * 8576 21 PhysicsObject const * 21 PhysicsObject const * 0 0 479 0 0 0 0 0 0 0 0 0
+
+479 19 PhysicsObject const 8832 19 PhysicsObject const 19 PhysicsObject const 0 0 446 0 0 0 0 0 0 0 0 0
+
+480 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+481 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+482 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+483 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 484 0 0 0 0 0 0 0 0 0
+
+484 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 485 0 0 0 0 0 0 0 0 0
+
+485 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 1271
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+486 10 LPoint3f * 8576 10 LPoint3f * 10 LPoint3f * 0 0 485 0 0 0 0 0 0 0 0 0
+
+487 17 LVector3f const * 8576 17 LVector3f const * 17 LVector3f const * 0 0 488 0 0 0 0 0 0 0 0 0
+
+488 15 LVector3f const 8832 15 LVector3f const 15 LVector3f const 0 0 489 0 0 0 0 0 0 0 0 0
+
+489 7 Normalf 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 1274
+// Filename: lvector3_src.h
+// Created by:  drose (24Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector3
+// Description : This is a three-component vector distance (as opposed
+//               to a three-component point, which represents a
+//               particular point in space).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+490 11 LVector3f * 8576 11 LVector3f * 11 LVector3f * 0 0 489 0 0 0 0 0 0 0 0 0
+
+491 18 LRotationf const * 8576 18 LRotationf const * 18 LRotationf const * 0 0 492 0 0 0 0 0 0 0 0 0
+
+492 16 LRotationf const 8832 16 LRotationf const 16 LRotationf const 0 0 493 0 0 0 0 0 0 0 0 0
+
+493 10 LRotationf 2048 10 LRotationf 10 LRotationf 0 0 0 0 0 0 0 0 0 0 0 926
+// Filename: lrotation_src.h
+// Created by:  frang, charles (23Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//       Class : LRotation
+// Description : This is a unit quaternion representing a rotation.
+////////////////////////////////////////////////////////////////////////
+
+494 21 LOrientationf const * 8576 21 LOrientationf const * 21 LOrientationf const * 0 0 495 0 0 0 0 0 0 0 0 0
+
+495 19 LOrientationf const 8832 19 LOrientationf const 19 LOrientationf const 0 0 496 0 0 0 0 0 0 0 0 0
+
+496 13 LOrientationf 2048 13 LOrientationf 13 LOrientationf 0 0 0 0 0 0 0 0 0 0 0 247
+////////////////////////////////////////////////////////////////////////
+//       Class : LOrientation
+// Description : This is a unit quaternion representing an orientation.
+////////////////////////////////////////////////////////////////////////
+
+497 15 LOrientationf * 8576 15 LOrientationf * 15 LOrientationf * 0 0 496 0 0 0 0 0 0 0 0 0
+
+498 12 LRotationf * 8576 12 LRotationf * 12 LRotationf * 0 0 493 0 0 0 0 0 0 0 0 0
+
+499 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+500 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 499 0 0 0 0 0 0 0 0 0
+
+501 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+502 9 ostream * 8576 9 ostream * 9 ostream * 0 0 503 0 0 0 0 0 0 0 0 0
+
+503 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+504 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0
+
+505 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+506 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 505 0 0 0 0 0 0 0 0 0
+
+507 17 BaseForce const * 8576 17 BaseForce const * 17 BaseForce const * 0 0 508 0 0 0 0 0 0 0 0 0
+
+508 15 BaseForce const 8832 15 BaseForce const 15 BaseForce const 0 0 448 0 0 0 0 0 0 0 0 0
+
+509 11 BaseForce * 8576 11 BaseForce * 11 BaseForce * 0 0 448 0 0 0 0 0 0 0 0 0
+
+510 11 ForceNode * 8576 11 ForceNode * 11 ForceNode * 0 0 459 0 0 0 0 0 0 0 0 0
+
+511 13 LinearForce * 8576 13 LinearForce * 13 LinearForce * 0 0 449 0 0 0 0 0 0 0 0 0
+
+512 19 LinearForce const * 8576 19 LinearForce const * 19 LinearForce const * 0 0 513 0 0 0 0 0 0 0 0 0
+
+513 17 LinearForce const 8832 17 LinearForce const 17 LinearForce const 0 0 449 0 0 0 0 0 0 0 0 0
+
+514 20 AngularForce const * 8576 20 AngularForce const * 20 AngularForce const * 0 0 515 0 0 0 0 0 0 0 0 0
+
+515 18 AngularForce const 8832 18 AngularForce const 18 AngularForce const 0 0 450 0 0 0 0 0 0 0 0 0
+
+516 14 AngularForce * 8576 14 AngularForce * 14 AngularForce * 0 0 450 0 0 0 0 0 0 0 0 0
+
+517 16 Physical const * 8576 16 Physical const * 16 Physical const * 0 0 518 0 0 0 0 0 0 0 0 0
+
+518 14 Physical const 8832 14 Physical const 14 Physical const 0 0 451 0 0 0 0 0 0 0 0 0
+
+519 10 Physical * 8576 10 Physical * 10 Physical * 0 0 451 0 0 0 0 0 0 0 0 0
+
+520 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+521 16 PhysicsManager * 8576 16 PhysicsManager * 16 PhysicsManager * 0 0 476 0 0 0 0 0 0 0 0 0
+
+522 14 PhysicalNode * 8576 14 PhysicalNode * 14 PhysicalNode * 0 0 452 0 0 0 0 0 0 0 0 0
+
+523 20 PhysicalNode const * 8576 20 PhysicalNode const * 20 PhysicalNode const * 0 0 524 0 0 0 0 0 0 0 0 0
+
+524 18 PhysicalNode const 8832 18 PhysicalNode const 18 PhysicalNode const 0 0 452 0 0 0 0 0 0 0 0 0
+
+525 17 ActorNode const * 8576 17 ActorNode const * 17 ActorNode const * 0 0 526 0 0 0 0 0 0 0 0 0
+
+526 15 ActorNode const 8832 15 ActorNode const 15 ActorNode const 0 0 454 0 0 0 0 0 0 0 0 0
+
+527 11 ActorNode * 8576 11 ActorNode * 11 ActorNode * 0 0 454 0 0 0 0 0 0 0 0 0
+
+528 24 AngularEulerIntegrator * 8576 24 AngularEulerIntegrator * 24 AngularEulerIntegrator * 0 0 457 0 0 0 0 0 0 0 0 0
+
+529 26 AngularVectorForce const * 8576 26 AngularVectorForce const * 26 AngularVectorForce const * 0 0 530 0 0 0 0 0 0 0 0 0
+
+530 24 AngularVectorForce const 8832 24 AngularVectorForce const 24 AngularVectorForce const 0 0 458 0 0 0 0 0 0 0 0 0
+
+531 20 AngularVectorForce * 8576 20 AngularVectorForce * 20 AngularVectorForce * 0 0 458 0 0 0 0 0 0 0 0 0
+
+532 17 ForceNode const * 8576 17 ForceNode const * 17 ForceNode const * 0 0 533 0 0 0 0 0 0 0 0 0
+
+533 15 ForceNode const 8832 15 ForceNode const 15 ForceNode const 0 0 459 0 0 0 0 0 0 0 0 0
+
+534 26 LinearControlForce const * 8576 26 LinearControlForce const * 26 LinearControlForce const * 0 0 535 0 0 0 0 0 0 0 0 0
+
+535 24 LinearControlForce const 8832 24 LinearControlForce const 24 LinearControlForce const 0 0 460 0 0 0 0 0 0 0 0 0
+
+536 20 LinearControlForce * 8576 20 LinearControlForce * 20 LinearControlForce * 0 0 460 0 0 0 0 0 0 0 0 0
+
+537 33 LinearCylinderVortexForce const * 8576 33 LinearCylinderVortexForce const * 33 LinearCylinderVortexForce const * 0 0 538 0 0 0 0 0 0 0 0 0
+
+538 31 LinearCylinderVortexForce const 8832 31 LinearCylinderVortexForce const 31 LinearCylinderVortexForce const 0 0 461 0 0 0 0 0 0 0 0 0
+
+539 27 LinearCylinderVortexForce * 8576 27 LinearCylinderVortexForce * 27 LinearCylinderVortexForce * 0 0 461 0 0 0 0 0 0 0 0 0
+
+540 21 LinearDistanceForce * 8576 21 LinearDistanceForce * 21 LinearDistanceForce * 0 0 462 0 0 0 0 0 0 0 0 0
+
+541 27 LinearDistanceForce const * 8576 27 LinearDistanceForce const * 27 LinearDistanceForce const * 0 0 542 0 0 0 0 0 0 0 0 0
+
+542 25 LinearDistanceForce const 8832 25 LinearDistanceForce const 25 LinearDistanceForce const 0 0 462 0 0 0 0 0 0 0 0 0
+
+543 23 LinearEulerIntegrator * 8576 23 LinearEulerIntegrator * 23 LinearEulerIntegrator * 0 0 465 0 0 0 0 0 0 0 0 0
+
+544 27 LinearFrictionForce const * 8576 27 LinearFrictionForce const * 27 LinearFrictionForce const * 0 0 545 0 0 0 0 0 0 0 0 0
+
+545 25 LinearFrictionForce const 8832 25 LinearFrictionForce const 25 LinearFrictionForce const 0 0 466 0 0 0 0 0 0 0 0 0
+
+546 21 LinearFrictionForce * 8576 21 LinearFrictionForce * 21 LinearFrictionForce * 0 0 466 0 0 0 0 0 0 0 0 0
+
+547 25 LinearJitterForce const * 8576 25 LinearJitterForce const * 25 LinearJitterForce const * 0 0 548 0 0 0 0 0 0 0 0 0
+
+548 23 LinearJitterForce const 8832 23 LinearJitterForce const 23 LinearJitterForce const 0 0 468 0 0 0 0 0 0 0 0 0
+
+549 19 LinearJitterForce * 8576 19 LinearJitterForce * 19 LinearJitterForce * 0 0 468 0 0 0 0 0 0 0 0 0
+
+550 24 LinearNoiseForce const * 8576 24 LinearNoiseForce const * 24 LinearNoiseForce const * 0 0 551 0 0 0 0 0 0 0 0 0
+
+551 22 LinearNoiseForce const 8832 22 LinearNoiseForce const 22 LinearNoiseForce const 0 0 469 0 0 0 0 0 0 0 0 0
+
+552 18 LinearNoiseForce * 8576 18 LinearNoiseForce * 18 LinearNoiseForce * 0 0 469 0 0 0 0 0 0 0 0 0
+
+553 17 LinearSinkForce * 8576 17 LinearSinkForce * 17 LinearSinkForce * 0 0 470 0 0 0 0 0 0 0 0 0
+
+554 23 LinearSinkForce const * 8576 23 LinearSinkForce const * 23 LinearSinkForce const * 0 0 555 0 0 0 0 0 0 0 0 0
+
+555 21 LinearSinkForce const 8832 21 LinearSinkForce const 21 LinearSinkForce const 0 0 470 0 0 0 0 0 0 0 0 0
+
+556 19 LinearSourceForce * 8576 19 LinearSourceForce * 19 LinearSourceForce * 0 0 471 0 0 0 0 0 0 0 0 0
+
+557 25 LinearSourceForce const * 8576 25 LinearSourceForce const * 25 LinearSourceForce const * 0 0 558 0 0 0 0 0 0 0 0 0
+
+558 23 LinearSourceForce const 8832 23 LinearSourceForce const 23 LinearSourceForce const 0 0 471 0 0 0 0 0 0 0 0 0
+
+559 24 LinearUserDefinedForce * 8576 24 LinearUserDefinedForce * 24 LinearUserDefinedForce * 0 0 472 0 0 0 0 0 0 0 0 0
+
+560 30 LinearUserDefinedForce const * 8576 30 LinearUserDefinedForce const * 30 LinearUserDefinedForce const * 0 0 561 0 0 0 0 0 0 0 0 0
+
+561 28 LinearUserDefinedForce const 8832 28 LinearUserDefinedForce const 28 LinearUserDefinedForce const 0 0 472 0 0 0 0 0 0 0 0 0
+
+562 19 LinearVectorForce * 8576 19 LinearVectorForce * 19 LinearVectorForce * 0 0 473 0 0 0 0 0 0 0 0 0
+
+563 25 LinearVectorForce const * 8576 25 LinearVectorForce const * 25 LinearVectorForce const * 0 0 564 0 0 0 0 0 0 0 0 0
+
+564 23 LinearVectorForce const 8832 23 LinearVectorForce const 23 LinearVectorForce const 0 0 473 0 0 0 0 0 0 0 0 0
+
+565 25 PhysicsCollisionHandler * 8576 25 PhysicsCollisionHandler * 25 PhysicsCollisionHandler * 0 0 474 0 0 0 0 0 0 0 0 0
+
+566 18 LinearIntegrator * 8576 18 LinearIntegrator * 18 LinearIntegrator * 0 0 464 0 0 0 0 0 0 0 0 0
+
+567 19 AngularIntegrator * 8576 19 AngularIntegrator * 19 AngularIntegrator * 0 0 455 0 0 0 0 0 0 0 0 0
+
+568 22 PhysicsManager const * 8576 22 PhysicsManager const * 22 PhysicsManager const * 0 0 569 0 0 0 0 0 0 0 0 0
+
+569 20 PhysicsManager const 8832 20 PhysicsManager const 20 PhysicsManager const 0 0 476 0 0 0 0 0 0 0 0 0
+
+570 6 string 2048 20 basic_string< char > 20 basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0

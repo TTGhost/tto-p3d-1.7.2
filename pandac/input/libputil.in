@@ -1,0 +1,3681 @@
+1145553897
+2 2
+8 libputil 4 flbo 5 panda 
+302
+308 14 ~AnimInterface 4 611 29 AnimInterface::~AnimInterface 0 0 233
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::Destructor
+//       Access: Published, Virtual
+//  Description:
+////////////////////////////////////////////////////////////////////
+44
+virtual AnimInterface::~AnimInterface(void);
+
+309 4 play 4 611 19 AnimInterface::play 0 2 1 2 1709
+// Filename: animInterface.I
+// Created by:  drose (20Sep05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::play
+//       Access: Published
+//  Description: Runs the entire animation from beginning to end and
+//               stops.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::play
+//       Access: Published
+//  Description: Runs the animation from the frame "from" to and
+//               including the frame "to", at which point the
+//               animation is stopped.  Both "from" and "to" frame
+//               numbers may be outside the range (0,
+//               get_num_frames()) and the animation will follow the
+//               range correctly, reporting numbers modulo
+//               get_num_frames().  For instance, play(0,
+//               get_num_frames() * 2) will play the animation twice
+//               and then stop.
+////////////////////////////////////////////////////////////////////
+38
+inline void AnimInterface::play(void);
+
+310 4 loop 4 611 19 AnimInterface::loop 0 2 3 4 898
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::loop
+//       Access: Published
+//  Description: Starts the entire animation looping.  If restart is
+//               true, the animation is restarted from the beginning;
+//               otherwise, it continues from the current frame.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::loop
+//       Access: Published
+//  Description: Loops the animation from the frame "from" to and
+//               including the frame "to", indefinitely.  If restart
+//               is true, the animation is restarted from the
+//               beginning; otherwise, it continues from the current
+//               frame.
+////////////////////////////////////////////////////////////////////
+46
+inline void AnimInterface::loop(bool restart);
+
+311 8 pingpong 4 611 23 AnimInterface::pingpong 0 2 5 6 886
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::pingpong
+//       Access: Published
+//  Description: Starts the entire animation bouncing back and forth
+//               between its first frame and last frame.  If restart
+//               is true, the animation is restarted from the
+//               beginning; otherwise, it continues from the current
+//               frame.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::pingpong
+//       Access: Published
+//  Description: Loops the animation from the frame "from" to and
+//               including the frame "to", and then back in the
+//               opposite direction, indefinitely.
+////////////////////////////////////////////////////////////////////
+50
+inline void AnimInterface::pingpong(bool restart);
+
+312 4 stop 4 611 19 AnimInterface::stop 0 1 7 369
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::stop
+//       Access: Published
+//  Description: Stops a currently playing or looping animation right
+//               where it is.  The animation remains posed at the
+//               current frame.
+////////////////////////////////////////////////////////////////////
+38
+inline void AnimInterface::stop(void);
+
+313 4 pose 4 611 19 AnimInterface::pose 0 1 8 297
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::pose
+//       Access: Published
+//  Description: Sets the animation to the indicated frame and holds
+//               it there.
+////////////////////////////////////////////////////////////////////
+43
+inline void AnimInterface::pose(int frame);
+
+314 13 set_play_rate 4 611 28 AnimInterface::set_play_rate 0 1 9 519
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::set_play_rate
+//       Access: Published
+//  Description: Changes the rate at which the animation plays.  1.0
+//               is the normal speed, 2.0 is twice normal speed, and
+//               0.5 is half normal speed.  0.0 is legal to pause the
+//               animation, and a negative value will play the
+//               animation backwards.
+////////////////////////////////////////////////////////////////////
+59
+inline void AnimInterface::set_play_rate(double play_rate);
+
+315 13 get_play_rate 4 611 28 AnimInterface::get_play_rate 0 1 10 313
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_play_rate
+//       Access: Published
+//  Description: Returns the rate at which the animation plays.  See
+//               set_play_rate().
+////////////////////////////////////////////////////////////////////
+55
+inline double AnimInterface::get_play_rate(void) const;
+
+316 14 get_frame_rate 4 611 29 AnimInterface::get_frame_rate 0 1 11 514
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_frame_rate
+//       Access: Published
+//  Description: Returns the native frame rate of the animation.  This
+//               is the number of frames per second that will elapse
+//               when the play_rate is set to 1.0.  It is a fixed
+//               property of the animation and may not be adjusted by
+//               the user.
+////////////////////////////////////////////////////////////////////
+56
+inline double AnimInterface::get_frame_rate(void) const;
+
+317 14 get_num_frames 4 611 29 AnimInterface::get_num_frames 0 1 12 581
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_num_frames
+//       Access: Published, Virtual
+//  Description: Returns the number of frames in the animation.  This
+//               is a property of the animation and may not be
+//               directly adjusted by the user (although it may change
+//               without warning with certain kinds of animations,
+//               since this is a virtual method that may be
+//               overridden).
+////////////////////////////////////////////////////////////////////
+54
+virtual int AnimInterface::get_num_frames(void) const;
+
+318 9 get_frame 4 611 24 AnimInterface::get_frame 0 1 13 359
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_frame
+//       Access: Published
+//  Description: Returns the current integer frame number.
+//               This number will be in the range 0 <= f <
+//               get_num_frames().
+////////////////////////////////////////////////////////////////////
+48
+inline int AnimInterface::get_frame(void) const;
+
+319 8 get_frac 4 611 23 AnimInterface::get_frac 0 1 14 598
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_frac
+//       Access: Published
+//  Description: Returns the fractional part of the current frame.
+//               Normally, this is in the range 0.0 <= f < 1.0, but in
+//               the one special case of an animation playing to its
+//               end frame and stopping, it might exactly equal 1.0.
+//
+//               It will always be true that get_full_frame() +
+//               get_frac() == get_full_fframe().
+////////////////////////////////////////////////////////////////////
+50
+inline double AnimInterface::get_frac(void) const;
+
+320 14 get_full_frame 4 611 29 AnimInterface::get_full_frame 0 1 15 693
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_full_frame
+//       Access: Published
+//  Description: Returns the current integer frame number.
+//
+//               Unlike the value returned by get_frame(), this frame
+//               number may extend beyond the range of
+//               get_num_frames() if the frame range passed to play(),
+//               loop(), etc. did.
+//
+//               Unlike the value returned by get_full_fframe(), this
+//               return value will never exceed the value passed to
+//               to_frame in the play() method.
+////////////////////////////////////////////////////////////////////
+53
+inline int AnimInterface::get_full_frame(void) const;
+
+321 15 get_full_fframe 4 611 30 AnimInterface::get_full_fframe 0 1 16 841
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::get_full_fframe
+//       Access: Published
+//  Description: Returns the current floating-point frame number.
+//
+//               Unlike the value returned by get_frame(), this frame
+//               number may extend beyond the range of
+//               get_num_frames() if the frame range passed to play(),
+//               loop(), etc. did.
+//
+//               Unlike the value returned by get_full_frame(), this
+//               return value may equal (to_frame + 1.0), when the
+//               animation has played to its natural end.  However, in
+//               this case the return value of get_full_frame() will
+//               be to_frame, not (to_frame + 1).
+////////////////////////////////////////////////////////////////////
+57
+inline double AnimInterface::get_full_fframe(void) const;
+
+322 10 is_playing 4 611 25 AnimInterface::is_playing 0 1 17 466
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::is_playing
+//       Access: Published
+//  Description: Returns true if the animation is currently playing,
+//               false if it is stopped (e.g. because stop() or pose()
+//               was called, or because it reached the end of the
+//               animation after play() was called).
+////////////////////////////////////////////////////////////////////
+50
+inline bool AnimInterface::is_playing(void) const;
+
+323 6 output 4 611 21 AnimInterface::output 0 1 18 230
+////////////////////////////////////////////////////////////////////
+//     Function: AnimInterface::output
+//       Access: Published, Virtual
+//  Description: 
+////////////////////////////////////////////////////////////////////
+55
+virtual void AnimInterface::output(ostream &out) const;
+
+324 14 get_class_type 4 611 29 AnimInterface::get_class_type 0 1 19 0
+54
+static TypeHandle AnimInterface::get_class_type(void);
+
+325 14 get_class_type 4 612 29 TypedWritable::get_class_type 0 1 20 0
+54
+static TypeHandle TypedWritable::get_class_type(void);
+
+326 7 BitMask 4 614 36 BitMask< unsigned int, 32 >::BitMask 0 3 21 22 23 0
+52
+inline ::BitMask< unsigned int, 32 >::BitMask(void);
+
+327 10 operator = 4 614 39 BitMask< unsigned int, 32 >::operator = 0 1 24 0
+119
+inline BitMask< unsigned int, 32 > &::BitMask< unsigned int, 32 >::operator =(BitMask< unsigned int, 32 > const &copy);
+
+328 6 all_on 4 614 35 BitMask< unsigned int, 32 >::all_on 0 1 25 0
+86
+static inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::all_on(void);
+
+329 7 all_off 4 614 36 BitMask< unsigned int, 32 >::all_off 0 1 26 0
+87
+static inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::all_off(void);
+
+330 8 lower_on 4 614 37 BitMask< unsigned int, 32 >::lower_on 0 1 27 0
+95
+static inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::lower_on(int on_bits);
+
+331 3 bit 4 614 32 BitMask< unsigned int, 32 >::bit 0 1 28 0
+88
+static inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::bit(int index);
+
+332 5 range 4 614 34 BitMask< unsigned int, 32 >::range 0 1 29 0
+102
+static inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::range(int low_bit, int size);
+
+333 8 ~BitMask 4 614 37 BitMask< unsigned int, 32 >::~BitMask 0 0 0
+53
+inline ::BitMask< unsigned int, 32 >::~BitMask(void);
+
+334 16 has_max_num_bits 4 614 45 BitMask< unsigned int, 32 >::has_max_num_bits 0 1 30 0
+73
+static inline bool ::BitMask< unsigned int, 32 >::has_max_num_bits(void);
+
+335 16 get_max_num_bits 4 614 45 BitMask< unsigned int, 32 >::get_max_num_bits 0 1 31 0
+72
+static inline int ::BitMask< unsigned int, 32 >::get_max_num_bits(void);
+
+336 12 get_num_bits 4 614 41 BitMask< unsigned int, 32 >::get_num_bits 0 1 32 0
+68
+static inline int ::BitMask< unsigned int, 32 >::get_num_bits(void);
+
+337 7 get_bit 4 614 36 BitMask< unsigned int, 32 >::get_bit 0 1 33 0
+68
+inline bool ::BitMask< unsigned int, 32 >::get_bit(int index) const;
+
+338 7 set_bit 4 614 36 BitMask< unsigned int, 32 >::set_bit 0 1 34 0
+62
+inline void ::BitMask< unsigned int, 32 >::set_bit(int index);
+
+339 9 clear_bit 4 614 38 BitMask< unsigned int, 32 >::clear_bit 0 1 35 0
+64
+inline void ::BitMask< unsigned int, 32 >::clear_bit(int index);
+
+340 10 set_bit_to 4 614 39 BitMask< unsigned int, 32 >::set_bit_to 0 1 36 0
+77
+inline void ::BitMask< unsigned int, 32 >::set_bit_to(int index, bool value);
+
+341 7 is_zero 4 614 36 BitMask< unsigned int, 32 >::is_zero 0 1 37 0
+63
+inline bool ::BitMask< unsigned int, 32 >::is_zero(void) const;
+
+342 7 extract 4 614 36 BitMask< unsigned int, 32 >::extract 0 1 38 0
+88
+inline unsigned int ::BitMask< unsigned int, 32 >::extract(int low_bit, int size) const;
+
+343 5 store 4 614 34 BitMask< unsigned int, 32 >::store 0 1 39 0
+92
+inline void ::BitMask< unsigned int, 32 >::store(unsigned int value, int low_bit, int size);
+
+344 9 set_range 4 614 38 BitMask< unsigned int, 32 >::set_range 0 1 40 0
+76
+inline void ::BitMask< unsigned int, 32 >::set_range(int low_bit, int size);
+
+345 11 clear_range 4 614 40 BitMask< unsigned int, 32 >::clear_range 0 1 41 0
+78
+inline void ::BitMask< unsigned int, 32 >::clear_range(int low_bit, int size);
+
+346 12 set_range_to 4 614 41 BitMask< unsigned int, 32 >::set_range_to 0 1 42 0
+91
+inline void ::BitMask< unsigned int, 32 >::set_range_to(bool value, int low_bit, int size);
+
+347 8 get_word 4 614 37 BitMask< unsigned int, 32 >::get_word 0 1 43 0
+72
+inline unsigned int ::BitMask< unsigned int, 32 >::get_word(void) const;
+
+348 8 set_word 4 614 37 BitMask< unsigned int, 32 >::set_word 0 1 44 0
+72
+inline void ::BitMask< unsigned int, 32 >::set_word(unsigned int value);
+
+349 15 invert_in_place 4 614 44 BitMask< unsigned int, 32 >::invert_in_place 0 1 45 0
+65
+inline void ::BitMask< unsigned int, 32 >::invert_in_place(void);
+
+350 18 has_bits_in_common 4 614 47 BitMask< unsigned int, 32 >::has_bits_in_common 0 1 46 0
+110
+inline bool ::BitMask< unsigned int, 32 >::has_bits_in_common(BitMask< unsigned int, 32 > const &other) const;
+
+351 5 clear 4 614 34 BitMask< unsigned int, 32 >::clear 0 1 47 0
+55
+inline void ::BitMask< unsigned int, 32 >::clear(void);
+
+352 6 output 4 614 35 BitMask< unsigned int, 32 >::output 0 1 48 0
+63
+void ::BitMask< unsigned int, 32 >::output(ostream &out) const;
+
+353 13 output_binary 4 614 42 BitMask< unsigned int, 32 >::output_binary 0 2 49 50 0
+94
+void ::BitMask< unsigned int, 32 >::output_binary(ostream &out, int spaces_every = (4)) const;
+
+354 10 output_hex 4 614 39 BitMask< unsigned int, 32 >::output_hex 0 2 51 52 0
+91
+void ::BitMask< unsigned int, 32 >::output_hex(ostream &out, int spaces_every = (4)) const;
+
+355 5 write 4 614 34 BitMask< unsigned int, 32 >::write 0 2 53 54 0
+86
+void ::BitMask< unsigned int, 32 >::write(ostream &out, int indent_level = (0)) const;
+
+356 11 operator == 4 614 40 BitMask< unsigned int, 32 >::operator == 0 1 55 0
+103
+inline bool ::BitMask< unsigned int, 32 >::operator ==(BitMask< unsigned int, 32 > const &other) const;
+
+357 11 operator != 4 614 40 BitMask< unsigned int, 32 >::operator != 0 1 56 0
+103
+inline bool ::BitMask< unsigned int, 32 >::operator !=(BitMask< unsigned int, 32 > const &other) const;
+
+358 10 operator < 4 614 39 BitMask< unsigned int, 32 >::operator < 0 1 57 0
+102
+inline bool ::BitMask< unsigned int, 32 >::operator <(BitMask< unsigned int, 32 > const &other) const;
+
+359 10 compare_to 4 614 39 BitMask< unsigned int, 32 >::compare_to 0 1 58 0
+101
+inline int ::BitMask< unsigned int, 32 >::compare_to(BitMask< unsigned int, 32 > const &other) const;
+
+360 10 operator & 4 614 39 BitMask< unsigned int, 32 >::operator & 0 1 59 0
+125
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator &(BitMask< unsigned int, 32 > const &other) const;
+
+361 10 operator | 4 614 39 BitMask< unsigned int, 32 >::operator | 0 1 60 0
+125
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator |(BitMask< unsigned int, 32 > const &other) const;
+
+362 10 operator ^ 4 614 39 BitMask< unsigned int, 32 >::operator ^ 0 1 61 0
+125
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator ^(BitMask< unsigned int, 32 > const &other) const;
+
+363 10 operator ~ 68 614 39 BitMask< unsigned int, 32 >::operator ~ 0 1 62 0
+89
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator ~(void) const;
+
+364 11 operator << 4 614 40 BitMask< unsigned int, 32 >::operator << 0 1 63 0
+95
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator <<(int shift) const;
+
+365 11 operator >> 4 614 40 BitMask< unsigned int, 32 >::operator >> 0 1 64 0
+95
+inline BitMask< unsigned int, 32 > ::BitMask< unsigned int, 32 >::operator >>(int shift) const;
+
+366 11 operator &= 4 614 40 BitMask< unsigned int, 32 >::operator &= 0 1 65 0
+97
+inline void ::BitMask< unsigned int, 32 >::operator &=(BitMask< unsigned int, 32 > const &other);
+
+367 11 operator |= 4 614 40 BitMask< unsigned int, 32 >::operator |= 0 1 66 0
+97
+inline void ::BitMask< unsigned int, 32 >::operator |=(BitMask< unsigned int, 32 > const &other);
+
+368 11 operator ^= 4 614 40 BitMask< unsigned int, 32 >::operator ^= 0 1 67 0
+97
+inline void ::BitMask< unsigned int, 32 >::operator ^=(BitMask< unsigned int, 32 > const &other);
+
+369 12 operator <<= 4 614 41 BitMask< unsigned int, 32 >::operator <<= 0 1 68 0
+67
+inline void ::BitMask< unsigned int, 32 >::operator <<=(int shift);
+
+370 12 operator >>= 4 614 41 BitMask< unsigned int, 32 >::operator >>= 0 1 69 0
+67
+inline void ::BitMask< unsigned int, 32 >::operator >>=(int shift);
+
+371 14 get_class_type 4 614 43 BitMask< unsigned int, 32 >::get_class_type 0 1 70 0
+70
+static TypeHandle ::BitMask< unsigned int, 32 >::get_class_type(void);
+
+372 8 BitArray 4 615 18 BitArray::BitArray 0 3 71 72 73 1341
+// Filename: bitArray.I
+// Created by:  drose (20Jan06)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+32
+inline BitArray::BitArray(void);
+
+373 10 operator = 4 615 20 BitArray::operator = 0 1 74 233
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Copy Assignment Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+60
+inline BitArray &BitArray::operator =(BitArray const &copy);
+
+374 6 all_on 4 615 16 BitArray::all_on 0 1 75 317
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Named all_on constructor
+//       Access: Published, Static
+//  Description: Returns a BitArray with an infinite array of bits,
+//               all on.
+////////////////////////////////////////////////////////////////////
+46
+static inline BitArray BitArray::all_on(void);
+
+375 7 all_off 4 615 17 BitArray::all_off 0 1 76 284
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Named all_on constructor
+//       Access: Published, Static
+//  Description: Returns a BitArray whose bits are all off.
+////////////////////////////////////////////////////////////////////
+47
+static inline BitArray BitArray::all_off(void);
+
+376 8 lower_on 4 615 18 BitArray::lower_on 0 1 77 295
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Named lower_on constructor
+//       Access: Published, Static
+//  Description: Returns a BitArray whose lower on_bits bits are on.
+////////////////////////////////////////////////////////////////////
+55
+static inline BitArray BitArray::lower_on(int on_bits);
+
+377 3 bit 4 615 13 BitArray::bit 0 1 78 289
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Named bit constructor
+//       Access: Published, Static
+//  Description: Returns a BitArray with only the indicated bit on.
+////////////////////////////////////////////////////////////////////
+48
+static inline BitArray BitArray::bit(int index);
+
+378 5 range 4 615 15 BitArray::range 0 1 79 323
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Named range constructor
+//       Access: Published, Static
+//  Description: Returns a BitArray whose size bits, beginning at
+//               low_bit, are on.
+////////////////////////////////////////////////////////////////////
+62
+static inline BitArray BitArray::range(int low_bit, int size);
+
+379 9 ~BitArray 4 615 19 BitArray::~BitArray 0 0 219
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+33
+inline BitArray::~BitArray(void);
+
+380 16 has_max_num_bits 4 615 26 BitArray::has_max_num_bits 0 1 80 714
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::has_max_num_bits
+//       Access: Published, Static
+//  Description: Returns true if there is a maximum number of bits
+//               that may be stored in this structure, false
+//               otherwise.  If this returns true, the number may be
+//               queried in get_max_num_bits().
+//
+//               This method always returns false.  The BitArray has
+//               no maximum number of bits.  This method is defined so
+//               generic programming algorithms can use BitMask or
+//               BitArray interchangeably.
+////////////////////////////////////////////////////////////////////
+52
+static inline bool BitArray::has_max_num_bits(void);
+
+381 16 get_max_num_bits 4 615 26 BitArray::get_max_num_bits 0 1 81 749
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_max_num_bits
+//       Access: Published, Static
+//  Description: If get_max_num_bits() returned true, this method may
+//               be called to return the maximum number of bits that
+//               may be stored in this structure.  It is an error to
+//               call this if get_max_num_bits() return false.
+//
+//               It is always an error to call this method.  The
+//               BitArray has no maximum number of bits.  This method
+//               is defined so generic programming algorithms can use
+//               BitMask or BitArray interchangeably.
+////////////////////////////////////////////////////////////////////
+51
+static inline int BitArray::get_max_num_bits(void);
+
+382 21 get_num_bits_per_word 4 615 31 BitArray::get_num_bits_per_word 0 1 82 476
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_num_bits_per_word
+//       Access: Published, Static
+//  Description: Returns the number of bits stored per word
+//               internally.  This is of interest only in that it
+//               limits the maximum number of bits that may be queried
+//               or set at once by extract() and store().
+////////////////////////////////////////////////////////////////////
+56
+static inline int BitArray::get_num_bits_per_word(void);
+
+383 12 get_num_bits 4 615 22 BitArray::get_num_bits 0 1 83 604
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_num_bits
+//       Access: Published
+//  Description: Returns the current number of possibly different bits
+//               in this array.  There are actually an infinite number
+//               of bits, but every bit higher than this bit will have
+//               the same value, either 0 or 1 (see
+//               get_highest_bits()).
+//
+//               This number may grow and/or shrink automatically as
+//               needed.
+////////////////////////////////////////////////////////////////////
+46
+inline int BitArray::get_num_bits(void) const;
+
+384 7 get_bit 4 615 17 BitArray::get_bit 0 1 84 442
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_bit
+//       Access: Published
+//  Description: Returns true if the nth bit is set, false if it is
+//               cleared.  It is valid for n to increase beyond
+//               get_num_bits(), but the return value get_num_bits()
+//               will always be the same.
+////////////////////////////////////////////////////////////////////
+47
+inline bool BitArray::get_bit(int index) const;
+
+385 7 set_bit 4 615 17 BitArray::set_bit 0 1 85 317
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::set_bit
+//       Access: Published
+//  Description: Sets the nth bit on.  If n >= get_num_bits(), this
+//               automatically extends the array.
+////////////////////////////////////////////////////////////////////
+41
+inline void BitArray::set_bit(int index);
+
+386 9 clear_bit 4 615 19 BitArray::clear_bit 0 1 86 320
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::clear_bit
+//       Access: Published
+//  Description: Sets the nth bit off.  If n >= get_num_bits(), this
+//               automatically extends the array.
+////////////////////////////////////////////////////////////////////
+43
+inline void BitArray::clear_bit(int index);
+
+387 10 set_bit_to 4 615 20 BitArray::set_bit_to 0 1 87 310
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::set_bit_to
+//       Access: Published
+//  Description: Sets the nth bit either on or off, according to the
+//               indicated bool value.
+////////////////////////////////////////////////////////////////////
+56
+inline void BitArray::set_bit_to(int index, bool value);
+
+388 16 get_highest_bits 4 615 26 BitArray::get_highest_bits 0 1 88 364
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_highest_bits
+//       Access: Published
+//  Description: Returns true if the infinite set of bits beyond
+//               get_num_bits() are all on, or false of they are all
+//               off.
+////////////////////////////////////////////////////////////////////
+51
+inline bool BitArray::get_highest_bits(void) const;
+
+389 7 is_zero 4 615 17 BitArray::is_zero 0 1 89 294
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::is_zero
+//       Access: Published
+//  Description: Returns true if the entire bitmask is zero, false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+35
+bool BitArray::is_zero(void) const;
+
+390 7 extract 4 615 17 BitArray::extract 0 1 90 438
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::extract
+//       Access: Published
+//  Description: Returns a word that represents only the indicated
+//               range of bits within this BitArray, shifted to the
+//               least-significant position.  size must be <=
+//               get_num_bits_per_word().
+////////////////////////////////////////////////////////////////////
+67
+inline unsigned int BitArray::extract(int low_bit, int size) const;
+
+391 5 store 4 615 15 BitArray::store 0 1 91 310
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::store
+//       Access: Published
+//  Description: Stores the indicated word into the indicated range of
+//               bits with this BitArray.
+////////////////////////////////////////////////////////////////////
+71
+inline void BitArray::store(unsigned int value, int low_bit, int size);
+
+392 9 set_range 4 615 19 BitArray::set_range 0 1 92 255
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::set_range
+//       Access: Published
+//  Description: Sets the indicated range of bits on.
+////////////////////////////////////////////////////////////////////
+48
+void BitArray::set_range(int low_bit, int size);
+
+393 11 clear_range 4 615 21 BitArray::clear_range 0 1 93 258
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::clear_range
+//       Access: Published
+//  Description: Sets the indicated range of bits off.
+////////////////////////////////////////////////////////////////////
+50
+void BitArray::clear_range(int low_bit, int size);
+
+394 12 set_range_to 4 615 22 BitArray::set_range_to 0 1 94 275
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::set_range_to
+//       Access: Published
+//  Description: Sets the indicated range of bits to either on or off.
+////////////////////////////////////////////////////////////////////
+70
+inline void BitArray::set_range_to(bool value, int low_bit, int size);
+
+395 13 get_num_words 4 615 23 BitArray::get_num_words 0 1 95 304
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_num_words
+//       Access: Published
+//  Description: Returns the number of possibly-unique words stored in
+//               the array.
+////////////////////////////////////////////////////////////////////
+47
+inline int BitArray::get_num_words(void) const;
+
+396 8 get_word 4 615 18 BitArray::get_word 0 1 96 410
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::get_word
+//       Access: Published
+//  Description: Returns the nth word in the array.  It is valid for n
+//               to be greater than get_num_words(), but the return
+//               value beyond get_num_words() will always be the same.
+////////////////////////////////////////////////////////////////////
+67
+inline BitMask< unsigned int, 32 > BitArray::get_word(int n) const;
+
+397 8 set_word 4 615 18 BitArray::set_word 0 1 97 351
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::set_word
+//       Access: Published
+//  Description: Replaces the nth word in the array.  If n >=
+//               get_num_words(), this automatically extends the
+//               array.
+////////////////////////////////////////////////////////////////////
+73
+inline void BitArray::set_word(int n, BitMask< unsigned int, 32 > value);
+
+398 15 invert_in_place 4 615 25 BitArray::invert_in_place 0 1 98 318
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::invert_in_place
+//       Access: Published
+//  Description: Inverts all the bits in the BitArray.  This is
+//               equivalent to array = ~array.
+////////////////////////////////////////////////////////////////////
+37
+void BitArray::invert_in_place(void);
+
+399 18 has_bits_in_common 4 615 28 BitArray::has_bits_in_common 0 1 99 440
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::has_bits_in_common
+//       Access: Published
+//  Description: Returns true if this BitArray has any "one" bits in
+//               common with the other one, false otherwise.
+//
+//               This is equivalent to (array & other) != 0, but may
+//               be faster.
+////////////////////////////////////////////////////////////////////
+63
+bool BitArray::has_bits_in_common(BitArray const &other) const;
+
+400 5 clear 4 615 15 BitArray::clear 0 1 100 253
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::clear
+//       Access: Published
+//  Description: Sets all the bits in the BitArray off.
+////////////////////////////////////////////////////////////////////
+34
+inline void BitArray::clear(void);
+
+401 6 output 4 615 16 BitArray::output 0 1 101 443
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::output
+//       Access: Published
+//  Description: Writes the BitArray out as a hex number.  For a
+//               BitArray, this is always the same as output_hex();
+//               it's too confusing for the output format to change
+//               back and forth at runtime.
+////////////////////////////////////////////////////////////////////
+42
+void BitArray::output(ostream &out) const;
+
+402 13 output_binary 4 615 23 BitArray::output_binary 0 2 102 103 312
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::output_binary
+//       Access: Published
+//  Description: Writes the BitArray out as a binary number, with
+//               spaces every four bits.
+////////////////////////////////////////////////////////////////////
+73
+void BitArray::output_binary(ostream &out, int spaces_every = (4)) const;
+
+403 10 output_hex 4 615 20 BitArray::output_hex 0 2 104 105 316
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::output_hex
+//       Access: Published
+//  Description: Writes the BitArray out as a hexadecimal number, with
+//               spaces every four digits.
+////////////////////////////////////////////////////////////////////
+70
+void BitArray::output_hex(ostream &out, int spaces_every = (4)) const;
+
+404 5 write 4 615 15 BitArray::write 0 2 106 107 317
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::write
+//       Access: Published
+//  Description: Writes the BitArray out as a binary or a hex number,
+//               according to the number of bits.
+////////////////////////////////////////////////////////////////////
+65
+void BitArray::write(ostream &out, int indent_level = (0)) const;
+
+405 11 operator == 4 615 21 BitArray::operator == 0 1 108 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator ==
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+inline bool BitArray::operator ==(BitArray const &other) const;
+
+406 11 operator != 4 615 21 BitArray::operator != 0 1 109 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator !=
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+inline bool BitArray::operator !=(BitArray const &other) const;
+
+407 10 operator < 4 615 20 BitArray::operator < 0 1 110 381
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator <
+//       Access: Published
+//  Description: Returns true if the unsigned integer which is
+//               represented by this BitArray is less than that of the
+//               other one, false otherwise.
+////////////////////////////////////////////////////////////////////
+62
+inline bool BitArray::operator <(BitArray const &other) const;
+
+408 10 compare_to 4 615 20 BitArray::compare_to 0 1 111 487
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this BitArray sorts
+//               before the indicated other BitArray, greater than zero
+//               if it sorts after, or 0 if they are equivalent.  This
+//               is based on the same ordering defined by operator <.
+////////////////////////////////////////////////////////////////////
+54
+int BitArray::compare_to(BitArray const &other) const;
+
+409 10 operator & 4 615 20 BitArray::operator & 0 1 112 219
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator &
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+66
+inline BitArray BitArray::operator &(BitArray const &other) const;
+
+410 10 operator | 4 615 20 BitArray::operator | 0 1 113 219
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator |
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+66
+inline BitArray BitArray::operator |(BitArray const &other) const;
+
+411 10 operator ^ 4 615 20 BitArray::operator ^ 0 1 114 219
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator ^
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+66
+inline BitArray BitArray::operator ^(BitArray const &other) const;
+
+412 10 operator ~ 68 615 20 BitArray::operator ~ 0 1 115 0
+49
+inline BitArray BitArray::operator ~(void) const;
+
+413 11 operator << 4 615 21 BitArray::operator << 0 1 116 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator <<
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+inline BitArray BitArray::operator <<(int shift) const;
+
+414 11 operator >> 4 615 21 BitArray::operator >> 0 1 117 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator >>
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+inline BitArray BitArray::operator >>(int shift) const;
+
+415 11 operator &= 4 615 21 BitArray::operator &= 0 1 118 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator &=
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+50
+void BitArray::operator &=(BitArray const &other);
+
+416 11 operator |= 4 615 21 BitArray::operator |= 0 1 119 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator |=
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+50
+void BitArray::operator |=(BitArray const &other);
+
+417 11 operator ^= 4 615 21 BitArray::operator ^= 0 1 120 220
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator ^=
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+50
+void BitArray::operator ^=(BitArray const &other);
+
+418 12 operator <<= 4 615 22 BitArray::operator <<= 0 1 121 399
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator <<=
+//       Access: Published
+//  Description: Logical left shift.  The rightmost bits are filled in
+//               with zeroes.  Since this is an infinite bit array,
+//               none of the bits on the left are lost.
+////////////////////////////////////////////////////////////////////
+39
+void BitArray::operator <<=(int shift);
+
+419 12 operator >>= 4 615 22 BitArray::operator >>= 0 1 122 449
+////////////////////////////////////////////////////////////////////
+//     Function: BitArray::operator >>=
+//       Access: Published
+//  Description: Logical right shift.  The rightmost bits are lost.
+//               Since this is an infinite bit array, there is no
+//               question of sign extension; there is no need to
+//               synthesize bits on the left.
+////////////////////////////////////////////////////////////////////
+39
+void BitArray::operator >>=(int shift);
+
+420 14 get_class_type 4 615 24 BitArray::get_class_type 0 1 123 0
+49
+static TypeHandle BitArray::get_class_type(void);
+
+421 12 ButtonHandle 4 616 26 ButtonHandle::ButtonHandle 0 1 124 1446
+// Filename: buttonHandle.I
+// Created by:  drose (01Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::Constructor
+//       Access: Published
+//  Description: The default constructor must do nothing, because we
+//               can't guarantee ordering of static initializers.  If
+//               the constructor tried to initialize its value, it
+//               might happen after the value had already been set
+//               previously by another static initializer!
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+inline ButtonHandle::ButtonHandle(void);
+
+422 8 get_name 4 616 22 ButtonHandle::get_name 0 1 125 250
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::get_name
+//       Access: Public
+//  Description: Returns the name of the button.
+////////////////////////////////////////////////////////////////////
+56
+basic_string< char > ButtonHandle::get_name(void) const;
+
+423 20 has_ascii_equivalent 4 616 34 ButtonHandle::has_ascii_equivalent 0 1 126 375
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::has_ascii_equivalent
+//       Access: Published
+//  Description: Returns true if the button was created with an ASCII
+//               equivalent code (e.g. for a standard keyboard
+//               button).
+////////////////////////////////////////////////////////////////////
+59
+inline bool ButtonHandle::has_ascii_equivalent(void) const;
+
+424 20 get_ascii_equivalent 4 616 34 ButtonHandle::get_ascii_equivalent 0 1 127 346
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::get_ascii_equivalent
+//       Access: Published
+//  Description: Returns the character code associated with the
+//               button, or '\0' if no ASCII code was associated.
+////////////////////////////////////////////////////////////////////
+59
+inline char ButtonHandle::get_ascii_equivalent(void) const;
+
+425 9 get_alias 4 616 23 ButtonHandle::get_alias 0 1 128 692
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::get_alias
+//       Access: Published
+//  Description: Returns the alias (alternate name) associated with
+//               the button, if any, or ButtonHandle::none() if the
+//               button has no alias.
+//
+//               Each button is allowed to have one alias, and
+//               multiple different buttons can refer to the same
+//               alias.  The alias should be the more general name for
+//               the button, for instance, shift is an alias for
+//               lshift, but not vice-versa.
+////////////////////////////////////////////////////////////////////
+49
+ButtonHandle ButtonHandle::get_alias(void) const;
+
+426 7 matches 4 616 21 ButtonHandle::matches 0 1 129 532
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::matches
+//       Access: Published
+//  Description: Returns true if this ButtonHandle is the same as the
+//               other one, or if the other one is an alias for this
+//               one.  (Does not return true if this button is an
+//               alias for the other one, however.)
+//
+//               This is a more general comparison than operator ==.
+////////////////////////////////////////////////////////////////////
+67
+inline bool ButtonHandle::matches(ButtonHandle const &other) const;
+
+427 9 get_index 4 616 23 ButtonHandle::get_index 0 1 130 664
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::get_index
+//       Access: Published
+//  Description: Returns the integer index associated with this
+//               ButtonHandle. Each different ButtonHandle will have a
+//               different index.  However, you probably shouldn't be
+//               using this method; you should just treat the
+//               ButtonHandles as opaque classes.  This is provided
+//               for the convenience of non-C++ scripting languages to
+//               build a hashtable of ButtonHandles.
+////////////////////////////////////////////////////////////////////
+47
+inline int ButtonHandle::get_index(void) const;
+
+428 6 output 4 616 20 ButtonHandle::output 0 1 131 220
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+53
+inline void ButtonHandle::output(ostream &out) const;
+
+429 4 none 4 616 18 ButtonHandle::none 0 1 132 321
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonHandle::none
+//       Access: Published, Static
+//  Description: Returns a special zero-valued ButtonHandle that is
+//               used to indicate no button.
+////////////////////////////////////////////////////////////////////
+52
+static inline ButtonHandle ButtonHandle::none(void);
+
+430 13 ~ButtonHandle 4 616 27 ButtonHandle::~ButtonHandle 0 0 0
+34
+ButtonHandle::~ButtonHandle(void);
+
+431 10 get_button 4 617 26 ButtonRegistry::get_button 0 1 133 396
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonRegistry::get_button
+//       Access: Published
+//  Description: Finds a ButtonHandle in the registry matching the
+//               indicated name.  If there is no such ButtonHandle,
+//               registers a new one and returns it.
+////////////////////////////////////////////////////////////////////
+74
+ButtonHandle ButtonRegistry::get_button(basic_string< char > const &name);
+
+432 17 find_ascii_button 4 617 33 ButtonRegistry::find_ascii_button 0 1 134 419
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonRegistry::find_ascii_button
+//       Access: Published
+//  Description: Finds a ButtonHandle in the registry matching the
+//               indicated ASCII equivalent character.  If there is no
+//               such ButtonHandle, returns ButtonHandle::none().
+////////////////////////////////////////////////////////////////////
+76
+ButtonHandle ButtonRegistry::find_ascii_button(char ascii_equivalent) const;
+
+433 5 write 4 617 21 ButtonRegistry::write 0 1 135 220
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonRegistry::write
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+47
+void ButtonRegistry::write(ostream &out) const;
+
+434 3 ptr 4 617 19 ButtonRegistry::ptr 0 1 136 367
+// ptr() returns the pointer to the global ButtonRegistry object.
+
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonRegistry::ptr
+//       Access: Published, Static
+//  Description: Returns the pointer to the global ButtonRegistry
+//               object.
+////////////////////////////////////////////////////////////////////
+56
+static inline ButtonRegistry *ButtonRegistry::ptr(void);
+
+435 15 ~ButtonRegistry 4 617 31 ButtonRegistry::~ButtonRegistry 0 0 0
+38
+ButtonRegistry::~ButtonRegistry(void);
+
+436 23 upcast_to_TypedWritable 12 618 52 TypedWritableReferenceCount::upcast_to_TypedWritable 0 1 138 56
+upcast from TypedWritableReferenceCount to TypedWritable
+74
+TypedWritable *TypedWritableReferenceCount::upcast_to_TypedWritable(void);
+
+437 39 downcast_to_TypedWritableReferenceCount 12 612 54 TypedWritable::downcast_to_TypedWritableReferenceCount 0 1 139 58
+downcast from TypedWritable to TypedWritableReferenceCount
+90
+TypedWritableReferenceCount *TypedWritable::downcast_to_TypedWritableReferenceCount(void);
+
+438 24 upcast_to_ReferenceCount 12 618 53 TypedWritableReferenceCount::upcast_to_ReferenceCount 0 1 140 57
+upcast from TypedWritableReferenceCount to ReferenceCount
+76
+ReferenceCount *TypedWritableReferenceCount::upcast_to_ReferenceCount(void);
+
+439 39 downcast_to_TypedWritableReferenceCount 12 619 55 ReferenceCount::downcast_to_TypedWritableReferenceCount 0 1 141 59
+downcast from ReferenceCount to TypedWritableReferenceCount
+91
+TypedWritableReferenceCount *ReferenceCount::downcast_to_TypedWritableReferenceCount(void);
+
+440 14 get_class_type 4 618 43 TypedWritableReferenceCount::get_class_type 0 1 137 0
+68
+static TypeHandle TypedWritableReferenceCount::get_class_type(void);
+
+441 28 ~TypedWritableReferenceCount 4 618 57 TypedWritableReferenceCount::~TypedWritableReferenceCount 0 0 0
+64
+TypedWritableReferenceCount::~TypedWritableReferenceCount(void);
+
+442 19 get_cache_ref_count 4 620 54 CachedTypedWritableReferenceCount::get_cache_ref_count 0 1 142 290
+////////////////////////////////////////////////////////////////////
+//     Function: CachedTypedWritableReferenceCount::get_cache_ref_count
+//       Access: Published
+//  Description: Returns the current reference count.
+////////////////////////////////////////////////////////////////////
+78
+inline int CachedTypedWritableReferenceCount::get_cache_ref_count(void) const;
+
+443 9 cache_ref 4 620 44 CachedTypedWritableReferenceCount::cache_ref 0 1 143 672
+////////////////////////////////////////////////////////////////////
+//     Function: CachedTypedWritableReferenceCount::cache_ref
+//       Access: Published
+//  Description: Explicitly increments the reference count.
+//
+//               This function is const, even though it changes the
+//               object, because generally fiddling with an object's
+//               reference count isn't considered part of fiddling
+//               with the object.  An object might be const in other
+//               ways, but we still need to accurately count the
+//               number of references to it.
+////////////////////////////////////////////////////////////////////
+69
+inline void CachedTypedWritableReferenceCount::cache_ref(void) const;
+
+444 11 cache_unref 4 620 46 CachedTypedWritableReferenceCount::cache_unref 0 1 144 1418
+////////////////////////////////////////////////////////////////////
+//     Function: CachedTypedWritableReferenceCount::cache_unref
+//       Access: Published
+//  Description: Explicitly decrements the reference count.  Note that
+//               the object will not be implicitly deleted by unref()
+//               simply because the reference count drops to zero.
+//               (Having a member function delete itself is
+//               problematic; plus, we don't have a virtual destructor
+//               anyway.) However, see the helper function
+//               unref_delete().
+//
+//               User code should avoid using ref() and unref()
+//               directly, which can result in missed reference
+//               counts.  Instead, let a PointerTo object manage the
+//               reference counting automatically.
+//
+//               This function is const, even though it changes the
+//               object, because generally fiddling with an object's
+//               reference count isn't considered part of fiddling
+//               with the object.  An object might be const in other
+//               ways, but we still need to accurately count the
+//               number of references to it.
+//
+//               The return value is true if the new reference count
+//               is nonzero, false if it is zero.
+////////////////////////////////////////////////////////////////////
+71
+inline bool CachedTypedWritableReferenceCount::cache_unref(void) const;
+
+445 24 test_ref_count_integrity 4 620 59 CachedTypedWritableReferenceCount::test_ref_count_integrity 0 1 145 359
+////////////////////////////////////////////////////////////////////
+//     Function: CachedTypedWritableReferenceCount::test_ref_count_integrity
+//       Access: Published
+//  Description: Does some easy checks to make sure that the reference
+//               count isn't completely bogus.
+////////////////////////////////////////////////////////////////////
+84
+inline bool CachedTypedWritableReferenceCount::test_ref_count_integrity(void) const;
+
+446 14 get_class_type 4 620 49 CachedTypedWritableReferenceCount::get_class_type 0 1 146 0
+74
+static TypeHandle CachedTypedWritableReferenceCount::get_class_type(void);
+
+447 7 TimeVal 4 621 16 TimeVal::TimeVal 0 1 147 218
+////////////////////////////////////////////////////////////////////
+//     Function: TimeVal::contructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+30
+inline TimeVal::TimeVal(void);
+
+448 7 get_sec 4 621 16 TimeVal::get_sec 0 1 148 215
+////////////////////////////////////////////////////////////////////
+//     Function: TimeVal::get_sec
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+54
+inline unsigned long int TimeVal::get_sec(void) const;
+
+449 8 get_usec 4 621 17 TimeVal::get_usec 0 1 149 216
+////////////////////////////////////////////////////////////////////
+//     Function: TimeVal::get_usec
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+inline unsigned long int TimeVal::get_usec(void) const;
+
+450 8 ~TimeVal 4 621 17 TimeVal::~TimeVal 0 0 0
+24
+TimeVal::~TimeVal(void);
+
+451 11 ClockObject 4 622 24 ClockObject::ClockObject 0 1 150 223
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+31
+ClockObject::ClockObject(void);
+
+452 12 ~ClockObject 4 622 25 ClockObject::~ClockObject 0 0 897
+// Filename: clockObject.I
+// Created by:  drose (17Feb00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+39
+inline ClockObject::~ClockObject(void);
+
+453 8 set_mode 4 622 21 ClockObject::set_mode 0 1 151 1676
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_mode
+//       Access: Published
+//  Description: Changes the mode of the clock.  Normally, the clock
+//               is in mode M_normal. In this mode, each call to
+//               tick() will set the value returned by
+//               get_frame_time() to the current real time; thus, the
+//               clock simply reports time advancing.
+//
+//               Other possible modes:
+//
+//               M_non_real_time - the clock ignores real time
+//               completely; at each call to tick(), it pretends that
+//               exactly dt seconds have elapsed since the last call
+//               to tick().  You may set the value of dt with
+//               set_dt().
+//
+//               M_forced - the clock forces the application to run at
+//               the rate specified by set_dt().  If the application
+//               would run faster than this rate, the clock will slow
+//               down the application; if the application would run
+//               slower than this rate, the clock slows down time so
+//               that the application believes it is running at the
+//               given rate.
+//
+//               M_degrade - the clock runs at real time, but the
+//               application is slowed down by a set factor of its
+//               frame rate, specified by set_degrade_factor().
+//
+//               M_slave - the clock does not advance, but relies on
+//               the user to call set_frame_time() and/or
+//               set_frame_count() each frame.
+////////////////////////////////////////////////////////////////////
+58
+inline void ClockObject::set_mode(ClockObject::Mode mode);
+
+454 8 get_mode 4 622 21 ClockObject::get_mode 0 1 152 293
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_mode
+//       Access: Published
+//  Description: Returns the current mode of the clock.  See
+//               set_mode().
+////////////////////////////////////////////////////////////////////
+59
+inline ClockObject::Mode ClockObject::get_mode(void) const;
+
+455 14 get_frame_time 4 622 27 ClockObject::get_frame_time 0 1 153 656
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_frame_time
+//       Access: Published
+//  Description: Returns the time in seconds as of the last time
+//               tick() was called (typically, this will be as of the
+//               start of the current frame).
+//
+//               This is generally the kind of time you want to ask
+//               for in most rendering and animation contexts, since
+//               it's important that all of the animation for a given
+//               frame remains in sync with each other.
+////////////////////////////////////////////////////////////////////
+54
+inline double ClockObject::get_frame_time(void) const;
+
+456 13 get_real_time 4 622 26 ClockObject::get_real_time 0 1 154 769
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_real_time
+//       Access: Published
+//  Description: Returns the actual number of seconds elapsed since
+//               the ClockObject was created, or since it was last
+//               reset.  This is useful for doing real timing
+//               measurements, e.g. for performance statistics.
+//
+//               This returns the most precise timer we have for short
+//               time intervals, but it may tend to drift over the
+//               long haul.  If more accurate timekeeping is needed
+//               over a long period of time, use get_long_time()
+//               instead.
+////////////////////////////////////////////////////////////////////
+53
+inline double ClockObject::get_real_time(void) const;
+
+457 13 get_long_time 4 622 26 ClockObject::get_long_time 0 1 155 773
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_long_time
+//       Access: Published
+//  Description: Returns the actual number of seconds elapsed since
+//               the ClockObject was created, or since it was last
+//               reset.
+//
+//               This is similar to get_real_time(), except that it
+//               uses the most accurate counter we have over a long
+//               period of time, and so it is less likely to drift.
+//               However, it may not be very precise for measuring
+//               short intervals.  On Windows, for instace, this is
+//               only accurate to within about 55 milliseconds.
+////////////////////////////////////////////////////////////////////
+53
+inline double ClockObject::get_long_time(void) const;
+
+458 5 reset 4 622 18 ClockObject::reset 0 1 156 299
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::reset
+//       Access: Published
+//  Description: Simultaneously resets both the time and the frame
+//               count to zero.
+////////////////////////////////////////////////////////////////////
+37
+inline void ClockObject::reset(void);
+
+459 13 set_real_time 4 622 26 ClockObject::set_real_time 0 1 157 607
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_real_time
+//       Access: Published
+//  Description: Resets the clock to the indicated time.  This
+//               changes only the real time of the clock as reported
+//               by get_real_time(), but does not immediately change
+//               the time reported by get_frame_time()--that will
+//               change after the next call to tick().  Also see
+//               reset(), set_frame_time(), and set_frame_count().
+////////////////////////////////////////////////////////////////////
+45
+void ClockObject::set_real_time(double time);
+
+460 14 set_frame_time 4 622 27 ClockObject::set_frame_time 0 1 158 477
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_frame_time
+//       Access: Published
+//  Description: Changes the time as reported for the current frame to
+//               the indicated time.  Normally, the way to adjust the
+//               frame time is via tick(); this function is provided
+//               only for occasional special adjustments.
+////////////////////////////////////////////////////////////////////
+46
+void ClockObject::set_frame_time(double time);
+
+461 15 set_frame_count 4 622 28 ClockObject::set_frame_count 0 1 159 380
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_frame_count
+//       Access: Published
+//  Description: Resets the number of frames counted to the indicated
+//               number.  Also see reset(), set_real_time(), and
+//               set_frame_time().
+////////////////////////////////////////////////////////////////////
+51
+void ClockObject::set_frame_count(int frame_count);
+
+462 15 get_frame_count 4 622 28 ClockObject::get_frame_count 0 1 160 457
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_frame_count
+//       Access: Published
+//  Description: Returns the number of times tick() has been called
+//               since the ClockObject was created, or since it was
+//               last reset.  This is generally the number of frames
+//               that have been rendered.
+////////////////////////////////////////////////////////////////////
+52
+inline int ClockObject::get_frame_count(void) const;
+
+463 18 get_net_frame_rate 4 622 31 ClockObject::get_net_frame_rate 0 1 161 523
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_net_frame_rate
+//       Access: Published
+//  Description: Returns the average frame rate since the last reset.
+//               This is simply the total number of frames divided by
+//               the total elapsed time.  This reports the virtual
+//               frame rate if the clock is in (or has been in)
+//               M_non_real_time mode.
+////////////////////////////////////////////////////////////////////
+58
+inline double ClockObject::get_net_frame_rate(void) const;
+
+464 6 get_dt 4 622 19 ClockObject::get_dt 0 1 162 369
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_dt
+//       Access: Published
+//  Description: Returns the elapsed time for the previous frame: the
+//               number of seconds elapsed between the last two calls
+//               to tick().
+////////////////////////////////////////////////////////////////////
+46
+inline double ClockObject::get_dt(void) const;
+
+465 6 set_dt 4 622 19 ClockObject::set_dt 0 1 163 438
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_dt
+//       Access: Published
+//  Description: In non-real-time mode, sets the number of seconds
+//               that should appear to elapse between frames.  In
+//               forced mode, sets our target dt.  In normal mode,
+//               this has no effect.
+////////////////////////////////////////////////////////////////////
+43
+inline void ClockObject::set_dt(double dt);
+
+466 10 get_max_dt 4 622 23 ClockObject::get_max_dt 0 1 164 333
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_max_dt
+//       Access: Published
+//  Description: Returns the current maximum allowable time elapsed
+//               between any two frames.  See set_max_dt().
+////////////////////////////////////////////////////////////////////
+50
+inline double ClockObject::get_max_dt(void) const;
+
+467 10 set_max_dt 4 622 23 ClockObject::set_max_dt 0 1 165 872
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_max_dt
+//       Access: Published
+//  Description: Sets a limit on the value returned by get_dt().  If
+//               this value is less than zero, no limit is imposed;
+//               otherwise, this is the maximum value that will ever
+//               be returned by get_dt(), regardless of how much time
+//               has actually elapsed between frames.
+//
+//               This limit is only imposed in real-time mode; in
+//               non-real-time mode, the dt is fixed anyway and max_dt
+//               is ignored.
+//
+//               This is generally used to guarantee reasonable
+//               behavior even in the presence of a very slow or
+//               chuggy frame rame.
+////////////////////////////////////////////////////////////////////
+51
+inline void ClockObject::set_max_dt(double max_dt);
+
+468 18 get_degrade_factor 4 622 31 ClockObject::get_degrade_factor 0 1 166 544
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_degrade_factor
+//       Access: Published
+//  Description: In degrade mode, returns the ratio by which the
+//               performance is degraded.  A value of 2.0 causes the
+//               clock to be slowed down by a factor of two (reducing
+//               performance to 1/2 what would be otherwise).
+//
+//               This has no effect if mode is not M_degrade.
+////////////////////////////////////////////////////////////////////
+58
+inline double ClockObject::get_degrade_factor(void) const;
+
+469 18 set_degrade_factor 4 622 31 ClockObject::set_degrade_factor 0 1 167 541
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_degrade_factor
+//       Access: Published
+//  Description: In degrade mode, sets the ratio by which the
+//               performance is degraded.  A value of 2.0 causes the
+//               clock to be slowed down by a factor of two (reducing
+//               performance to 1/2 what would be otherwise).
+//
+//               This has no effect if mode is not M_degrade.
+////////////////////////////////////////////////////////////////////
+67
+inline void ClockObject::set_degrade_factor(double degrade_factor);
+
+470 31 set_average_frame_rate_interval 4 622 44 ClockObject::set_average_frame_rate_interval 0 1 168 729
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::set_average_frame_rate_interval
+//       Access: Published
+//  Description: Specifies the interval of time (in seconds) over
+//               which get_average_frame_rate() averages the number of
+//               frames per second to compute the frame rate.
+//               Changing this does not necessarily immediately change
+//               the result of get_average_frame_rate(), until this
+//               interval of time has elapsed again.
+//
+//               Setting this to zero disables the computation of
+//               get_average_frame_rate().
+////////////////////////////////////////////////////////////////////
+70
+inline void ClockObject::set_average_frame_rate_interval(double time);
+
+471 31 get_average_frame_rate_interval 4 622 44 ClockObject::get_average_frame_rate_interval 0 1 169 423
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_average_frame_rate_interval
+//       Access: Published
+//  Description: Returns the interval of time (in seconds) over
+//               which get_average_frame_rate() averages the number of frames
+//               per second to compute the frame rate.
+////////////////////////////////////////////////////////////////////
+71
+inline double ClockObject::get_average_frame_rate_interval(void) const;
+
+472 22 get_average_frame_rate 4 622 35 ClockObject::get_average_frame_rate 0 1 170 500
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_average_frame_rate
+//       Access: Published
+//  Description: Returns the average frame rate in number of frames
+//               per second over the last
+//               get_average_frame_rate_interval() seconds.  This
+//               measures the virtual frame rate if the clock is in
+//               M_non_real_time mode.
+////////////////////////////////////////////////////////////////////
+62
+inline double ClockObject::get_average_frame_rate(void) const;
+
+473 4 tick 4 622 17 ClockObject::tick 0 1 171 566
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::tick
+//       Access: Published
+//  Description: Instructs the clock that a new frame has just begun.
+//               In normal, real-time mode, get_frame_time() will
+//               henceforth report the time as of this instant as the
+//               current start-of-frame time.  In non-real-time mode,
+//               get_frame_time() will be incremented by the value of
+//               dt.
+////////////////////////////////////////////////////////////////////
+29
+void ClockObject::tick(void);
+
+474 15 sync_frame_time 4 622 28 ClockObject::sync_frame_time 0 1 172 756
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::sync_frame_time
+//       Access: Published
+//  Description: Resets the frame time to the current real time.  This
+//               is similar to tick(), except that it does not advance
+//               the frame counter and does not affect dt.  This is
+//               intended to be used in the middle of a particularly
+//               long frame to compensate for the time that has
+//               already elapsed.
+//
+//               In non-real-time mode, this function has no effect
+//               (because in this mode all frames take the same length
+//               of time).
+////////////////////////////////////////////////////////////////////
+40
+void ClockObject::sync_frame_time(void);
+
+475 12 check_errors 4 622 25 ClockObject::check_errors 0 1 173 609
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::check_errors
+//       Access: Published
+//  Description: Returns true if a clock error was detected since the
+//               last time check_errors() was called.  A clock error
+//               means that something happened, an OS or BIOS bug, for
+//               instance, that makes the current value of the clock
+//               somewhat suspect, and an application may wish to
+//               resynchronize with any external clocks.
+////////////////////////////////////////////////////////////////////
+44
+inline bool ClockObject::check_errors(void);
+
+476 16 get_global_clock 4 622 29 ClockObject::get_global_clock 0 1 174 408
+////////////////////////////////////////////////////////////////////
+//     Function: ClockObject::get_global_clock
+//       Access: Published
+//  Description: Returns a pointer to the global ClockObject.  This is
+//               the ClockObject that most code should use for
+//               handling scene graph rendering and animation.
+////////////////////////////////////////////////////////////////////
+63
+static inline ClockObject *ClockObject::get_global_clock(void);
+
+477 14 get_class_type 4 622 27 ClockObject::get_class_type 0 1 175 0
+52
+static TypeHandle ClockObject::get_class_type(void);
+
+478 14 get_model_path 1 0 14 get_model_path 0 1 301 133
+// The above variables are also shadowed by these functions, so that
+// they can easily be accessed in the interpreter (e.g. Python).
+47
+ConfigVariableSearchPath &get_model_path(void);
+
+479 16 get_texture_path 1 0 16 get_texture_path 0 1 302 0
+49
+ConfigVariableSearchPath &get_texture_path(void);
+
+480 14 get_sound_path 1 0 14 get_sound_path 0 1 303 0
+47
+ConfigVariableSearchPath &get_sound_path(void);
+
+481 9 ascii_key 4 624 25 KeyboardButton::ascii_key 0 2 176 177 864
+////////////////////////////////////////////////////////////////////
+//     Function: KeyboardButton::ascii_key
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               particular ASCII character, if there is one, or
+//               ButtonHandle::none() if there is not.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: KeyboardButton::ascii_key
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               particular ASCII character (taken from the first
+//               character of the indicated string), if there is one,
+//               or ButtonHandle::none() if there is not.
+////////////////////////////////////////////////////////////////////
+69
+static ButtonHandle KeyboardButton::ascii_key(char ascii_equivalent);
+
+482 5 space 4 624 21 KeyboardButton::space 0 1 178 0
+48
+static ButtonHandle KeyboardButton::space(void);
+
+483 9 backspace 4 624 25 KeyboardButton::backspace 0 1 179 0
+52
+static ButtonHandle KeyboardButton::backspace(void);
+
+484 3 tab 4 624 19 KeyboardButton::tab 0 1 180 0
+46
+static ButtonHandle KeyboardButton::tab(void);
+
+485 5 enter 4 624 21 KeyboardButton::enter 0 1 181 0
+48
+static ButtonHandle KeyboardButton::enter(void);
+
+486 6 escape 4 624 22 KeyboardButton::escape 0 1 182 0
+49
+static ButtonHandle KeyboardButton::escape(void);
+
+487 2 f1 4 624 18 KeyboardButton::f1 0 1 183 0
+45
+static ButtonHandle KeyboardButton::f1(void);
+
+488 2 f2 4 624 18 KeyboardButton::f2 0 1 184 0
+45
+static ButtonHandle KeyboardButton::f2(void);
+
+489 2 f3 4 624 18 KeyboardButton::f3 0 1 185 0
+45
+static ButtonHandle KeyboardButton::f3(void);
+
+490 2 f4 4 624 18 KeyboardButton::f4 0 1 186 0
+45
+static ButtonHandle KeyboardButton::f4(void);
+
+491 2 f5 4 624 18 KeyboardButton::f5 0 1 187 0
+45
+static ButtonHandle KeyboardButton::f5(void);
+
+492 2 f6 4 624 18 KeyboardButton::f6 0 1 188 0
+45
+static ButtonHandle KeyboardButton::f6(void);
+
+493 2 f7 4 624 18 KeyboardButton::f7 0 1 189 0
+45
+static ButtonHandle KeyboardButton::f7(void);
+
+494 2 f8 4 624 18 KeyboardButton::f8 0 1 190 0
+45
+static ButtonHandle KeyboardButton::f8(void);
+
+495 2 f9 4 624 18 KeyboardButton::f9 0 1 191 0
+45
+static ButtonHandle KeyboardButton::f9(void);
+
+496 3 f10 4 624 19 KeyboardButton::f10 0 1 192 0
+46
+static ButtonHandle KeyboardButton::f10(void);
+
+497 3 f11 4 624 19 KeyboardButton::f11 0 1 193 0
+46
+static ButtonHandle KeyboardButton::f11(void);
+
+498 3 f12 4 624 19 KeyboardButton::f12 0 1 194 0
+46
+static ButtonHandle KeyboardButton::f12(void);
+
+499 4 left 4 624 20 KeyboardButton::left 0 1 195 0
+47
+static ButtonHandle KeyboardButton::left(void);
+
+500 5 right 4 624 21 KeyboardButton::right 0 1 196 0
+48
+static ButtonHandle KeyboardButton::right(void);
+
+501 2 up 4 624 18 KeyboardButton::up 0 1 197 0
+45
+static ButtonHandle KeyboardButton::up(void);
+
+502 4 down 4 624 20 KeyboardButton::down 0 1 198 0
+47
+static ButtonHandle KeyboardButton::down(void);
+
+503 7 page_up 4 624 23 KeyboardButton::page_up 0 1 199 0
+50
+static ButtonHandle KeyboardButton::page_up(void);
+
+504 9 page_down 4 624 25 KeyboardButton::page_down 0 1 200 0
+52
+static ButtonHandle KeyboardButton::page_down(void);
+
+505 4 home 4 624 20 KeyboardButton::home 0 1 201 0
+47
+static ButtonHandle KeyboardButton::home(void);
+
+506 3 end 4 624 19 KeyboardButton::end 0 1 202 0
+46
+static ButtonHandle KeyboardButton::end(void);
+
+507 6 insert 4 624 22 KeyboardButton::insert 0 1 203 0
+49
+static ButtonHandle KeyboardButton::insert(void);
+
+508 3 del 4 624 19 KeyboardButton::del 0 1 204 0
+46
+static ButtonHandle KeyboardButton::del(void);
+
+509 5 shift 4 624 21 KeyboardButton::shift 0 1 205 27
+// delete is a C++ keyword.
+48
+static ButtonHandle KeyboardButton::shift(void);
+
+510 7 control 4 624 23 KeyboardButton::control 0 1 206 0
+50
+static ButtonHandle KeyboardButton::control(void);
+
+511 3 alt 4 624 19 KeyboardButton::alt 0 1 207 0
+46
+static ButtonHandle KeyboardButton::alt(void);
+
+512 4 meta 4 624 20 KeyboardButton::meta 0 1 208 0
+47
+static ButtonHandle KeyboardButton::meta(void);
+
+513 9 caps_lock 4 624 25 KeyboardButton::caps_lock 0 1 209 0
+52
+static ButtonHandle KeyboardButton::caps_lock(void);
+
+514 10 shift_lock 4 624 26 KeyboardButton::shift_lock 0 1 210 0
+53
+static ButtonHandle KeyboardButton::shift_lock(void);
+
+515 8 num_lock 4 624 24 KeyboardButton::num_lock 0 1 211 0
+51
+static ButtonHandle KeyboardButton::num_lock(void);
+
+516 11 scroll_lock 4 624 27 KeyboardButton::scroll_lock 0 1 212 0
+54
+static ButtonHandle KeyboardButton::scroll_lock(void);
+
+517 12 print_screen 4 624 28 KeyboardButton::print_screen 0 1 213 0
+55
+static ButtonHandle KeyboardButton::print_screen(void);
+
+518 6 lshift 4 624 22 KeyboardButton::lshift 0 1 214 0
+49
+static ButtonHandle KeyboardButton::lshift(void);
+
+519 6 rshift 4 624 22 KeyboardButton::rshift 0 1 215 0
+49
+static ButtonHandle KeyboardButton::rshift(void);
+
+520 8 lcontrol 4 624 24 KeyboardButton::lcontrol 0 1 216 0
+51
+static ButtonHandle KeyboardButton::lcontrol(void);
+
+521 8 rcontrol 4 624 24 KeyboardButton::rcontrol 0 1 217 0
+51
+static ButtonHandle KeyboardButton::rcontrol(void);
+
+522 4 lalt 4 624 20 KeyboardButton::lalt 0 1 218 0
+47
+static ButtonHandle KeyboardButton::lalt(void);
+
+523 4 ralt 4 624 20 KeyboardButton::ralt 0 1 219 0
+47
+static ButtonHandle KeyboardButton::ralt(void);
+
+524 15 ~KeyboardButton 4 624 31 KeyboardButton::~KeyboardButton 0 0 0
+38
+KeyboardButton::~KeyboardButton(void);
+
+525 10 LineStream 4 625 22 LineStream::LineStream 0 1 220 893
+// Filename: lineStream.I
+// Created by:  drose (26Feb00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: LineStream::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+36
+inline LineStream::LineStream(void);
+
+526 17 is_text_available 4 625 29 LineStream::is_text_available 0 1 221 458
+////////////////////////////////////////////////////////////////////
+//     Function: LineStream::is_text_available
+//       Access: Public
+//  Description: Returns true if there is at least one line of text
+//               (or even a partial line) available in the LineStream
+//               object.  If this returns true, the line may then be
+//               retrieved via get_line().
+////////////////////////////////////////////////////////////////////
+54
+inline bool LineStream::is_text_available(void) const;
+
+527 8 get_line 4 625 20 LineStream::get_line 0 1 222 540
+////////////////////////////////////////////////////////////////////
+//     Function: LineStream::get_line
+//       Access: Public
+//  Description: Extracts and returns the next line (or partial line)
+//               of text available in the LineStream object.  Once the
+//               line has been extracted, you may call has_newline()
+//               to determine whether or not there was an explicit
+//               newline character written following this line.
+////////////////////////////////////////////////////////////////////
+55
+inline basic_string< char > LineStream::get_line(void);
+
+528 11 has_newline 4 625 23 LineStream::has_newline 0 1 223 460
+////////////////////////////////////////////////////////////////////
+//     Function: LineStream::has_newline
+//       Access: Public
+//  Description: Returns true if the line of text most recently
+//               returned by get_line() was written out with a
+//               terminating newline, or false if a newline character
+//               has not yet been written to the LineStream.
+////////////////////////////////////////////////////////////////////
+48
+inline bool LineStream::has_newline(void) const;
+
+529 11 ~LineStream 4 625 23 LineStream::~LineStream 0 0 0
+30
+LineStream::~LineStream(void);
+
+530 13 load_prc_file 1 0 13 load_prc_file 0 1 304 955
+////////////////////////////////////////////////////////////////////
+//     Function: load_prc_file
+//  Description: A convenience function for loading explicit prc files
+//               from a disk file or from within a multifile (via the
+//               virtual file system).  Save the return value and pass
+//               it to unload_prc_file() if you ever want to load this
+//               file later.
+//
+//               The filename is first searched along the default prc
+//               search path, and then also along the model path, for
+//               convenience.
+//
+//               This function is defined in putil instead of in dtool
+//               with the read of the prc stuff, so that it can take
+//               advantage of the virtual file system (which is
+//               defined in express), and the model path (which is in
+//               putil).
+////////////////////////////////////////////////////////////////////
+64
+ConfigPage *load_prc_file(basic_string< char > const &filename);
+
+531 18 load_prc_file_data 1 0 18 load_prc_file_data 0 1 305 680
+////////////////////////////////////////////////////////////////////
+//     Function: load_prc_file_data
+//  Description: Another convenience function to load a prc file from
+//               an explicit string, which represents the contents of
+//               the prc file.
+//
+//               The first parameter is an arbitrary name to assign to
+//               this in-memory prc file.  Supply a filename if the
+//               data was read from a file, or use any other name that
+//               is meaningful to you.  The name is only used when the
+//               set of loaded prc files is listed.
+////////////////////////////////////////////////////////////////////
+99
+ConfigPage *load_prc_file_data(basic_string< char > const &name, basic_string< char > const &data);
+
+532 15 unload_prc_file 1 0 15 unload_prc_file 0 1 306 407
+////////////////////////////////////////////////////////////////////
+//     Function: unload_prc_file
+//  Description: Unloads (and deletes) a ConfigPage that represents a
+//               prc file that was previously loaded by
+//               load_prc_file().  Returns true if successful, false
+//               if the file was unknown.
+////////////////////////////////////////////////////////////////////
+39
+bool unload_prc_file(ConfigPage *page);
+
+533 18 hash_prc_variables 1 0 18 hash_prc_variables 0 1 307 345
+////////////////////////////////////////////////////////////////////
+//     Function: hash_prc_variables
+//  Description: Fills HashVal with the hash from the current prc file
+//               state as reported by
+//               ConfigVariableManager::write_prc_variables().
+////////////////////////////////////////////////////////////////////
+39
+void hash_prc_variables(HashVal &hash);
+
+534 15 ModifierButtons 4 627 32 ModifierButtons::ModifierButtons 0 2 224 225 461
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+39
+ModifierButtons::ModifierButtons(void);
+
+535 16 ~ModifierButtons 4 627 33 ModifierButtons::~ModifierButtons 0 0 226
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+ModifierButtons::~ModifierButtons(void);
+
+536 10 operator = 4 627 27 ModifierButtons::operator = 0 1 226 919
+// Filename: modifierButtons.I
+// Created by:  drose (01Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Copy Assignment Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+69
+inline void ModifierButtons::operator =(ModifierButtons const &copy);
+
+537 11 operator == 4 627 28 ModifierButtons::operator == 0 1 227 546
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Equality Operator
+//       Access: Published
+//  Description: The equality operator is an exact comparision: the
+//               two ModifierButtons are equal if they share the same
+//               button list--indeed, the same pointer--and they all
+//               the buttons have the same state.  Use matches() if a
+//               less exact equality test is needed.
+////////////////////////////////////////////////////////////////////
+77
+inline bool ModifierButtons::operator ==(ModifierButtons const &other) const;
+
+538 11 operator != 4 627 28 ModifierButtons::operator != 0 1 228 235
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Inequality Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+77
+inline bool ModifierButtons::operator !=(ModifierButtons const &other) const;
+
+539 10 operator < 4 627 27 ModifierButtons::operator < 0 1 229 233
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::Ordering Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+76
+inline bool ModifierButtons::operator <(ModifierButtons const &other) const;
+
+540 10 operator & 4 627 27 ModifierButtons::operator & 0 1 230 523
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::operator &
+//       Access: Published
+//  Description: Returns a new ModifierButtons object for which
+//               is_down() will be true only if it is true on both
+//               source objects.  The set of buttons reported by
+//               has_button() is not completely defined if both source
+//               objects have a different set.
+////////////////////////////////////////////////////////////////////
+87
+inline ModifierButtons ModifierButtons::operator &(ModifierButtons const &other) const;
+
+541 10 operator | 4 627 27 ModifierButtons::operator | 0 1 231 527
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::operator |
+//       Access: Published
+//  Description: Returns a new ModifierButtons object for which
+//               is_down() will be true if it is true on either of the
+//               source objects.  The set of buttons reported by
+//               has_button() is not completely defined if both source
+//               objects have a different set.
+////////////////////////////////////////////////////////////////////
+87
+inline ModifierButtons ModifierButtons::operator |(ModifierButtons const &other) const;
+
+542 11 operator &= 4 627 28 ModifierButtons::operator &= 0 1 232 338
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::operator &=
+//       Access: Published
+//  Description: Sets is_down() true for any button that is already
+//               true for this object and the other object.
+////////////////////////////////////////////////////////////////////
+64
+void ModifierButtons::operator &=(ModifierButtons const &other);
+
+543 11 operator |= 4 627 28 ModifierButtons::operator |= 0 1 233 437
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::operator |=
+//       Access: Published
+//  Description: Sets is_down() true for any button that is already
+//               true for this object and the other object.  Adds
+//               whatever buttons are necessary to the list to make
+//               this so
+////////////////////////////////////////////////////////////////////
+64
+void ModifierButtons::operator |=(ModifierButtons const &other);
+
+544 15 set_button_list 4 627 32 ModifierButtons::set_button_list 0 1 234 698
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::set_button_list
+//       Access: Published
+//  Description: Sets the list of buttons to watch to be the same as
+//               that of the other ModifierButtons object.  This makes
+//               the lists pointer equivalent (until one or the other
+//               is later modified).
+//
+//               This will preserve the state of any button that was
+//               on the original list and is also on the new lists.
+//               Any other buttons will get reset to the default state
+//               of "up".
+////////////////////////////////////////////////////////////////////
+68
+void ModifierButtons::set_button_list(ModifierButtons const &other);
+
+545 7 matches 4 627 24 ModifierButtons::matches 0 1 235 504
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::matches
+//       Access: Published
+//  Description: Returns true if the set of buttons indicated as down
+//               by this ModifierButtons object is the same set of
+//               buttons indicated as down by the other
+//               ModifierButtons object.  The buttons indicated as up
+//               are not relevant.
+////////////////////////////////////////////////////////////////////
+66
+bool ModifierButtons::matches(ModifierButtons const &other) const;
+
+546 10 add_button 4 627 27 ModifierButtons::add_button 0 1 236 523
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::add_button
+//       Access: Published
+//  Description: Adds the indicated button to the set of buttons that
+//               will be monitored for upness and downness.  Returns
+//               true if the button was added, false if it was already
+//               being monitored or if too many buttons are currently
+//               being monitored.
+////////////////////////////////////////////////////////////////////
+54
+bool ModifierButtons::add_button(ButtonHandle button);
+
+547 10 has_button 4 627 27 ModifierButtons::has_button 0 1 237 339
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::has_button
+//       Access: Published
+//  Description: Returns true if the indicated button is in the set of
+//               buttons being monitored, false otherwise.
+////////////////////////////////////////////////////////////////////
+60
+bool ModifierButtons::has_button(ButtonHandle button) const;
+
+548 13 remove_button 4 627 30 ModifierButtons::remove_button 0 1 238 623
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::remove_button
+//       Access: Published
+//  Description: Removes the indicated button from the set of buttons
+//               being monitored.  Returns true if the button was
+//               removed, false if it was not being monitored in the
+//               first place.
+//
+//               Unlike the other methods, you cannot remove a button
+//               by removing its alias; you have to remove exactly the
+//               button itself.
+////////////////////////////////////////////////////////////////////
+57
+bool ModifierButtons::remove_button(ButtonHandle button);
+
+549 15 get_num_buttons 4 627 32 ModifierButtons::get_num_buttons 0 1 239 394
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::get_num_buttons
+//       Access: Published
+//  Description: Returns the number of buttons that the
+//               ModifierButtons object is monitoring (e.g. the number
+//               of buttons passed to add_button()).
+////////////////////////////////////////////////////////////////////
+56
+inline int ModifierButtons::get_num_buttons(void) const;
+
+550 10 get_button 4 627 27 ModifierButtons::get_button 0 1 240 446
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::get_button
+//       Access: Published
+//  Description: Returns the nth button that the ModifierButtons
+//               object is monitoring (the nth button passed to
+//               add_button()).  This must be in the range 0 <= index
+//               < get_num_buttons().
+////////////////////////////////////////////////////////////////////
+65
+inline ButtonHandle ModifierButtons::get_button(int index) const;
+
+551 11 button_down 4 627 28 ModifierButtons::button_down 0 1 241 597
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::button_down
+//       Access: Published
+//  Description: Records that a particular button has been pressed.
+//               If the given button is one of the buttons that is
+//               currently being monitored, this will update the
+//               internal state appropriately; otherwise, it will do
+//               nothing.  Returns true if the button is one that was
+//               monitored, or false otherwise.
+////////////////////////////////////////////////////////////////////
+55
+bool ModifierButtons::button_down(ButtonHandle button);
+
+552 9 button_up 4 627 26 ModifierButtons::button_up 0 1 242 596
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::button_up
+//       Access: Published
+//  Description: Records that a particular button has been released.
+//               If the given button is one of the buttons that is
+//               currently being monitored, this will update the
+//               internal state appropriately; otherwise, it will do
+//               nothing.  Returns true if the button is one that was
+//               monitored, or false otherwise.
+////////////////////////////////////////////////////////////////////
+53
+bool ModifierButtons::button_up(ButtonHandle button);
+
+553 14 all_buttons_up 4 627 31 ModifierButtons::all_buttons_up 0 1 243 303
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::all_buttons_up
+//       Access: Published
+//  Description: Marks all monitored buttons as being in the "up"
+//               state.
+////////////////////////////////////////////////////////////////////
+50
+inline void ModifierButtons::all_buttons_up(void);
+
+554 7 is_down 4 627 24 ModifierButtons::is_down 0 2 244 245 735
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::is_down
+//       Access: Published
+//  Description: Returns true if the indicated button is known to be
+//               down, or false if it is known to be up.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::is_down
+//       Access: Published
+//  Description: Returns true if the indicated button is known to be
+//               down, or false if it is known to be up or if it is
+//               not in the set of buttons being tracked.
+////////////////////////////////////////////////////////////////////
+57
+bool ModifierButtons::is_down(ButtonHandle button) const;
+
+555 11 is_any_down 4 627 28 ModifierButtons::is_any_down 0 1 246 340
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::is_any_down
+//       Access: Published
+//  Description: Returns true if any of the tracked button are known
+//               to be down, or false if all of them are up.
+////////////////////////////////////////////////////////////////////
+53
+inline bool ModifierButtons::is_any_down(void) const;
+
+556 10 get_prefix 4 627 27 ModifierButtons::get_prefix 0 1 247 397
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::get_prefix
+//       Access: Published
+//  Description: Returns a string which can be used to prefix any
+//               button name or event name with the unique set of
+//               modifier buttons currently being held.
+////////////////////////////////////////////////////////////////////
+61
+basic_string< char > ModifierButtons::get_prefix(void) const;
+
+557 6 output 4 627 23 ModifierButtons::output 0 1 248 298
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::output
+//       Access: Published
+//  Description: Writes a one-line summary of the buttons known to be
+//               down.
+////////////////////////////////////////////////////////////////////
+49
+void ModifierButtons::output(ostream &out) const;
+
+558 5 write 4 627 22 ModifierButtons::write 0 1 249 365
+////////////////////////////////////////////////////////////////////
+//     Function: ModifierButtons::write
+//       Access: Published
+//  Description: Writes a multi-line summary including all of the
+//               buttons being monitored and which ones are known to
+//               be down.
+////////////////////////////////////////////////////////////////////
+48
+void ModifierButtons::write(ostream &out) const;
+
+559 6 button 4 628 19 MouseButton::button 0 1 250 424
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::button
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               particular numbered mouse button (zero-based), if
+//               there is one, or ButtonHandle::none() if there is
+//               not.
+////////////////////////////////////////////////////////////////////
+59
+static ButtonHandle MouseButton::button(int button_number);
+
+560 3 one 4 628 16 MouseButton::one 0 1 251 302
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::one
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               first mouse button.
+////////////////////////////////////////////////////////////////////
+43
+static ButtonHandle MouseButton::one(void);
+
+561 3 two 4 628 16 MouseButton::two 0 1 252 303
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::two
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               second mouse button.
+////////////////////////////////////////////////////////////////////
+43
+static ButtonHandle MouseButton::two(void);
+
+562 5 three 4 628 18 MouseButton::three 0 1 253 304
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::three
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               third mouse button.
+////////////////////////////////////////////////////////////////////
+45
+static ButtonHandle MouseButton::three(void);
+
+563 4 four 4 628 17 MouseButton::four 0 1 254 304
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::four
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               fourth mouse button.
+////////////////////////////////////////////////////////////////////
+44
+static ButtonHandle MouseButton::four(void);
+
+564 4 five 4 628 17 MouseButton::five 0 1 255 303
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::five
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle associated with the
+//               fifth mouse button.
+////////////////////////////////////////////////////////////////////
+44
+static ButtonHandle MouseButton::five(void);
+
+565 8 wheel_up 4 628 21 MouseButton::wheel_up 0 1 256 327
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::wheel_up
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle generated when the mouse
+//               wheel is rolled one notch upwards.
+////////////////////////////////////////////////////////////////////
+48
+static ButtonHandle MouseButton::wheel_up(void);
+
+566 10 wheel_down 4 628 23 MouseButton::wheel_down 0 1 257 331
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::wheel_down
+//       Access: Public, Static
+//  Description: Returns the ButtonHandle generated when the mouse
+//               wheel is rolled one notch downwards.
+////////////////////////////////////////////////////////////////////
+50
+static ButtonHandle MouseButton::wheel_down(void);
+
+567 15 is_mouse_button 4 628 28 MouseButton::is_mouse_button 0 1 258 353
+////////////////////////////////////////////////////////////////////
+//     Function: MouseButton::is_mouse_button
+//       Access: Public, Static
+//  Description: Returns true if the indicated ButtonHandle is a mouse
+//               button, false if it is some other kind of button.
+////////////////////////////////////////////////////////////////////
+62
+static bool MouseButton::is_mouse_button(ButtonHandle button);
+
+568 12 ~MouseButton 4 628 25 MouseButton::~MouseButton 0 0 0
+32
+MouseButton::~MouseButton(void);
+
+569 9 MouseData 4 629 20 MouseData::MouseData 0 2 259 260 1122
+// Filename: mouseData.I
+// Created by:  drose (15Jul02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+34
+inline MouseData::MouseData(void);
+
+570 10 operator = 4 629 21 MouseData::operator = 0 1 261 234
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::Copy Assignment Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+57
+inline void MouseData::operator =(MouseData const &copy);
+
+571 5 get_x 4 629 16 MouseData::get_x 0 1 262 215
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::get_x
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+inline int MouseData::get_x(void) const;
+
+572 5 get_y 4 629 16 MouseData::get_y 0 1 263 215
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::get_y
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+inline int MouseData::get_y(void) const;
+
+573 13 get_in_window 4 629 24 MouseData::get_in_window 0 1 264 223
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::get_in_window
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+49
+inline bool MouseData::get_in_window(void) const;
+
+574 6 output 4 629 17 MouseData::output 0 1 265 216
+////////////////////////////////////////////////////////////////////
+//     Function: MouseData::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+43
+void MouseData::output(ostream &out) const;
+
+575 10 ~MouseData 4 629 21 MouseData::~MouseData 0 0 0
+28
+MouseData::~MouseData(void);
+
+576 18 get_node_ref_count 4 630 44 NodeCachedReferenceCount::get_node_ref_count 0 1 266 280
+////////////////////////////////////////////////////////////////////
+//     Function: NodeCachedReferenceCount::get_node_ref_count
+//       Access: Published
+//  Description: Returns the current reference count.
+////////////////////////////////////////////////////////////////////
+68
+inline int NodeCachedReferenceCount::get_node_ref_count(void) const;
+
+577 8 node_ref 4 630 34 NodeCachedReferenceCount::node_ref 0 1 267 662
+////////////////////////////////////////////////////////////////////
+//     Function: NodeCachedReferenceCount::node_ref
+//       Access: Published
+//  Description: Explicitly increments the reference count.
+//
+//               This function is const, even though it changes the
+//               object, because generally fiddling with an object's
+//               reference count isn't considered part of fiddling
+//               with the object.  An object might be const in other
+//               ways, but we still need to accurately count the
+//               number of references to it.
+////////////////////////////////////////////////////////////////////
+59
+inline void NodeCachedReferenceCount::node_ref(void) const;
+
+578 10 node_unref 4 630 36 NodeCachedReferenceCount::node_unref 0 1 268 1408
+////////////////////////////////////////////////////////////////////
+//     Function: NodeCachedReferenceCount::node_unref
+//       Access: Published
+//  Description: Explicitly decrements the reference count.  Note that
+//               the object will not be implicitly deleted by unref()
+//               simply because the reference count drops to zero.
+//               (Having a member function delete itself is
+//               problematic; plus, we don't have a virtual destructor
+//               anyway.) However, see the helper function
+//               unref_delete().
+//
+//               User code should avoid using ref() and unref()
+//               directly, which can result in missed reference
+//               counts.  Instead, let a PointerTo object manage the
+//               reference counting automatically.
+//
+//               This function is const, even though it changes the
+//               object, because generally fiddling with an object's
+//               reference count isn't considered part of fiddling
+//               with the object.  An object might be const in other
+//               ways, but we still need to accurately count the
+//               number of references to it.
+//
+//               The return value is true if the new reference count
+//               is nonzero, false if it is zero.
+////////////////////////////////////////////////////////////////////
+61
+inline bool NodeCachedReferenceCount::node_unref(void) const;
+
+579 24 test_ref_count_integrity 4 630 50 NodeCachedReferenceCount::test_ref_count_integrity 0 1 269 350
+////////////////////////////////////////////////////////////////////
+//     Function: NodeCachedReferenceCount::test_ref_count_integrity
+//       Access: Published
+//  Description: Does some easy checks to make sure that the reference
+//               count isn't completely bogus.
+////////////////////////////////////////////////////////////////////
+75
+inline bool NodeCachedReferenceCount::test_ref_count_integrity(void) const;
+
+580 19 get_referenced_bits 4 630 45 NodeCachedReferenceCount::get_referenced_bits 0 1 270 600
+////////////////////////////////////////////////////////////////////
+//     Function: NodeCachedReferenceCount::get_referenced_bits
+//       Access: Published
+//  Description: Returns the union of the values defined in the
+//               Referenced enum that represents the various things
+//               that appear to be holding a pointer to this object.
+//
+//               If R_node is included, at least one node is holding a
+//               pointer; if R_cache is included, at least one cache
+//               element is.
+////////////////////////////////////////////////////////////////////
+69
+inline int NodeCachedReferenceCount::get_referenced_bits(void) const;
+
+581 14 get_class_type 4 630 40 NodeCachedReferenceCount::get_class_type 0 1 271 0
+65
+static TypeHandle NodeCachedReferenceCount::get_class_type(void);
+
+582 17 UniqueIdAllocator 4 632 36 UniqueIdAllocator::UniqueIdAllocator 0 3 272 273 274 236
+////////////////////////////////////////////////////////////////////
+//     Function: 
+//       Access: 
+//  Description: Create a free id pool in the range [min:max].
+////////////////////////////////////////////////////////////////////
+96
+UniqueIdAllocator::UniqueIdAllocator(unsigned long int min = (0), unsigned long int max = (20));
+
+583 18 ~UniqueIdAllocator 4 632 37 UniqueIdAllocator::~UniqueIdAllocator 0 0 191
+////////////////////////////////////////////////////////////////////
+//     Function: 
+//       Access: 
+//  Description: 
+////////////////////////////////////////////////////////////////////
+44
+UniqueIdAllocator::~UniqueIdAllocator(void);
+
+584 8 allocate 4 632 27 UniqueIdAllocator::allocate 0 1 275 345
+////////////////////////////////////////////////////////////////////
+//     Function: 
+//       Access: 
+//  Description: Receive an id between _min and _max (that were passed
+//               to the constructor).
+//               IndexEnd is returned if no ids are available.
+////////////////////////////////////////////////////////////////////
+52
+unsigned long int UniqueIdAllocator::allocate(void);
+
+585 4 free 4 632 23 UniqueIdAllocator::free 0 1 276 310
+////////////////////////////////////////////////////////////////////
+//     Function: free
+//       Access: 
+//  Description: Free an allocated index (index must be between _min
+//               and _max that were passed to the constructor).
+////////////////////////////////////////////////////////////////////
+54
+void UniqueIdAllocator::free(unsigned long int index);
+
+586 13 fraction_used 4 632 32 UniqueIdAllocator::fraction_used 0 1 277 322
+////////////////////////////////////////////////////////////////////
+//     Function: fraction_used
+//       Access: 
+//  Description: return the decimal fraction of the pool that is used.
+//               The range is 0 to 1.0 (e.g. 75% would be 0.75).
+////////////////////////////////////////////////////////////////////
+51
+float UniqueIdAllocator::fraction_used(void) const;
+
+587 6 output 4 632 25 UniqueIdAllocator::output 0 2 278 279 228
+////////////////////////////////////////////////////////////////////
+//     Function: output
+//       Access: 
+//  Description: ...intended for debugging only.
+////////////////////////////////////////////////////////////////////
+70
+void UniqueIdAllocator::output(ostream &os, bool verbose = (0)) const;
+
+588 9 UpdateSeq 4 633 20 UpdateSeq::UpdateSeq 0 2 280 281 1175
+// Filename: updateSeq.I
+// Created by:  drose (30Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Default Constructor
+//       Access: Published
+//  Description: Creates an UpdateSeq in the 'initial' state.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+34
+inline UpdateSeq::UpdateSeq(void);
+
+589 7 initial 4 633 18 UpdateSeq::initial 0 1 282 290
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::initial (named constructor)
+//       Access: Published, Static
+//  Description: Returns an UpdateSeq in the 'initial' state.
+////////////////////////////////////////////////////////////////////
+49
+static inline UpdateSeq UpdateSeq::initial(void);
+
+590 3 old 4 633 14 UpdateSeq::old 0 1 283 282
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::old (named constructor)
+//       Access: Published, Static
+//  Description: Returns an UpdateSeq in the 'old' state.
+////////////////////////////////////////////////////////////////////
+45
+static inline UpdateSeq UpdateSeq::old(void);
+
+591 5 fresh 4 633 16 UpdateSeq::fresh 0 1 284 286
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::fresh (named constructor)
+//       Access: Published, Static
+//  Description: Returns an UpdateSeq in the 'fresh' state.
+////////////////////////////////////////////////////////////////////
+47
+static inline UpdateSeq UpdateSeq::fresh(void);
+
+592 10 operator = 4 633 21 UpdateSeq::operator = 0 1 285 234
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Copy Assignment operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+inline UpdateSeq &UpdateSeq::operator =(UpdateSeq const &copy);
+
+593 5 clear 4 633 16 UpdateSeq::clear 0 1 286 260
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::clear
+//       Access: Published
+//  Description: Resets the UpdateSeq to the 'initial' state.
+////////////////////////////////////////////////////////////////////
+35
+inline void UpdateSeq::clear(void);
+
+594 10 is_initial 4 633 21 UpdateSeq::is_initial 0 1 287 294
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::is_initial
+//       Access: Published
+//  Description: Returns true if the UpdateSeq is in the 'initial'
+//               state.
+////////////////////////////////////////////////////////////////////
+46
+inline bool UpdateSeq::is_initial(void) const;
+
+595 6 is_old 4 633 17 UpdateSeq::is_old 0 1 288 269
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::is_old
+//       Access: Published
+//  Description: Returns true if the UpdateSeq is in the 'old' state.
+////////////////////////////////////////////////////////////////////
+42
+inline bool UpdateSeq::is_old(void) const;
+
+596 8 is_fresh 4 633 19 UpdateSeq::is_fresh 0 1 289 290
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::is_fresh
+//       Access: Published
+//  Description: Returns true if the UpdateSeq is in the 'fresh'
+//               state.
+////////////////////////////////////////////////////////////////////
+44
+inline bool UpdateSeq::is_fresh(void) const;
+
+597 10 is_special 4 633 21 UpdateSeq::is_special 0 1 290 328
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::is_special
+//       Access: Published
+//  Description: Returns true if the UpdateSeq is in any special
+//               states, i.e. 'initial', 'old', or 'fresh'.
+////////////////////////////////////////////////////////////////////
+46
+inline bool UpdateSeq::is_special(void) const;
+
+598 11 operator == 4 633 22 UpdateSeq::operator == 0 1 291 227
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Equality operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+65
+inline bool UpdateSeq::operator ==(UpdateSeq const &other) const;
+
+599 11 operator != 4 633 22 UpdateSeq::operator != 0 1 292 229
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Inequality operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+65
+inline bool UpdateSeq::operator !=(UpdateSeq const &other) const;
+
+600 10 operator < 4 633 21 UpdateSeq::operator < 0 1 293 229
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Comparison operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+64
+inline bool UpdateSeq::operator <(UpdateSeq const &other) const;
+
+601 11 operator <= 4 633 22 UpdateSeq::operator <= 0 1 294 229
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Comparison operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+65
+inline bool UpdateSeq::operator <=(UpdateSeq const &other) const;
+
+602 10 operator > 4 633 21 UpdateSeq::operator > 0 1 295 229
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Comparison operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+64
+inline bool UpdateSeq::operator >(UpdateSeq const &other) const;
+
+603 11 operator >= 4 633 22 UpdateSeq::operator >= 0 1 296 229
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Comparison operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+65
+inline bool UpdateSeq::operator >=(UpdateSeq const &other) const;
+
+604 11 operator ++ 68 633 22 UpdateSeq::operator ++ 0 1 297 0
+46
+inline UpdateSeq UpdateSeq::operator ++(void);
+
+605 11 operator ++ 4 633 22 UpdateSeq::operator ++ 0 1 298 465
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Preincrement operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::Postincrement operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+46
+inline UpdateSeq UpdateSeq::operator ++(int );
+
+606 6 output 4 633 17 UpdateSeq::output 0 1 299 216
+////////////////////////////////////////////////////////////////////
+//     Function: UpdateSeq::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+50
+inline void UpdateSeq::output(ostream &out) const;
+
+607 10 ~UpdateSeq 4 633 21 UpdateSeq::~UpdateSeq 0 0 0
+28
+UpdateSeq::~UpdateSeq(void);
+
+608 14 get_class_type 4 634 36 WritableConfigurable::get_class_type 0 1 300 0
+61
+static TypeHandle WritableConfigurable::get_class_type(void);
+
+609 21 ~WritableConfigurable 4 634 43 WritableConfigurable::~WritableConfigurable 0 0 0
+50
+WritableConfigurable::~WritableConfigurable(void);
+
+307
+1 14 Dtool_flboBhAH 4 4 636 0 14 Dtool_flboBhAH 1 4 this 3 635  
+2 14 Dtool_flboNKyB 4 4 636 0 14 Dtool_flboNKyB 3 4 this 3 635  4 from 1 637  2 to 1 637  
+3 14 Dtool_flboblrP 4 5 636 0 14 Dtool_flboblrP 2 4 this 3 635  7 restart 1 638  
+4 14 Dtool_flboub22 4 5 636 0 14 Dtool_flboub22 4 4 this 3 635  7 restart 1 638  4 from 1 637  2 to 1 637  
+5 14 Dtool_flboFEBu 4 6 636 0 14 Dtool_flboFEBu 2 4 this 3 635  7 restart 1 638  
+6 14 Dtool_flboA7bg 4 6 636 0 14 Dtool_flboA7bg 4 4 this 3 635  7 restart 1 638  4 from 1 637  2 to 1 637  
+7 14 Dtool_flboEmm6 4 7 636 0 14 Dtool_flboEmm6 1 4 this 3 635  
+8 14 Dtool_flboOK6b 4 8 636 0 14 Dtool_flboOK6b 2 4 this 3 635  5 frame 1 639  
+9 14 Dtool_flboTzzJ 4 9 636 0 14 Dtool_flboTzzJ 2 4 this 3 635  9 play_rate 1 637  
+10 14 Dtool_flboHfNF 6 10 637 0 14 Dtool_flboHfNF 1 4 this 3 640  
+11 14 Dtool_flbo1MDt 6 11 637 0 14 Dtool_flbo1MDt 1 4 this 3 640  
+12 14 Dtool_flbo38Tm 6 12 639 0 14 Dtool_flbo38Tm 1 4 this 3 640  
+13 14 Dtool_flboFJm1 6 13 639 0 14 Dtool_flboFJm1 1 4 this 3 640  
+14 14 Dtool_flboc9m_ 6 14 637 0 14 Dtool_flboc9m_ 1 4 this 3 640  
+15 14 Dtool_flbou_72 6 15 639 0 14 Dtool_flbou_72 1 4 this 3 640  
+16 14 Dtool_flboiZK4 6 16 637 0 14 Dtool_flboiZK4 1 4 this 3 640  
+17 14 Dtool_flboeUtV 6 17 638 0 14 Dtool_flboeUtV 1 4 this 3 640  
+18 14 Dtool_flbojJYM 4 18 636 0 14 Dtool_flbojJYM 2 4 this 3 640  3 out 1 642  
+19 14 Dtool_flbo3PK3 7 19 644 0 14 Dtool_flbo3PK3 0 
+20 14 Dtool_flboTBaO 7 22 644 0 14 Dtool_flboTBaO 0 
+21 14 Dtool_flbonVQd 7 24 645 333 14 Dtool_flbonVQd 0 
+22 14 Dtool_flbo7gMO 7 24 645 333 14 Dtool_flbo7gMO 1 4 copy 1 646  
+23 14 Dtool_flbo0eoo 7 24 645 333 14 Dtool_flbo0eoo 1 10 init_value 1 648  
+24 14 Dtool_flboCaYM 6 25 645 0 14 Dtool_flboCaYM 2 4 this 3 645  4 copy 1 646  
+25 14 Dtool_flboRObZ 7 26 645 333 14 Dtool_flboRObZ 0 
+26 14 Dtool_flbojEzX 7 27 645 333 14 Dtool_flbojEzX 0 
+27 14 Dtool_flboIQak 7 28 645 333 14 Dtool_flboIQak 1 7 on_bits 1 639  
+28 14 Dtool_flbosGZS 7 29 645 333 14 Dtool_flbosGZS 1 5 index 1 639  
+29 14 Dtool_flboOgvR 7 30 645 333 14 Dtool_flboOgvR 2 7 low_bit 1 639  4 size 1 639  
+30 14 Dtool_flbo6pB9 6 32 638 0 14 Dtool_flbo6pB9 0 
+31 14 Dtool_flboyO9U 6 33 639 0 14 Dtool_flboyO9U 0 
+32 14 Dtool_flboR9aU 6 34 639 0 14 Dtool_flboR9aU 0 
+33 14 Dtool_flboe0SD 6 35 638 0 14 Dtool_flboe0SD 2 4 this 3 646  5 index 1 639  
+34 14 Dtool_flbod8Sx 4 36 636 0 14 Dtool_flbod8Sx 2 4 this 3 645  5 index 1 639  
+35 14 Dtool_flboeFOW 4 37 636 0 14 Dtool_flboeFOW 2 4 this 3 645  5 index 1 639  
+36 14 Dtool_flbodoR6 4 38 636 0 14 Dtool_flbodoR6 3 4 this 3 645  5 index 1 639  5 value 1 638  
+37 14 Dtool_flboJyi2 6 39 638 0 14 Dtool_flboJyi2 1 4 this 3 646  
+38 14 Dtool_flbovCn_ 6 40 648 0 14 Dtool_flbovCn_ 3 4 this 3 646  7 low_bit 1 639  4 size 1 639  
+39 14 Dtool_flboVp78 4 41 636 0 14 Dtool_flboVp78 4 4 this 3 645  5 value 1 648  7 low_bit 1 639  4 size 1 639  
+40 14 Dtool_flboDAOF 4 42 636 0 14 Dtool_flboDAOF 3 4 this 3 645  7 low_bit 1 639  4 size 1 639  
+41 14 Dtool_flboU65s 4 43 636 0 14 Dtool_flboU65s 3 4 this 3 645  7 low_bit 1 639  4 size 1 639  
+42 14 Dtool_flboDZHW 4 44 636 0 14 Dtool_flboDZHW 4 4 this 3 645  5 value 1 638  7 low_bit 1 639  4 size 1 639  
+43 14 Dtool_flboiD5O 6 45 648 0 14 Dtool_flboiD5O 1 4 this 3 646  
+44 14 Dtool_flboERWc 4 46 636 0 14 Dtool_flboERWc 2 4 this 3 645  5 value 1 648  
+45 14 Dtool_flboLld4 4 47 636 0 14 Dtool_flboLld4 1 4 this 3 645  
+46 14 Dtool_flbojIgk 6 48 638 0 14 Dtool_flbojIgk 2 4 this 3 646  5 other 1 646  
+47 14 Dtool_flboYEpe 4 49 636 0 14 Dtool_flboYEpe 1 4 this 3 645  
+48 14 Dtool_flbo3eSz 4 50 636 0 14 Dtool_flbo3eSz 2 4 this 3 646  3 out 1 642  
+49 14 Dtool_flboBOXy 4 51 636 0 14 Dtool_flboBOXy 3 4 this 3 646  3 out 1 642  12 spaces_every 1 639  
+50 14 Dtool_flbo8596 4 51 636 0 14 Dtool_flbo8596 2 4 this 3 646  3 out 1 642  
+51 14 Dtool_flboHJUc 4 52 636 0 14 Dtool_flboHJUc 3 4 this 3 646  3 out 1 642  12 spaces_every 1 639  
+52 14 Dtool_flbo6TeI 4 52 636 0 14 Dtool_flbo6TeI 2 4 this 3 646  3 out 1 642  
+53 14 Dtool_flboB_7k 4 53 636 0 14 Dtool_flboB_7k 3 4 this 3 646  3 out 1 642  12 indent_level 1 639  
+54 14 Dtool_flboHvA7 4 53 636 0 14 Dtool_flboHvA7 2 4 this 3 646  3 out 1 642  
+55 14 Dtool_flbomOwJ 6 54 638 0 14 Dtool_flbomOwJ 2 4 this 3 646  5 other 1 646  
+56 14 Dtool_flbok_DB 6 55 638 0 14 Dtool_flbok_DB 2 4 this 3 646  5 other 1 646  
+57 14 Dtool_flboj58v 6 56 638 0 14 Dtool_flboj58v 2 4 this 3 646  5 other 1 646  
+58 14 Dtool_flbop_4v 6 57 639 0 14 Dtool_flbop_4v 2 4 this 3 646  5 other 1 646  
+59 14 Dtool_flbogBiE 7 58 645 333 14 Dtool_flbogBiE 2 4 this 3 646  5 other 1 646  
+60 14 Dtool_flbom5Yo 7 59 645 333 14 Dtool_flbom5Yo 2 4 this 3 646  5 other 1 646  
+61 14 Dtool_flbokh7V 7 60 645 333 14 Dtool_flbokh7V 2 4 this 3 646  5 other 1 646  
+62 14 Dtool_flbo0pXy 7 61 645 333 14 Dtool_flbo0pXy 1 4 this 3 646  
+63 14 Dtool_flbo8uW_ 7 62 645 333 14 Dtool_flbo8uW_ 2 4 this 3 646  5 shift 1 639  
+64 14 Dtool_flbo62jA 7 63 645 333 14 Dtool_flbo62jA 2 4 this 3 646  5 shift 1 639  
+65 14 Dtool_flboRRDL 6 64 645 0 14 Dtool_flboRRDL 2 4 this 3 645  5 other 1 646  
+66 14 Dtool_flbofJ5u 6 65 645 0 14 Dtool_flbofJ5u 2 4 this 3 645  5 other 1 646  
+67 14 Dtool_flbodxcc 6 66 645 0 14 Dtool_flbodxcc 2 4 this 3 645  5 other 1 646  
+68 14 Dtool_flboP4Dt 6 67 645 0 14 Dtool_flboP4Dt 2 4 this 3 645  5 shift 1 639  
+69 14 Dtool_flboIwQv 6 68 645 0 14 Dtool_flboIwQv 2 4 this 3 645  5 shift 1 639  
+70 14 Dtool_flboq17v 7 69 644 0 14 Dtool_flboq17v 0 
+71 14 Dtool_flboGMUp 7 71 649 379 14 Dtool_flboGMUp 0 
+72 14 Dtool_flbobrvy 7 71 649 379 14 Dtool_flbobrvy 1 4 copy 1 650  
+73 14 Dtool_flboQUAC 7 71 649 379 14 Dtool_flboQUAC 1 10 init_value 1 648  
+74 14 Dtool_flboe8C3 6 72 649 0 14 Dtool_flboe8C3 2 4 this 3 649  4 copy 1 650  
+75 14 Dtool_flbobBX6 7 73 649 379 14 Dtool_flbobBX6 0 
+76 14 Dtool_flboGQnq 7 74 649 379 14 Dtool_flboGQnq 0 
+77 14 Dtool_flboK3PH 7 75 649 379 14 Dtool_flboK3PH 1 7 on_bits 1 639  
+78 14 Dtool_flboX0f2 7 76 649 379 14 Dtool_flboX0f2 1 5 index 1 639  
+79 14 Dtool_flboPjFX 7 77 649 379 14 Dtool_flboPjFX 2 7 low_bit 1 639  4 size 1 639  
+80 14 Dtool_flboDxaB 6 79 638 0 14 Dtool_flboDxaB 0 
+81 14 Dtool_flbo_yNZ 6 80 639 0 14 Dtool_flbo_yNZ 0 
+82 14 Dtool_flboSGW6 6 81 639 0 14 Dtool_flboSGW6 0 
+83 14 Dtool_flbolwdi 6 82 639 0 14 Dtool_flbolwdi 1 4 this 3 650  
+84 14 Dtool_flboLvz8 6 83 638 0 14 Dtool_flboLvz8 2 4 this 3 650  5 index 1 639  
+85 14 Dtool_flborNRV 4 84 636 0 14 Dtool_flborNRV 2 4 this 3 649  5 index 1 639  
+86 14 Dtool_flbo541k 4 85 636 0 14 Dtool_flbo541k 2 4 this 3 649  5 index 1 639  
+87 14 Dtool_flboQgnd 4 86 636 0 14 Dtool_flboQgnd 3 4 this 3 649  5 index 1 639  5 value 1 638  
+88 14 Dtool_flboHjU1 6 87 638 0 14 Dtool_flboHjU1 1 4 this 3 650  
+89 14 Dtool_flboT0xX 6 88 638 0 14 Dtool_flboT0xX 1 4 this 3 650  
+90 14 Dtool_flboPS63 6 89 648 0 14 Dtool_flboPS63 3 4 this 3 650  7 low_bit 1 639  4 size 1 639  
+91 14 Dtool_flboAQuf 4 90 636 0 14 Dtool_flboAQuf 4 4 this 3 649  5 value 1 648  7 low_bit 1 639  4 size 1 639  
+92 14 Dtool_flbov8Tr 4 91 636 0 14 Dtool_flbov8Tr 3 4 this 3 649  7 low_bit 1 639  4 size 1 639  
+93 14 Dtool_flbofuvM 4 92 636 0 14 Dtool_flbofuvM 3 4 this 3 649  7 low_bit 1 639  4 size 1 639  
+94 14 Dtool_flboAEMB 4 93 636 0 14 Dtool_flboAEMB 4 4 this 3 649  5 value 1 638  7 low_bit 1 639  4 size 1 639  
+95 14 Dtool_flboVjn8 6 94 639 0 14 Dtool_flboVjn8 1 4 this 3 650  
+96 14 Dtool_flbo85dk 7 95 645 333 14 Dtool_flbo85dk 2 4 this 3 650  1 n 1 639  
+97 14 Dtool_flboPLIH 4 96 636 0 14 Dtool_flboPLIH 3 4 this 3 649  1 n 1 639  5 value 1 645  
+98 14 Dtool_flbohGZ4 4 97 636 0 14 Dtool_flbohGZ4 1 4 this 3 649  
+99 14 Dtool_flboseqE 6 98 638 0 14 Dtool_flboseqE 2 4 this 3 650  5 other 1 650  
+100 14 Dtool_flboKXAk 4 99 636 0 14 Dtool_flboKXAk 1 4 this 3 649  
+101 14 Dtool_flbogv5a 4 100 636 0 14 Dtool_flbogv5a 2 4 this 3 650  3 out 1 642  
+102 14 Dtool_flbok9tp 4 101 636 0 14 Dtool_flbok9tp 3 4 this 3 650  3 out 1 642  12 spaces_every 1 639  
+103 14 Dtool_flboLRPz 4 101 636 0 14 Dtool_flboLRPz 2 4 this 3 650  3 out 1 642  
+104 14 Dtool_flboMpy4 4 102 636 0 14 Dtool_flboMpy4 3 4 this 3 650  3 out 1 642  12 spaces_every 1 639  
+105 14 Dtool_flboxwaB 4 102 636 0 14 Dtool_flboxwaB 2 4 this 3 650  3 out 1 642  
+106 14 Dtool_flboWflc 4 103 636 0 14 Dtool_flboWflc 3 4 this 3 650  3 out 1 642  12 indent_level 1 639  
+107 14 Dtool_flboVe5g 4 103 636 0 14 Dtool_flboVe5g 2 4 this 3 650  3 out 1 642  
+108 14 Dtool_flbo5zlA 6 104 638 0 14 Dtool_flbo5zlA 2 4 this 3 650  5 other 1 650  
+109 14 Dtool_flbobpSA 6 105 638 0 14 Dtool_flbobpSA 2 4 this 3 650  5 other 1 650  
+110 14 Dtool_flbobO7u 6 106 638 0 14 Dtool_flbobO7u 2 4 this 3 650  5 other 1 650  
+111 14 Dtool_flbozJr4 6 107 639 0 14 Dtool_flbozJr4 2 4 this 3 650  5 other 1 650  
+112 14 Dtool_flbooqtu 7 108 649 379 14 Dtool_flbooqtu 2 4 this 3 650  5 other 1 650  
+113 14 Dtool_flbo7Jiv 7 109 649 379 14 Dtool_flbo7Jiv 2 4 this 3 650  5 other 1 650  
+114 14 Dtool_flbok9Pv 7 110 649 379 14 Dtool_flbok9Pv 2 4 this 3 650  5 other 1 650  
+115 14 Dtool_flboD0gS 7 111 649 379 14 Dtool_flboD0gS 1 4 this 3 650  
+116 14 Dtool_flbophhp 7 112 649 379 14 Dtool_flbophhp 2 4 this 3 650  5 shift 1 639  
+117 14 Dtool_flbowzJq 7 113 649 379 14 Dtool_flbowzJq 2 4 this 3 650  5 shift 1 639  
+118 14 Dtool_flbovQVj 6 114 649 0 14 Dtool_flbovQVj 2 4 this 3 649  5 other 1 650  
+119 14 Dtool_flbo6_Jk 6 115 649 0 14 Dtool_flbo6_Jk 2 4 this 3 649  5 other 1 650  
+120 14 Dtool_flbojr3j 6 116 649 0 14 Dtool_flbojr3j 2 4 this 3 649  5 other 1 650  
+121 14 Dtool_flbo9z5r 6 117 649 0 14 Dtool_flbo9z5r 2 4 this 3 649  5 shift 1 639  
+122 14 Dtool_flboUhhs 6 118 649 0 14 Dtool_flboUhhs 2 4 this 3 649  5 shift 1 639  
+123 14 Dtool_flbo1IRw 7 119 644 0 14 Dtool_flbo1IRw 0 
+124 14 Dtool_flbo40bO 7 121 652 430 14 Dtool_flbo40bO 0 
+125 14 Dtool_flbooq06 6 122 655 0 14 Dtool_flbooq06 1 4 this 3 653  
+126 14 Dtool_flbo2_MD 6 123 638 0 14 Dtool_flbo2_MD 1 4 this 3 653  
+127 14 Dtool_flbovhsY 6 124 656 0 14 Dtool_flbovhsY 1 4 this 3 653  
+128 14 Dtool_flboTr0x 7 125 652 430 14 Dtool_flboTr0x 1 4 this 3 653  
+129 14 Dtool_flbopu5Z 6 126 638 0 14 Dtool_flbopu5Z 2 4 this 3 653  5 other 1 653  
+130 14 Dtool_flboiajp 6 127 639 0 14 Dtool_flboiajp 1 4 this 3 653  
+131 14 Dtool_flbo6vL2 4 128 636 0 14 Dtool_flbo6vL2 2 4 this 3 653  3 out 1 642  
+132 14 Dtool_flboXMlV 7 129 652 430 14 Dtool_flboXMlV 0 
+133 14 Dtool_flboKZsi 7 132 652 430 14 Dtool_flboKZsi 2 4 this 3 657  4 name 1 655  
+134 14 Dtool_flbouc8u 7 133 652 430 14 Dtool_flbouc8u 2 4 this 3 658  16 ascii_equivalent 1 656  
+135 14 Dtool_flbo_iXj 4 134 636 0 14 Dtool_flbo_iXj 2 4 this 3 658  3 out 1 642  
+136 14 Dtool_flbodgyc 6 135 657 0 14 Dtool_flbodgyc 0 
+137 14 Dtool_flbo5oCX 7 143 644 0 14 Dtool_flbo5oCX 0 
+138 14 Dtool_flbob50R 6 138 661 0 14 Dtool_flbob50R 1 4 this 3 660  
+139 14 Dtool_flboIu02 7 139 660 441 14 Dtool_flboIu02 1 4 this 3 661  
+140 14 Dtool_flbokcf_ 6 141 662 0 14 Dtool_flbokcf_ 1 4 this 3 660  
+141 14 Dtool_flboGHue 7 142 660 441 14 Dtool_flboGHue 1 4 this 3 662  
+142 14 Dtool_flbo3cWf 6 146 639 0 14 Dtool_flbo3cWf 1 4 this 3 663  
+143 14 Dtool_flboEGtE 4 147 636 0 14 Dtool_flboEGtE 1 4 this 3 663  
+144 14 Dtool_flboC2Hz 6 148 638 0 14 Dtool_flboC2Hz 1 4 this 3 663  
+145 14 Dtool_flbobkjU 6 149 638 0 14 Dtool_flbobkjU 1 4 this 3 663  
+146 14 Dtool_flboXAeA 7 150 644 0 14 Dtool_flboXAeA 0 
+147 14 Dtool_flboZzSC 7 152 665 450 14 Dtool_flboZzSC 0 
+148 14 Dtool_flbo2ZxR 6 153 668 0 14 Dtool_flbo2ZxR 1 4 this 3 666  
+149 14 Dtool_flboalc7 6 154 668 0 14 Dtool_flboalc7 1 4 this 3 666  
+150 14 Dtool_flbowP2R 7 159 669 452 14 Dtool_flbowP2R 0 
+151 14 Dtool_flbosf6_ 4 161 636 0 14 Dtool_flbosf6_ 2 4 this 3 669  4 mode 1 623  
+152 14 Dtool_flboC0lD 6 162 623 0 14 Dtool_flboC0lD 1 4 this 3 670  
+153 14 Dtool_flboQ13s 6 163 637 0 14 Dtool_flboQ13s 1 4 this 3 670  
+154 14 Dtool_flbo94v7 6 164 637 0 14 Dtool_flbo94v7 1 4 this 3 670  
+155 14 Dtool_flbo8RD3 6 165 637 0 14 Dtool_flbo8RD3 1 4 this 3 670  
+156 14 Dtool_flboVWd9 4 166 636 0 14 Dtool_flboVWd9 1 4 this 3 669  
+157 14 Dtool_flbox4ev 4 167 636 0 14 Dtool_flbox4ev 2 4 this 3 669  4 time 1 637  
+158 14 Dtool_flbo2d9O 4 168 636 0 14 Dtool_flbo2d9O 2 4 this 3 669  4 time 1 637  
+159 14 Dtool_flboc2uN 4 169 636 0 14 Dtool_flboc2uN 2 4 this 3 669  11 frame_count 1 639  
+160 14 Dtool_flbomz0Y 6 170 639 0 14 Dtool_flbomz0Y 1 4 this 3 670  
+161 14 Dtool_flboiXAn 6 171 637 0 14 Dtool_flboiXAn 1 4 this 3 670  
+162 14 Dtool_flbosvG2 6 172 637 0 14 Dtool_flbosvG2 1 4 this 3 670  
+163 14 Dtool_flboMQK2 4 173 636 0 14 Dtool_flboMQK2 2 4 this 3 669  2 dt 1 637  
+164 14 Dtool_flboa66A 6 174 637 0 14 Dtool_flboa66A 1 4 this 3 670  
+165 14 Dtool_flbo_bSs 4 175 636 0 14 Dtool_flbo_bSs 2 4 this 3 669  6 max_dt 1 637  
+166 14 Dtool_flboYmhR 6 176 637 0 14 Dtool_flboYmhR 1 4 this 3 670  
+167 14 Dtool_flboTHAP 4 177 636 0 14 Dtool_flboTHAP 2 4 this 3 669  14 degrade_factor 1 637  
+168 14 Dtool_flboh4_P 4 178 636 0 14 Dtool_flboh4_P 2 4 this 3 669  4 time 1 637  
+169 14 Dtool_flbo1N1j 6 179 637 0 14 Dtool_flbo1N1j 1 4 this 3 670  
+170 14 Dtool_flboBu1t 6 180 637 0 14 Dtool_flboBu1t 1 4 this 3 670  
+171 14 Dtool_flbonDUl 4 181 636 0 14 Dtool_flbonDUl 1 4 this 3 669  
+172 14 Dtool_flboA_dx 4 182 636 0 14 Dtool_flboA_dx 1 4 this 3 669  
+173 14 Dtool_flboHnY8 6 183 638 0 14 Dtool_flboHnY8 1 4 this 3 669  
+174 14 Dtool_flbob_iD 6 184 669 0 14 Dtool_flbob_iD 0 
+175 14 Dtool_flbo9oIg 7 185 644 0 14 Dtool_flbo9oIg 0 
+176 14 Dtool_flboubDB 7 190 652 430 14 Dtool_flboubDB 1 16 ascii_equivalent 1 655  
+177 14 Dtool_flbof5oq 7 190 652 430 14 Dtool_flbof5oq 1 16 ascii_equivalent 1 656  
+178 14 Dtool_flbowvOd 7 191 652 430 14 Dtool_flbowvOd 0 
+179 14 Dtool_flbowFyx 7 192 652 430 14 Dtool_flbowFyx 0 
+180 14 Dtool_flboJuf_ 7 193 652 430 14 Dtool_flboJuf_ 0 
+181 14 Dtool_flbojDap 7 194 652 430 14 Dtool_flbojDap 0 
+182 14 Dtool_flborLDY 7 195 652 430 14 Dtool_flborLDY 0 
+183 14 Dtool_flbo1OGt 7 196 652 430 14 Dtool_flbo1OGt 0 
+184 14 Dtool_flbo2OUJ 7 197 652 430 14 Dtool_flbo2OUJ 0 
+185 14 Dtool_flbowOil 7 198 652 430 14 Dtool_flbowOil 0 
+186 14 Dtool_flbo9OwB 7 199 652 430 14 Dtool_flbo9OwB 0 
+187 14 Dtool_flbo_O_d 7 200 652 430 14 Dtool_flbo_O_d 0 
+188 14 Dtool_flbo5OM6 7 201 652 430 14 Dtool_flbo5OM6 0 
+189 14 Dtool_flbo6OaW 7 202 652 430 14 Dtool_flbo6OaW 0 
+190 14 Dtool_flbokOoy 7 203 652 430 14 Dtool_flbokOoy 0 
+191 14 Dtool_flbohO2O 7 204 652 430 14 Dtool_flbohO2O 0 
+192 14 Dtool_flboLFnR 7 205 652 430 14 Dtool_flboLFnR 0 
+193 14 Dtool_flboZanY 7 206 652 430 14 Dtool_flboZanY 0 
+194 14 Dtool_flbovbnf 7 207 652 430 14 Dtool_flbovbnf 0 
+195 14 Dtool_flbogrB1 7 208 652 430 14 Dtool_flbogrB1 0 
+196 14 Dtool_flbobHch 7 209 652 430 14 Dtool_flbobHch 0 
+197 14 Dtool_flbouoHo 7 210 652 430 14 Dtool_flbouoHo 0 
+198 14 Dtool_flbof_Gf 7 211 652 430 14 Dtool_flbof_Gf 0 
+199 14 Dtool_flbo7XIX 7 212 652 430 14 Dtool_flbo7XIX 0 
+200 14 Dtool_flboQsHF 7 213 652 430 14 Dtool_flboQsHF 0 
+201 14 Dtool_flbor4iM 7 214 652 430 14 Dtool_flbor4iM 0 
+202 14 Dtool_flbo1_Fy 7 215 652 430 14 Dtool_flbo1_Fy 0 
+203 14 Dtool_flboImkh 7 216 652 430 14 Dtool_flboImkh 0 
+204 14 Dtool_flboYsPn 7 217 652 430 14 Dtool_flboYsPn 0 
+205 14 Dtool_flbo0QFY 7 218 652 430 14 Dtool_flbo0QFY 0 
+206 14 Dtool_flbon_Xd 7 219 652 430 14 Dtool_flbon_Xd 0 
+207 14 Dtool_flboaaIW 7 220 652 430 14 Dtool_flboaaIW 0 
+208 14 Dtool_flbovAt7 7 221 652 430 14 Dtool_flbovAt7 0 
+209 14 Dtool_flbonQ06 7 222 652 430 14 Dtool_flbonQ06 0 
+210 14 Dtool_flboKGms 7 223 652 430 14 Dtool_flboKGms 0 
+211 14 Dtool_flboUJca 7 224 652 430 14 Dtool_flboUJca 0 
+212 14 Dtool_flbok1PW 7 225 652 430 14 Dtool_flbok1PW 0 
+213 14 Dtool_flboetDN 7 226 652 430 14 Dtool_flboetDN 0 
+214 14 Dtool_flbo20qs 7 227 652 430 14 Dtool_flbo20qs 0 
+215 14 Dtool_flbo1s_J 7 228 652 430 14 Dtool_flbo1s_J 0 
+216 14 Dtool_flboja3V 7 229 652 430 14 Dtool_flboja3V 0 
+217 14 Dtool_flbojiKz 7 230 652 430 14 Dtool_flbojiKz 0 
+218 14 Dtool_flbo3iJu 7 231 652 430 14 Dtool_flbo3iJu 0 
+219 14 Dtool_flbo0acL 7 232 652 430 14 Dtool_flbo0acL 0 
+220 14 Dtool_flboXztw 7 236 672 529 14 Dtool_flboXztw 0 
+221 14 Dtool_flborsxw 6 237 638 0 14 Dtool_flborsxw 1 4 this 3 673  
+222 14 Dtool_flbo1ylt 6 238 655 0 14 Dtool_flbo1ylt 1 4 this 3 672  
+223 14 Dtool_flboTJFM 6 239 638 0 14 Dtool_flboTJFM 1 4 this 3 673  
+224 14 Dtool_flboUVR4 7 246 675 535 14 Dtool_flboUVR4 0 
+225 14 Dtool_flboPxfU 7 246 675 535 14 Dtool_flboPxfU 1 4 copy 1 676  
+226 14 Dtool_flbofwyS 6 248 675 0 14 Dtool_flbofwyS 2 4 this 3 675  4 copy 1 676  
+227 14 Dtool_flboahow 6 249 638 0 14 Dtool_flboahow 2 4 this 3 676  5 other 1 676  
+228 14 Dtool_flboig3N 6 250 638 0 14 Dtool_flboig3N 2 4 this 3 676  5 other 1 676  
+229 14 Dtool_flbozaOV 6 251 638 0 14 Dtool_flbozaOV 2 4 this 3 676  5 other 1 676  
+230 14 Dtool_flbo46nn 7 252 675 535 14 Dtool_flbo46nn 2 4 this 3 676  5 other 1 676  
+231 14 Dtool_flboea_2 7 253 675 535 14 Dtool_flboea_2 2 4 this 3 676  5 other 1 676  
+232 14 Dtool_flbo1hOw 6 254 675 0 14 Dtool_flbo1hOw 2 4 this 3 675  5 other 1 676  
+233 14 Dtool_flboLBn_ 6 255 675 0 14 Dtool_flboLBn_ 2 4 this 3 675  5 other 1 676  
+234 14 Dtool_flbo_tdp 4 256 636 0 14 Dtool_flbo_tdp 2 4 this 3 675  5 other 1 676  
+235 14 Dtool_flbozNfr 6 257 638 0 14 Dtool_flbozNfr 2 4 this 3 676  5 other 1 676  
+236 14 Dtool_flboTLZg 6 258 638 0 14 Dtool_flboTLZg 2 4 this 3 675  6 button 1 652  
+237 14 Dtool_flboMHRl 6 259 638 0 14 Dtool_flboMHRl 2 4 this 3 676  6 button 1 652  
+238 14 Dtool_flboiuBm 6 260 638 0 14 Dtool_flboiuBm 2 4 this 3 675  6 button 1 652  
+239 14 Dtool_flbow9C5 6 261 639 0 14 Dtool_flbow9C5 1 4 this 3 676  
+240 14 Dtool_flboKJca 7 262 652 430 14 Dtool_flboKJca 2 4 this 3 676  5 index 1 639  
+241 14 Dtool_flboigE5 6 263 638 0 14 Dtool_flboigE5 2 4 this 3 675  6 button 1 652  
+242 14 Dtool_flbo3WnW 6 264 638 0 14 Dtool_flbo3WnW 2 4 this 3 675  6 button 1 652  
+243 14 Dtool_flboeJ_1 4 265 636 0 14 Dtool_flboeJ_1 1 4 this 3 675  
+244 14 Dtool_flbo6vCj 6 266 638 0 14 Dtool_flbo6vCj 2 4 this 3 676  6 button 1 652  
+245 14 Dtool_flboucQV 6 266 638 0 14 Dtool_flboucQV 2 4 this 3 676  5 index 1 639  
+246 14 Dtool_flboS0db 6 267 638 0 14 Dtool_flboS0db 1 4 this 3 676  
+247 14 Dtool_flbo9FCN 6 268 655 0 14 Dtool_flbo9FCN 1 4 this 3 676  
+248 14 Dtool_flbobeaY 4 269 636 0 14 Dtool_flbobeaY 2 4 this 3 676  3 out 1 642  
+249 14 Dtool_flboDRR3 4 270 636 0 14 Dtool_flboDRR3 2 4 this 3 676  3 out 1 642  
+250 14 Dtool_flboa24C 7 272 652 430 14 Dtool_flboa24C 1 13 button_number 1 639  
+251 14 Dtool_flboRfhO 7 273 652 430 14 Dtool_flboRfhO 0 
+252 14 Dtool_flbo6jlR 7 274 652 430 14 Dtool_flbo6jlR 0 
+253 14 Dtool_flbohxQB 7 275 652 430 14 Dtool_flbohxQB 0 
+254 14 Dtool_flboQnfN 7 276 652 430 14 Dtool_flboQnfN 0 
+255 14 Dtool_flboBJKu 7 277 652 430 14 Dtool_flboBJKu 0 
+256 14 Dtool_flboCrvD 7 278 652 430 14 Dtool_flboCrvD 0 
+257 14 Dtool_flboFLlN 7 279 652 430 14 Dtool_flboFLlN 0 
+258 14 Dtool_flboLqpQ 6 280 638 0 14 Dtool_flboLqpQ 1 6 button 1 652  
+259 14 Dtool_flbogWcW 7 283 678 575 14 Dtool_flbogWcW 0 
+260 14 Dtool_flboja_u 7 283 678 575 14 Dtool_flboja_u 1 4 copy 1 679  
+261 14 Dtool_flboqtbu 6 284 678 0 14 Dtool_flboqtbu 2 4 this 3 678  4 copy 1 679  
+262 14 Dtool_flboRo5w 6 285 639 0 14 Dtool_flboRo5w 1 4 this 3 679  
+263 14 Dtool_flbop4Dx 6 286 639 0 14 Dtool_flbop4Dx 1 4 this 3 679  
+264 14 Dtool_flbo370X 6 287 638 0 14 Dtool_flbo370X 1 4 this 3 679  
+265 14 Dtool_flbolQkK 4 288 636 0 14 Dtool_flbolQkK 2 4 this 3 679  3 out 1 642  
+266 14 Dtool_flboHv2I 6 291 639 0 14 Dtool_flboHv2I 1 4 this 3 681  
+267 14 Dtool_flboC_qZ 4 292 636 0 14 Dtool_flboC_qZ 1 4 this 3 681  
+268 14 Dtool_flbo35Q1 6 293 638 0 14 Dtool_flbo35Q1 1 4 this 3 681  
+269 14 Dtool_flbo6xUo 6 294 638 0 14 Dtool_flbo6xUo 1 4 this 3 681  
+270 14 Dtool_flbowI10 6 296 639 0 14 Dtool_flbowI10 1 4 this 3 681  
+271 14 Dtool_flbo_DaH 7 297 644 0 14 Dtool_flbo_DaH 0 
+272 14 Dtool_flbozTyP 7 299 683 583 14 Dtool_flbozTyP 2 3 min 1 668  3 max 1 668  
+273 14 Dtool_flboiPTL 7 299 683 583 14 Dtool_flboiPTL 1 3 min 1 668  
+274 14 Dtool_flboK9nc 7 299 683 583 14 Dtool_flboK9nc 0 
+275 14 Dtool_flboD7pt 6 301 668 0 14 Dtool_flboD7pt 1 4 this 3 683  
+276 14 Dtool_flbocayj 4 302 636 0 14 Dtool_flbocayj 2 4 this 3 683  5 index 1 668  
+277 14 Dtool_flboAmoe 6 303 686 0 14 Dtool_flboAmoe 1 4 this 3 684  
+278 14 Dtool_flbopDb_ 4 304 636 0 14 Dtool_flbopDb_ 3 4 this 3 684  2 os 1 642  7 verbose 1 638  
+279 14 Dtool_flboMD2Z 4 304 636 0 14 Dtool_flboMD2Z 2 4 this 3 684  2 os 1 642  
+280 14 Dtool_flboeAZ3 7 306 687 607 14 Dtool_flboeAZ3 0 
+281 14 Dtool_flboTpCm 7 306 687 607 14 Dtool_flboTpCm 1 4 copy 1 688  
+282 14 Dtool_flboXroR 7 307 687 607 14 Dtool_flboXroR 0 
+283 14 Dtool_flbonK4u 7 308 687 607 14 Dtool_flbonK4u 0 
+284 14 Dtool_flbo9eRT 7 309 687 607 14 Dtool_flbo9eRT 0 
+285 14 Dtool_flboGswc 6 310 687 0 14 Dtool_flboGswc 2 4 this 3 687  4 copy 1 688  
+286 14 Dtool_flbo0_vY 4 311 636 0 14 Dtool_flbo0_vY 1 4 this 3 687  
+287 14 Dtool_flboT1E2 6 312 638 0 14 Dtool_flboT1E2 1 4 this 3 688  
+288 14 Dtool_flboLeqi 6 313 638 0 14 Dtool_flboLeqi 1 4 this 3 688  
+289 14 Dtool_flboWsUb 6 314 638 0 14 Dtool_flboWsUb 1 4 this 3 688  
+290 14 Dtool_flbo6gLj 6 315 638 0 14 Dtool_flbo6gLj 1 4 this 3 688  
+291 14 Dtool_flbogvS2 6 316 638 0 14 Dtool_flbogvS2 2 4 this 3 688  5 other 1 688  
+292 14 Dtool_flbogevt 6 317 638 0 14 Dtool_flbogevt 2 4 this 3 688  5 other 1 688  
+293 14 Dtool_flboNGO_ 6 318 638 0 14 Dtool_flboNGO_ 2 4 this 3 688  5 other 1 688  
+294 14 Dtool_flbowJ_1 6 319 638 0 14 Dtool_flbowJ_1 2 4 this 3 688  5 other 1 688  
+295 14 Dtool_flbot52_ 6 320 638 0 14 Dtool_flbot52_ 2 4 this 3 688  5 other 1 688  
+296 14 Dtool_flboQMl2 6 321 638 0 14 Dtool_flboQMl2 2 4 this 3 688  5 other 1 688  
+297 14 Dtool_flbokAFl 7 322 687 607 14 Dtool_flbokAFl 1 4 this 3 687  
+298 14 Dtool_flboqToO 7 323 687 607 14 Dtool_flboqToO 2 4 this 3 687  6 param0 0 639  
+299 14 Dtool_flboHG_1 4 324 636 0 14 Dtool_flboHG_1 2 4 this 3 688  3 out 1 642  
+300 14 Dtool_flboQ2Tm 7 327 644 0 14 Dtool_flboQ2Tm 0 
+301 14 Dtool_flbo26dg 6 186 690 0 14 Dtool_flbo26dg 0 
+302 14 Dtool_flboXgtZ 6 187 690 0 14 Dtool_flboXgtZ 0 
+303 14 Dtool_flbo18uu 6 188 690 0 14 Dtool_flbo18uu 0 
+304 14 Dtool_flboBiO8 6 241 692 0 14 Dtool_flboBiO8 1 8 filename 1 655  
+305 14 Dtool_flboDEXZ 6 242 692 0 14 Dtool_flboDEXZ 2 4 name 1 655  4 data 1 655  
+306 14 Dtool_flbow809 6 243 638 0 14 Dtool_flbow809 1 4 page 1 692  
+307 14 Dtool_flbo3gn0 4 244 636 0 14 Dtool_flbo3gn0 1 4 hash 1 694  
+86
+610 6 string 1050625 20 basic_string< char > 20 basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0
+
+611 13 AnimInterface 26625 13 AnimInterface 13 AnimInterface 0 0 0 0 308 0 16 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 0 0 0 0 464
+////////////////////////////////////////////////////////////////////
+//       Class : AnimInterface
+// Description : This is the fundamental interface for things that
+//               have a play/loop/stop type interface for frame-based
+//               animation, such as animated characters.  This is the
+//               base class for AnimControl and other, similar
+//               classes.
+////////////////////////////////////////////////////////////////////
+
+612 13 TypedWritable 75777 13 TypedWritable 13 TypedWritable 0 0 0 0 0 0 1 325 0 1 0 613 0 0 0 0 356
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritable
+// Description : Base class for objects that can be written to and
+//               read from Bam files.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+613 11 TypedObject 2049 11 TypedObject 11 TypedObject 0 0 0 0 0 0 0 0 0 0 0 3955
+////////////////////////////////////////////////////////////////////
+//       Class : TypedObject
+// Description : This is an abstract class that all classes which
+//               use TypeHandle, and also provide virtual functions to
+//               support polymorphism, should inherit from.  Each
+//               derived class should define get_type(), which should
+//               return the specific type of the derived class.
+//               Inheriting from this automatically provides support
+//               for is_of_type() and is_exact_type().
+//               
+//               All classes that inherit directly or indirectly from
+//               TypedObject should redefine get_type() and
+//               force_init_type(), as shown below.  Some classes that
+//               do not inherit from TypedObject may still declare
+//               TypeHandles for themselves by defining methods called
+//               get_class_type() and init_type().  Classes such as
+//               these may serve as base classes, but the dynamic type
+//               identification system will be limited.  Classes that
+//               do not inherit from TypedObject need not define the
+//               virtual functions get_type() and force_init_type()
+//               (or any other virtual functions).
+//               
+//               There is a specific layout for defining the
+//               overrides from this class.  Keeping the definitions
+//               formatted just like these examples will allow
+//               someone in the future to use a sed (or similar)
+//               script to make global changes, if necessary.  Avoid
+//               rearranging the braces or the order of the functions
+//               unless you're ready to change them in every file all
+//               at once.
+//               
+//               What follows are some examples that can be used in
+//               new classes that you create.
+//               
+//               ---------------------------------------------------
+//               In the class definition (.h file)
+//               ---------------------------------------------------
+//               
+//               public:
+//                 static TypeHandle get_class_type() {
+//                   return _type_handle;
+//                 }
+//                 static void init_type() {
+//                   <<<BaseClassOne>>>::init_type();
+//                   <<<BaseClassTwo>>>::init_type();
+//                   <<<BaseClassN>>>::init_type();
+//                   register_type(_type_handle, "<<<ThisClassStringName>>>",
+//                                 <<<BaseClassOne>>>::get_class_type(),
+//                                 <<<BaseClassTwo>>>::get_class_type(),
+//                                 <<<BaseClassN>>>::get_class_type());
+//                 }
+//                 virtual TypeHandle get_type() const {
+//                   return get_class_type();
+//                 }
+//                 virtual TypeHandle force_init_type() {init_type(); return get_class_type();}
+//               
+//               private:
+//                 static TypeHandle _type_handle;
+//               
+//               
+//               ----------------------
+//               In the class .cxx file
+//               ----------------------
+//               
+//               TypeHandle <<<ThisClassStringName>>>::_type_handle;
+//               
+//               
+//               ----------------------------------------------
+//               In the class config_<<<PackageName>>>.cxx file
+//               ----------------------------------------------
+//               
+//               ConfigureFn(config_<<<PackageName>>>) {
+//                 <<<ClassOne>>>::init_type();
+//                 <<<ClassTwo>>>::init_type();
+//                 <<<ClassN>>>::init_type();
+//               }
+//               
+////////////////////////////////////////////////////////////////////
+
+614 9 BitMask32 26625 27 BitMask< unsigned int, 32 > 27 BitMask< unsigned int, 32 > 0 0 0 1 326 333 0 44 327 328 329 330 331 332 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 0 0 0 0 0
+
+615 8 BitArray 26625 8 BitArray 8 BitArray 0 0 0 1 372 379 0 47 373 374 375 376 377 378 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 0 0 0 0 425
+////////////////////////////////////////////////////////////////////
+//       Class : BitArray
+// Description : A dynamic array with an unlimited number of bits.
+//
+//               This is similar to a BitMask, except it appears to
+//               contain an infinite number of bits.  You can use it
+//               very much as you would use a BitMask.
+////////////////////////////////////////////////////////////////////
+
+616 12 ButtonHandle 141313 12 ButtonHandle 12 ButtonHandle 0 0 0 1 421 430 0 8 422 423 424 425 426 427 428 429 0 0 0 0 364
+////////////////////////////////////////////////////////////////////
+//       Class : ButtonHandle
+// Description : A ButtonHandle represents a single button from any
+//               device, including keyboard buttons and mouse buttons
+//               (but see KeyboardButton and MouseButton).
+////////////////////////////////////////////////////////////////////
+
+617 14 ButtonRegistry 141313 14 ButtonRegistry 14 ButtonRegistry 0 0 0 0 435 0 4 431 432 433 434 0 0 0 0 409
+////////////////////////////////////////////////////////////////////
+//       Class : ButtonRegistry
+// Description : The ButtonRegistry class maintains all the assigned
+//               ButtonHandles in a given system.  There should be only
+//               one ButtonRegistry class during the lifetime of the
+//               application.
+////////////////////////////////////////////////////////////////////
+
+618 27 TypedWritableReferenceCount 141313 27 TypedWritableReferenceCount 27 TypedWritableReferenceCount 0 0 0 0 441 0 1 440 0 2 3 612 436 437 3 619 438 439 0 0 722
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritableReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedWritable and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedWritables and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+619 14 ReferenceCount 2049 14 ReferenceCount 14 ReferenceCount 0 0 0 0 0 0 0 0 0 0 0 425
+////////////////////////////////////////////////////////////////////
+//       Class : ReferenceCount
+// Description : A base class for all things that want to be
+//               reference-counted.  ReferenceCount works in
+//               conjunction with PointerTo to automatically delete
+//               objects when the last pointer to them goes away.
+////////////////////////////////////////////////////////////////////
+
+620 33 CachedTypedWritableReferenceCount 43009 33 CachedTypedWritableReferenceCount 33 CachedTypedWritableReferenceCount 0 0 0 0 0 0 5 442 443 444 445 446 0 1 0 618 0 0 0 0 1112
+////////////////////////////////////////////////////////////////////
+//       Class : CachedTypedWritableReferenceCount
+// Description : This is a special extension to ReferenceCount that
+//               includes dual reference counts: the standard
+//               reference count number, which includes all references
+//               to the object, and a separate number (the cache
+//               reference count) that counts the number of references
+//               to the object just within its cache alone.  When
+//               get_ref_count() == get_cache_ref_count(), the object
+//               is not referenced outside the cache.
+//
+//               The cache refs must be explicitly maintained; there
+//               is no PointerTo<> class to maintain the cache
+//               reference counts automatically.  The cache reference
+//               count is automatically included in the overall
+//               reference count: calling cache_ref() and
+//               cache_unref() automatically calls ref() and unref().
+////////////////////////////////////////////////////////////////////
+
+621 7 TimeVal 141313 7 TimeVal 7 TimeVal 0 0 0 1 447 450 0 2 448 449 0 0 0 0 0
+
+622 11 ClockObject 26625 11 ClockObject 11 ClockObject 0 0 0 1 451 452 0 25 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 0 0 0 1 623 1483
+////////////////////////////////////////////////////////////////////
+//       Class : ClockObject
+// Description : A ClockObject keeps track of elapsed real time and
+//               discrete time.  It can run in two modes: In normal
+//               mode, get_frame_time() returns the time as of the
+//               last time tick() was called.  This is the "discrete"
+//               time, and is usually used to get the time as of, for
+//               instance, the beginning of the current frame.  In
+//               non-real-time mode, get_frame_time() returns a
+//               constant increment since the last time tick() was
+//               called; this is useful when it is desirable to fake
+//               the clock out, for instance for non-real-time
+//               animation rendering.
+//
+//               In both modes, get_real_time() always returns the
+//               elapsed real time in seconds since the ClockObject
+//               was constructed, or since it was last reset.
+//
+//               You can create your own ClockObject whenever you want
+//               to have your own local timer.  There is also a
+//               default, global ClockObject intended to represent
+//               global time for the application; this is normally set
+//               up to tick every frame so that its get_frame_time()
+//               will return the time for the current frame.
+////////////////////////////////////////////////////////////////////
+
+623 4 Mode 794624 17 ClockObject::Mode 17 ClockObject::Mode 622 0 0 0 0 0 0 0 0 5 8 M_normal 21 ClockObject::M_normal 0 15 M_non_real_time 28 ClockObject::M_non_real_time 1 8 M_forced 21 ClockObject::M_forced 2 9 M_degrade 22 ClockObject::M_degrade 3 7 M_slave 20 ClockObject::M_slave 4 0 0
+
+624 14 KeyboardButton 141313 14 KeyboardButton 14 KeyboardButton 0 0 0 0 524 0 43 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 0 0 0 0 369
+////////////////////////////////////////////////////////////////////
+//       Class : KeyboardButton
+// Description : This class is just used as a convenient namespace for
+//               grouping all of these handy functions that return
+//               buttons which map to standard keyboard keys.
+////////////////////////////////////////////////////////////////////
+
+625 10 LineStream 141313 10 LineStream 10 LineStream 0 0 0 1 525 529 0 3 526 527 528 0 1 0 626 0 0 0 0 761
+////////////////////////////////////////////////////////////////////
+//       Class : LineStream
+// Description : This is a special ostream that writes to a memory
+//               buffer, like ostrstream.  However, its contents can
+//               be continuously extracted as a sequence of lines of
+//               text.
+//
+//               Unlike ostrstream, which can only be extracted from
+//               once (and then the buffer freezes and it can no
+//               longer be written to), the LineStream is not
+//               otherwise affected when a line of text is extracted.
+//               More text can still be written to it and continuously
+//               extracted.
+////////////////////////////////////////////////////////////////////
+
+626 7 ostream 2049 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+627 15 ModifierButtons 26625 15 ModifierButtons 15 ModifierButtons 0 0 0 1 534 535 0 23 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 0 0 0 0 343
+////////////////////////////////////////////////////////////////////
+//       Class : ModifierButtons
+// Description : This class monitors the state of a number of
+//               individual buttons and tracks whether each button is
+//               known to be down or up.
+////////////////////////////////////////////////////////////////////
+
+628 11 MouseButton 141313 11 MouseButton 11 MouseButton 0 0 0 0 568 0 9 559 560 561 562 563 564 565 566 567 0 0 0 0 366
+////////////////////////////////////////////////////////////////////
+//       Class : MouseButton
+// Description : This class is just used as a convenient namespace for
+//               grouping all of these handy functions that return
+//               buttons which map to standard mouse buttons.
+////////////////////////////////////////////////////////////////////
+
+629 9 MouseData 141313 9 MouseData 9 MouseData 0 0 0 1 569 575 0 5 570 571 572 573 574 0 0 0 0 326
+////////////////////////////////////////////////////////////////////
+//       Class : MouseData
+// Description : Holds the data that might be generated by a 2-d
+//               pointer input device, such as the mouse in the
+//               GraphicsWindow.
+////////////////////////////////////////////////////////////////////
+
+630 24 NodeCachedReferenceCount 43009 24 NodeCachedReferenceCount 24 NodeCachedReferenceCount 0 0 0 0 0 0 6 576 577 578 579 580 581 0 1 0 620 0 0 0 1 631 1421
+////////////////////////////////////////////////////////////////////
+//       Class : NodeCachedReferenceCount
+// Description : This class further specializes
+//               CachedTypedWritableReferenceCount to also add a
+//               node_ref_count, for the purposes of counting the
+//               number of times the object is referenced by a "node",
+//               presumably a PandaNode.
+//
+//               The intended design is to use this as a base class
+//               for RenderState and TransformState, both of which are
+//               held by PandaNodes, and also have caches which are
+//               independently maintained.  By keeping track of how
+//               many nodes hold a pointer to a particular object, we
+//               can classify each object into node-referenced,
+//               cache-referenced, or other, which is primarily useful
+//               for PStats reporting.
+//
+//               As with CachedTypedWritableReferenceCount's
+//               cache_ref() and cache_unref(), the new methods
+//               node_ref() and node_unref() automatically increment
+//               and decrement the primary reference count as well.
+//               In this case, however, there does exist a
+//               NodePointerTo<> class to maintain the node_ref
+//               counters automatically.
+////////////////////////////////////////////////////////////////////
+
+631 10 Referenced 794624 36 NodeCachedReferenceCount::Referenced 36 NodeCachedReferenceCount::Referenced 630 0 0 0 0 0 0 0 0 2 6 R_node 32 NodeCachedReferenceCount::R_node 1 7 R_cache 33 NodeCachedReferenceCount::R_cache 2 0 0
+
+632 17 UniqueIdAllocator 26625 17 UniqueIdAllocator 17 UniqueIdAllocator 0 0 0 1 582 583 0 4 584 585 586 587 0 0 0 0 1207
+////////////////////////////////////////////////////////////////////
+//       Class : UniqueIdAllocator
+// Description : Manage a set of ID values from min to max inclusive.
+//               The ID numbers that are freed will be allocated
+//               (reused) in the same order.  I.e. the oldest ID numbers
+//               will be allocated.
+//
+//               This implementation will use 4 bytes per id number,
+//               plus a few bytes of management data.  e.g. 10,000
+//               ID numbers will use 40KB.
+//
+//               Also be advised that ID -1 and -2 are used internally by
+//               the allocator.  If allocate returns IndexEnd (-1) then
+//               the allocator is out of free ID numbers.
+//
+//               There are other implementations that can better leverage
+//               runs of used or unused IDs or use bit arrays for the
+//               IDs.  But, it takes extra work to track the age of
+//               freed IDs, which is required for what we wanted.  If
+//               you would like to kick around other implementation
+//               ideas, please contact Schuyler.
+////////////////////////////////////////////////////////////////////
+
+633 9 UpdateSeq 141313 9 UpdateSeq 9 UpdateSeq 0 0 0 1 588 607 0 18 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 0 0 0 0 1140
+////////////////////////////////////////////////////////////////////
+//       Class : UpdateSeq
+// Description : This is a sequence number that increments
+//               monotonically.  It can be used to track cache
+//               updates, or serve as a kind of timestamp for any
+//               changing properties.
+//
+//               A special class is used instead of simply an int, so
+//               we can elegantly handle such things as wraparound and
+//               special cases.  There are two special cases.
+//               Firstly, a sequence number is 'initial' when it is
+//               first created.  This sequence is older than any other
+//               sequence number.  Secondly, a sequence number may be
+//               explicitly set to 'old'.  This is older than any
+//               other sequence number except 'initial'.  Finally, we
+//               have the explicit number 'fresh', which is newer
+//               than any other sequence number.  All other sequences
+//               are numeric and are monotonically increasing.
+////////////////////////////////////////////////////////////////////
+
+634 20 WritableConfigurable 141313 20 WritableConfigurable 20 WritableConfigurable 0 0 0 0 609 0 1 608 0 1 0 612 0 0 0 0 815
+////////////////////////////////////////////////////////////////////
+// Defines
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : WritableConfigurable
+// Description : Defined as a fix to allow creating Configurable and
+//               Writable objects.  Otherwise the compiler gets
+//               confused since both TypedWritable and Configurable
+//               inherit from TypedObject.
+//
+//               An object that has data or parameters that are set
+//               less frequently (at least occasionally) than every
+//               frame.  We can cache the configuration info by
+//               by using the "dirty" flag.
+////////////////////////////////////////////////////////////////////
+
+635 15 AnimInterface * 8576 15 AnimInterface * 15 AnimInterface * 0 0 611 0 0 0 0 0 0 0 0 0
+
+636 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+637 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+638 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+639 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+640 21 AnimInterface const * 8576 21 AnimInterface const * 21 AnimInterface const * 0 0 641 0 0 0 0 0 0 0 0 0
+
+641 19 AnimInterface const 8832 19 AnimInterface const 19 AnimInterface const 0 0 611 0 0 0 0 0 0 0 0 0
+
+642 9 ostream * 8576 9 ostream * 9 ostream * 0 0 626 0 0 0 0 0 0 0 0 0
+
+643 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+644 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 643 0 0 0 0 0 0 0 0 0
+
+645 29 BitMask< unsigned int, 32 > * 8576 29 BitMask< unsigned int, 32 > * 29 BitMask< unsigned int, 32 > * 0 0 614 0 0 0 0 0 0 0 0 0
+
+646 35 BitMask< unsigned int, 32 > const * 8576 35 BitMask< unsigned int, 32 > const * 35 BitMask< unsigned int, 32 > const * 0 0 647 0 0 0 0 0 0 0 0 0
+
+647 33 BitMask< unsigned int, 32 > const 8832 33 BitMask< unsigned int, 32 > const 33 BitMask< unsigned int, 32 > const 0 0 614 0 0 0 0 0 0 0 0 0
+
+648 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0
+
+649 10 BitArray * 8576 10 BitArray * 10 BitArray * 0 0 615 0 0 0 0 0 0 0 0 0
+
+650 16 BitArray const * 8576 16 BitArray const * 16 BitArray const * 0 0 651 0 0 0 0 0 0 0 0 0
+
+651 14 BitArray const 8832 14 BitArray const 14 BitArray const 0 0 615 0 0 0 0 0 0 0 0 0
+
+652 14 ButtonHandle * 8576 14 ButtonHandle * 14 ButtonHandle * 0 0 616 0 0 0 0 0 0 0 0 0
+
+653 20 ButtonHandle const * 8576 20 ButtonHandle const * 20 ButtonHandle const * 0 0 654 0 0 0 0 0 0 0 0 0
+
+654 18 ButtonHandle const 8832 18 ButtonHandle const 18 ButtonHandle const 0 0 616 0 0 0 0 0 0 0 0 0
+
+655 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+656 4 char 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0
+
+657 16 ButtonRegistry * 8576 16 ButtonRegistry * 16 ButtonRegistry * 0 0 617 0 0 0 0 0 0 0 0 0
+
+658 22 ButtonRegistry const * 8576 22 ButtonRegistry const * 22 ButtonRegistry const * 0 0 659 0 0 0 0 0 0 0 0 0
+
+659 20 ButtonRegistry const 8832 20 ButtonRegistry const 20 ButtonRegistry const 0 0 617 0 0 0 0 0 0 0 0 0
+
+660 29 TypedWritableReferenceCount * 8576 29 TypedWritableReferenceCount * 29 TypedWritableReferenceCount * 0 0 618 0 0 0 0 0 0 0 0 0
+
+661 15 TypedWritable * 8576 15 TypedWritable * 15 TypedWritable * 0 0 612 0 0 0 0 0 0 0 0 0
+
+662 16 ReferenceCount * 8576 16 ReferenceCount * 16 ReferenceCount * 0 0 619 0 0 0 0 0 0 0 0 0
+
+663 41 CachedTypedWritableReferenceCount const * 8576 41 CachedTypedWritableReferenceCount const * 41 CachedTypedWritableReferenceCount const * 0 0 664 0 0 0 0 0 0 0 0 0
+
+664 39 CachedTypedWritableReferenceCount const 8832 39 CachedTypedWritableReferenceCount const 39 CachedTypedWritableReferenceCount const 0 0 620 0 0 0 0 0 0 0 0 0
+
+665 9 TimeVal * 8576 9 TimeVal * 9 TimeVal * 0 0 621 0 0 0 0 0 0 0 0 0
+
+666 15 TimeVal const * 8576 15 TimeVal const * 15 TimeVal const * 0 0 667 0 0 0 0 0 0 0 0 0
+
+667 13 TimeVal const 8832 13 TimeVal const 13 TimeVal const 0 0 621 0 0 0 0 0 0 0 0 0
+
+668 17 unsigned long int 8214 17 unsigned long int 17 unsigned long int 0 1 0 0 0 0 0 0 0 0 0 0
+
+669 13 ClockObject * 8576 13 ClockObject * 13 ClockObject * 0 0 622 0 0 0 0 0 0 0 0 0
+
+670 19 ClockObject const * 8576 19 ClockObject const * 19 ClockObject const * 0 0 671 0 0 0 0 0 0 0 0 0
+
+671 17 ClockObject const 8832 17 ClockObject const 17 ClockObject const 0 0 622 0 0 0 0 0 0 0 0 0
+
+672 12 LineStream * 8576 12 LineStream * 12 LineStream * 0 0 625 0 0 0 0 0 0 0 0 0
+
+673 18 LineStream const * 8576 18 LineStream const * 18 LineStream const * 0 0 674 0 0 0 0 0 0 0 0 0
+
+674 16 LineStream const 8832 16 LineStream const 16 LineStream const 0 0 625 0 0 0 0 0 0 0 0 0
+
+675 17 ModifierButtons * 8576 17 ModifierButtons * 17 ModifierButtons * 0 0 627 0 0 0 0 0 0 0 0 0
+
+676 23 ModifierButtons const * 8576 23 ModifierButtons const * 23 ModifierButtons const * 0 0 677 0 0 0 0 0 0 0 0 0
+
+677 21 ModifierButtons const 8832 21 ModifierButtons const 21 ModifierButtons const 0 0 627 0 0 0 0 0 0 0 0 0
+
+678 11 MouseData * 8576 11 MouseData * 11 MouseData * 0 0 629 0 0 0 0 0 0 0 0 0
+
+679 17 MouseData const * 8576 17 MouseData const * 17 MouseData const * 0 0 680 0 0 0 0 0 0 0 0 0
+
+680 15 MouseData const 8832 15 MouseData const 15 MouseData const 0 0 629 0 0 0 0 0 0 0 0 0
+
+681 32 NodeCachedReferenceCount const * 8576 32 NodeCachedReferenceCount const * 32 NodeCachedReferenceCount const * 0 0 682 0 0 0 0 0 0 0 0 0
+
+682 30 NodeCachedReferenceCount const 8832 30 NodeCachedReferenceCount const 30 NodeCachedReferenceCount const 0 0 630 0 0 0 0 0 0 0 0 0
+
+683 19 UniqueIdAllocator * 8576 19 UniqueIdAllocator * 19 UniqueIdAllocator * 0 0 632 0 0 0 0 0 0 0 0 0
+
+684 25 UniqueIdAllocator const * 8576 25 UniqueIdAllocator const * 25 UniqueIdAllocator const * 0 0 685 0 0 0 0 0 0 0 0 0
+
+685 23 UniqueIdAllocator const 8832 23 UniqueIdAllocator const 23 UniqueIdAllocator const 0 0 632 0 0 0 0 0 0 0 0 0
+
+686 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+687 11 UpdateSeq * 8576 11 UpdateSeq * 11 UpdateSeq * 0 0 633 0 0 0 0 0 0 0 0 0
+
+688 17 UpdateSeq const * 8576 17 UpdateSeq const * 17 UpdateSeq const * 0 0 689 0 0 0 0 0 0 0 0 0
+
+689 15 UpdateSeq const 8832 15 UpdateSeq const 15 UpdateSeq const 0 0 633 0 0 0 0 0 0 0 0 0
+
+690 26 ConfigVariableSearchPath * 8576 26 ConfigVariableSearchPath * 26 ConfigVariableSearchPath * 0 0 691 0 0 0 0 0 0 0 0 0
+
+691 24 ConfigVariableSearchPath 2048 24 ConfigVariableSearchPath 24 ConfigVariableSearchPath 0 0 0 0 0 0 0 0 0 0 0 1125
+////////////////////////////////////////////////////////////////////
+//       Class : ConfigVariableSearchPath
+// Description : This is similar to a ConfigVariableList, but it
+//               returns its list as a DSearchPath, as a list of
+//               directories.
+//
+//               You may locally append directories to the end of the
+//               search path with the methods here, or prepend them to
+//               the beginning.  Use these methods to make adjustments
+//               to the path; do not attempt to directly modify the
+//               const DSearchPath object returned by get_value().
+//
+//               Unlike other ConfigVariable types, local changes
+//               (made by calling append_directory() and
+//               prepend_directory()) are specific to this particular
+//               instance of the ConfigVariableSearchPath.  A separate
+//               instance of the same variable, created by using the
+//               same name to the constructor, will not reflect the
+//               local changes.
+////////////////////////////////////////////////////////////////////
+
+692 12 ConfigPage * 8576 12 ConfigPage * 12 ConfigPage * 0 0 693 0 0 0 0 0 0 0 0 0
+
+693 10 ConfigPage 2048 10 ConfigPage 10 ConfigPage 0 0 0 0 0 0 0 0 0 0 0 493
+////////////////////////////////////////////////////////////////////
+//       Class : ConfigPage
+// Description : A page of ConfigDeclarations that may be loaded or
+//               unloaded.  Typically this represents a single .prc
+//               file that is read from disk at runtime, but it may
+//               also represent a list of declarations built up
+//               by application code and explicitly loaded.
+////////////////////////////////////////////////////////////////////
+
+694 9 HashVal * 8576 9 HashVal * 9 HashVal * 0 0 695 0 0 0 0 0 0 0 0 0
+
+695 7 HashVal 2048 7 HashVal 7 HashVal 0 0 0 0 0 0 0 0 0 0 0 292
+////////////////////////////////////////////////////////////////////
+//       Class : HashVal
+// Description : Stores a 128-bit value that represents the hashed
+//               contents (typically MD5) of a file or buffer.
+////////////////////////////////////////////////////////////////////
+
+0
+0

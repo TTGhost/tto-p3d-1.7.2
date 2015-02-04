@@ -1,0 +1,68 @@
+1145555572
+2 2
+9 libegg2pg 4 9Uoz 8 pandaegg 
+2
+5 13 load_egg_file 1 0 13 load_egg_file 0 2 1 2 568
+////////////////////////////////////////////////////////////////////
+//     Function: load_egg_file
+//  Description: A convenience function; the primary interface to this
+//               package.  Loads up the indicated egg file, and
+//               returns the root of a scene graph.  Returns NULL if
+//               the file cannot be read for some reason.
+//
+//               Also see the EggLoader class, which can exercise a
+//               bit more manual control over the loading process.
+////////////////////////////////////////////////////////////////////
+111
+PointerTo< PandaNode > load_egg_file(basic_string< char > const &filename, CoordinateSystem cs = (CS_default));
+
+6 13 load_egg_data 1 0 13 load_egg_data 0 2 3 4 390
+////////////////////////////////////////////////////////////////////
+//     Function: load_egg_data
+//  Description: Another convenience function; works like
+//               load_egg_file() but starts from an already-filled
+//               EggData structure.  The structure is destroyed in the
+//               loading.
+////////////////////////////////////////////////////////////////////
+88
+PointerTo< PandaNode > load_egg_data(EggData *data, CoordinateSystem cs = (CS_default));
+
+4
+1 14 Dtool_9UozB_T_ 7 1 10 0 14 Dtool_9UozB_T_ 2 8 filename 1 8  2 cs 1 9  
+2 14 Dtool_9UozsvmK 7 1 10 0 14 Dtool_9UozsvmK 1 8 filename 1 8  
+3 14 Dtool_9Uoz8_Cl 7 2 10 0 14 Dtool_9Uoz8_Cl 2 4 data 1 11  2 cs 1 9  
+4 14 Dtool_9Uozz5qB 7 2 10 0 14 Dtool_9Uozz5qB 1 4 data 1 11  
+6
+7 9 PandaNode 2048 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+8 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+9 16 CoordinateSystem 532480 16 CoordinateSystem 16 CoordinateSystem 0 0 0 0 0 0 0 0 0 6 10 CS_default 10 CS_default 0 12 CS_zup_right 12 CS_zup_right 1 12 CS_yup_right 12 CS_yup_right 2 11 CS_zup_left 11 CS_zup_left 3 11 CS_yup_left 11 CS_yup_left 4 10 CS_invalid 10 CS_invalid 5 0 0
+
+10 11 PandaNode * 8576 11 PandaNode * 11 PandaNode * 0 0 7 0 0 0 0 0 0 0 0 0
+
+11 9 EggData * 8576 9 EggData * 9 EggData * 0 0 12 0 0 0 0 0 0 0 0 0
+
+12 7 EggData 2048 7 EggData 7 EggData 0 0 0 0 0 0 0 0 0 0 0 728
+////////////////////////////////////////////////////////////////////
+//       Class : EggData
+// Description : This is the primary interface into all the egg data,
+//               and the root of the egg file structure.  An EggData
+//               structure corresponds exactly with an egg file on the
+//               disk.
+//
+//               The EggData class inherits from EggGroupNode its
+//               collection of children, which are accessed by using
+//               the EggData itself as an STL container with begin()
+//               and end() calls.  The children of the EggData class
+//               are the toplevel nodes in the egg file.
+////////////////////////////////////////////////////////////////////
+
+0
+0

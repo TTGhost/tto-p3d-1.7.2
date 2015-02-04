@@ -1,0 +1,2885 @@
+1145553949
+2 2
+11 libmathutil 4 SkjP 5 panda 
+125
+221 8 Frustumd 4 346 18 Frustumd::Frustumd 0 1 1 1750
+// Filename: frustum_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Constructor
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+// Filename: frustum_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Constructor
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+32
+inline Frustumd::Frustumd(void);
+
+222 13 make_ortho_2D 4 346 23 Frustumd::make_ortho_2D 0 2 2 3 1002
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+42
+inline void Frustumd::make_ortho_2D(void);
+
+223 10 make_ortho 4 346 20 Frustumd::make_ortho 0 2 4 5 902
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+60
+inline void Frustumd::make_ortho(double fnear, double ffar);
+
+224 21 make_perspective_hfov 4 346 31 Frustumd::make_perspective_hfov 0 1 6 1158
+////////////////////////////////////////////////////////////////////
+//     Function: make_perspective
+//       Access:
+//  Description: Behaves like gluPerspective (Aspect = width/height,
+//               Yfov in degrees)
+//       aspect
+//   +------------+
+//   |            |
+// 1 |            | yfov
+//   |            |
+//   +------------+
+//
+//     -------+------
+//      \     |     /
+//       \    |    /
+//        \   |   /
+//         \  |  /
+//          \ | /
+//           \|/
+//            W yfov
+//
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_perspective
+//       Access:
+//  Description: Behaves like gluPerspective (Aspect = width/height,
+//               Yfov in degrees)
+//       aspect
+//   +------------+
+//   |            |
+// 1 |            | yfov
+//   |            |
+//   +------------+
+//
+//     -------+------
+//      \     |     /
+//       \    |    /
+//        \   |   /
+//         \  |  /
+//          \ | /
+//           \|/
+//            W yfov
+//
+////////////////////////////////////////////////////////////////////
+99
+inline void Frustumd::make_perspective_hfov(double xfov, double aspect, double fnear, double ffar);
+
+225 21 make_perspective_vfov 4 346 31 Frustumd::make_perspective_vfov 0 1 7 0
+99
+inline void Frustumd::make_perspective_vfov(double yfov, double aspect, double fnear, double ffar);
+
+226 16 make_perspective 4 346 26 Frustumd::make_perspective 0 1 8 0
+92
+inline void Frustumd::make_perspective(double xfov, double yfov, double fnear, double ffar);
+
+227 22 get_perspective_params 4 346 32 Frustumd::get_perspective_params 0 0 850
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+110
+inline void Frustumd::get_perspective_params(double &yfov, double &aspect, double &fnear, double &ffar) const;
+
+228 9 ~Frustumd 4 346 19 Frustumd::~Frustumd 0 0 0
+26
+Frustumd::~Frustumd(void);
+
+229 8 Frustumf 4 347 18 Frustumf::Frustumf 0 1 9 874
+// Filename: frustum_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Constructor
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+32
+inline Frustumf::Frustumf(void);
+
+230 13 make_ortho_2D 4 347 23 Frustumf::make_ortho_2D 0 2 10 11 500
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Sets up a two-dimensional orthographic frustum
+////////////////////////////////////////////////////////////////////
+42
+inline void Frustumf::make_ortho_2D(void);
+
+231 10 make_ortho 4 347 20 Frustumf::make_ortho 0 2 12 13 450
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: make_ortho_2D
+//       Access:
+//  Description: Behaves like gluOrtho
+////////////////////////////////////////////////////////////////////
+58
+inline void Frustumf::make_ortho(float fnear, float ffar);
+
+232 21 make_perspective_hfov 4 347 31 Frustumf::make_perspective_hfov 0 1 14 578
+////////////////////////////////////////////////////////////////////
+//     Function: make_perspective
+//       Access:
+//  Description: Behaves like gluPerspective (Aspect = width/height,
+//               Yfov in degrees)
+//       aspect
+//   +------------+
+//   |            |
+// 1 |            | yfov
+//   |            |
+//   +------------+
+//
+//     -------+------
+//      \     |     /
+//       \    |    /
+//        \   |   /
+//         \  |  /
+//          \ | /
+//           \|/
+//            W yfov
+//
+////////////////////////////////////////////////////////////////////
+95
+inline void Frustumf::make_perspective_hfov(float xfov, float aspect, float fnear, float ffar);
+
+233 21 make_perspective_vfov 4 347 31 Frustumf::make_perspective_vfov 0 1 15 0
+95
+inline void Frustumf::make_perspective_vfov(float yfov, float aspect, float fnear, float ffar);
+
+234 16 make_perspective 4 347 26 Frustumf::make_perspective 0 1 16 0
+88
+inline void Frustumf::make_perspective(float xfov, float yfov, float fnear, float ffar);
+
+235 22 get_perspective_params 4 347 32 Frustumf::get_perspective_params 0 0 424
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: get_perspective_params
+//       Access:
+//  Description:
+////////////////////////////////////////////////////////////////////
+106
+inline void Frustumf::get_perspective_params(float &yfov, float &aspect, float &fnear, float &ffar) const;
+
+236 9 ~Frustumf 4 347 19 Frustumf::~Frustumf 0 0 0
+26
+Frustumf::~Frustumf(void);
+
+237 6 Planed 4 348 14 Planed::Planed 0 5 17 18 19 20 21 4674
+// Filename: plane_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Creates a default plane.  This plane happens to
+//               intersect the origin, perpendicular to the Z axis.
+//               It's not clear how useful a default plane is.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given three counter-clockwise
+//               points, as seen from the front of the plane (that is,
+//               viewed from the end of the normal vector, looking
+//               down).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given a surface normal vector and
+//               a point within the plane.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given the four terms of the plane
+//               equation.
+////////////////////////////////////////////////////////////////////
+
+// Filename: plane_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Creates a default plane.  This plane happens to
+//               intersect the origin, perpendicular to the Z axis.
+//               It's not clear how useful a default plane is.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given three counter-clockwise
+//               points, as seen from the front of the plane (that is,
+//               viewed from the end of the normal vector, looking
+//               down).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given a surface normal vector and
+//               a point within the plane.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given the four terms of the plane
+//               equation.
+////////////////////////////////////////////////////////////////////
+28
+inline Planed::Planed(void);
+
+238 10 operator * 4 348 18 Planed::operator * 0 2 22 23 1090
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix3
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix3
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+61
+inline Planed Planed::operator *(LMatrix3d const &mat) const;
+
+239 11 operator *= 4 348 19 Planed::operator *= 0 1 24 546
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator *= LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator *= LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+54
+inline void Planed::operator *=(LMatrix4d const &mat);
+
+240 5 xform 4 348 13 Planed::xform 0 1 25 516
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::xform
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::xform
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+48
+inline void Planed::xform(LMatrix4d const &mat);
+
+241 10 operator - 68 348 18 Planed::operator - 0 1 26 0
+45
+inline Planed Planed::operator -(void) const;
+
+242 18 get_reflection_mat 4 348 26 Planed::get_reflection_mat 0 1 27 1041
+// Filename: plane_src.cxx
+// Created by:  drose (03Apr01)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_reflection_mat
+//       Access: Published
+//  Description: This computes a transform matrix that reflects the
+//               universe to the other side of the plane, as in a
+//               mirror.
+////////////////////////////////////////////////////////////////////
+49
+LMatrix4d Planed::get_reflection_mat(void) const;
+
+243 10 get_normal 4 348 18 Planed::get_normal 0 1 28 516
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_normal
+//       Access: Published
+//  Description: Returns the surface normal of the plane.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_normal
+//       Access: Published
+//  Description: Returns the surface normal of the plane.
+////////////////////////////////////////////////////////////////////
+48
+inline LVector3d Planed::get_normal(void) const;
+
+244 9 get_point 4 348 17 Planed::get_point 0 1 29 381
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_point
+//       Access: Published
+//  Description: Returns an arbitrary point in the plane.  This can be
+//               used along with the normal returned by get_normal()
+//               to reconstruct the plane.
+////////////////////////////////////////////////////////////////////
+39
+LPoint3d Planed::get_point(void) const;
+
+245 13 dist_to_plane 4 348 21 Planed::dist_to_plane 0 1 30 1224
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::dist_to_plane
+//       Access: Published
+//  Description: Returns the straight-line shortest distance from the
+//               point to the plane.  The returned value is positive
+//               if the point is in front of the plane (on the side
+//               with the normal), or negative in the point is behind
+//               the plane (on the opposite side from the normal).
+//               It's zero if the point is exactly in the plane.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::dist_to_plane
+//       Access: Published
+//  Description: Returns the straight-line shortest distance from the
+//               point to the plane.  The returned value is positive
+//               if the point is in front of the plane (on the side
+//               with the normal), or negative in the point is behind
+//               the plane (on the opposite side from the normal).
+//               It's zero if the point is exactly in the plane.
+////////////////////////////////////////////////////////////////////
+65
+inline double Planed::dist_to_plane(LPoint3d const &point) const;
+
+246 7 project 4 348 15 Planed::project 0 1 31 614
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::project
+//       Access: Published
+//  Description: Returns the point within the plane nearest to the
+//               indicated point in space.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::project
+//       Access: Published
+//  Description: Returns the point within the plane nearest to the
+//               indicated point in space.
+////////////////////////////////////////////////////////////////////
+61
+inline LPoint3d Planed::project(LPoint3d const &point) const;
+
+247 15 intersects_line 4 348 23 Planed::intersects_line 0 1 32 3254
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: Returns true if the plane intersects the infinite
+//               line passing through points p1 and p2, false if the
+//               line is parallel.  The points p1 and p2 are used only
+//               to define the Euclidean line; they have no other
+//               bearing on the intersection test.  If true, sets
+//               intersection_point to the point of intersection.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: This flavor of intersects_line() returns a bit more
+//               information about the nature of the intersecting
+//               point.  The line is defined via the parametric
+//               equation from + t * delta for all real values of t.
+//
+//               If there is no intersection with the plane, the
+//               function returns false and leaves t undefined.  If
+//               there is an intersection with the plane, the function
+//               returns true and sets t to the parametric value that
+//               defines the point of intersection.  That is, t == 0.0f
+//               implies that the intersection occurred exactly at
+//               point from, and t == 1.0f implies at point from +
+//               delta, with other values of t accordingly.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: Returns true if the plane intersects the infinite
+//               line passing through points p1 and p2, false if the
+//               line is parallel.  The points p1 and p2 are used only
+//               to define the Euclidean line; they have no other
+//               bearing on the intersection test.  If true, sets
+//               intersection_point to the point of intersection.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: This flavor of intersects_line() returns a bit more
+//               information about the nature of the intersecting
+//               point.  The line is defined via the parametric
+//               equation from + t * delta for all real values of t.
+//
+//               If there is no intersection with the plane, the
+//               function returns false and leaves t undefined.  If
+//               there is an intersection with the plane, the function
+//               returns true and sets t to the parametric value that
+//               defines the point of intersection.  That is, t == 0.0f
+//               implies that the intersection occurred exactly at
+//               point from, and t == 1.0f implies at point from +
+//               delta, with other values of t accordingly.
+////////////////////////////////////////////////////////////////////
+112
+inline bool Planed::intersects_line(LPoint3d &intersection_point, LPoint3d const &p1, LPoint3d const &p2) const;
+
+248 16 intersects_plane 4 348 24 Planed::intersects_plane 0 1 33 588
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_plane
+//       Access: Published
+//  Description: Returns true if the two planes intersect, false if
+//               they do not.  If they do intersect, then from and
+//               delta are filled in with the parametric
+//               representation of the line of intersection: that is,
+//               from is a point on that line, and delta is a vector
+//               showing the direction of the line.
+////////////////////////////////////////////////////////////////////
+91
+bool Planed::intersects_plane(LPoint3d &from, LVector3d &delta, Planed const &other) const;
+
+249 6 output 4 348 14 Planed::output 0 1 34 212
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+void Planed::output(ostream &out) const;
+
+250 5 write 4 348 13 Planed::write 0 2 35 36 211
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::write
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+void Planed::write(ostream &out, int indent_level = (0)) const;
+
+251 7 ~Planed 4 348 15 Planed::~Planed 0 0 0
+22
+Planed::~Planed(void);
+
+252 6 Planef 4 350 14 Planef::Planef 0 5 37 38 39 40 41 2336
+// Filename: plane_src.I
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Creates a default plane.  This plane happens to
+//               intersect the origin, perpendicular to the Z axis.
+//               It's not clear how useful a default plane is.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given three counter-clockwise
+//               points, as seen from the front of the plane (that is,
+//               viewed from the end of the normal vector, looking
+//               down).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given a surface normal vector and
+//               a point within the plane.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Constructor
+//       Access: Published
+//  Description: Constructs a plane given the four terms of the plane
+//               equation.
+////////////////////////////////////////////////////////////////////
+28
+inline Planef::Planef(void);
+
+253 10 operator * 4 350 18 Planef::operator * 0 2 42 43 544
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix3
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator * LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+61
+inline Planef Planef::operator *(LMatrix3f const &mat) const;
+
+254 11 operator *= 4 350 19 Planef::operator *= 0 1 44 272
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::Operator *= LMatrix4
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+54
+inline void Planef::operator *=(LMatrix4f const &mat);
+
+255 5 xform 4 350 13 Planef::xform 0 1 45 257
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::xform
+//       Access: Published
+//  Description: Transforms the plane by the indicated matrix.
+////////////////////////////////////////////////////////////////////
+48
+inline void Planef::xform(LMatrix4f const &mat);
+
+256 10 operator - 68 350 18 Planef::operator - 0 1 46 0
+45
+inline Planef Planef::operator -(void) const;
+
+257 18 get_reflection_mat 4 350 26 Planef::get_reflection_mat 0 1 47 1041
+// Filename: plane_src.cxx
+// Created by:  drose (03Apr01)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_reflection_mat
+//       Access: Published
+//  Description: This computes a transform matrix that reflects the
+//               universe to the other side of the plane, as in a
+//               mirror.
+////////////////////////////////////////////////////////////////////
+49
+LMatrix4f Planef::get_reflection_mat(void) const;
+
+258 10 get_normal 4 350 18 Planef::get_normal 0 1 48 257
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_normal
+//       Access: Published
+//  Description: Returns the surface normal of the plane.
+////////////////////////////////////////////////////////////////////
+48
+inline LVector3f Planef::get_normal(void) const;
+
+259 9 get_point 4 350 17 Planef::get_point 0 1 49 381
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::get_point
+//       Access: Published
+//  Description: Returns an arbitrary point in the plane.  This can be
+//               used along with the normal returned by get_normal()
+//               to reconstruct the plane.
+////////////////////////////////////////////////////////////////////
+39
+LPoint3f Planef::get_point(void) const;
+
+260 13 dist_to_plane 4 350 21 Planef::dist_to_plane 0 1 50 611
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::dist_to_plane
+//       Access: Published
+//  Description: Returns the straight-line shortest distance from the
+//               point to the plane.  The returned value is positive
+//               if the point is in front of the plane (on the side
+//               with the normal), or negative in the point is behind
+//               the plane (on the opposite side from the normal).
+//               It's zero if the point is exactly in the plane.
+////////////////////////////////////////////////////////////////////
+64
+inline float Planef::dist_to_plane(LPoint3f const &point) const;
+
+261 7 project 4 350 15 Planef::project 0 1 51 306
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::project
+//       Access: Published
+//  Description: Returns the point within the plane nearest to the
+//               indicated point in space.
+////////////////////////////////////////////////////////////////////
+61
+inline LPoint3f Planef::project(LPoint3f const &point) const;
+
+262 15 intersects_line 4 350 23 Planef::intersects_line 0 1 52 1626
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: Returns true if the plane intersects the infinite
+//               line passing through points p1 and p2, false if the
+//               line is parallel.  The points p1 and p2 are used only
+//               to define the Euclidean line; they have no other
+//               bearing on the intersection test.  If true, sets
+//               intersection_point to the point of intersection.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_line
+//       Access: Published
+//  Description: This flavor of intersects_line() returns a bit more
+//               information about the nature of the intersecting
+//               point.  The line is defined via the parametric
+//               equation from + t * delta for all real values of t.
+//
+//               If there is no intersection with the plane, the
+//               function returns false and leaves t undefined.  If
+//               there is an intersection with the plane, the function
+//               returns true and sets t to the parametric value that
+//               defines the point of intersection.  That is, t == 0.0f
+//               implies that the intersection occurred exactly at
+//               point from, and t == 1.0f implies at point from +
+//               delta, with other values of t accordingly.
+////////////////////////////////////////////////////////////////////
+112
+inline bool Planef::intersects_line(LPoint3f &intersection_point, LPoint3f const &p1, LPoint3f const &p2) const;
+
+263 16 intersects_plane 4 350 24 Planef::intersects_plane 0 1 53 588
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::intersects_plane
+//       Access: Published
+//  Description: Returns true if the two planes intersect, false if
+//               they do not.  If they do intersect, then from and
+//               delta are filled in with the parametric
+//               representation of the line of intersection: that is,
+//               from is a point on that line, and delta is a vector
+//               showing the direction of the line.
+////////////////////////////////////////////////////////////////////
+91
+bool Planef::intersects_plane(LPoint3f &from, LVector3f &delta, Planef const &other) const;
+
+264 6 output 4 350 14 Planef::output 0 1 54 212
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+void Planef::output(ostream &out) const;
+
+265 5 write 4 350 13 Planef::write 0 2 55 56 211
+////////////////////////////////////////////////////////////////////
+//     Function: Plane::write
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+void Planef::write(ostream &out, int indent_level = (0)) const;
+
+266 7 ~Planef 4 350 15 Planef::~Planef 0 0 0
+22
+Planef::~Planef(void);
+
+267 9 make_copy 4 352 25 BoundingVolume::make_copy 0 1 57 0
+66
+virtual BoundingVolume *BoundingVolume::make_copy(void) const = 0;
+
+268 8 is_empty 4 352 24 BoundingVolume::is_empty 0 1 58 522
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::is_empty
+//       Access: Public
+//  Description: Any kind of volume might be empty.  This is a
+//               degenerate volume that contains no points; it's not
+//               the same as, for instance, a sphere with radius zero,
+//               since that contains one point (the center).  It
+//               intersects with no other volumes.
+////////////////////////////////////////////////////////////////////
+49
+inline bool BoundingVolume::is_empty(void) const;
+
+269 11 is_infinite 4 352 27 BoundingVolume::is_infinite 0 1 59 902
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::is_infinite
+//       Access: Public
+//  Description: The other side of the empty coin is an infinite
+//               volume.  This is a degenerate state of a normally
+//               finite volume that contains all points.  (Note that
+//               some kinds of infinite bounding volumes, like binary
+//               separating planes, do not contain all points and thus
+//               correctly return is_infinite() == false, even though
+//               they are technically infinite.  This is a special
+//               case of the word 'infinite' meaning the volume covers
+//               all points in space.)
+//
+//               It completely intersects with all other volumes
+//               except empty volumes.
+////////////////////////////////////////////////////////////////////
+52
+inline bool BoundingVolume::is_infinite(void) const;
+
+270 12 set_infinite 4 352 28 BoundingVolume::set_infinite 0 1 60 380
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::set_infinite
+//       Access: Public
+//  Description: Marks the volume as infinite, even if it is normally
+//               finite.  You can think of this as an infinite
+//               extend_by() operation.
+////////////////////////////////////////////////////////////////////
+47
+inline void BoundingVolume::set_infinite(void);
+
+271 9 extend_by 4 352 25 BoundingVolume::extend_by 0 1 61 300
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::extend_by
+//       Access: Public
+//  Description: Increases the size of the volume to include the given
+//               volume.
+////////////////////////////////////////////////////////////////////
+65
+inline bool BoundingVolume::extend_by(BoundingVolume const *vol);
+
+272 6 around 4 352 22 BoundingVolume::around 0 0 570
+// It might be nice to make these template member functions so we
+// could have true STL-style first/last iterators, but that's
+// impossible for virtual functions.
+
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::around
+//       Access: Public
+//  Description: Resets the volume to enclose only the volumes
+//               indicated.  Returns true if successful, false if the
+//               volume doesn't know how to do that or can't do that.
+////////////////////////////////////////////////////////////////////
+87
+bool BoundingVolume::around(BoundingVolume const **first, BoundingVolume const **last);
+
+273 8 contains 4 352 24 BoundingVolume::contains 0 1 62 369
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::contains
+//       Access: Public
+//  Description: Returns the appropriate set of IntersectionFlags to
+//               indicate the amount of intersection with the
+//               indicated volume.
+////////////////////////////////////////////////////////////////////
+69
+inline int BoundingVolume::contains(BoundingVolume const *vol) const;
+
+274 6 output 4 352 22 BoundingVolume::output 0 1 63 0
+60
+virtual void BoundingVolume::output(ostream &out) const = 0;
+
+275 5 write 4 352 21 BoundingVolume::write 0 2 64 65 217
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingVolume::write
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+79
+virtual void BoundingVolume::write(ostream &out, int indent_level = (0)) const;
+
+276 14 get_class_type 4 352 30 BoundingVolume::get_class_type 0 1 66 0
+55
+static TypeHandle BoundingVolume::get_class_type(void);
+
+277 15 ~BoundingVolume 4 352 31 BoundingVolume::~BoundingVolume 0 0 0
+38
+BoundingVolume::~BoundingVolume(void);
+
+278 9 extend_by 4 355 34 GeometricBoundingVolume::extend_by 0 2 67 68 619
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::extend_by
+//       Access: Public
+//  Description: Increases the size of the volume to include the given
+//               volume.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::extend_by
+//       Access: Public
+//  Description: Increases the size of the volume to include the given
+//               point.
+////////////////////////////////////////////////////////////////////
+83
+inline bool GeometricBoundingVolume::extend_by(GeometricBoundingVolume const *vol);
+
+279 6 around 4 355 31 GeometricBoundingVolume::around 0 1 69 769
+// It might be nice to make these template member functions so we
+// could have true STL-style first/last iterators, but that's
+// impossible for virtual functions.
+
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::around
+//       Access: Public
+//  Description: Resets the volume to enclose only the volumes
+//               indicated.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::around
+//       Access: Public
+//  Description: Resets the volume to enclose only the points
+//               indicated.
+////////////////////////////////////////////////////////////////////
+121
+inline bool GeometricBoundingVolume::around(GeometricBoundingVolume const **first, GeometricBoundingVolume const **last);
+
+280 8 contains 4 355 33 GeometricBoundingVolume::contains 0 3 70 71 72 1143
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::contains
+//       Access: Public
+//  Description: Returns the appropriate set of IntersectionFlags to
+//               indicate the amount of intersection with the
+//               indicated volume.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::contains
+//       Access: Public
+//  Description: Returns the appropriate set of IntersectionFlags to
+//               indicate the amount of intersection with the
+//               indicated point.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: GeometricBoundingVolume::contains
+//       Access: Public
+//  Description: Returns the appropriate set of IntersectionFlags to
+//               indicate the amount of intersection with the
+//               indicated line segment.
+////////////////////////////////////////////////////////////////////
+87
+inline int GeometricBoundingVolume::contains(GeometricBoundingVolume const *vol) const;
+
+281 17 get_approx_center 4 355 42 GeometricBoundingVolume::get_approx_center 0 1 73 0
+76
+virtual LPoint3f GeometricBoundingVolume::get_approx_center(void) const = 0;
+
+282 5 xform 4 355 30 GeometricBoundingVolume::xform 0 1 74 0
+70
+virtual void GeometricBoundingVolume::xform(LMatrix4f const &mat) = 0;
+
+283 14 get_class_type 4 355 39 GeometricBoundingVolume::get_class_type 0 1 75 0
+64
+static TypeHandle GeometricBoundingVolume::get_class_type(void);
+
+284 24 ~GeometricBoundingVolume 4 355 49 GeometricBoundingVolume::~GeometricBoundingVolume 0 0 0
+56
+GeometricBoundingVolume::~GeometricBoundingVolume(void);
+
+285 7 get_min 4 356 29 FiniteBoundingVolume::get_min 0 1 76 0
+63
+virtual LPoint3f FiniteBoundingVolume::get_min(void) const = 0;
+
+286 7 get_max 4 356 29 FiniteBoundingVolume::get_max 0 1 77 0
+63
+virtual LPoint3f FiniteBoundingVolume::get_max(void) const = 0;
+
+287 14 get_class_type 4 356 36 FiniteBoundingVolume::get_class_type 0 1 78 0
+61
+static TypeHandle FiniteBoundingVolume::get_class_type(void);
+
+288 21 ~FiniteBoundingVolume 4 356 43 FiniteBoundingVolume::~FiniteBoundingVolume 0 0 0
+50
+FiniteBoundingVolume::~FiniteBoundingVolume(void);
+
+289 12 BoundingLine 4 357 26 BoundingLine::BoundingLine 0 2 79 80 675
+// Filename: boundingLine.I
+// Created by:  drose (04Jul00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+40
+inline BoundingLine::BoundingLine(void);
+
+290 12 operator new 4 357 26 BoundingLine::operator new 0 1 81 0
+59
+inline void *BoundingLine::operator new(unsigned int size);
+
+291 15 operator delete 4 357 29 BoundingLine::operator delete 0 0 0
+53
+inline void BoundingLine::operator delete(void *ptr);
+
+292 11 get_point_a 4 357 25 BoundingLine::get_point_a 0 1 82 0
+61
+inline LPoint3f const &BoundingLine::get_point_a(void) const;
+
+293 11 get_point_b 4 357 25 BoundingLine::get_point_b 0 1 83 0
+54
+inline LPoint3f BoundingLine::get_point_b(void) const;
+
+294 14 get_class_type 4 357 28 BoundingLine::get_class_type 0 1 84 0
+53
+static TypeHandle BoundingLine::get_class_type(void);
+
+295 13 ~BoundingLine 4 357 27 BoundingLine::~BoundingLine 0 0 0
+34
+BoundingLine::~BoundingLine(void);
+
+296 13 BoundingPlane 4 358 28 BoundingPlane::BoundingPlane 0 2 85 86 1210
+// Filename: boundingPlane.I
+// Created by:  drose (19Aug05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingPlane::Default Constructor
+//       Access: Published
+//  Description: Constructs an empty "plane" that has no
+//               intersections.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingPlane::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+42
+inline BoundingPlane::BoundingPlane(void);
+
+297 12 operator new 4 358 27 BoundingPlane::operator new 0 1 87 0
+60
+inline void *BoundingPlane::operator new(unsigned int size);
+
+298 15 operator delete 4 358 30 BoundingPlane::operator delete 0 0 0
+54
+inline void BoundingPlane::operator delete(void *ptr);
+
+299 9 get_plane 4 358 24 BoundingPlane::get_plane 0 1 88 224
+////////////////////////////////////////////////////////////////////
+//     Function: BoundingPlane::get_plane
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+58
+inline Planef const &BoundingPlane::get_plane(void) const;
+
+300 14 get_class_type 4 358 29 BoundingPlane::get_class_type 0 1 89 0
+54
+static TypeHandle BoundingPlane::get_class_type(void);
+
+301 14 ~BoundingPlane 4 358 29 BoundingPlane::~BoundingPlane 0 0 0
+36
+BoundingPlane::~BoundingPlane(void);
+
+302 14 BoundingSphere 4 359 30 BoundingSphere::BoundingSphere 0 2 90 91 677
+// Filename: boundingSphere.I
+// Created by:  drose (02Oct99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+44
+inline BoundingSphere::BoundingSphere(void);
+
+303 12 operator new 4 359 28 BoundingSphere::operator new 0 1 92 0
+61
+inline void *BoundingSphere::operator new(unsigned int size);
+
+304 15 operator delete 4 359 31 BoundingSphere::operator delete 0 0 0
+55
+inline void BoundingSphere::operator delete(void *ptr);
+
+305 10 get_center 4 359 26 BoundingSphere::get_center 0 1 93 0
+62
+inline LPoint3f const &BoundingSphere::get_center(void) const;
+
+306 10 get_radius 4 359 26 BoundingSphere::get_radius 0 1 94 0
+52
+inline float BoundingSphere::get_radius(void) const;
+
+307 14 get_class_type 4 359 30 BoundingSphere::get_class_type 0 1 95 0
+55
+static TypeHandle BoundingSphere::get_class_type(void);
+
+308 15 ~BoundingSphere 4 359 31 BoundingSphere::~BoundingSphere 0 0 0
+38
+BoundingSphere::~BoundingSphere(void);
+
+309 8 heads_up 1 0 8 heads_up 0 24 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 0
+120
+void heads_up(LMatrix3f &mat, LVector3f const &fwd, LVector3f const &up = ((up())), CoordinateSystem cs = (CS_default));
+
+310 7 look_at 1 0 7 look_at 0 24 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 0
+119
+void look_at(LMatrix3f &mat, LVector3f const &fwd, LVector3f const &up = ((up())), CoordinateSystem cs = (CS_default));
+
+311 8 Mersenne 4 360 18 Mersenne::Mersenne 0 1 96 35
+/* initializes mt[N] with a seed */
+43
+Mersenne::Mersenne(unsigned long int seed);
+
+312 10 get_uint31 4 360 20 Mersenne::get_uint31 0 1 97 58
+/* generates a random number on [0,0x7fffffff]-interval */
+45
+unsigned long int Mersenne::get_uint31(void);
+
+313 9 ~Mersenne 4 360 19 Mersenne::~Mersenne 0 0 0
+26
+Mersenne::~Mersenne(void);
+
+314 18 OmniBoundingVolume 4 361 38 OmniBoundingVolume::OmniBoundingVolume 0 1 98 909
+// Filename: omniBoundingVolume.I
+// Created by:  drose (22Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: OmniBoundingVolume::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+52
+inline OmniBoundingVolume::OmniBoundingVolume(void);
+
+315 14 get_class_type 4 361 34 OmniBoundingVolume::get_class_type 0 1 99 0
+59
+static TypeHandle OmniBoundingVolume::get_class_type(void);
+
+316 19 ~OmniBoundingVolume 4 361 39 OmniBoundingVolume::~OmniBoundingVolume 0 0 0
+46
+OmniBoundingVolume::~OmniBoundingVolume(void);
+
+317 8 get_seed 4 362 21 PerlinNoise::get_seed 0 1 100 368
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise::get_seed
+//       Access: Published
+//  Description: Returns a unique seed value based on the seed value
+//               passed to this PerlinNoise object (and on its current
+//               state).
+////////////////////////////////////////////////////////////////////
+53
+inline unsigned long int PerlinNoise::get_seed(void);
+
+318 12 ~PerlinNoise 4 362 25 PerlinNoise::~PerlinNoise 0 0 0
+32
+PerlinNoise::~PerlinNoise(void);
+
+319 12 PerlinNoise2 4 363 26 PerlinNoise2::PerlinNoise2 0 5 101 102 103 104 105 1821
+// Filename: perlinNoise2.I
+// Created by:  drose (05Oct05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::Default Constructor
+//       Access: Published
+//  Description: Randomizes the tables to make a unique noise
+//               function.  Uses a default scale (noise frequency),
+//               table size, and seed.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::Constructor
+//       Access: Published
+//  Description: Randomizes the tables to make a unique noise
+//               function.
+//
+//               If seed is nonzero, it is used to define the tables;
+//               if it is zero a random seed is generated.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::Copy Constructor
+//       Access: Published
+//  Description: Makes an exact copy of the existing PerlinNoise
+//               object, including its random seed.
+////////////////////////////////////////////////////////////////////
+40
+inline PerlinNoise2::PerlinNoise2(void);
+
+320 10 operator = 4 363 24 PerlinNoise2::operator = 0 1 106 337
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::Copy Assignment Operator
+//       Access: Published
+//  Description: Makes an exact copy of the existing PerlinNoise
+//               object, including its random seed.
+////////////////////////////////////////////////////////////////////
+63
+inline void PerlinNoise2::operator =(PerlinNoise2 const &copy);
+
+321 9 set_scale 4 363 23 PerlinNoise2::set_scale 0 4 107 108 109 110 1070
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+50
+inline void PerlinNoise2::set_scale(double scale);
+
+322 5 noise 4 363 19 PerlinNoise2::noise 0 3 111 112 113 802
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+60
+inline double PerlinNoise2::noise(double x, double y) const;
+
+323 11 operator () 4 363 25 PerlinNoise2::operator () 0 3 114 115 116 802
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::operator ()
+//       Access: Published
+//  Description: Returns the noise function of the two inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the two inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the two inputs.
+////////////////////////////////////////////////////////////////////
+66
+inline double PerlinNoise2::operator ()(double x, double y) const;
+
+324 13 ~PerlinNoise2 4 363 27 PerlinNoise2::~PerlinNoise2 0 0 0
+34
+PerlinNoise2::~PerlinNoise2(void);
+
+325 12 PerlinNoise3 4 364 26 PerlinNoise3::PerlinNoise3 0 5 117 118 119 120 121 1821
+// Filename: perlinNoise3.I
+// Created by:  drose (05Oct05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::Default Constructor
+//       Access: Published
+//  Description: Randomizes the tables to make a unique noise
+//               function.  Uses a default scale (noise frequency),
+//               table size, and seed.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::Constructor
+//       Access: Published
+//  Description: Randomizes the tables to make a unique noise
+//               function.
+//
+//               If seed is nonzero, it is used to define the tables;
+//               if it is zero a random seed is generated.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::Copy Constructor
+//       Access: Published
+//  Description: Makes an exact copy of the existing PerlinNoise
+//               object, including its random seed.
+////////////////////////////////////////////////////////////////////
+40
+inline PerlinNoise3::PerlinNoise3(void);
+
+326 10 operator = 4 364 24 PerlinNoise3::operator = 0 1 122 337
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::Copy Assignment Operator
+//       Access: Published
+//  Description: Makes an exact copy of the existing PerlinNoise
+//               object, including its random seed.
+////////////////////////////////////////////////////////////////////
+63
+inline void PerlinNoise3::operator =(PerlinNoise3 const &copy);
+
+327 9 set_scale 4 364 23 PerlinNoise3::set_scale 0 4 123 124 125 126 1070
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::set_scale
+//       Access: Published
+//  Description: Changes the scale (frequency) of the noise.
+////////////////////////////////////////////////////////////////////
+50
+inline void PerlinNoise3::set_scale(double scale);
+
+328 5 noise 4 364 19 PerlinNoise3::noise 0 3 127 128 129 802
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+70
+inline double PerlinNoise3::noise(double x, double y, double z) const;
+
+329 11 operator () 4 364 25 PerlinNoise3::operator () 0 3 130 131 132 808
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::operator ()
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+76
+inline double PerlinNoise3::operator ()(double x, double y, double z) const;
+
+330 13 ~PerlinNoise3 4 364 27 PerlinNoise3::~PerlinNoise3 0 0 0
+34
+PerlinNoise3::~PerlinNoise3(void);
+
+331 9 rotate_to 1 0 9 rotate_to 0 4 217 218 219 220 0
+71
+void rotate_to(LMatrix3f &mat, LVector3f const &a, LVector3f const &b);
+
+332 19 StackedPerlinNoise2 4 365 40 StackedPerlinNoise2::StackedPerlinNoise2 0 8 133 134 135 136 137 138 139 140 2053
+// Filename: stackedPerlinNoise2.I
+// Created by:  drose (05Oct05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::Default Constructor
+//       Access: Published
+//  Description: Creates a StackedPerlinNoise2 object with no levels.
+//               You should call add_level() to add each level by
+//               hand.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::Constructor
+//       Access: Published
+//  Description: Creates num_levels nested PerlinNoise2 objects.  Each
+//               stacked Perlin object will have a scale of 1 /
+//               scale_factor times the previous object (so that it is
+//               higher-frequency, if scale_factor > 1), and an
+//               amplitude of amp_scale times the previous object (so
+//               that it is less important, if amp_scale < 1).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::Copy Constructor
+//       Access: Published
+//  Description: Creates an exact duplicate of the existing
+//               StackedPerlinNoise2 object, including the random
+//               seed.
+////////////////////////////////////////////////////////////////////
+54
+inline StackedPerlinNoise2::StackedPerlinNoise2(void);
+
+333 10 operator = 4 365 31 StackedPerlinNoise2::operator = 0 1 141 376
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::Copy Assignment Operator
+//       Access: Published
+//  Description: Creates an exact duplicate of the existing
+//               StackedPerlinNoise2 object, including the random
+//               seed.
+////////////////////////////////////////////////////////////////////
+70
+void StackedPerlinNoise2::operator =(StackedPerlinNoise2 const &copy);
+
+334 9 add_level 4 365 30 StackedPerlinNoise2::add_level 0 2 142 143 328
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::add_level
+//       Access: Published
+//  Description: Adds an arbitrary PerlinNoise2 object, and an
+//               associated amplitude, to the stack.
+////////////////////////////////////////////////////////////////////
+81
+void StackedPerlinNoise2::add_level(PerlinNoise2 const &level, double amp = (1));
+
+335 5 clear 4 365 26 StackedPerlinNoise2::clear 0 1 144 327
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::clear
+//       Access: Published
+//  Description: Removes all levels from the stack.  You must call
+//               add_level() again to restore them.
+////////////////////////////////////////////////////////////////////
+38
+void StackedPerlinNoise2::clear(void);
+
+336 5 noise 4 365 26 StackedPerlinNoise2::noise 0 3 145 146 147 823
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+61
+inline double StackedPerlinNoise2::noise(double x, double y);
+
+337 11 operator () 4 365 32 StackedPerlinNoise2::operator () 0 3 148 149 150 829
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::operator ()
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise2::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+67
+inline double StackedPerlinNoise2::operator ()(double x, double y);
+
+338 20 ~StackedPerlinNoise2 4 365 41 StackedPerlinNoise2::~StackedPerlinNoise2 0 0 0
+48
+StackedPerlinNoise2::~StackedPerlinNoise2(void);
+
+339 19 StackedPerlinNoise3 4 366 40 StackedPerlinNoise3::StackedPerlinNoise3 0 8 151 152 153 154 155 156 157 158 2053
+// Filename: stackedPerlinNoise3.I
+// Created by:  drose (05Oct05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::Default Constructor
+//       Access: Published
+//  Description: Creates a StackedPerlinNoise3 object with no levels.
+//               You should call add_level() to add each level by
+//               hand.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::Constructor
+//       Access: Published
+//  Description: Creates num_levels nested PerlinNoise3 objects.  Each
+//               stacked Perlin object will have a scale of 1 /
+//               scale_factor times the previous object (so that it is
+//               higher-frequency, if scale_factor > 1), and an
+//               amplitude of amp_scale times the previous object (so
+//               that it is less important, if amp_scale < 1).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::Copy Constructor
+//       Access: Published
+//  Description: Creates an exact duplicate of the existing
+//               StackedPerlinNoise3 object, including the random
+//               seed.
+////////////////////////////////////////////////////////////////////
+54
+inline StackedPerlinNoise3::StackedPerlinNoise3(void);
+
+340 10 operator = 4 366 31 StackedPerlinNoise3::operator = 0 1 159 376
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::Copy Assignment Operator
+//       Access: Published
+//  Description: Creates an exact duplicate of the existing
+//               StackedPerlinNoise3 object, including the random
+//               seed.
+////////////////////////////////////////////////////////////////////
+70
+void StackedPerlinNoise3::operator =(StackedPerlinNoise3 const &copy);
+
+341 9 add_level 4 366 30 StackedPerlinNoise3::add_level 0 2 160 161 328
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::add_level
+//       Access: Published
+//  Description: Adds an arbitrary PerlinNoise3 object, and an
+//               associated amplitude, to the stack.
+////////////////////////////////////////////////////////////////////
+81
+void StackedPerlinNoise3::add_level(PerlinNoise3 const &level, double amp = (1));
+
+342 5 clear 4 366 26 StackedPerlinNoise3::clear 0 1 162 327
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::clear
+//       Access: Published
+//  Description: Removes all levels from the stack.  You must call
+//               add_level() again to restore them.
+////////////////////////////////////////////////////////////////////
+38
+void StackedPerlinNoise3::clear(void);
+
+343 5 noise 4 366 26 StackedPerlinNoise3::noise 0 3 163 164 165 823
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+71
+inline double StackedPerlinNoise3::noise(double x, double y, double z);
+
+344 11 operator () 4 366 32 StackedPerlinNoise3::operator () 0 3 166 167 168 829
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::operator ()
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StackedPerlinNoise3::noise
+//       Access: Published
+//  Description: Returns the noise function of the three inputs.
+////////////////////////////////////////////////////////////////////
+77
+inline double StackedPerlinNoise3::operator ()(double x, double y, double z);
+
+345 20 ~StackedPerlinNoise3 4 366 41 StackedPerlinNoise3::~StackedPerlinNoise3 0 0 0
+48
+StackedPerlinNoise3::~StackedPerlinNoise3(void);
+
+220
+1 14 Dtool_SkjP9ko_ 7 2 367 228 14 Dtool_SkjP9ko_ 0 
+2 14 Dtool_SkjPFiT5 4 3 368 0 14 Dtool_SkjPFiT5 1 4 this 3 367  
+3 14 Dtool_SkjPPyqK 4 3 368 0 14 Dtool_SkjPPyqK 5 4 this 3 367  1 l 1 369  1 r 1 369  1 t 1 369  1 b 1 369  
+4 14 Dtool_SkjPoaj7 4 4 368 0 14 Dtool_SkjPoaj7 3 4 this 3 367  5 fnear 1 369  4 ffar 1 369  
+5 14 Dtool_SkjPBpZ4 4 4 368 0 14 Dtool_SkjPBpZ4 7 4 this 3 367  5 fnear 1 369  4 ffar 1 369  1 l 1 369  1 r 1 369  1 t 1 369  1 b 1 369  
+6 14 Dtool_SkjPWxk6 4 5 368 0 14 Dtool_SkjPWxk6 5 4 this 3 367  4 xfov 1 369  6 aspect 1 369  5 fnear 1 369  4 ffar 1 369  
+7 14 Dtool_SkjPNz0m 4 6 368 0 14 Dtool_SkjPNz0m 5 4 this 3 367  4 yfov 1 369  6 aspect 1 369  5 fnear 1 369  4 ffar 1 369  
+8 14 Dtool_SkjP7tfK 4 7 368 0 14 Dtool_SkjP7tfK 5 4 this 3 367  4 xfov 1 369  4 yfov 1 369  5 fnear 1 369  4 ffar 1 369  
+9 14 Dtool_SkjPykLF 7 11 370 236 14 Dtool_SkjPykLF 0 
+10 14 Dtool_SkjPHiaH 4 12 368 0 14 Dtool_SkjPHiaH 1 4 this 3 370  
+11 14 Dtool_SkjPRDrY 4 12 368 0 14 Dtool_SkjPRDrY 5 4 this 3 370  1 l 1 371  1 r 1 371  1 t 1 371  1 b 1 371  
+12 14 Dtool_SkjPssCo 4 13 368 0 14 Dtool_SkjPssCo 3 4 this 3 370  5 fnear 1 371  4 ffar 1 371  
+13 14 Dtool_SkjPHulf 4 13 368 0 14 Dtool_SkjPHulf 7 4 this 3 370  5 fnear 1 371  4 ffar 1 371  1 l 1 371  1 r 1 371  1 t 1 371  1 b 1 371  
+14 14 Dtool_SkjPcYOF 4 14 368 0 14 Dtool_SkjPcYOF 5 4 this 3 370  4 xfov 1 371  6 aspect 1 371  5 fnear 1 371  4 ffar 1 371  
+15 14 Dtool_SkjPUaex 4 15 368 0 14 Dtool_SkjPUaex 5 4 this 3 370  4 yfov 1 371  6 aspect 1 371  5 fnear 1 371  4 ffar 1 371  
+16 14 Dtool_SkjP7E42 4 16 368 0 14 Dtool_SkjP7E42 5 4 this 3 370  4 xfov 1 371  4 yfov 1 371  5 fnear 1 371  4 ffar 1 371  
+17 14 Dtool_SkjPnOXP 7 21 372 251 14 Dtool_SkjPnOXP 0 
+18 14 Dtool_SkjPgIG8 7 21 372 251 14 Dtool_SkjPgIG8 3 1 a 1 373  1 b 1 373  1 c 1 373  
+19 14 Dtool_SkjPIv1H 7 21 372 251 14 Dtool_SkjPIv1H 1 4 copy 1 376  
+20 14 Dtool_SkjPB10l 7 21 372 251 14 Dtool_SkjPB10l 2 6 normal 1 378  5 point 1 373  
+21 14 Dtool_SkjP6cFb 7 21 372 251 14 Dtool_SkjP6cFb 4 1 a 1 369  1 b 1 369  1 c 1 369  1 d 1 369  
+22 14 Dtool_SkjPVTn3 7 22 372 251 14 Dtool_SkjPVTn3 2 4 this 3 381  3 mat 1 383  
+23 14 Dtool_SkjPUDJL 7 22 372 251 14 Dtool_SkjPUDJL 2 4 this 3 381  3 mat 1 386  
+24 14 Dtool_SkjPULsd 6 23 372 0 14 Dtool_SkjPULsd 2 4 this 3 372  3 mat 1 386  
+25 14 Dtool_SkjPgovA 4 24 368 0 14 Dtool_SkjPgovA 2 4 this 3 372  3 mat 1 386  
+26 14 Dtool_SkjPsBIL 7 25 372 251 14 Dtool_SkjPsBIL 1 4 this 3 381  
+27 14 Dtool_SkjPz5g3 7 26 389 0 14 Dtool_SkjPz5g3 1 4 this 3 381  
+28 14 Dtool_SkjP4OIM 7 27 390 0 14 Dtool_SkjP4OIM 1 4 this 3 381  
+29 14 Dtool_SkjPNQrN 7 28 391 0 14 Dtool_SkjPNQrN 1 4 this 3 381  
+30 14 Dtool_SkjPKgCi 6 29 369 0 14 Dtool_SkjPKgCi 2 4 this 3 381  5 point 1 373  
+31 14 Dtool_SkjPStKr 7 30 391 0 14 Dtool_SkjPStKr 2 4 this 3 381  5 point 1 373  
+32 14 Dtool_SkjPzf1l 6 31 392 0 14 Dtool_SkjPzf1l 4 4 this 3 381  18 intersection_point 1 391  2 p1 1 373  2 p2 1 373  
+33 14 Dtool_SkjPEkbi 6 32 392 0 14 Dtool_SkjPEkbi 4 4 this 3 381  4 from 1 391  5 delta 1 390  5 other 1 381  
+34 14 Dtool_SkjPxytW 4 33 368 0 14 Dtool_SkjPxytW 2 4 this 3 381  3 out 1 393  
+35 14 Dtool_SkjPkL9K 4 34 368 0 14 Dtool_SkjPkL9K 3 4 this 3 381  3 out 1 393  12 indent_level 1 395  
+36 14 Dtool_SkjP8yXN 4 34 368 0 14 Dtool_SkjP8yXN 2 4 this 3 381  3 out 1 393  
+37 14 Dtool_SkjPN3bW 7 38 396 266 14 Dtool_SkjPN3bW 0 
+38 14 Dtool_SkjPgFjF 7 38 396 266 14 Dtool_SkjPgFjF 3 1 a 1 397  1 b 1 397  1 c 1 397  
+39 14 Dtool_SkjPc48O 7 38 396 266 14 Dtool_SkjPc48O 1 4 copy 1 400  
+40 14 Dtool_SkjPEC54 7 38 396 266 14 Dtool_SkjPEC54 2 6 normal 1 402  5 point 1 397  
+41 14 Dtool_SkjPIw6g 7 38 396 266 14 Dtool_SkjPIw6g 4 1 a 1 371  1 b 1 371  1 c 1 371  1 d 1 371  
+42 14 Dtool_SkjPVdcZ 7 39 396 266 14 Dtool_SkjPVdcZ 2 4 this 3 405  3 mat 1 407  
+43 14 Dtool_SkjPVN_s 7 39 396 266 14 Dtool_SkjPVN_s 2 4 this 3 405  3 mat 1 410  
+44 14 Dtool_SkjPB0wV 6 40 396 0 14 Dtool_SkjPB0wV 2 4 this 3 396  3 mat 1 410  
+45 14 Dtool_SkjP3gqx 4 41 368 0 14 Dtool_SkjP3gqx 2 4 this 3 396  3 mat 1 410  
+46 14 Dtool_SkjPQINL 7 42 396 266 14 Dtool_SkjPQINL 1 4 this 3 405  
+47 14 Dtool_SkjPX_l3 7 43 413 0 14 Dtool_SkjPX_l3 1 4 this 3 405  
+48 14 Dtool_SkjPUHNM 7 44 414 0 14 Dtool_SkjPUHNM 1 4 this 3 405  
+49 14 Dtool_SkjPpIwN 7 45 415 0 14 Dtool_SkjPpIwN 1 4 this 3 405  
+50 14 Dtool_SkjPyRLi 6 46 371 0 14 Dtool_SkjPyRLi 2 4 this 3 405  5 point 1 397  
+51 14 Dtool_SkjP_KOH 7 47 415 0 14 Dtool_SkjP_KOH 2 4 this 3 405  5 point 1 397  
+52 14 Dtool_SkjP7eH0 6 48 392 0 14 Dtool_SkjP7eH0 4 4 this 3 405  18 intersection_point 1 415  2 p1 1 397  2 p2 1 397  
+53 14 Dtool_SkjPP8pH 6 49 392 0 14 Dtool_SkjPP8pH 4 4 this 3 405  4 from 1 415  5 delta 1 414  5 other 1 405  
+54 14 Dtool_SkjPt6yW 4 50 368 0 14 Dtool_SkjPt6yW 2 4 this 3 405  3 out 1 393  
+55 14 Dtool_SkjP4DCL 4 51 368 0 14 Dtool_SkjP4DCL 3 4 this 3 405  3 out 1 393  12 indent_level 1 395  
+56 14 Dtool_SkjPYLcN 4 51 368 0 14 Dtool_SkjPYLcN 2 4 this 3 405  3 out 1 393  
+57 14 Dtool_SkjPi4zP 7 55 418 277 14 Dtool_SkjPi4zP 1 4 this 3 416  
+58 14 Dtool_SkjPVfqL 6 56 392 0 14 Dtool_SkjPVfqL 1 4 this 3 416  
+59 14 Dtool_SkjPFsFC 6 57 392 0 14 Dtool_SkjPFsFC 1 4 this 3 416  
+60 14 Dtool_SkjPD2hm 4 58 368 0 14 Dtool_SkjPD2hm 1 4 this 3 418  
+61 14 Dtool_SkjPARix 6 59 392 0 14 Dtool_SkjPARix 2 4 this 3 418  3 vol 1 416  
+62 14 Dtool_SkjPdpPR 6 62 395 0 14 Dtool_SkjPdpPR 2 4 this 3 416  3 vol 1 416  
+63 14 Dtool_SkjPQbvQ 4 63 368 0 14 Dtool_SkjPQbvQ 2 4 this 3 416  3 out 1 393  
+64 14 Dtool_SkjPJz6_ 4 64 368 0 14 Dtool_SkjPJz6_ 3 4 this 3 416  3 out 1 393  12 indent_level 1 395  
+65 14 Dtool_SkjPZ2qR 4 64 368 0 14 Dtool_SkjPZ2qR 2 4 this 3 416  3 out 1 393  
+66 14 Dtool_SkjPrfVo 7 65 420 0 14 Dtool_SkjPrfVo 0 
+67 14 Dtool_SkjPzZa3 6 68 392 0 14 Dtool_SkjPzZa3 2 4 this 3 421  3 vol 1 422  
+68 14 Dtool_SkjP5ZtT 6 68 392 0 14 Dtool_SkjP5ZtT 2 4 this 3 421  5 point 1 397  
+69 14 Dtool_SkjPdv6k 6 69 392 0 14 Dtool_SkjPdv6k 3 4 this 3 421  5 first 1 397  4 last 1 397  
+70 14 Dtool_SkjPB8A3 6 70 395 0 14 Dtool_SkjPB8A3 2 4 this 3 422  3 vol 1 422  
+71 14 Dtool_SkjPEncR 6 70 395 0 14 Dtool_SkjPEncR 2 4 this 3 422  5 point 1 397  
+72 14 Dtool_SkjP0SwX 6 70 395 0 14 Dtool_SkjP0SwX 3 4 this 3 422  1 a 1 397  1 b 1 397  
+73 14 Dtool_SkjPGh7m 7 71 415 0 14 Dtool_SkjPGh7m 1 4 this 3 422  
+74 14 Dtool_SkjPIb98 4 72 368 0 14 Dtool_SkjPIb98 2 4 this 3 421  3 mat 1 410  
+75 14 Dtool_SkjPB1fo 7 73 420 0 14 Dtool_SkjPB1fo 0 
+76 14 Dtool_SkjPhQ34 7 76 415 0 14 Dtool_SkjPhQ34 1 4 this 3 424  
+77 14 Dtool_SkjPaM3J 7 77 415 0 14 Dtool_SkjPaM3J 1 4 this 3 424  
+78 14 Dtool_SkjPITxA 7 78 420 0 14 Dtool_SkjPITxA 0 
+79 14 Dtool_SkjPHsL1 7 81 426 295 14 Dtool_SkjPHsL1 0 
+80 14 Dtool_SkjPAR_R 7 81 426 295 14 Dtool_SkjPAR_R 2 1 a 1 397  1 b 1 397  
+81 14 Dtool_SkjPtKOi 4 82 368 0 14 Dtool_SkjPtKOi 2 4 this 3 426  4 size 1 427  
+82 14 Dtool_SkjPRIF_ 6 84 397 0 14 Dtool_SkjPRIF_ 1 4 this 3 428  
+83 14 Dtool_SkjPI2G_ 7 85 415 0 14 Dtool_SkjPI2G_ 1 4 this 3 428  
+84 14 Dtool_SkjPmcUv 7 86 420 0 14 Dtool_SkjPmcUv 0 
+85 14 Dtool_SkjPwCTi 7 89 430 301 14 Dtool_SkjPwCTi 0 
+86 14 Dtool_SkjPiCf4 7 89 430 301 14 Dtool_SkjPiCf4 1 5 plane 1 405  
+87 14 Dtool_SkjP7Vwa 4 90 368 0 14 Dtool_SkjP7Vwa 2 4 this 3 430  4 size 1 427  
+88 14 Dtool_SkjPMOJy 6 92 405 0 14 Dtool_SkjPMOJy 1 4 this 3 431  
+89 14 Dtool_SkjPPW_8 7 93 420 0 14 Dtool_SkjPPW_8 0 
+90 14 Dtool_SkjPqeoF 7 96 433 308 14 Dtool_SkjPqeoF 0 
+91 14 Dtool_SkjPX3ZH 7 96 433 308 14 Dtool_SkjPX3ZH 2 6 center 1 397  6 radius 1 371  
+92 14 Dtool_SkjPXC2T 4 97 368 0 14 Dtool_SkjPXC2T 2 4 this 3 433  4 size 1 427  
+93 14 Dtool_SkjPzKph 6 99 397 0 14 Dtool_SkjPzKph 1 4 this 3 434  
+94 14 Dtool_SkjPyYsx 6 100 371 0 14 Dtool_SkjPyYsx 1 4 this 3 434  
+95 14 Dtool_SkjPwySa 7 101 420 0 14 Dtool_SkjPwySa 0 
+96 14 Dtool_SkjPllv3 7 106 437 313 14 Dtool_SkjPllv3 1 4 seed 1 436  
+97 14 Dtool_SkjPBSDv 6 107 436 0 14 Dtool_SkjPBSDv 1 4 this 3 437  
+98 14 Dtool_SkjPRdBj 7 110 438 316 14 Dtool_SkjPRdBj 0 
+99 14 Dtool_SkjPbPVO 7 111 420 0 14 Dtool_SkjPbPVO 0 
+100 14 Dtool_SkjPB_ig 6 114 436 0 14 Dtool_SkjPB_ig 1 4 this 3 439  
+101 14 Dtool_SkjPv6cm 7 117 440 324 14 Dtool_SkjPv6cm 0 
+102 14 Dtool_SkjPsfkp 7 117 440 324 14 Dtool_SkjPsfkp 1 4 copy 1 441  
+103 14 Dtool_SkjPGeIA 7 117 440 324 14 Dtool_SkjPGeIA 4 2 sx 1 369  2 sy 1 369  10 table_size 1 395  4 seed 1 436  
+104 14 Dtool_SkjP9P5z 7 117 440 324 14 Dtool_SkjP9P5z 3 2 sx 1 369  2 sy 1 369  10 table_size 1 395  
+105 14 Dtool_SkjPCOIG 7 117 440 324 14 Dtool_SkjPCOIG 2 2 sx 1 369  2 sy 1 369  
+106 14 Dtool_SkjPM_IZ 6 118 440 0 14 Dtool_SkjPM_IZ 2 4 this 3 440  4 copy 1 441  
+107 14 Dtool_SkjPg7Cf 4 119 368 0 14 Dtool_SkjPg7Cf 2 4 this 3 440  5 scale 1 443  
+108 14 Dtool_SkjPGuCP 4 119 368 0 14 Dtool_SkjPGuCP 2 4 this 3 440  5 scale 1 446  
+109 14 Dtool_SkjPBSzQ 4 119 368 0 14 Dtool_SkjPBSzQ 2 4 this 3 440  5 scale 1 369  
+110 14 Dtool_SkjPgNGr 4 119 368 0 14 Dtool_SkjPgNGr 3 4 this 3 440  2 sx 1 369  2 sy 1 369  
+111 14 Dtool_SkjP5PlC 6 120 369 0 14 Dtool_SkjP5PlC 2 4 this 3 441  5 value 1 443  
+112 14 Dtool_SkjPdIqC 6 120 371 0 14 Dtool_SkjPdIqC 2 4 this 3 441  5 value 1 446  
+113 14 Dtool_SkjPPCI3 6 120 369 0 14 Dtool_SkjPPCI3 3 4 this 3 441  1 x 1 369  1 y 1 369  
+114 14 Dtool_SkjPJm1a 6 121 369 0 14 Dtool_SkjPJm1a 2 4 this 3 441  5 value 1 443  
+115 14 Dtool_SkjPJCuf 6 121 371 0 14 Dtool_SkjPJCuf 2 4 this 3 441  5 value 1 446  
+116 14 Dtool_SkjPEAH_ 6 121 369 0 14 Dtool_SkjPEAH_ 3 4 this 3 441  1 x 1 369  1 y 1 369  
+117 14 Dtool_SkjPPLfp 7 124 449 330 14 Dtool_SkjPPLfp 0 
+118 14 Dtool_SkjPukoc 7 124 449 330 14 Dtool_SkjPukoc 1 4 copy 1 450  
+119 14 Dtool_SkjP58i2 7 124 449 330 14 Dtool_SkjP58i2 5 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 table_size 1 395  4 seed 1 436  
+120 14 Dtool_SkjPXjDy 7 124 449 330 14 Dtool_SkjPXjDy 4 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 table_size 1 395  
+121 14 Dtool_SkjPBU40 7 124 449 330 14 Dtool_SkjPBU40 3 2 sx 1 369  2 sy 1 369  2 sz 1 369  
+122 14 Dtool_SkjPNxrp 6 125 449 0 14 Dtool_SkjPNxrp 2 4 this 3 449  4 copy 1 450  
+123 14 Dtool_SkjP0JOD 4 126 368 0 14 Dtool_SkjP0JOD 2 4 this 3 449  5 scale 1 452  
+124 14 Dtool_SkjPrdOz 4 126 368 0 14 Dtool_SkjPrdOz 2 4 this 3 449  5 scale 1 455  
+125 14 Dtool_SkjPBcPT 4 126 368 0 14 Dtool_SkjPBcPT 2 4 this 3 449  5 scale 1 369  
+126 14 Dtool_SkjPTM4f 4 126 368 0 14 Dtool_SkjPTM4f 4 4 this 3 449  2 sx 1 369  2 sy 1 369  2 sz 1 369  
+127 14 Dtool_SkjPxYBh 6 127 369 0 14 Dtool_SkjPxYBh 2 4 this 3 450  5 value 1 452  
+128 14 Dtool_SkjPVTGh 6 127 371 0 14 Dtool_SkjPVTGh 2 4 this 3 450  5 value 1 455  
+129 14 Dtool_SkjPsWEW 6 127 369 0 14 Dtool_SkjPsWEW 4 4 this 3 450  1 x 1 369  1 y 1 369  1 z 1 369  
+130 14 Dtool_SkjP18Wd 6 128 369 0 14 Dtool_SkjP18Wd 2 4 this 3 450  5 value 1 452  
+131 14 Dtool_SkjP1YPi 6 128 371 0 14 Dtool_SkjP1YPi 2 4 this 3 450  5 value 1 455  
+132 14 Dtool_SkjP_joi 6 128 369 0 14 Dtool_SkjP_joi 4 4 this 3 450  1 x 1 369  1 y 1 369  1 z 1 369  
+133 14 Dtool_SkjPATvG 7 132 458 338 14 Dtool_SkjPATvG 0 
+134 14 Dtool_SkjPOBoG 7 132 458 338 14 Dtool_SkjPOBoG 1 4 copy 1 459  
+135 14 Dtool_SkjPJSRe 7 132 458 338 14 Dtool_SkjPJSRe 7 2 sx 1 369  2 sy 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  10 table_size 1 395  4 seed 1 436  
+136 14 Dtool_SkjP1q92 7 132 458 338 14 Dtool_SkjP1q92 6 2 sx 1 369  2 sy 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  10 table_size 1 395  
+137 14 Dtool_SkjPpveW 7 132 458 338 14 Dtool_SkjPpveW 5 2 sx 1 369  2 sy 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  
+138 14 Dtool_SkjPJ86_ 7 132 458 338 14 Dtool_SkjPJ86_ 4 2 sx 1 369  2 sy 1 369  10 num_levels 1 395  12 scale_factor 1 369  
+139 14 Dtool_SkjP9SEq 7 132 458 338 14 Dtool_SkjP9SEq 3 2 sx 1 369  2 sy 1 369  10 num_levels 1 395  
+140 14 Dtool_SkjP8Mpe 7 132 458 338 14 Dtool_SkjP8Mpe 2 2 sx 1 369  2 sy 1 369  
+141 14 Dtool_SkjPuaKK 6 133 458 0 14 Dtool_SkjPuaKK 2 4 this 3 458  4 copy 1 459  
+142 14 Dtool_SkjPjEp3 4 134 368 0 14 Dtool_SkjPjEp3 3 4 this 3 458  5 level 1 441  3 amp 1 369  
+143 14 Dtool_SkjP_n9S 4 134 368 0 14 Dtool_SkjP_n9S 2 4 this 3 458  5 level 1 441  
+144 14 Dtool_SkjPc8sO 4 135 368 0 14 Dtool_SkjPc8sO 1 4 this 3 458  
+145 14 Dtool_SkjPZyC_ 6 136 369 0 14 Dtool_SkjPZyC_ 2 4 this 3 458  5 value 1 443  
+146 14 Dtool_SkjPcyQb 6 136 371 0 14 Dtool_SkjPcyQb 2 4 this 3 458  5 value 1 446  
+147 14 Dtool_SkjP1thz 6 136 369 0 14 Dtool_SkjP1thz 3 4 this 3 458  1 x 1 369  1 y 1 369  
+148 14 Dtool_SkjPgny9 6 137 369 0 14 Dtool_SkjPgny9 2 4 this 3 458  5 value 1 443  
+149 14 Dtool_SkjPHqyL 6 137 371 0 14 Dtool_SkjPHqyL 2 4 this 3 458  5 value 1 446  
+150 14 Dtool_SkjP0TSf 6 137 369 0 14 Dtool_SkjP0TSf 3 4 this 3 458  1 x 1 369  1 y 1 369  
+151 14 Dtool_SkjP_B5N 7 140 461 345 14 Dtool_SkjP_B5N 0 
+152 14 Dtool_SkjPkcOQ 7 140 461 345 14 Dtool_SkjPkcOQ 1 4 copy 1 462  
+153 14 Dtool_SkjPqAFA 7 140 461 345 14 Dtool_SkjPqAFA 8 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  10 table_size 1 395  4 seed 1 436  
+154 14 Dtool_SkjPJa_5 7 140 461 345 14 Dtool_SkjPJa_5 7 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  10 table_size 1 395  
+155 14 Dtool_SkjPbcHj 7 140 461 345 14 Dtool_SkjPbcHj 6 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 num_levels 1 395  12 scale_factor 1 369  9 amp_scale 1 369  
+156 14 Dtool_SkjPD8iG 7 140 461 345 14 Dtool_SkjPD8iG 5 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 num_levels 1 395  12 scale_factor 1 369  
+157 14 Dtool_SkjPfg_v 7 140 461 345 14 Dtool_SkjPfg_v 4 2 sx 1 369  2 sy 1 369  2 sz 1 369  10 num_levels 1 395  
+158 14 Dtool_SkjPV0sw 7 140 461 345 14 Dtool_SkjPV0sw 3 2 sx 1 369  2 sy 1 369  2 sz 1 369  
+159 14 Dtool_SkjP8rsk 6 141 461 0 14 Dtool_SkjP8rsk 2 4 this 3 461  4 copy 1 462  
+160 14 Dtool_SkjPOHpF 4 142 368 0 14 Dtool_SkjPOHpF 3 4 this 3 461  5 level 1 450  3 amp 1 369  
+161 14 Dtool_SkjPbp9g 4 142 368 0 14 Dtool_SkjPbp9g 2 4 this 3 461  5 level 1 450  
+162 14 Dtool_SkjPu9sV 4 143 368 0 14 Dtool_SkjPu9sV 1 4 this 3 461  
+163 14 Dtool_SkjPIjeI 6 144 369 0 14 Dtool_SkjPIjeI 2 4 this 3 461  5 value 1 452  
+164 14 Dtool_SkjPKjsk 6 144 371 0 14 Dtool_SkjPKjsk 2 4 this 3 461  5 value 1 455  
+165 14 Dtool_SkjP9XOm 6 144 369 0 14 Dtool_SkjP9XOm 4 4 this 3 461  1 x 1 369  1 y 1 369  1 z 1 369  
+166 14 Dtool_SkjPTpAh 6 145 369 0 14 Dtool_SkjPTpAh 2 4 this 3 461  5 value 1 452  
+167 14 Dtool_SkjP3rAv 6 145 371 0 14 Dtool_SkjP3rAv 2 4 this 3 461  5 value 1 455  
+168 14 Dtool_SkjPrzlU 6 145 369 0 14 Dtool_SkjPrzlU 4 4 this 3 461  1 x 1 369  1 y 1 369  1 z 1 369  
+169 14 Dtool_SkjPyYd4 4 103 368 0 14 Dtool_SkjPyYd4 3 3 mat 1 464  3 fwd 1 378  2 cs 1 465  
+170 14 Dtool_SkjPmjSo 4 103 368 0 14 Dtool_SkjPmjSo 4 3 mat 1 464  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+171 14 Dtool_SkjPv5m2 4 103 368 0 14 Dtool_SkjPv5m2 3 3 mat 1 464  3 fwd 1 378  2 up 1 378  
+172 14 Dtool_SkjPTJmh 4 103 368 0 14 Dtool_SkjPTJmh 2 3 mat 1 464  3 fwd 1 378  
+173 14 Dtool_SkjP5qVz 4 103 368 0 14 Dtool_SkjP5qVz 3 3 mat 1 466  3 fwd 1 402  2 cs 1 465  
+174 14 Dtool_SkjPstmb 4 103 368 0 14 Dtool_SkjPstmb 4 3 mat 1 466  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+175 14 Dtool_SkjP5P9p 4 103 368 0 14 Dtool_SkjP5P9p 3 3 mat 1 466  3 fwd 1 402  2 up 1 402  
+176 14 Dtool_SkjPucec 4 103 368 0 14 Dtool_SkjPucec 2 3 mat 1 466  3 fwd 1 402  
+177 14 Dtool_SkjPy0V9 4 103 368 0 14 Dtool_SkjPy0V9 3 3 mat 1 389  3 fwd 1 378  2 cs 1 465  
+178 14 Dtool_SkjPm_Kt 4 103 368 0 14 Dtool_SkjPm_Kt 4 3 mat 1 389  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+179 14 Dtool_SkjPvdh7 4 103 368 0 14 Dtool_SkjPvdh7 3 3 mat 1 389  3 fwd 1 378  2 up 1 378  
+180 14 Dtool_SkjPTtem 4 103 368 0 14 Dtool_SkjPTtem 2 3 mat 1 389  3 fwd 1 378  
+181 14 Dtool_SkjP5GM4 4 103 368 0 14 Dtool_SkjP5GM4 3 3 mat 1 413  3 fwd 1 402  2 cs 1 465  
+182 14 Dtool_SkjPsJfg 4 103 368 0 14 Dtool_SkjPsJfg 4 3 mat 1 413  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+183 14 Dtool_SkjP5j1u 4 103 368 0 14 Dtool_SkjP5j1u 3 3 mat 1 413  3 fwd 1 402  2 up 1 402  
+184 14 Dtool_SkjPuwWh 4 103 368 0 14 Dtool_SkjPuwWh 2 3 mat 1 413  3 fwd 1 402  
+185 14 Dtool_SkjPTxQm 4 103 368 0 14 Dtool_SkjPTxQm 3 4 quat 1 467  3 fwd 1 378  2 cs 1 465  
+186 14 Dtool_SkjPd9Wi 4 103 368 0 14 Dtool_SkjPd9Wi 4 4 quat 1 467  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+187 14 Dtool_SkjPiZq8 4 103 368 0 14 Dtool_SkjPiZq8 3 4 quat 1 467  3 fwd 1 378  2 up 1 378  
+188 14 Dtool_SkjP3Jjx 4 103 368 0 14 Dtool_SkjP3Jjx 2 4 quat 1 467  3 fwd 1 378  
+189 14 Dtool_SkjPRh3W 4 103 368 0 14 Dtool_SkjPRh3W 3 4 quat 1 469  3 fwd 1 402  2 cs 1 465  
+190 14 Dtool_SkjPjnkT 4 103 368 0 14 Dtool_SkjPjnkT 4 4 quat 1 469  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+191 14 Dtool_SkjPHl5t 4 103 368 0 14 Dtool_SkjPHl5t 3 4 quat 1 469  3 fwd 1 402  2 up 1 402  
+192 14 Dtool_SkjP1YKi 4 103 368 0 14 Dtool_SkjP1YKi 2 4 quat 1 469  3 fwd 1 402  
+193 14 Dtool_SkjP2iJ6 4 104 368 0 14 Dtool_SkjP2iJ6 3 3 mat 1 464  3 fwd 1 378  2 cs 1 465  
+194 14 Dtool_SkjPe3n7 4 104 368 0 14 Dtool_SkjPe3n7 4 3 mat 1 464  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+195 14 Dtool_SkjPYQHg 4 104 368 0 14 Dtool_SkjPYQHg 3 3 mat 1 464  3 fwd 1 378  2 up 1 378  
+196 14 Dtool_SkjPhTgt 4 104 368 0 14 Dtool_SkjPhTgt 2 3 mat 1 464  3 fwd 1 378  
+197 14 Dtool_SkjPTR_D 4 104 368 0 14 Dtool_SkjPTR_D 3 3 mat 1 466  3 fwd 1 402  2 cs 1 465  
+198 14 Dtool_SkjPzsOP 4 104 368 0 14 Dtool_SkjPzsOP 4 3 mat 1 466  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+199 14 Dtool_SkjP04uz 4 104 368 0 14 Dtool_SkjP04uz 3 3 mat 1 466  3 fwd 1 402  2 up 1 402  
+200 14 Dtool_SkjPNDW3 4 104 368 0 14 Dtool_SkjPNDW3 2 3 mat 1 466  3 fwd 1 402  
+201 14 Dtool_SkjP_RT6 4 104 368 0 14 Dtool_SkjP_RT6 3 3 mat 1 389  3 fwd 1 378  2 cs 1 465  
+202 14 Dtool_SkjPWkx7 4 104 368 0 14 Dtool_SkjPWkx7 4 3 mat 1 389  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+203 14 Dtool_SkjPQhRg 4 104 368 0 14 Dtool_SkjPQhRg 3 3 mat 1 389  3 fwd 1 378  2 up 1 378  
+204 14 Dtool_SkjPpCqt 4 104 368 0 14 Dtool_SkjPpCqt 2 3 mat 1 389  3 fwd 1 378  
+205 14 Dtool_SkjPbAJE 4 104 368 0 14 Dtool_SkjPbAJE 3 3 mat 1 413  3 fwd 1 402  2 cs 1 465  
+206 14 Dtool_SkjPLcXP 4 104 368 0 14 Dtool_SkjPLcXP 4 3 mat 1 413  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+207 14 Dtool_SkjPMJ3z 4 104 368 0 14 Dtool_SkjPMJ3z 3 3 mat 1 413  3 fwd 1 402  2 up 1 402  
+208 14 Dtool_SkjP1yf3 4 104 368 0 14 Dtool_SkjP1yf3 2 3 mat 1 413  3 fwd 1 402  
+209 14 Dtool_SkjPdgkh 4 104 368 0 14 Dtool_SkjPdgkh 3 4 quat 1 467  3 fwd 1 378  2 cs 1 465  
+210 14 Dtool_SkjPq4at 4 104 368 0 14 Dtool_SkjPq4at 4 4 quat 1 467  3 fwd 1 378  2 up 1 378  2 cs 1 465  
+211 14 Dtool_SkjP6OSa 4 104 368 0 14 Dtool_SkjP6OSa 3 4 quat 1 467  3 fwd 1 378  2 up 1 378  
+212 14 Dtool_SkjPmF_T 4 104 368 0 14 Dtool_SkjPmF_T 2 4 quat 1 467  3 fwd 1 378  
+213 14 Dtool_SkjPPvHl 4 104 368 0 14 Dtool_SkjPPvHl 3 4 quat 1 469  3 fwd 1 402  2 cs 1 465  
+214 14 Dtool_SkjP_f8w 4 104 368 0 14 Dtool_SkjP_f8w 4 4 quat 1 469  3 fwd 1 402  2 up 1 402  2 cs 1 465  
+215 14 Dtool_SkjPxh1d 4 104 368 0 14 Dtool_SkjPxh1d 3 4 quat 1 469  3 fwd 1 402  2 up 1 402  
+216 14 Dtool_SkjPGIgX 4 104 368 0 14 Dtool_SkjPGIgX 2 4 quat 1 469  3 fwd 1 402  
+217 14 Dtool_SkjP8zF6 4 130 368 0 14 Dtool_SkjP8zF6 3 3 mat 1 464  1 a 1 378  1 b 1 378  
+218 14 Dtool_SkjP6uMk 4 130 368 0 14 Dtool_SkjP6uMk 3 3 mat 1 466  1 a 1 402  1 b 1 402  
+219 14 Dtool_SkjPxzTW 4 130 368 0 14 Dtool_SkjPxzTW 3 3 mat 1 389  1 a 1 378  1 b 1 378  
+220 14 Dtool_SkjP_uaA 4 130 368 0 14 Dtool_SkjP_uaA 3 3 mat 1 413  1 a 1 402  1 b 1 402  
+125
+346 8 Frustumd 141313 8 Frustumd 8 Frustumd 0 0 0 1 221 228 0 6 222 223 224 225 226 227 0 0 0 0 853
+// Filename: frustum_src.h
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : Frustum
+// Description :
+////////////////////////////////////////////////////////////////////
+
+347 8 Frustumf 141313 8 Frustumf 8 Frustumf 0 0 0 1 229 236 0 6 230 231 232 233 234 235 0 0 0 0 853
+// Filename: frustum_src.h
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : Frustum
+// Description :
+////////////////////////////////////////////////////////////////////
+
+348 6 Planed 141313 6 Planed 6 Planed 0 0 0 1 237 251 0 13 238 239 240 241 242 243 244 245 246 247 248 249 250 0 1 0 349 0 0 0 0 973
+// Filename: plane_src.h
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : Plane
+// Description : An abstract mathematical description of a plane.  A
+//               plane is defined by the equation Ax + By + Cz + D = 0.
+////////////////////////////////////////////////////////////////////
+
+349 6 Colord 2049 10 LVecBase4d 10 LVecBase4d 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase4
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+350 6 Planef 141313 6 Planef 6 Planef 0 0 0 1 252 266 0 13 253 254 255 256 257 258 259 260 261 262 263 264 265 0 1 0 351 0 0 0 0 973
+// Filename: plane_src.h
+// Created by:  mike (09Jan97)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : Plane
+// Description : An abstract mathematical description of a plane.  A
+//               plane is defined by the equation Ax + By + Cz + D = 0.
+////////////////////////////////////////////////////////////////////
+
+351 6 Colorf 2049 10 LVecBase4f 10 LVecBase4f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase4
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+352 14 BoundingVolume 141313 14 BoundingVolume 14 BoundingVolume 0 0 0 0 277 0 10 267 268 269 270 271 272 273 274 275 276 0 1 0 353 0 0 0 1 354 596
+////////////////////////////////////////////////////////////////////
+//       Class : BoundingVolume
+// Description : This is an abstract class for any volume in any sense
+//               which can be said to define the locality of reference
+//               of a node in a graph, along with all of its
+//               descendants.  It is not necessarily a geometric
+//               volume (although see GeometricBoundingVolume); this
+//               is simply an abstract interface for bounds of any
+//               sort.
+////////////////////////////////////////////////////////////////////
+
+353 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+354 17 IntersectionFlags 794624 33 BoundingVolume::IntersectionFlags 33 BoundingVolume::IntersectionFlags 352 0 0 0 0 0 0 0 0 5 18 IF_no_intersection 34 BoundingVolume::IF_no_intersection 0 11 IF_possible 27 BoundingVolume::IF_possible 1 7 IF_some 23 BoundingVolume::IF_some 2 6 IF_all 22 BoundingVolume::IF_all 4 18 IF_dont_understand 34 BoundingVolume::IF_dont_understand 8 0 77
+// The contains() functions return the union of one or more of these
+// bits.
+
+355 23 GeometricBoundingVolume 141313 23 GeometricBoundingVolume 23 GeometricBoundingVolume 0 0 0 0 284 0 6 278 279 280 281 282 283 0 1 0 352 0 0 0 0 380
+////////////////////////////////////////////////////////////////////
+//       Class : GeometricBoundingVolume
+// Description : This is another abstract class, for a general class
+//               of bounding volumes that actually enclose points in
+//               3-d space, such as BSP's and bounding spheres.
+////////////////////////////////////////////////////////////////////
+
+356 20 FiniteBoundingVolume 141313 20 FiniteBoundingVolume 20 FiniteBoundingVolume 0 0 0 0 288 0 3 285 286 287 0 1 0 355 0 0 0 0 378
+////////////////////////////////////////////////////////////////////
+//       Class : FiniteBoundingVolume
+// Description : A special kind of GeometricBoundingVolume that is
+//               known to be finite.  It is possible to query this
+//               kind of volume for its minimum and maximum extents.
+////////////////////////////////////////////////////////////////////
+
+357 12 BoundingLine 141313 12 BoundingLine 12 BoundingLine 0 0 0 1 289 295 0 5 290 291 292 293 294 0 1 0 355 0 0 0 0 584
+////////////////////////////////////////////////////////////////////
+//       Class : BoundingLine
+// Description : This funny bounding volume is an infinite line with
+//               no thickness and extending to infinity in both
+//               directions.
+//
+//               Note that it *always* extends in both directions,
+//               despite the fact that you specify two points to the
+//               constructor.  These are not endpoints, they are two
+//               arbitrary points on the line.
+////////////////////////////////////////////////////////////////////
+
+358 13 BoundingPlane 141313 13 BoundingPlane 13 BoundingPlane 0 0 0 1 296 301 0 4 297 298 299 300 0 1 0 355 0 0 0 0 482
+////////////////////////////////////////////////////////////////////
+//       Class : BoundingPlane
+// Description : This funny bounding volume is an infinite plane that
+//               divides space into two regions: the part behind the
+//               normal, which is "inside" the bounding volume, and
+//               the part in front of the normal, which is "outside"
+//               the bounding volume.
+////////////////////////////////////////////////////////////////////
+
+359 14 BoundingSphere 141313 14 BoundingSphere 14 BoundingSphere 0 0 0 1 302 308 0 5 303 304 305 306 307 0 1 0 356 0 0 0 0 354
+////////////////////////////////////////////////////////////////////
+//       Class : BoundingSphere
+// Description : This defines a bounding sphere, consisting of a
+//               center and a radius.  It is always a sphere, and
+//               never an ellipsoid or other quadric.
+////////////////////////////////////////////////////////////////////
+
+360 8 Mersenne 141313 8 Mersenne 8 Mersenne 0 0 0 1 311 313 0 1 312 0 0 0 0 0
+
+361 18 OmniBoundingVolume 141313 18 OmniBoundingVolume 18 OmniBoundingVolume 0 0 0 1 314 316 0 1 315 0 1 0 355 0 0 0 0 282
+////////////////////////////////////////////////////////////////////
+//       Class : OmniBoundingVolume
+// Description : This is a special kind of GeometricBoundingVolume
+//               that fills all of space.
+////////////////////////////////////////////////////////////////////
+
+362 11 PerlinNoise 141313 11 PerlinNoise 11 PerlinNoise 0 0 0 0 318 0 1 317 0 0 0 0 401
+////////////////////////////////////////////////////////////////////
+//       Class : PerlinNoise
+// Description : This is the base class for PerlinNoise2 and
+//               PerlinNoise3, different dimensions of Perlin noise
+//               implementation.  The base class just collects the
+//               common functionality.
+////////////////////////////////////////////////////////////////////
+
+363 12 PerlinNoise2 141313 12 PerlinNoise2 12 PerlinNoise2 0 0 0 1 319 324 0 4 320 321 322 323 0 1 0 362 0 0 0 0 405
+////////////////////////////////////////////////////////////////////
+//       Class : PerlinNoise2
+// Description : This class provides an implementation of Perlin noise
+//               for 2 variables.  This code is loosely based on the
+//               reference implementation at
+//               http://mrl.nyu.edu/~perlin/noise/ .
+////////////////////////////////////////////////////////////////////
+
+364 12 PerlinNoise3 141313 12 PerlinNoise3 12 PerlinNoise3 0 0 0 1 325 330 0 4 326 327 328 329 0 1 0 362 0 0 0 0 405
+////////////////////////////////////////////////////////////////////
+//       Class : PerlinNoise3
+// Description : This class provides an implementation of Perlin noise
+//               for 3 variables.  This code is loosely based on the
+//               reference implementation at
+//               http://mrl.nyu.edu/~perlin/noise/ .
+////////////////////////////////////////////////////////////////////
+
+365 19 StackedPerlinNoise2 141313 19 StackedPerlinNoise2 19 StackedPerlinNoise2 0 0 0 1 332 338 0 5 333 334 335 336 337 0 0 0 0 359
+////////////////////////////////////////////////////////////////////
+//       Class : StackedPerlinNoise2
+// Description : Implements a multi-layer PerlinNoise, with one or
+//               more high-frequency noise functions added to a
+//               lower-frequency base noise function.
+////////////////////////////////////////////////////////////////////
+
+366 19 StackedPerlinNoise3 141313 19 StackedPerlinNoise3 19 StackedPerlinNoise3 0 0 0 1 339 345 0 5 340 341 342 343 344 0 0 0 0 359
+////////////////////////////////////////////////////////////////////
+//       Class : StackedPerlinNoise3
+// Description : Implements a multi-layer PerlinNoise, with one or
+//               more high-frequency noise functions added to a
+//               lower-frequency base noise function.
+////////////////////////////////////////////////////////////////////
+
+367 10 Frustumd * 8576 10 Frustumd * 10 Frustumd * 0 0 346 0 0 0 0 0 0 0 0 0
+
+368 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+369 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+370 10 Frustumf * 8576 10 Frustumf * 10 Frustumf * 0 0 347 0 0 0 0 0 0 0 0 0
+
+371 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+372 8 Planed * 8576 8 Planed * 8 Planed * 0 0 348 0 0 0 0 0 0 0 0 0
+
+373 16 LPoint3d const * 8576 16 LPoint3d const * 16 LPoint3d const * 0 0 374 0 0 0 0 0 0 0 0 0
+
+374 14 LPoint3d const 8832 14 LPoint3d const 14 LPoint3d const 0 0 375 0 0 0 0 0 0 0 0 0
+
+375 7 Vertexd 2048 8 LPoint3d 8 LPoint3d 0 0 0 0 0 0 0 0 0 0 0 1271
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+376 18 LVecBase4d const * 8576 18 LVecBase4d const * 18 LVecBase4d const * 0 0 377 0 0 0 0 0 0 0 0 0
+
+377 16 LVecBase4d const 8832 16 LVecBase4d const 16 LVecBase4d const 0 0 349 0 0 0 0 0 0 0 0 0
+
+378 17 LVector3d const * 8576 17 LVector3d const * 17 LVector3d const * 0 0 379 0 0 0 0 0 0 0 0 0
+
+379 15 LVector3d const 8832 15 LVector3d const 15 LVector3d const 0 0 380 0 0 0 0 0 0 0 0 0
+
+380 7 Normald 2048 9 LVector3d 9 LVector3d 0 0 0 0 0 0 0 0 0 0 0 1274
+// Filename: lvector3_src.h
+// Created by:  drose (24Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector3
+// Description : This is a three-component vector distance (as opposed
+//               to a three-component point, which represents a
+//               particular point in space).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+381 14 Planed const * 8576 14 Planed const * 14 Planed const * 0 0 382 0 0 0 0 0 0 0 0 0
+
+382 12 Planed const 8832 12 Planed const 12 Planed const 0 0 348 0 0 0 0 0 0 0 0 0
+
+383 17 LMatrix3d const * 8576 17 LMatrix3d const * 17 LMatrix3d const * 0 0 384 0 0 0 0 0 0 0 0 0
+
+384 15 LMatrix3d const 8832 15 LMatrix3d const 15 LMatrix3d const 0 0 385 0 0 0 0 0 0 0 0 0
+
+385 9 LMatrix3d 2048 9 LMatrix3d 9 LMatrix3d 0 0 0 0 0 0 0 0 0 0 0 1138
+// Filename: lmatrix3_src.h
+// Created by:  drose (29Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix3
+// Description : This is a 3-by-3 transform matrix.  It typically will
+//               represent either a rotation-and-scale (no
+//               translation) matrix in 3-d, or a full affine matrix
+//               (rotation, scale, translation) in 2-d, e.g. for a
+//               texture matrix.
+////////////////////////////////////////////////////////////////////
+
+386 17 LMatrix4d const * 8576 17 LMatrix4d const * 17 LMatrix4d const * 0 0 387 0 0 0 0 0 0 0 0 0
+
+387 15 LMatrix4d const 8832 15 LMatrix4d const 15 LMatrix4d const 0 0 388 0 0 0 0 0 0 0 0 0
+
+388 9 LMatrix4d 2048 9 LMatrix4d 9 LMatrix4d 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+389 11 LMatrix4d * 8576 11 LMatrix4d * 11 LMatrix4d * 0 0 388 0 0 0 0 0 0 0 0 0
+
+390 11 LVector3d * 8576 11 LVector3d * 11 LVector3d * 0 0 380 0 0 0 0 0 0 0 0 0
+
+391 10 LPoint3d * 8576 10 LPoint3d * 10 LPoint3d * 0 0 375 0 0 0 0 0 0 0 0 0
+
+392 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+393 9 ostream * 8576 9 ostream * 9 ostream * 0 0 394 0 0 0 0 0 0 0 0 0
+
+394 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+395 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+396 8 Planef * 8576 8 Planef * 8 Planef * 0 0 350 0 0 0 0 0 0 0 0 0
+
+397 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 398 0 0 0 0 0 0 0 0 0
+
+398 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 399 0 0 0 0 0 0 0 0 0
+
+399 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 1271
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+400 18 LVecBase4f const * 8576 18 LVecBase4f const * 18 LVecBase4f const * 0 0 401 0 0 0 0 0 0 0 0 0
+
+401 16 LVecBase4f const 8832 16 LVecBase4f const 16 LVecBase4f const 0 0 351 0 0 0 0 0 0 0 0 0
+
+402 17 LVector3f const * 8576 17 LVector3f const * 17 LVector3f const * 0 0 403 0 0 0 0 0 0 0 0 0
+
+403 15 LVector3f const 8832 15 LVector3f const 15 LVector3f const 0 0 404 0 0 0 0 0 0 0 0 0
+
+404 7 Normalf 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 1274
+// Filename: lvector3_src.h
+// Created by:  drose (24Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector3
+// Description : This is a three-component vector distance (as opposed
+//               to a three-component point, which represents a
+//               particular point in space).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+405 14 Planef const * 8576 14 Planef const * 14 Planef const * 0 0 406 0 0 0 0 0 0 0 0 0
+
+406 12 Planef const 8832 12 Planef const 12 Planef const 0 0 350 0 0 0 0 0 0 0 0 0
+
+407 17 LMatrix3f const * 8576 17 LMatrix3f const * 17 LMatrix3f const * 0 0 408 0 0 0 0 0 0 0 0 0
+
+408 15 LMatrix3f const 8832 15 LMatrix3f const 15 LMatrix3f const 0 0 409 0 0 0 0 0 0 0 0 0
+
+409 9 LMatrix3f 2048 9 LMatrix3f 9 LMatrix3f 0 0 0 0 0 0 0 0 0 0 0 1138
+// Filename: lmatrix3_src.h
+// Created by:  drose (29Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix3
+// Description : This is a 3-by-3 transform matrix.  It typically will
+//               represent either a rotation-and-scale (no
+//               translation) matrix in 3-d, or a full affine matrix
+//               (rotation, scale, translation) in 2-d, e.g. for a
+//               texture matrix.
+////////////////////////////////////////////////////////////////////
+
+410 17 LMatrix4f const * 8576 17 LMatrix4f const * 17 LMatrix4f const * 0 0 411 0 0 0 0 0 0 0 0 0
+
+411 15 LMatrix4f const 8832 15 LMatrix4f const 15 LMatrix4f const 0 0 412 0 0 0 0 0 0 0 0 0
+
+412 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+413 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 412 0 0 0 0 0 0 0 0 0
+
+414 11 LVector3f * 8576 11 LVector3f * 11 LVector3f * 0 0 404 0 0 0 0 0 0 0 0 0
+
+415 10 LPoint3f * 8576 10 LPoint3f * 10 LPoint3f * 0 0 399 0 0 0 0 0 0 0 0 0
+
+416 22 BoundingVolume const * 8576 22 BoundingVolume const * 22 BoundingVolume const * 0 0 417 0 0 0 0 0 0 0 0 0
+
+417 20 BoundingVolume const 8832 20 BoundingVolume const 20 BoundingVolume const 0 0 352 0 0 0 0 0 0 0 0 0
+
+418 16 BoundingVolume * 8576 16 BoundingVolume * 16 BoundingVolume * 0 0 352 0 0 0 0 0 0 0 0 0
+
+419 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+420 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 419 0 0 0 0 0 0 0 0 0
+
+421 25 GeometricBoundingVolume * 8576 25 GeometricBoundingVolume * 25 GeometricBoundingVolume * 0 0 355 0 0 0 0 0 0 0 0 0
+
+422 31 GeometricBoundingVolume const * 8576 31 GeometricBoundingVolume const * 31 GeometricBoundingVolume const * 0 0 423 0 0 0 0 0 0 0 0 0
+
+423 29 GeometricBoundingVolume const 8832 29 GeometricBoundingVolume const 29 GeometricBoundingVolume const 0 0 355 0 0 0 0 0 0 0 0 0
+
+424 28 FiniteBoundingVolume const * 8576 28 FiniteBoundingVolume const * 28 FiniteBoundingVolume const * 0 0 425 0 0 0 0 0 0 0 0 0
+
+425 26 FiniteBoundingVolume const 8832 26 FiniteBoundingVolume const 26 FiniteBoundingVolume const 0 0 356 0 0 0 0 0 0 0 0 0
+
+426 14 BoundingLine * 8576 14 BoundingLine * 14 BoundingLine * 0 0 357 0 0 0 0 0 0 0 0 0
+
+427 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0
+
+428 20 BoundingLine const * 8576 20 BoundingLine const * 20 BoundingLine const * 0 0 429 0 0 0 0 0 0 0 0 0
+
+429 18 BoundingLine const 8832 18 BoundingLine const 18 BoundingLine const 0 0 357 0 0 0 0 0 0 0 0 0
+
+430 15 BoundingPlane * 8576 15 BoundingPlane * 15 BoundingPlane * 0 0 358 0 0 0 0 0 0 0 0 0
+
+431 21 BoundingPlane const * 8576 21 BoundingPlane const * 21 BoundingPlane const * 0 0 432 0 0 0 0 0 0 0 0 0
+
+432 19 BoundingPlane const 8832 19 BoundingPlane const 19 BoundingPlane const 0 0 358 0 0 0 0 0 0 0 0 0
+
+433 16 BoundingSphere * 8576 16 BoundingSphere * 16 BoundingSphere * 0 0 359 0 0 0 0 0 0 0 0 0
+
+434 22 BoundingSphere const * 8576 22 BoundingSphere const * 22 BoundingSphere const * 0 0 435 0 0 0 0 0 0 0 0 0
+
+435 20 BoundingSphere const 8832 20 BoundingSphere const 20 BoundingSphere const 0 0 359 0 0 0 0 0 0 0 0 0
+
+436 17 unsigned long int 8214 17 unsigned long int 17 unsigned long int 0 1 0 0 0 0 0 0 0 0 0 0
+
+437 10 Mersenne * 8576 10 Mersenne * 10 Mersenne * 0 0 360 0 0 0 0 0 0 0 0 0
+
+438 20 OmniBoundingVolume * 8576 20 OmniBoundingVolume * 20 OmniBoundingVolume * 0 0 361 0 0 0 0 0 0 0 0 0
+
+439 13 PerlinNoise * 8576 13 PerlinNoise * 13 PerlinNoise * 0 0 362 0 0 0 0 0 0 0 0 0
+
+440 14 PerlinNoise2 * 8576 14 PerlinNoise2 * 14 PerlinNoise2 * 0 0 363 0 0 0 0 0 0 0 0 0
+
+441 20 PerlinNoise2 const * 8576 20 PerlinNoise2 const * 20 PerlinNoise2 const * 0 0 442 0 0 0 0 0 0 0 0 0
+
+442 18 PerlinNoise2 const 8832 18 PerlinNoise2 const 18 PerlinNoise2 const 0 0 363 0 0 0 0 0 0 0 0 0
+
+443 18 LVecBase2d const * 8576 18 LVecBase2d const * 18 LVecBase2d const * 0 0 444 0 0 0 0 0 0 0 0 0
+
+444 16 LVecBase2d const 8832 16 LVecBase2d const 16 LVecBase2d const 0 0 445 0 0 0 0 0 0 0 0 0
+
+445 10 LVecBase2d 2048 10 LVecBase2d 10 LVecBase2d 0 0 0 0 0 0 0 0 0 0 0 993
+// Filename: lvecBase2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+//typedef struct {FLOATTYPE _0, _1} FLOATNAME(data);
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase2
+// Description : This is the base class for all two-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+446 18 LVecBase2f const * 8576 18 LVecBase2f const * 18 LVecBase2f const * 0 0 447 0 0 0 0 0 0 0 0 0
+
+447 16 LVecBase2f const 8832 16 LVecBase2f const 16 LVecBase2f const 0 0 448 0 0 0 0 0 0 0 0 0
+
+448 10 LVecBase2f 2048 10 LVecBase2f 10 LVecBase2f 0 0 0 0 0 0 0 0 0 0 0 993
+// Filename: lvecBase2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+//typedef struct {FLOATTYPE _0, _1} FLOATNAME(data);
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase2
+// Description : This is the base class for all two-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+449 14 PerlinNoise3 * 8576 14 PerlinNoise3 * 14 PerlinNoise3 * 0 0 364 0 0 0 0 0 0 0 0 0
+
+450 20 PerlinNoise3 const * 8576 20 PerlinNoise3 const * 20 PerlinNoise3 const * 0 0 451 0 0 0 0 0 0 0 0 0
+
+451 18 PerlinNoise3 const 8832 18 PerlinNoise3 const 18 PerlinNoise3 const 0 0 364 0 0 0 0 0 0 0 0 0
+
+452 18 LVecBase3d const * 8576 18 LVecBase3d const * 18 LVecBase3d const * 0 0 453 0 0 0 0 0 0 0 0 0
+
+453 16 LVecBase3d const 8832 16 LVecBase3d const 16 LVecBase3d const 0 0 454 0 0 0 0 0 0 0 0 0
+
+454 9 RGBColord 2048 10 LVecBase3d 10 LVecBase3d 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+455 18 LVecBase3f const * 8576 18 LVecBase3f const * 18 LVecBase3f const * 0 0 456 0 0 0 0 0 0 0 0 0
+
+456 16 LVecBase3f const 8832 16 LVecBase3f const 16 LVecBase3f const 0 0 457 0 0 0 0 0 0 0 0 0
+
+457 9 RGBColorf 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+458 21 StackedPerlinNoise2 * 8576 21 StackedPerlinNoise2 * 21 StackedPerlinNoise2 * 0 0 365 0 0 0 0 0 0 0 0 0
+
+459 27 StackedPerlinNoise2 const * 8576 27 StackedPerlinNoise2 const * 27 StackedPerlinNoise2 const * 0 0 460 0 0 0 0 0 0 0 0 0
+
+460 25 StackedPerlinNoise2 const 8832 25 StackedPerlinNoise2 const 25 StackedPerlinNoise2 const 0 0 365 0 0 0 0 0 0 0 0 0
+
+461 21 StackedPerlinNoise3 * 8576 21 StackedPerlinNoise3 * 21 StackedPerlinNoise3 * 0 0 366 0 0 0 0 0 0 0 0 0
+
+462 27 StackedPerlinNoise3 const * 8576 27 StackedPerlinNoise3 const * 27 StackedPerlinNoise3 const * 0 0 463 0 0 0 0 0 0 0 0 0
+
+463 25 StackedPerlinNoise3 const 8832 25 StackedPerlinNoise3 const 25 StackedPerlinNoise3 const 0 0 366 0 0 0 0 0 0 0 0 0
+
+464 11 LMatrix3d * 8576 11 LMatrix3d * 11 LMatrix3d * 0 0 385 0 0 0 0 0 0 0 0 0
+
+465 16 CoordinateSystem 532480 16 CoordinateSystem 16 CoordinateSystem 0 0 0 0 0 0 0 0 0 6 10 CS_default 10 CS_default 0 12 CS_zup_right 12 CS_zup_right 1 12 CS_yup_right 12 CS_yup_right 2 11 CS_zup_left 11 CS_zup_left 3 11 CS_yup_left 11 CS_yup_left 4 10 CS_invalid 10 CS_invalid 5 0 0
+
+466 11 LMatrix3f * 8576 11 LMatrix3f * 11 LMatrix3f * 0 0 409 0 0 0 0 0 0 0 0 0
+
+467 14 LQuaterniond * 8576 14 LQuaterniond * 14 LQuaterniond * 0 0 468 0 0 0 0 0 0 0 0 0
+
+468 12 LQuaterniond 2048 12 LQuaterniond 12 LQuaterniond 0 0 0 0 0 0 0 0 0 0 0 907
+// Filename: lquaternion_src.h
+// Created by:  frang (06Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : FLOATNAME(LQuaternion)
+// Description : This is the base quaternion class
+////////////////////////////////////////////////////////////////////
+
+469 14 LQuaternionf * 8576 14 LQuaternionf * 14 LQuaternionf * 0 0 470 0 0 0 0 0 0 0 0 0
+
+470 12 LQuaternionf 2048 12 LQuaternionf 12 LQuaternionf 0 0 0 0 0 0 0 0 0 0 0 907
+// Filename: lquaternion_src.h
+// Created by:  frang (06Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : FLOATNAME(LQuaternion)
+// Description : This is the base quaternion class
+////////////////////////////////////////////////////////////////////
+
+0
+0

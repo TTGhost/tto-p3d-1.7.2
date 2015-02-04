@@ -1,0 +1,559 @@
+1145553907
+2 2
+8 libaudio 4 MC2_ 5 panda 
+55
+63 4 play 4 118 16 AudioSound::play 0 1 1 359
+// For best compatability, set the loop_count,
+// volume, and balance, prior to calling play().  You may
+// set them while they're playing, but it's implementation
+// specific whether you get the results.
+// - Calling play() a second time on the same sound before it is
+//   finished will start the sound again (creating a skipping or
+//   stuttering effect).
+40
+virtual void AudioSound::play(void) = 0;
+
+64 4 stop 4 118 16 AudioSound::stop 0 1 2 359
+// For best compatability, set the loop_count,
+// volume, and balance, prior to calling play().  You may
+// set them while they're playing, but it's implementation
+// specific whether you get the results.
+// - Calling play() a second time on the same sound before it is
+//   finished will start the sound again (creating a skipping or
+//   stuttering effect).
+40
+virtual void AudioSound::stop(void) = 0;
+
+65 8 set_loop 4 118 20 AudioSound::set_loop 0 2 3 4 67
+// loop: false = play once; true = play forever.
+// inits to false.
+55
+virtual void AudioSound::set_loop(bool loop = (1)) = 0;
+
+66 8 get_loop 4 118 20 AudioSound::get_loop 0 1 5 67
+// loop: false = play once; true = play forever.
+// inits to false.
+50
+virtual bool AudioSound::get_loop(void) const = 0;
+
+67 14 set_loop_count 4 118 26 AudioSound::set_loop_count 0 2 6 7 75
+// loop_count: 0 = forever; 1 = play once; n = play n times.
+// inits to 1.
+80
+virtual void AudioSound::set_loop_count(unsigned long int loop_count = (1)) = 0;
+
+68 14 get_loop_count 4 118 26 AudioSound::get_loop_count 0 1 8 75
+// loop_count: 0 = forever; 1 = play once; n = play n times.
+// inits to 1.
+69
+virtual unsigned long int AudioSound::get_loop_count(void) const = 0;
+
+69 8 set_time 4 118 20 AudioSound::set_time 0 2 9 10 680
+// Control time position within the sound.
+// This is similar (in concept) to the seek position within
+// a file.
+// time in seconds: 0 = beginning; length() = end.
+// inits to 0.0.
+// - Unlike the other get_* and set_* calls for a sound, the
+//   current time position will change while the sound is playing.
+//   To play the same sound from a time offset a second time,
+//   explicitly set the time position again.  When looping, the
+//   second and later loops will start from the beginning of the
+//   sound.
+// - If a sound is playing, calling get_time() repeatedly will
+//   return different results over time.  e.g.:
+//   float percent_complete = s.get_time() / s.length();
+62
+virtual void AudioSound::set_time(float start_time = (0)) = 0;
+
+70 8 get_time 4 118 20 AudioSound::get_time 0 1 11 680
+// Control time position within the sound.
+// This is similar (in concept) to the seek position within
+// a file.
+// time in seconds: 0 = beginning; length() = end.
+// inits to 0.0.
+// - Unlike the other get_* and set_* calls for a sound, the
+//   current time position will change while the sound is playing.
+//   To play the same sound from a time offset a second time,
+//   explicitly set the time position again.  When looping, the
+//   second and later loops will start from the beginning of the
+//   sound.
+// - If a sound is playing, calling get_time() repeatedly will
+//   return different results over time.  e.g.:
+//   float percent_complete = s.get_time() / s.length();
+51
+virtual float AudioSound::get_time(void) const = 0;
+
+71 10 set_volume 4 118 22 AudioSound::set_volume 0 2 12 13 47
+// 0 = minimum; 1.0 = maximum.
+// inits to 1.0.
+60
+virtual void AudioSound::set_volume(float volume = (1)) = 0;
+
+72 10 get_volume 4 118 22 AudioSound::get_volume 0 1 14 47
+// 0 = minimum; 1.0 = maximum.
+// inits to 1.0.
+53
+virtual float AudioSound::get_volume(void) const = 0;
+
+73 11 set_balance 4 118 23 AudioSound::set_balance 0 2 15 16 77
+// -1.0 is hard left
+// 0.0 is centered
+// 1.0 is hard right
+// inits to 0.0.
+68
+virtual void AudioSound::set_balance(float balance_right = (0)) = 0;
+
+74 11 get_balance 4 118 23 AudioSound::get_balance 0 1 17 77
+// -1.0 is hard left
+// 0.0 is centered
+// 1.0 is hard right
+// inits to 0.0.
+54
+virtual float AudioSound::get_balance(void) const = 0;
+
+75 13 set_play_rate 4 118 25 AudioSound::set_play_rate 0 2 18 19 58
+// play_rate is any positive float value.
+// inits to 1.0.
+66
+virtual void AudioSound::set_play_rate(float play_rate = (1)) = 0;
+
+76 13 get_play_rate 4 118 25 AudioSound::get_play_rate 0 1 20 58
+// play_rate is any positive float value.
+// inits to 1.0.
+56
+virtual float AudioSound::get_play_rate(void) const = 0;
+
+77 10 set_active 4 118 22 AudioSound::set_active 0 2 21 22 28
+// inits to manager's state.
+57
+virtual void AudioSound::set_active(bool flag = (1)) = 0;
+
+78 10 get_active 4 118 22 AudioSound::get_active 0 1 23 28
+// inits to manager's state.
+52
+virtual bool AudioSound::get_active(void) const = 0;
+
+79 18 set_finished_event 4 118 30 AudioSound::set_finished_event 0 1 24 126
+// Set (or clear) the event that will be thrown when the sound
+// finishes playing.  To clear the event, pass an empty string.
+83
+virtual void AudioSound::set_finished_event(basic_string< char > const &event) = 0;
+
+80 18 get_finished_event 4 118 30 AudioSound::get_finished_event 0 1 25 126
+// Set (or clear) the event that will be thrown when the sound
+// finishes playing.  To clear the event, pass an empty string.
+83
+virtual basic_string< char > const &AudioSound::get_finished_event(void) const = 0;
+
+81 8 get_name 4 118 20 AudioSound::get_name 0 1 26 47
+// There is no set_name(), this is intentional.
+73
+virtual basic_string< char > const &AudioSound::get_name(void) const = 0;
+
+82 6 length 4 118 18 AudioSound::length 0 1 27 35
+// return: playing time in seconds.
+49
+virtual float AudioSound::length(void) const = 0;
+
+83 17 set_3d_attributes 4 118 29 AudioSound::set_3d_attributes 0 1 28 177
+// Controls the position of this sound's emitter.
+// px, py and pz are the emitter's position.
+// vx, vy and vz are the emitter's velocity in UNITS PER SECOND (default: meters).
+103
+virtual void AudioSound::set_3d_attributes(float px, float py, float pz, float vx, float vy, float vz);
+
+84 17 get_3d_attributes 4 118 29 AudioSound::get_3d_attributes 0 0 0
+109
+virtual void AudioSound::get_3d_attributes(float *px, float *py, float *pz, float *vx, float *vy, float *vz);
+
+85 19 set_3d_min_distance 4 118 31 AudioSound::set_3d_min_distance 0 1 29 175
+// Controls the distance (in units) that this sound begins to fall off.
+// Also affects the rate it falls off.
+// Default is 1.0
+// Closer/Faster, <1.0
+// Farther/Slower, >1.0
+57
+virtual void AudioSound::set_3d_min_distance(float dist);
+
+86 19 get_3d_min_distance 4 118 31 AudioSound::get_3d_min_distance 0 1 30 175
+// Controls the distance (in units) that this sound begins to fall off.
+// Also affects the rate it falls off.
+// Default is 1.0
+// Closer/Faster, <1.0
+// Farther/Slower, >1.0
+58
+virtual float AudioSound::get_3d_min_distance(void) const;
+
+87 19 set_3d_max_distance 4 118 31 AudioSound::set_3d_max_distance 0 1 31 222
+// Controls the maximum distance (in units) that this sound stops falling off.
+// The sound does not stop at that point, it just doesn't get any quieter.
+// You should rarely need to adjust this.
+// Default is 1000000000.0
+57
+virtual void AudioSound::set_3d_max_distance(float dist);
+
+88 19 get_3d_max_distance 4 118 31 AudioSound::get_3d_max_distance 0 1 32 222
+// Controls the maximum distance (in units) that this sound stops falling off.
+// The sound does not stop at that point, it just doesn't get any quieter.
+// You should rarely need to adjust this.
+// Default is 1000000000.0
+58
+virtual float AudioSound::get_3d_max_distance(void) const;
+
+89 6 status 4 118 18 AudioSound::status 0 1 33 0
+67
+virtual AudioSound::SoundStatus AudioSound::status(void) const = 0;
+
+90 14 get_class_type 4 118 26 AudioSound::get_class_type 0 1 34 0
+51
+static TypeHandle AudioSound::get_class_type(void);
+
+91 19 create_AudioManager 4 121 33 AudioManager::create_AudioManager 0 1 35 315
+// Create an AudioManager for each category of sounds you have.
+// E.g.
+//   MySoundEffects = create_AudioManager::AudioManager();
+//   MyMusicManager = create_AudioManager::AudioManager();
+//   ...
+//   my_sound = MySoundEffects.get_sound("neatSfx.mp3");
+//   my_music = MyMusicManager.get_sound("introTheme.mid");
+73
+static PointerTo< AudioManager > AudioManager::create_AudioManager(void);
+
+92 8 shutdown 4 121 22 AudioManager::shutdown 0 1 36 0
+42
+virtual void AudioManager::shutdown(void);
+
+93 8 is_valid 4 121 22 AudioManager::is_valid 0 1 37 411
+// If you're interested in knowing whether this audio manager
+// is valid, here's the call to do it.  It is not necessary
+// to check whether the audio manager is valid before making other
+// calls.  You are free to use an invalid sound manager, you
+// may get silent sounds from it though.  The sound manager and
+// the sounds it creates should not crash the application even
+// when the objects are not valid.
+46
+virtual bool AudioManager::is_valid(void) = 0;
+
+94 9 get_sound 4 121 23 AudioManager::get_sound 0 2 38 39 15
+// Get a sound:
+122
+virtual PointerTo< AudioSound > AudioManager::get_sound(basic_string< char > const &file_name, bool positional = (0)) = 0;
+
+95 14 get_null_sound 4 121 28 AudioManager::get_null_sound 0 1 40 15
+// Get a sound:
+59
+PointerTo< AudioSound > AudioManager::get_null_sound(void);
+
+96 13 uncache_sound 4 121 27 AudioManager::uncache_sound 0 1 41 281
+// Tell the AudioManager there is no need to keep this one cached.
+// This doesn't break any connection between AudioSounds that have
+// already given by get_sound() from this manager.  It's
+// only affecting whether the AudioManager keeps a copy of the sound
+// in its pool/cache.
+84
+virtual void AudioManager::uncache_sound(basic_string< char > const &file_name) = 0;
+
+97 11 clear_cache 4 121 25 AudioManager::clear_cache 0 1 42 281
+// Tell the AudioManager there is no need to keep this one cached.
+// This doesn't break any connection between AudioSounds that have
+// already given by get_sound() from this manager.  It's
+// only affecting whether the AudioManager keeps a copy of the sound
+// in its pool/cache.
+49
+virtual void AudioManager::clear_cache(void) = 0;
+
+98 15 set_cache_limit 4 121 29 AudioManager::set_cache_limit 0 1 43 0
+67
+virtual void AudioManager::set_cache_limit(unsigned int count) = 0;
+
+99 15 get_cache_limit 4 121 29 AudioManager::get_cache_limit 0 1 44 0
+67
+virtual unsigned int AudioManager::get_cache_limit(void) const = 0;
+
+100 10 set_volume 4 121 24 AudioManager::set_volume 0 1 45 206
+// Control volume:
+// FYI:
+//   If you start a sound with the volume off and turn the volume 
+//   up later, you'll hear the sound playing at that late point.
+// 0 = minimum; 1.0 = maximum.
+// inits to 1.0.
+56
+virtual void AudioManager::set_volume(float volume) = 0;
+
+101 10 get_volume 4 121 24 AudioManager::get_volume 0 1 46 206
+// Control volume:
+// FYI:
+//   If you start a sound with the volume off and turn the volume 
+//   up later, you'll hear the sound playing at that late point.
+// 0 = minimum; 1.0 = maximum.
+// inits to 1.0.
+55
+virtual float AudioManager::get_volume(void) const = 0;
+
+102 10 set_active 4 121 24 AudioManager::set_active 0 1 47 361
+// Turn the manager on or off.
+// If you play a sound while the manager is inactive, it won't start.
+// If you deactivate the manager while sounds are playing, they'll
+// stop.
+// If you activate the manager while looping sounds are playing
+// (those that have a loop_count of zero),
+// they will start playing from the begining of their loop.
+// inits to true.
+53
+virtual void AudioManager::set_active(bool flag) = 0;
+
+103 10 get_active 4 121 24 AudioManager::get_active 0 1 48 361
+// Turn the manager on or off.
+// If you play a sound while the manager is inactive, it won't start.
+// If you deactivate the manager while sounds are playing, they'll
+// stop.
+// If you activate the manager while looping sounds are playing
+// (those that have a loop_count of zero),
+// they will start playing from the begining of their loop.
+// inits to true.
+54
+virtual bool AudioManager::get_active(void) const = 0;
+
+104 26 set_concurrent_sound_limit 4 121 40 AudioManager::set_concurrent_sound_limit 0 2 49 50 347
+// This controls the number of sounds that you allow at once.  This
+// is more of a user choice -- it avoids talk over and the creation
+// of a cacophony.
+// It can also be used to help performance.
+// 0 == unlimited.
+// 1 == mutually exclusive (one sound at a time).  Which is an example of:
+// n == allow n sounds to be playing at the same time.
+84
+virtual void AudioManager::set_concurrent_sound_limit(unsigned int limit = (0)) = 0;
+
+105 26 get_concurrent_sound_limit 4 121 40 AudioManager::get_concurrent_sound_limit 0 1 51 347
+// This controls the number of sounds that you allow at once.  This
+// is more of a user choice -- it avoids talk over and the creation
+// of a cacophony.
+// It can also be used to help performance.
+// 0 == unlimited.
+// 1 == mutually exclusive (one sound at a time).  Which is an example of:
+// n == allow n sounds to be playing at the same time.
+78
+virtual unsigned int AudioManager::get_concurrent_sound_limit(void) const = 0;
+
+106 24 reduce_sounds_playing_to 4 121 38 AudioManager::reduce_sounds_playing_to 0 1 52 371
+// This is likely to be a utility function for the concurrent_sound_limit
+// options.  It is exposed as an API, because it's reasonable that it
+// may be useful to be here.  It reduces the number of concurrently
+// playing sounds to count by some implementation specific means.
+// If the number of sounds currently playing is at or below count then
+// there is no effect.
+76
+virtual void AudioManager::reduce_sounds_playing_to(unsigned int count) = 0;
+
+107 15 stop_all_sounds 4 121 29 AudioManager::stop_all_sounds 0 1 53 182
+// Stop playback on all sounds managed by this manager.
+// This is effectively the same as reduce_sounds_playing_to(0), but
+// this call may be for efficient on some implementations.
+53
+virtual void AudioManager::stop_all_sounds(void) = 0;
+
+108 15 audio_3d_update 4 121 29 AudioManager::audio_3d_update 0 1 54 167
+// Changes to the positions of 3D spacialized sounds and the listener
+// are all made at once when this method is called. It should be put
+// in the main program loop.
+49
+virtual void AudioManager::audio_3d_update(void);
+
+109 32 audio_3d_set_listener_attributes 4 121 46 AudioManager::audio_3d_set_listener_attributes 0 1 55 399
+// This controls the "set of ears" that listens to 3D spacialized sound
+// px, py, pz are position coordinates. 
+// vx, vy, vz are a velocity vector in UNITS PER SECOND (default: meters). 
+// fx, fy and fz are the respective components of a unit forward-vector
+// ux, uy and uz are the respective components of a unit up-vector
+// These changes will NOT be invoked until audio_3d_update() is called.
+180
+virtual void AudioManager::audio_3d_set_listener_attributes(float px, float py, float pz, float vx, float vy, float vz, float fx, float fy, float fz, float ux, float uy, float uz);
+
+110 32 audio_3d_get_listener_attributes 4 121 46 AudioManager::audio_3d_get_listener_attributes 0 0 0
+192
+virtual void AudioManager::audio_3d_get_listener_attributes(float *px, float *py, float *pz, float *vx, float *vy, float *vz, float *fx, float *fy, float *fz, float *ux, float *uy, float *uz);
+
+111 28 audio_3d_set_distance_factor 4 121 42 AudioManager::audio_3d_set_distance_factor 0 1 56 261
+// Control the "relative scale that sets the distance factor" units for 3D spacialized audio. Default is 1.0
+// Fmod uses meters internally, so give a float in Units-per meter
+// Don't know what Miles uses.
+// Default is 1.0 which is adjust in panda to be feet.
+70
+virtual void AudioManager::audio_3d_set_distance_factor(float factor);
+
+112 28 audio_3d_get_distance_factor 4 121 42 AudioManager::audio_3d_get_distance_factor 0 1 57 261
+// Control the "relative scale that sets the distance factor" units for 3D spacialized audio. Default is 1.0
+// Fmod uses meters internally, so give a float in Units-per meter
+// Don't know what Miles uses.
+// Default is 1.0 which is adjust in panda to be feet.
+69
+virtual float AudioManager::audio_3d_get_distance_factor(void) const;
+
+113 27 audio_3d_set_doppler_factor 4 121 41 AudioManager::audio_3d_set_doppler_factor 0 1 58 125
+// Control the presence of the Doppler effect. Default is 1.0
+// Exaggerated Doppler, use >1.0
+// Diminshed Doppler, use <1.0
+69
+virtual void AudioManager::audio_3d_set_doppler_factor(float factor);
+
+114 27 audio_3d_get_doppler_factor 4 121 41 AudioManager::audio_3d_get_doppler_factor 0 1 59 125
+// Control the presence of the Doppler effect. Default is 1.0
+// Exaggerated Doppler, use >1.0
+// Diminshed Doppler, use <1.0
+68
+virtual float AudioManager::audio_3d_get_doppler_factor(void) const;
+
+115 28 audio_3d_set_drop_off_factor 4 121 42 AudioManager::audio_3d_set_drop_off_factor 0 1 60 157
+// Exaggerate or diminish the effect of distance on sound. Default is 1.0
+// Valid range is 0 to 10
+// Faster drop off, use >1.0
+// Slower drop off, use <1.0
+70
+virtual void AudioManager::audio_3d_set_drop_off_factor(float factor);
+
+116 28 audio_3d_get_drop_off_factor 4 121 42 AudioManager::audio_3d_get_drop_off_factor 0 1 61 157
+// Exaggerate or diminish the effect of distance on sound. Default is 1.0
+// Valid range is 0 to 10
+// Faster drop off, use >1.0
+// Slower drop off, use <1.0
+69
+virtual float AudioManager::audio_3d_get_drop_off_factor(void) const;
+
+117 14 get_class_type 4 121 28 AudioManager::get_class_type 0 1 62 0
+53
+static TypeHandle AudioManager::get_class_type(void);
+
+62
+1 14 Dtool_MC2__vhh 4 3 123 0 14 Dtool_MC2__vhh 1 4 this 3 122  
+2 14 Dtool_MC2_dOiG 4 4 123 0 14 Dtool_MC2_dOiG 1 4 this 3 122  
+3 14 Dtool_MC2_sQm7 4 5 123 0 14 Dtool_MC2_sQm7 2 4 this 3 122  4 loop 1 124  
+4 14 Dtool_MC2_epXp 4 5 123 0 14 Dtool_MC2_epXp 1 4 this 3 122  
+5 14 Dtool_MC2_k9fo 6 6 124 0 14 Dtool_MC2_k9fo 1 4 this 3 125  
+6 14 Dtool_MC2_ZahU 4 7 123 0 14 Dtool_MC2_ZahU 2 4 this 3 122  10 loop_count 1 127  
+7 14 Dtool_MC2_VL64 4 7 123 0 14 Dtool_MC2_VL64 1 4 this 3 122  
+8 14 Dtool_MC2_UTas 6 8 127 0 14 Dtool_MC2_UTas 1 4 this 3 125  
+9 14 Dtool_MC2_sxJX 4 9 123 0 14 Dtool_MC2_sxJX 2 4 this 3 122  10 start_time 1 128  
+10 14 Dtool_MC2_2n_4 4 9 123 0 14 Dtool_MC2_2n_4 1 4 this 3 122  
+11 14 Dtool_MC2_hsI4 6 10 128 0 14 Dtool_MC2_hsI4 1 4 this 3 125  
+12 14 Dtool_MC2_e1I3 4 11 123 0 14 Dtool_MC2_e1I3 2 4 this 3 122  6 volume 1 128  
+13 14 Dtool_MC2_7_nT 4 11 123 0 14 Dtool_MC2_7_nT 1 4 this 3 122  
+14 14 Dtool_MC2_zxr3 6 12 128 0 14 Dtool_MC2_zxr3 1 4 this 3 125  
+15 14 Dtool_MC2_npIq 4 13 123 0 14 Dtool_MC2_npIq 2 4 this 3 122  13 balance_right 1 128  
+16 14 Dtool_MC2_J3_4 4 13 123 0 14 Dtool_MC2_J3_4 1 4 this 3 122  
+17 14 Dtool_MC2_wRl7 6 14 128 0 14 Dtool_MC2_wRl7 1 4 this 3 125  
+18 14 Dtool_MC2_E6kx 4 15 123 0 14 Dtool_MC2_E6kx 2 4 this 3 122  9 play_rate 1 128  
+19 14 Dtool_MC2_gAS1 4 15 123 0 14 Dtool_MC2_gAS1 1 4 this 3 122  
+20 14 Dtool_MC2_SK3c 6 16 128 0 14 Dtool_MC2_SK3c 1 4 this 3 125  
+21 14 Dtool_MC2__M0J 4 17 123 0 14 Dtool_MC2__M0J 2 4 this 3 122  4 flag 1 124  
+22 14 Dtool_MC2_THGV 4 17 123 0 14 Dtool_MC2_THGV 1 4 this 3 122  
+23 14 Dtool_MC2_yDK5 6 18 124 0 14 Dtool_MC2_yDK5 1 4 this 3 125  
+24 14 Dtool_MC2_kLpd 4 19 123 0 14 Dtool_MC2_kLpd 2 4 this 3 122  5 event 1 129  
+25 14 Dtool_MC2_yGD1 6 20 129 0 14 Dtool_MC2_yGD1 1 4 this 3 125  
+26 14 Dtool_MC2_10F5 6 21 129 0 14 Dtool_MC2_10F5 1 4 this 3 125  
+27 14 Dtool_MC2_1TDx 6 22 128 0 14 Dtool_MC2_1TDx 1 4 this 3 125  
+28 14 Dtool_MC2_OwRY 4 23 123 0 14 Dtool_MC2_OwRY 7 4 this 3 122  2 px 1 128  2 py 1 128  2 pz 1 128  2 vx 1 128  2 vy 1 128  2 vz 1 128  
+29 14 Dtool_MC2_kQiv 4 25 123 0 14 Dtool_MC2_kQiv 2 4 this 3 122  4 dist 1 128  
+30 14 Dtool_MC2_O2dr 6 26 128 0 14 Dtool_MC2_O2dr 1 4 this 3 125  
+31 14 Dtool_MC2_q_vO 4 27 123 0 14 Dtool_MC2_q_vO 2 4 this 3 122  4 dist 1 128  
+32 14 Dtool_MC2_MIqK 6 28 128 0 14 Dtool_MC2_MIqK 1 4 this 3 125  
+33 14 Dtool_MC2_mGiV 6 30 120 0 14 Dtool_MC2_mGiV 1 4 this 3 125  
+34 14 Dtool_MC2_wXI1 7 31 131 0 14 Dtool_MC2_wXI1 0 
+35 14 Dtool_MC2_vL8W 7 33 132 0 14 Dtool_MC2_vL8W 0 
+36 14 Dtool_MC2_Hh1v 4 34 123 0 14 Dtool_MC2_Hh1v 1 4 this 3 132  
+37 14 Dtool_MC2_YnlD 6 35 124 0 14 Dtool_MC2_YnlD 1 4 this 3 132  
+38 14 Dtool_MC2_z8cY 7 36 122 0 14 Dtool_MC2_z8cY 3 4 this 3 132  9 file_name 1 129  10 positional 1 124  
+39 14 Dtool_MC2_yCgN 7 36 122 0 14 Dtool_MC2_yCgN 2 4 this 3 132  9 file_name 1 129  
+40 14 Dtool_MC2_o8vb 7 37 122 0 14 Dtool_MC2_o8vb 1 4 this 3 132  
+41 14 Dtool_MC2_PTiB 4 38 123 0 14 Dtool_MC2_PTiB 2 4 this 3 132  9 file_name 1 129  
+42 14 Dtool_MC2_V3uV 4 39 123 0 14 Dtool_MC2_V3uV 1 4 this 3 132  
+43 14 Dtool_MC2_JsMW 4 40 123 0 14 Dtool_MC2_JsMW 2 4 this 3 132  5 count 1 133  
+44 14 Dtool_MC2_Zu93 6 41 133 0 14 Dtool_MC2_Zu93 1 4 this 3 134  
+45 14 Dtool_MC2_qSxW 4 42 123 0 14 Dtool_MC2_qSxW 2 4 this 3 132  6 volume 1 128  
+46 14 Dtool_MC2_r_Wv 6 43 128 0 14 Dtool_MC2_r_Wv 1 4 this 3 134  
+47 14 Dtool_MC2_J_GE 4 44 123 0 14 Dtool_MC2_J_GE 2 4 this 3 132  4 flag 1 124  
+48 14 Dtool_MC2_b_cl 6 45 124 0 14 Dtool_MC2_b_cl 1 4 this 3 134  
+49 14 Dtool_MC2_0VhR 4 46 123 0 14 Dtool_MC2_0VhR 2 4 this 3 132  5 limit 1 133  
+50 14 Dtool_MC2_RuKw 4 46 123 0 14 Dtool_MC2_RuKw 1 4 this 3 132  
+51 14 Dtool_MC2_4gS3 6 47 133 0 14 Dtool_MC2_4gS3 1 4 this 3 134  
+52 14 Dtool_MC2_UjBl 4 48 123 0 14 Dtool_MC2_UjBl 2 4 this 3 132  5 count 1 133  
+53 14 Dtool_MC2_BZTi 4 49 123 0 14 Dtool_MC2_BZTi 1 4 this 3 132  
+54 14 Dtool_MC2_KRZx 4 50 123 0 14 Dtool_MC2_KRZx 1 4 this 3 132  
+55 14 Dtool_MC2_BiqK 4 51 123 0 14 Dtool_MC2_BiqK 13 4 this 3 132  2 px 1 128  2 py 1 128  2 pz 1 128  2 vx 1 128  2 vy 1 128  2 vz 1 128  2 fx 1 128  2 fy 1 128  2 fz 1 128  2 ux 1 128  2 uy 1 128  2 uz 1 128  
+56 14 Dtool_MC2_BlhR 4 53 123 0 14 Dtool_MC2_BlhR 2 4 this 3 132  6 factor 1 128  
+57 14 Dtool_MC2_hJ5G 6 54 128 0 14 Dtool_MC2_hJ5G 1 4 this 3 134  
+58 14 Dtool_MC2_R8Fh 4 55 123 0 14 Dtool_MC2_R8Fh 2 4 this 3 132  6 factor 1 128  
+59 14 Dtool_MC2_hs_N 6 56 128 0 14 Dtool_MC2_hs_N 1 4 this 3 134  
+60 14 Dtool_MC2_QhOE 4 57 123 0 14 Dtool_MC2_QhOE 2 4 this 3 132  6 factor 1 128  
+61 14 Dtool_MC2_V1m5 6 58 128 0 14 Dtool_MC2_V1m5 1 4 this 3 134  
+62 14 Dtool_MC2_bs2a 7 59 131 0 14 Dtool_MC2_bs2a 0 
+18
+118 10 AudioSound 75777 10 AudioSound 10 AudioSound 0 0 0 0 0 0 28 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 0 1 0 119 0 0 0 1 120 0
+
+119 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+120 11 SoundStatus 794624 23 AudioSound::SoundStatus 23 AudioSound::SoundStatus 118 0 0 0 0 0 0 0 0 3 3 BAD 15 AudioSound::BAD 0 5 READY 17 AudioSound::READY 1 7 PLAYING 19 AudioSound::PLAYING 2 0 0
+
+121 12 AudioManager 75777 12 AudioManager 12 AudioManager 0 0 0 0 0 0 27 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 0 1 0 119 0 0 0 0 0
+
+122 12 AudioSound * 8576 12 AudioSound * 12 AudioSound * 0 0 118 0 0 0 0 0 0 0 0 0
+
+123 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+124 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+125 18 AudioSound const * 8576 18 AudioSound const * 18 AudioSound const * 0 0 126 0 0 0 0 0 0 0 0 0
+
+126 16 AudioSound const 8832 16 AudioSound const 16 AudioSound const 0 0 118 0 0 0 0 0 0 0 0 0
+
+127 17 unsigned long int 8214 17 unsigned long int 17 unsigned long int 0 1 0 0 0 0 0 0 0 0 0 0
+
+128 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+129 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+130 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+131 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 130 0 0 0 0 0 0 0 0 0
+
+132 14 AudioManager * 8576 14 AudioManager * 14 AudioManager * 0 0 121 0 0 0 0 0 0 0 0 0
+
+133 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0
+
+134 20 AudioManager const * 8576 20 AudioManager const * 20 AudioManager const * 0 0 135 0 0 0 0 0 0 0 0 0
+
+135 18 AudioManager const 8832 18 AudioManager const 18 AudioManager const 0 0 121 0 0 0 0 0 0 0 0 0
+
+0
+0

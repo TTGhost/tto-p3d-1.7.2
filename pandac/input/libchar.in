@@ -1,0 +1,602 @@
+1145554481
+2 2
+7 libchar 4 nRYR 5 panda 
+31
+31 17 add_net_transform 4 62 33 CharacterJoint::add_net_transform 0 1 1 508
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_net_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's net transform
+//               from the root.  Returns true if the node is
+//               successfully added, false if it had already been
+//               added.
+////////////////////////////////////////////////////////////////////
+56
+bool CharacterJoint::add_net_transform(PandaNode *node);
+
+32 20 remove_net_transform 4 62 36 CharacterJoint::remove_net_transform 0 1 2 515
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_net_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root.  Returns true if the node is
+//               successfully removed, false if it was not on the
+//               list.
+////////////////////////////////////////////////////////////////////
+59
+bool CharacterJoint::remove_net_transform(PandaNode *node);
+
+33 17 has_net_transform 4 62 33 CharacterJoint::has_net_transform 0 1 3 410
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_net_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root, false otherwise.
+////////////////////////////////////////////////////////////////////
+62
+bool CharacterJoint::has_net_transform(PandaNode *node) const;
+
+34 20 clear_net_transforms 4 62 36 CharacterJoint::clear_net_transforms 0 1 4 388
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_net_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's net transform
+//               from the root.
+////////////////////////////////////////////////////////////////////
+48
+void CharacterJoint::clear_net_transforms(void);
+
+35 19 add_local_transform 4 62 35 CharacterJoint::add_local_transform 0 1 5 514
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_local_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully added, false if it had already been
+//               added.
+////////////////////////////////////////////////////////////////////
+58
+bool CharacterJoint::add_local_transform(PandaNode *node);
+
+36 22 remove_local_transform 4 62 38 CharacterJoint::remove_local_transform 0 1 6 521
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_local_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully removed, false if it was not on the
+//               list.
+////////////////////////////////////////////////////////////////////
+61
+bool CharacterJoint::remove_local_transform(PandaNode *node);
+
+37 19 has_local_transform 4 62 35 CharacterJoint::has_local_transform 0 1 7 416
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_local_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent, false otherwise.
+////////////////////////////////////////////////////////////////////
+64
+bool CharacterJoint::has_local_transform(PandaNode *node) const;
+
+38 22 clear_local_transforms 4 62 38 CharacterJoint::clear_local_transforms 0 1 8 394
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_local_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's local transform
+//               from its parent.
+////////////////////////////////////////////////////////////////////
+50
+void CharacterJoint::clear_local_transforms(void);
+
+39 13 get_transform 4 62 29 CharacterJoint::get_transform 0 1 9 309
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_transform
+//       Access: Published
+//  Description: Copies the joint's current transform into the
+//               indicated matrix.
+////////////////////////////////////////////////////////////////////
+63
+void CharacterJoint::get_transform(LMatrix4f &transform) const;
+
+40 17 get_net_transform 4 62 33 CharacterJoint::get_net_transform 0 1 10 392
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_net_transform
+//       Access: Published
+//  Description: Copies the joint's current net transform (composed
+//               from the root of the character joint hierarchy) into
+//               the indicated matrix.
+////////////////////////////////////////////////////////////////////
+67
+void CharacterJoint::get_net_transform(LMatrix4f &transform) const;
+
+41 14 get_class_type 4 62 30 CharacterJoint::get_class_type 0 1 11 0
+55
+static TypeHandle CharacterJoint::get_class_type(void);
+
+42 21 CharacterVertexSlider 4 64 44 CharacterVertexSlider::CharacterVertexSlider 0 1 12 716
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::Default Constructor
+//       Access: Private
+//  Description: Constructs an invalid object; used only by the bam
+//               loader.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+////////////////////////////////////////////////////////////////////
+75
+CharacterVertexSlider::CharacterVertexSlider(CharacterSlider *char_slider);
+
+43 15 get_char_slider 4 64 38 CharacterVertexSlider::get_char_slider 0 1 13 1022
+// Filename: characterVertexSlider.I
+// Created by:  drose (28Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::get_char_slider
+//       Access: Published
+//  Description: Returns the CharacterSlider object for which this
+//               object returns the slider value.
+////////////////////////////////////////////////////////////////////
+81
+inline CharacterSlider const *CharacterVertexSlider::get_char_slider(void) const;
+
+44 14 get_class_type 4 64 37 CharacterVertexSlider::get_class_type 0 1 14 0
+62
+static TypeHandle CharacterVertexSlider::get_class_type(void);
+
+45 20 JointVertexTransform 4 66 42 JointVertexTransform::JointVertexTransform 0 1 15 714
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::Default Constructor
+//       Access: Private
+//  Description: Constructs an invalid object; used only by the bam
+//               loader.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+////////////////////////////////////////////////////////////////////
+66
+JointVertexTransform::JointVertexTransform(CharacterJoint *joint);
+
+46 9 get_joint 4 66 31 JointVertexTransform::get_joint 0 1 16 994
+// Filename: jointVertexTransform.I
+// Created by:  drose (24Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::get_joint
+//       Access: Published
+//  Description: Returns the joint for which this object returns the
+//               transform.
+////////////////////////////////////////////////////////////////////
+73
+inline CharacterJoint const *JointVertexTransform::get_joint(void) const;
+
+47 14 get_class_type 4 66 36 JointVertexTransform::get_class_type 0 1 17 0
+61
+static TypeHandle JointVertexTransform::get_class_type(void);
+
+48 10 get_bundle 4 68 21 Character::get_bundle 0 1 18 220
+////////////////////////////////////////////////////////////////////
+//     Function: Character::get_bundle
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+63
+inline CharacterJointBundle *Character::get_bundle(void) const;
+
+49 13 get_num_parts 4 68 24 Character::get_num_parts 0 1 19 338
+////////////////////////////////////////////////////////////////////
+//     Function: Character::get_num_parts
+//       Access: Published
+//  Description: Returns the total number of moving parts (e.g. joints
+//               and sliders) associated with the Character.
+////////////////////////////////////////////////////////////////////
+48
+inline int Character::get_num_parts(void) const;
+
+50 8 get_part 4 68 19 Character::get_part 0 1 20 294
+////////////////////////////////////////////////////////////////////
+//     Function: Character::get_part
+//       Access: Published
+//  Description: Returns the nth moving part associated with the
+//               Character.
+////////////////////////////////////////////////////////////////////
+51
+inline PartGroup *Character::get_part(int n) const;
+
+51 10 find_joint 4 68 21 Character::find_joint 0 1 21 412
+////////////////////////////////////////////////////////////////////
+//     Function: Character::find_joint
+//       Access: Published
+//  Description: Returns a pointer to the joint with the given name,
+//               if there is such a joint, or NULL if there is no such
+//               joint.  This will not return a pointer to a slider.
+////////////////////////////////////////////////////////////////////
+85
+inline CharacterJoint *Character::find_joint(basic_string< char > const &name) const;
+
+52 11 find_slider 4 68 22 Character::find_slider 0 1 22 415
+////////////////////////////////////////////////////////////////////
+//     Function: Character::find_slider
+//       Access: Published
+//  Description: Returns a pointer to the slider with the given name,
+//               if there is such a slider, or NULL if there is no such
+//               slider.  This will not return a pointer to a joint.
+////////////////////////////////////////////////////////////////////
+87
+inline CharacterSlider *Character::find_slider(basic_string< char > const &name) const;
+
+53 11 write_parts 4 68 22 Character::write_parts 0 1 23 371
+////////////////////////////////////////////////////////////////////
+//     Function: Character::write_parts
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               in their hierchical structure, to the indicated
+//               output stream.
+////////////////////////////////////////////////////////////////////
+55
+inline void Character::write_parts(ostream &out) const;
+
+54 17 write_part_values 4 68 28 Character::write_part_values 0 1 24 411
+////////////////////////////////////////////////////////////////////
+//     Function: Character::write_part_values
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               along with each current position, in their hierchical
+//               structure, to the indicated output stream.
+////////////////////////////////////////////////////////////////////
+61
+inline void Character::write_part_values(ostream &out) const;
+
+55 13 update_to_now 4 68 24 Character::update_to_now 0 1 25 541
+////////////////////////////////////////////////////////////////////
+//     Function: Character::update_to_now
+//       Access: Published
+//  Description: Advances the character's frame to the current time,
+//               and then calls update().  This can be used by show
+//               code to force an update of the character's position
+//               to the current frame, regardless of whether the
+//               character is currently onscreen and animating.
+////////////////////////////////////////////////////////////////////
+36
+void Character::update_to_now(void);
+
+56 6 update 4 68 17 Character::update 0 1 26 434
+////////////////////////////////////////////////////////////////////
+//     Function: Character::update
+//       Access: Published
+//  Description: Recalculates the Character's joints and vertices for
+//               the current frame.  Normally this is performed
+//               automatically during the render and need not be
+//               called explicitly.
+////////////////////////////////////////////////////////////////////
+29
+void Character::update(void);
+
+57 12 force_update 4 68 23 Character::force_update 0 1 27 303
+////////////////////////////////////////////////////////////////////
+//     Function: Character::force_update
+//       Access: Published
+//  Description: Recalculates the character even if we think it
+//               doesn't need it.
+////////////////////////////////////////////////////////////////////
+35
+void Character::force_update(void);
+
+58 14 get_class_type 4 68 25 Character::get_class_type 0 1 28 0
+50
+static TypeHandle Character::get_class_type(void);
+
+59 8 get_node 4 70 30 CharacterJointBundle::get_node 0 1 29 303
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::get_node
+//       Access: Public
+//  Description: Returns the Character node associated with this
+//               PartBundle.
+////////////////////////////////////////////////////////////////////
+61
+inline Character *CharacterJointBundle::get_node(void) const;
+
+60 14 get_class_type 4 70 36 CharacterJointBundle::get_class_type 0 1 30 0
+61
+static TypeHandle CharacterJointBundle::get_class_type(void);
+
+61 21 ~CharacterJointBundle 4 70 43 CharacterJointBundle::~CharacterJointBundle 0 0 0
+50
+CharacterJointBundle::~CharacterJointBundle(void);
+
+30
+1 14 Dtool_nRYR0hP_ 6 3 75 0 14 Dtool_nRYR0hP_ 2 4 this 3 72  4 node 1 73  
+2 14 Dtool_nRYR6yW0 6 4 75 0 14 Dtool_nRYR6yW0 2 4 this 3 72  4 node 1 73  
+3 14 Dtool_nRYRHxNe 6 5 75 0 14 Dtool_nRYRHxNe 2 4 this 3 76  4 node 1 73  
+4 14 Dtool_nRYRLDWU 4 6 78 0 14 Dtool_nRYRLDWU 1 4 this 3 72  
+5 14 Dtool_nRYRDPic 6 7 75 0 14 Dtool_nRYRDPic 2 4 this 3 72  4 node 1 73  
+6 14 Dtool_nRYRosae 6 8 75 0 14 Dtool_nRYRosae 2 4 this 3 72  4 node 1 73  
+7 14 Dtool_nRYRPfag 6 9 75 0 14 Dtool_nRYRPfag 2 4 this 3 76  4 node 1 73  
+8 14 Dtool_nRYRGw1l 4 10 78 0 14 Dtool_nRYRGw1l 1 4 this 3 72  
+9 14 Dtool_nRYRDAfP 4 11 78 0 14 Dtool_nRYRDAfP 2 4 this 3 76  9 transform 1 79  
+10 14 Dtool_nRYR3CE8 4 12 78 0 14 Dtool_nRYR3CE8 2 4 this 3 76  9 transform 1 79  
+11 14 Dtool_nRYRp_fE 7 13 82 0 14 Dtool_nRYRp_fE 0 
+12 14 Dtool_nRYR_y8G 7 16 85 0 14 Dtool_nRYR_y8G 1 11 char_slider 1 83  
+13 14 Dtool_nRYRGzr0 7 17 89 0 14 Dtool_nRYRGzr0 1 4 this 3 87  
+14 14 Dtool_nRYR0Nq1 7 18 82 0 14 Dtool_nRYR0Nq1 0 
+15 14 Dtool_nRYR1hyI 7 21 90 0 14 Dtool_nRYR1hyI 1 5 joint 1 72  
+16 14 Dtool_nRYRewMf 7 22 76 0 14 Dtool_nRYRewMf 1 4 this 3 91  
+17 14 Dtool_nRYRjhsr 7 23 82 0 14 Dtool_nRYRjhsr 0 
+18 14 Dtool_nRYRMPjU 6 26 95 0 14 Dtool_nRYRMPjU 1 4 this 3 93  
+19 14 Dtool_nRYRUaOF 6 27 96 0 14 Dtool_nRYRUaOF 1 4 this 3 93  
+20 14 Dtool_nRYRY7uH 7 28 98 0 14 Dtool_nRYRY7uH 2 4 this 3 93  1 n 1 96  
+21 14 Dtool_nRYRv8ZU 7 29 72 0 14 Dtool_nRYRv8ZU 2 4 this 3 93  4 name 1 99  
+22 14 Dtool_nRYRypWE 7 30 83 0 14 Dtool_nRYRypWE 2 4 this 3 93  4 name 1 99  
+23 14 Dtool_nRYRoBhZ 4 31 78 0 14 Dtool_nRYRoBhZ 2 4 this 3 93  3 out 1 100  
+24 14 Dtool_nRYR2iP2 4 32 78 0 14 Dtool_nRYR2iP2 2 4 this 3 93  3 out 1 100  
+25 14 Dtool_nRYR_b_8 4 33 78 0 14 Dtool_nRYR_b_8 1 4 this 3 102  
+26 14 Dtool_nRYRoVfb 4 34 78 0 14 Dtool_nRYRoVfb 1 4 this 3 102  
+27 14 Dtool_nRYRCgKI 4 35 78 0 14 Dtool_nRYRCgKI 1 4 this 3 102  
+28 14 Dtool_nRYRBCxW 7 36 82 0 14 Dtool_nRYRBCxW 0 
+29 14 Dtool_nRYRZDUp 7 39 102 0 14 Dtool_nRYRZDUp 1 4 this 3 103  
+30 14 Dtool_nRYRalYp 7 40 82 0 14 Dtool_nRYRalYp 0 
+43
+62 14 CharacterJoint 75777 14 CharacterJoint 14 CharacterJoint 0 0 0 0 0 0 11 31 32 33 34 35 36 37 38 39 40 41 0 1 0 63 0 0 0 0 301
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterJoint
+// Description : This represents one joint of the character's
+//               animation, containing an animating transform matrix.
+////////////////////////////////////////////////////////////////////
+
+63 16 MovingPartMatrix 2049 16 MovingPartMatrix 16 MovingPartMatrix 0 0 0 0 0 0 0 0 0 0 0 279
+////////////////////////////////////////////////////////////////////
+//       Class : MovingPartMatrix
+// Description : This is a particular kind of MovingPart that accepts
+//               a matrix each frame.
+////////////////////////////////////////////////////////////////////
+
+64 21 CharacterVertexSlider 75777 21 CharacterVertexSlider 21 CharacterVertexSlider 0 0 0 1 42 0 0 2 43 44 0 1 0 65 0 0 0 0 351
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterVertexSlider
+// Description : This is a specialization on VertexSlider that
+//               returns the slider value associated with a particular
+//               CharacterSlider object.
+////////////////////////////////////////////////////////////////////
+
+65 12 VertexSlider 2049 12 VertexSlider 12 VertexSlider 0 0 0 0 0 0 0 0 0 0 0 607
+////////////////////////////////////////////////////////////////////
+//       Class : VertexSlider
+// Description : This is an abstract base class that retains some
+//               slider value, which is a linear value that typically
+//               ranges from 0.0 to 1.0, and is used to control the
+//               animation of morphs (blend shapes).
+//
+//               It is similar to VertexTransform, which keeps a full
+//               4x4 transform matrix, but the VertexSlider only keeps
+//               a single float value.
+////////////////////////////////////////////////////////////////////
+
+66 20 JointVertexTransform 75777 20 JointVertexTransform 20 JointVertexTransform 0 0 0 1 45 0 0 2 46 47 0 1 0 67 0 0 0 0 804
+////////////////////////////////////////////////////////////////////
+//       Class : JointVertexTransform
+// Description : This is a specialization on VertexTransform that
+//               returns the transform necessary to move vertices as
+//               if they were assigned to the indicated joint.  The
+//               geometry itself should be parented to the scene graph
+//               at the level of the character's root joint; that is,
+//               it should not be parented under a node directly
+//               animated by any joints.
+//
+//               Multiple combinations of these with different weights
+//               are used to implement soft-skinned vertices for an
+//               animated character.
+////////////////////////////////////////////////////////////////////
+
+67 15 VertexTransform 2049 15 VertexTransform 15 VertexTransform 0 0 0 0 0 0 0 0 0 0 0 558
+////////////////////////////////////////////////////////////////////
+//       Class : VertexTransform
+// Description : This is an abstract base class that holds a pointer
+//               to some transform, computed in some arbitrary way,
+//               that is to be applied to vertices during rendering.
+//               This is used to implement soft-skinned and animated
+//               vertices.  Derived classes will define how the
+//               transform is actually computed.
+////////////////////////////////////////////////////////////////////
+
+68 9 Character 75777 9 Character 9 Character 0 0 0 0 0 0 11 48 49 50 51 52 53 54 55 56 57 58 0 1 0 69 0 0 0 0 301
+////////////////////////////////////////////////////////////////////
+//       Class : Character
+// Description : An animated character, with skeleton-morph animation
+//               and either soft-skinned or hard-skinned vertices.
+////////////////////////////////////////////////////////////////////
+
+69 14 PartBundleNode 2049 14 PartBundleNode 14 PartBundleNode 0 0 0 0 0 0 0 0 0 0 0 373
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundleNode
+// Description : This is a node that contains a pointer to an
+//               PartBundle.  Like AnimBundleNode, it exists solely to
+//               make it easy to store PartBundles in the scene graph.
+////////////////////////////////////////////////////////////////////
+
+70 20 CharacterJointBundle 141313 20 CharacterJointBundle 20 CharacterJointBundle 0 0 0 0 61 0 2 59 60 0 1 0 71 0 0 0 0 272
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterJointBundle
+// Description : The collection of all the joints and sliders in the
+//               character.
+////////////////////////////////////////////////////////////////////
+
+71 10 PartBundle 2049 10 PartBundle 10 PartBundle 0 0 0 0 0 0 0 0 0 0 0 337
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundle
+// Description : This is the root of a MovingPart hierarchy.  It
+//               defines the hierarchy of moving parts that make up an
+//               animatable object.
+////////////////////////////////////////////////////////////////////
+
+72 16 CharacterJoint * 8576 16 CharacterJoint * 16 CharacterJoint * 0 0 62 0 0 0 0 0 0 0 0 0
+
+73 11 PandaNode * 8576 11 PandaNode * 11 PandaNode * 0 0 74 0 0 0 0 0 0 0 0 0
+
+74 9 PandaNode 2048 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+75 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+76 22 CharacterJoint const * 8576 22 CharacterJoint const * 22 CharacterJoint const * 0 0 77 0 0 0 0 0 0 0 0 0
+
+77 20 CharacterJoint const 8832 20 CharacterJoint const 20 CharacterJoint const 0 0 62 0 0 0 0 0 0 0 0 0
+
+78 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+79 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 80 0 0 0 0 0 0 0 0 0
+
+80 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+81 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+82 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 81 0 0 0 0 0 0 0 0 0
+
+83 17 CharacterSlider * 8576 17 CharacterSlider * 17 CharacterSlider * 0 0 84 0 0 0 0 0 0 0 0 0
+
+84 15 CharacterSlider 1050624 15 CharacterSlider 15 CharacterSlider 0 0 0 0 0 0 0 0 0 0 0 437
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterSlider
+// Description : This is a morph slider within the character.  It's
+//               simply a single floating-point value that animates
+//               generally between 0 and 1, that controls the effects
+//               of one or more morphs within the character.
+////////////////////////////////////////////////////////////////////
+
+85 23 CharacterVertexSlider * 8576 23 CharacterVertexSlider * 23 CharacterVertexSlider * 0 0 64 0 0 0 0 0 0 0 0 0
+
+86 21 CharacterSlider const 8832 21 CharacterSlider const 21 CharacterSlider const 0 0 84 0 0 0 0 0 0 0 0 0
+
+87 29 CharacterVertexSlider const * 8576 29 CharacterVertexSlider const * 29 CharacterVertexSlider const * 0 0 88 0 0 0 0 0 0 0 0 0
+
+88 27 CharacterVertexSlider const 8832 27 CharacterVertexSlider const 27 CharacterVertexSlider const 0 0 64 0 0 0 0 0 0 0 0 0
+
+89 23 CharacterSlider const * 8576 23 CharacterSlider const * 23 CharacterSlider const * 0 0 86 0 0 0 0 0 0 0 0 0
+
+90 22 JointVertexTransform * 8576 22 JointVertexTransform * 22 JointVertexTransform * 0 0 66 0 0 0 0 0 0 0 0 0
+
+91 28 JointVertexTransform const * 8576 28 JointVertexTransform const * 28 JointVertexTransform const * 0 0 92 0 0 0 0 0 0 0 0 0
+
+92 26 JointVertexTransform const 8832 26 JointVertexTransform const 26 JointVertexTransform const 0 0 66 0 0 0 0 0 0 0 0 0
+
+93 17 Character const * 8576 17 Character const * 17 Character const * 0 0 94 0 0 0 0 0 0 0 0 0
+
+94 15 Character const 8832 15 Character const 15 Character const 0 0 68 0 0 0 0 0 0 0 0 0
+
+95 22 CharacterJointBundle * 8576 22 CharacterJointBundle * 22 CharacterJointBundle * 0 0 70 0 0 0 0 0 0 0 0 0
+
+96 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+97 9 PartGroup 2048 9 PartGroup 9 PartGroup 0 0 0 0 0 0 0 0 0 0 0 290
+////////////////////////////////////////////////////////////////////
+//       Class : PartGroup
+// Description : This is the base class for PartRoot and
+//               MovingPart.  It defines a hierarchy of MovingParts.
+////////////////////////////////////////////////////////////////////
+
+98 11 PartGroup * 8576 11 PartGroup * 11 PartGroup * 0 0 97 0 0 0 0 0 0 0 0 0
+
+99 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+100 9 ostream * 8576 9 ostream * 9 ostream * 0 0 101 0 0 0 0 0 0 0 0 0
+
+101 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+102 11 Character * 8576 11 Character * 11 Character * 0 0 68 0 0 0 0 0 0 0 0 0
+
+103 28 CharacterJointBundle const * 8576 28 CharacterJointBundle const * 28 CharacterJointBundle const * 0 0 104 0 0 0 0 0 0 0 0 0
+
+104 26 CharacterJointBundle const 8832 26 CharacterJointBundle const 26 CharacterJointBundle const 0 0 70 0 0 0 0 0 0 0 0 0
+
+0
+0

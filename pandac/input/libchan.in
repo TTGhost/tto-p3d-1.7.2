@@ -1,0 +1,1867 @@
+1145554446
+2 2
+7 libchan 4 n9gM 5 panda 
+133
+129 37 upcast_to_TypedWritableReferenceCount 12 262 48 AnimGroup::upcast_to_TypedWritableReferenceCount 0 1 8 52
+upcast from AnimGroup to TypedWritableReferenceCount
+84
+TypedWritableReferenceCount *AnimGroup::upcast_to_TypedWritableReferenceCount(void);
+
+130 21 downcast_to_AnimGroup 12 263 50 TypedWritableReferenceCount::downcast_to_AnimGroup 0 1 9 54
+downcast from TypedWritableReferenceCount to AnimGroup
+68
+AnimGroup *TypedWritableReferenceCount::downcast_to_AnimGroup(void);
+
+131 17 upcast_to_Namable 12 262 28 AnimGroup::upcast_to_Namable 0 1 10 32
+upcast from AnimGroup to Namable
+44
+Namable *AnimGroup::upcast_to_Namable(void);
+
+132 21 downcast_to_AnimGroup 12 264 30 Namable::downcast_to_AnimGroup 0 1 11 34
+downcast from Namable to AnimGroup
+48
+AnimGroup *Namable::downcast_to_AnimGroup(void);
+
+133 10 ~AnimGroup 4 262 21 AnimGroup::~AnimGroup 0 0 273
+// This is the normal AnimGroup constructor.
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::Destructor
+//       Access: Public, Virtual
+//  Description: 
+////////////////////////////////////////////////////////////////////
+36
+virtual AnimGroup::~AnimGroup(void);
+
+134 16 get_num_children 4 262 27 AnimGroup::get_num_children 0 1 1 271
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::get_num_children
+//       Access: Public
+//  Description: Returns the number of child nodes of the group.
+////////////////////////////////////////////////////////////////////
+44
+int AnimGroup::get_num_children(void) const;
+
+135 9 get_child 4 262 20 AnimGroup::get_child 0 1 2 252
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::get_child
+//       Access: Public
+//  Description: Returns the nth child of the group.
+////////////////////////////////////////////////////////////////////
+45
+AnimGroup *AnimGroup::get_child(int n) const;
+
+136 10 find_child 4 262 21 AnimGroup::find_child 0 1 3 332
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::find_child
+//       Access: Public
+//  Description: Returns the first descendant found with the indicated
+//               name, or NULL if no such descendant exists.
+////////////////////////////////////////////////////////////////////
+73
+AnimGroup *AnimGroup::find_child(basic_string< char > const &name) const;
+
+137 18 make_child_dynamic 4 262 29 AnimGroup::make_child_dynamic 0 1 4 654
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::make_child_dynamic
+//       Access: Public
+//  Description: Finds the indicated child and replaces it with an
+//               AnimChannelMatrixDynamic or AnimChannelScalarDynamic,
+//               as appropriate, and returns the new channel.
+//
+//               This may be called before binding the animation to a
+//               character to replace certain joints with
+//               dynamically-controlled ones.
+//
+//               Returns NULL if the named child cannot be found.
+////////////////////////////////////////////////////////////////////
+75
+AnimGroup *AnimGroup::make_child_dynamic(basic_string< char > const &name);
+
+138 6 output 4 262 17 AnimGroup::output 0 1 5 266
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::output
+//       Access: Public, Virtual
+//  Description: Writes a one-line description of the group.
+////////////////////////////////////////////////////////////////////
+51
+virtual void AnimGroup::output(ostream &out) const;
+
+139 5 write 4 262 16 AnimGroup::write 0 1 6 306
+////////////////////////////////////////////////////////////////////
+//     Function: AnimGroup::write
+//       Access: Public, Virtual
+//  Description: Writes a brief description of the group and all of
+//               its descendants.
+////////////////////////////////////////////////////////////////////
+68
+virtual void AnimGroup::write(ostream &out, int indent_level) const;
+
+140 14 get_class_type 4 262 25 AnimGroup::get_class_type 0 1 7 0
+50
+static TypeHandle AnimGroup::get_class_type(void);
+
+141 10 AnimBundle 4 265 22 AnimBundle::AnimBundle 0 1 12 1114
+// Filename: animBundle.I
+// Created by:  drose (21Feb99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: AnimBundle::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimBundle::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+91
+inline AnimBundle::AnimBundle(basic_string< char > const &name, float fps, int num_frames);
+
+142 19 get_base_frame_rate 4 265 31 AnimBundle::get_base_frame_rate 0 1 13 600
+////////////////////////////////////////////////////////////////////
+//     Function: AnimBundle::get_base_frame_rate
+//       Access: Public
+//  Description: Returns the ideal number of frames per second of the
+//               animation, when it is running at normal speed.  This
+//               may not be the same as the actual playing frame rate,
+//               as it might have been adjusted through
+//               set_play_rate() on the AnimControl object.  See
+//               AnimControl::get_effective_frame_rate().
+////////////////////////////////////////////////////////////////////
+58
+inline double AnimBundle::get_base_frame_rate(void) const;
+
+143 14 get_num_frames 4 265 26 AnimBundle::get_num_frames 0 1 14 335
+////////////////////////////////////////////////////////////////////
+//     Function: AnimBundle::get_num_frames
+//       Access: Public
+//  Description: Returns the number of frames of animation, or 0 if
+//               the animation has no fixed number of frames.
+////////////////////////////////////////////////////////////////////
+50
+inline int AnimBundle::get_num_frames(void) const;
+
+144 14 get_class_type 4 265 26 AnimBundle::get_class_type 0 1 15 0
+51
+static TypeHandle AnimBundle::get_class_type(void);
+
+145 11 ~AnimBundle 4 265 23 AnimBundle::~AnimBundle 0 0 0
+30
+AnimBundle::~AnimBundle(void);
+
+146 10 get_bundle 4 266 26 AnimBundleNode::get_bundle 0 1 16 222
+////////////////////////////////////////////////////////////////////
+//     Function: AnimBundleNode::get_bundle
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+58
+inline AnimBundle *AnimBundleNode::get_bundle(void) const;
+
+147 14 get_class_type 4 266 30 AnimBundleNode::get_class_type 0 1 17 0
+55
+static TypeHandle AnimBundleNode::get_class_type(void);
+
+148 15 ~AnimBundleNode 4 266 31 AnimBundleNode::~AnimBundleNode 0 0 0
+38
+AnimBundleNode::~AnimBundleNode(void);
+
+149 37 upcast_to_TypedWritableReferenceCount 12 268 48 PartGroup::upcast_to_TypedWritableReferenceCount 0 1 24 52
+upcast from PartGroup to TypedWritableReferenceCount
+84
+TypedWritableReferenceCount *PartGroup::upcast_to_TypedWritableReferenceCount(void);
+
+150 21 downcast_to_PartGroup 12 263 50 TypedWritableReferenceCount::downcast_to_PartGroup 0 1 25 54
+downcast from TypedWritableReferenceCount to PartGroup
+68
+PartGroup *TypedWritableReferenceCount::downcast_to_PartGroup(void);
+
+151 17 upcast_to_Namable 12 268 28 PartGroup::upcast_to_Namable 0 1 26 32
+upcast from PartGroup to Namable
+44
+Namable *PartGroup::upcast_to_Namable(void);
+
+152 21 downcast_to_PartGroup 12 264 30 Namable::downcast_to_PartGroup 0 1 27 34
+downcast from Namable to PartGroup
+48
+PartGroup *Namable::downcast_to_PartGroup(void);
+
+153 10 ~PartGroup 4 268 21 PartGroup::~PartGroup 0 0 263
+// This is the normal PartGroup constructor.
+
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+36
+virtual PartGroup::~PartGroup(void);
+
+154 16 get_num_children 4 268 27 PartGroup::get_num_children 0 1 18 271
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::get_num_children
+//       Access: Public
+//  Description: Returns the number of child nodes of the group.
+////////////////////////////////////////////////////////////////////
+44
+int PartGroup::get_num_children(void) const;
+
+155 9 get_child 4 268 20 PartGroup::get_child 0 1 19 252
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::get_child
+//       Access: Public
+//  Description: Returns the nth child of the group.
+////////////////////////////////////////////////////////////////////
+45
+PartGroup *PartGroup::get_child(int n) const;
+
+156 10 find_child 4 268 21 PartGroup::find_child 0 1 20 332
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::find_child
+//       Access: Public
+//  Description: Returns the first descendant found with the indicated
+//               name, or NULL if no such descendant exists.
+////////////////////////////////////////////////////////////////////
+73
+PartGroup *PartGroup::find_child(basic_string< char > const &name) const;
+
+157 5 write 4 268 16 PartGroup::write 0 1 21 306
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::write
+//       Access: Public, Virtual
+//  Description: Writes a brief description of the group and all of
+//               its descendants.
+////////////////////////////////////////////////////////////////////
+68
+virtual void PartGroup::write(ostream &out, int indent_level) const;
+
+158 16 write_with_value 4 268 27 PartGroup::write_with_value 0 1 22 353
+////////////////////////////////////////////////////////////////////
+//     Function: PartGroup::write_with_value
+//       Access: Public, Virtual
+//  Description: Writes a brief description of the group, showing its
+//               current value, and that of all of its descendants.
+////////////////////////////////////////////////////////////////////
+79
+virtual void PartGroup::write_with_value(ostream &out, int indent_level) const;
+
+159 14 get_class_type 4 268 25 PartGroup::get_class_type 0 1 23 0
+50
+static TypeHandle PartGroup::get_class_type(void);
+
+160 24 upcast_to_ReferenceCount 12 269 37 AnimControl::upcast_to_ReferenceCount 0 1 34 41
+upcast from AnimControl to ReferenceCount
+60
+ReferenceCount *AnimControl::upcast_to_ReferenceCount(void);
+
+161 23 downcast_to_AnimControl 12 270 39 ReferenceCount::downcast_to_AnimControl 0 1 35 43
+downcast from ReferenceCount to AnimControl
+59
+AnimControl *ReferenceCount::downcast_to_AnimControl(void);
+
+162 23 upcast_to_AnimInterface 12 269 36 AnimControl::upcast_to_AnimInterface 0 1 36 40
+upcast from AnimControl to AnimInterface
+58
+AnimInterface *AnimControl::upcast_to_AnimInterface(void);
+
+163 23 downcast_to_AnimControl 12 271 38 AnimInterface::downcast_to_AnimControl 0 1 37 42
+downcast from AnimInterface to AnimControl
+58
+AnimControl *AnimInterface::downcast_to_AnimControl(void);
+
+164 12 ~AnimControl 4 269 25 AnimControl::~AnimControl 0 0 231
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::Destructor
+//       Access: Published, Virtual
+//  Description:
+////////////////////////////////////////////////////////////////////
+40
+virtual AnimControl::~AnimControl(void);
+
+165 8 get_part 4 269 21 AnimControl::get_part 0 1 28 292
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::get_part
+//       Access: Published
+//  Description: Returns the PartBundle bound in with this
+//               AnimControl.
+////////////////////////////////////////////////////////////////////
+46
+PartBundle *AnimControl::get_part(void) const;
+
+166 8 get_anim 4 269 21 AnimControl::get_anim 0 1 29 967
+// Filename: animControl.I
+// Created by:  drose (19Feb99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::get_anim
+//       Access: Published
+//  Description: Returns the AnimBundle bound in with this
+//               AnimControl.
+////////////////////////////////////////////////////////////////////
+53
+inline AnimBundle *AnimControl::get_anim(void) const;
+
+167 17 get_channel_index 4 269 30 AnimControl::get_channel_index 0 1 30 665
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::get_channel_index
+//       Access: Published
+//  Description: Returns the particular channel index associated with
+//               this AnimControl.  This channel index is the slot on
+//               which each AnimGroup is bound to its associated
+//               PartGroup, for each joint in the animation.
+//
+//               It will be true that
+//               get_part()->find_child("n")->get_bound(get_channel_index())
+//               == get_anim()->find_child("n"), for each joint "n".
+////////////////////////////////////////////////////////////////////
+54
+inline int AnimControl::get_channel_index(void) const;
+
+168 16 get_bound_joints 4 269 29 AnimControl::get_bound_joints 0 1 31 677
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::get_bound_joints
+//       Access: Published
+//  Description: Returns the subset of joints controlled by this
+//               AnimControl.  Most of the time, this will be
+//               BitArray::all_on(), for a normal full-body animation.
+//               For a subset animation, however, this will be just a
+//               subset of those bits, corresponding to the set of
+//               joints and sliders actually bound (as enumerated by
+//               bind_hierarchy() in depth-first LIFO order).
+////////////////////////////////////////////////////////////////////
+65
+inline BitArray const &AnimControl::get_bound_joints(void) const;
+
+169 6 output 4 269 19 AnimControl::output 0 1 32 218
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControl::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+53
+virtual void AnimControl::output(ostream &out) const;
+
+170 14 get_class_type 4 269 27 AnimControl::get_class_type 0 1 33 0
+52
+static TypeHandle AnimControl::get_class_type(void);
+
+171 14 get_class_type 4 272 31 AnimChannelBase::get_class_type 0 1 38 0
+56
+static TypeHandle AnimChannelBase::get_class_type(void);
+
+172 16 ~AnimChannelBase 4 272 33 AnimChannelBase::~AnimChannelBase 0 0 0
+40
+AnimChannelBase::~AnimChannelBase(void);
+
+173 9 get_value 4 273 44 AnimChannel< ACMatrixSwitchType >::get_value 0 1 39 0
+93
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_value(int frame, LMatrix4f &value) = 0;
+
+174 24 get_value_no_scale_shear 4 273 59 AnimChannel< ACMatrixSwitchType >::get_value_no_scale_shear 0 1 40 72
+// These transform-component methods only have meaning for matrix types.
+104
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_value_no_scale_shear(int frame, LMatrix4f &value);
+
+175 9 get_scale 4 273 44 AnimChannel< ACMatrixSwitchType >::get_scale 0 1 41 72
+// These transform-component methods only have meaning for matrix types.
+90
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_scale(int frame, LVecBase3f &scale);
+
+176 7 get_hpr 4 273 42 AnimChannel< ACMatrixSwitchType >::get_hpr 0 1 42 0
+86
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_hpr(int frame, LVecBase3f &hpr);
+
+177 8 get_quat 4 273 43 AnimChannel< ACMatrixSwitchType >::get_quat 0 1 43 0
+90
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_quat(int frame, LQuaternionf &quat);
+
+178 7 get_pos 4 273 42 AnimChannel< ACMatrixSwitchType >::get_pos 0 1 44 0
+86
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_pos(int frame, LVecBase3f &pos);
+
+179 9 get_shear 4 273 44 AnimChannel< ACMatrixSwitchType >::get_shear 0 1 45 0
+90
+virtual void ::AnimChannel< ACMatrixSwitchType >::get_shear(int frame, LVecBase3f &shear);
+
+180 14 get_class_type 4 273 49 AnimChannel< ACMatrixSwitchType >::get_class_type 0 1 46 0
+76
+static TypeHandle ::AnimChannel< ACMatrixSwitchType >::get_class_type(void);
+
+181 9 get_value 4 274 44 AnimChannel< ACScalarSwitchType >::get_value 0 0 0
+89
+virtual void ::AnimChannel< ACScalarSwitchType >::get_value(int frame, float &value) = 0;
+
+182 24 get_value_no_scale_shear 4 274 59 AnimChannel< ACScalarSwitchType >::get_value_no_scale_shear 0 0 72
+// These transform-component methods only have meaning for matrix types.
+100
+virtual void ::AnimChannel< ACScalarSwitchType >::get_value_no_scale_shear(int frame, float &value);
+
+183 9 get_scale 4 274 44 AnimChannel< ACScalarSwitchType >::get_scale 0 1 47 72
+// These transform-component methods only have meaning for matrix types.
+90
+virtual void ::AnimChannel< ACScalarSwitchType >::get_scale(int frame, LVecBase3f &scale);
+
+184 7 get_hpr 4 274 42 AnimChannel< ACScalarSwitchType >::get_hpr 0 1 48 0
+86
+virtual void ::AnimChannel< ACScalarSwitchType >::get_hpr(int frame, LVecBase3f &hpr);
+
+185 8 get_quat 4 274 43 AnimChannel< ACScalarSwitchType >::get_quat 0 1 49 0
+90
+virtual void ::AnimChannel< ACScalarSwitchType >::get_quat(int frame, LQuaternionf &quat);
+
+186 7 get_pos 4 274 42 AnimChannel< ACScalarSwitchType >::get_pos 0 1 50 0
+86
+virtual void ::AnimChannel< ACScalarSwitchType >::get_pos(int frame, LVecBase3f &pos);
+
+187 9 get_shear 4 274 44 AnimChannel< ACScalarSwitchType >::get_shear 0 1 51 0
+90
+virtual void ::AnimChannel< ACScalarSwitchType >::get_shear(int frame, LVecBase3f &shear);
+
+188 14 get_class_type 4 274 49 AnimChannel< ACScalarSwitchType >::get_class_type 0 1 52 0
+76
+static TypeHandle ::AnimChannel< ACScalarSwitchType >::get_class_type(void);
+
+189 9 set_value 4 275 35 AnimChannelMatrixDynamic::set_value 0 2 53 54 615
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixDynamic::set_value
+//       Access: Published
+//  Description: Explicitly sets the matrix value.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixDynamic::set_value
+//       Access: Published
+//  Description: Explicitly sets the matrix value, using the indicated
+//               TransformState object as a convenience.
+////////////////////////////////////////////////////////////////////
+65
+void AnimChannelMatrixDynamic::set_value(LMatrix4f const &value);
+
+190 14 set_value_node 4 275 40 AnimChannelMatrixDynamic::set_value_node 0 1 55 384
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixDynamic::set_value_node
+//       Access: Published
+//  Description: Specifies a node whose transform will be queried each
+//               frame to implicitly specify the transform of this
+//               joint.
+////////////////////////////////////////////////////////////////////
+63
+void AnimChannelMatrixDynamic::set_value_node(PandaNode *node);
+
+191 14 get_class_type 4 275 40 AnimChannelMatrixDynamic::get_class_type 0 1 56 0
+65
+static TypeHandle AnimChannelMatrixDynamic::get_class_type(void);
+
+192 25 ~AnimChannelMatrixDynamic 4 275 51 AnimChannelMatrixDynamic::~AnimChannelMatrixDynamic 0 0 0
+58
+AnimChannelMatrixDynamic::~AnimChannelMatrixDynamic(void);
+
+193 16 clear_all_tables 4 276 43 AnimChannelMatrixXfmTable::clear_all_tables 0 1 57 336
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixXfmTable::clear_all_tables
+//       Access: Published
+//  Description: Removes all the tables from the channel, and resets
+//               it to its initial state.
+////////////////////////////////////////////////////////////////////
+55
+void AnimChannelMatrixXfmTable::clear_all_tables(void);
+
+194 9 has_table 4 276 36 AnimChannelMatrixXfmTable::has_table 0 1 58 310
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixXfmTable::has_table
+//       Access: Published
+//  Description: Returns true if the indicated subtable has been
+//               assigned.
+////////////////////////////////////////////////////////////////////
+70
+inline bool AnimChannelMatrixXfmTable::has_table(char table_id) const;
+
+195 11 clear_table 4 276 38 AnimChannelMatrixXfmTable::clear_table 0 1 59 286
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelMatrixXfmTable::clear_table
+//       Access: Published
+//  Description: Removes the indicated table from the definition.
+////////////////////////////////////////////////////////////////////
+66
+inline void AnimChannelMatrixXfmTable::clear_table(char table_id);
+
+196 14 get_class_type 4 276 41 AnimChannelMatrixXfmTable::get_class_type 0 1 60 0
+66
+static TypeHandle AnimChannelMatrixXfmTable::get_class_type(void);
+
+197 9 set_value 4 277 35 AnimChannelScalarDynamic::set_value 0 1 61 261
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelScalarDynamic::set_value
+//       Access: Published
+//  Description: Explicitly sets the value.
+////////////////////////////////////////////////////////////////////
+54
+void AnimChannelScalarDynamic::set_value(float value);
+
+198 14 set_value_node 4 277 40 AnimChannelScalarDynamic::set_value_node 0 1 62 384
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelScalarDynamic::set_value_node
+//       Access: Published
+//  Description: Specifies a node whose transform will be queried each
+//               frame to implicitly specify the transform of this
+//               joint.
+////////////////////////////////////////////////////////////////////
+63
+void AnimChannelScalarDynamic::set_value_node(PandaNode *node);
+
+199 14 get_class_type 4 277 40 AnimChannelScalarDynamic::get_class_type 0 1 63 0
+65
+static TypeHandle AnimChannelScalarDynamic::get_class_type(void);
+
+200 25 ~AnimChannelScalarDynamic 4 277 51 AnimChannelScalarDynamic::~AnimChannelScalarDynamic 0 0 0
+58
+AnimChannelScalarDynamic::~AnimChannelScalarDynamic(void);
+
+201 9 has_table 4 278 33 AnimChannelScalarTable::has_table 0 1 64 968
+// Filename: animChannelScalarTable.I
+// Created by:  drose (22Feb99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelScalarTable::has_table
+//       Access: Published
+//  Description: Returns true if the data table has been assigned.
+////////////////////////////////////////////////////////////////////
+58
+inline bool AnimChannelScalarTable::has_table(void) const;
+
+202 11 clear_table 4 278 35 AnimChannelScalarTable::clear_table 0 1 65 258
+////////////////////////////////////////////////////////////////////
+//     Function: AnimChannelScalarTable::clear_table
+//       Access: Published
+//  Description: Empties the data table.
+////////////////////////////////////////////////////////////////////
+54
+inline void AnimChannelScalarTable::clear_table(void);
+
+203 14 get_class_type 4 278 38 AnimChannelScalarTable::get_class_type 0 1 66 0
+63
+static TypeHandle AnimChannelScalarTable::get_class_type(void);
+
+204 23 ~AnimChannelScalarTable 4 278 47 AnimChannelScalarTable::~AnimChannelScalarTable 0 0 0
+54
+AnimChannelScalarTable::~AnimChannelScalarTable(void);
+
+205 21 AnimControlCollection 4 279 44 AnimControlCollection::AnimControlCollection 0 1 67 354
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::Constructor
+//       Access: Published
+//  Description: Returns the AnimControl associated with the given
+//               name, or NULL if no such control has been associated.
+////////////////////////////////////////////////////////////////////
+51
+AnimControlCollection::AnimControlCollection(void);
+
+206 22 ~AnimControlCollection 4 279 45 AnimControlCollection::~AnimControlCollection 0 0 232
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+52
+AnimControlCollection::~AnimControlCollection(void);
+
+207 10 store_anim 4 279 33 AnimControlCollection::store_anim 0 1 68 529
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::store_anim
+//       Access: Published
+//  Description: Associates the given AnimControl with this collection
+//               under the given name.  The AnimControl will remain
+//               associated until a new AnimControl is associated with
+//               the same name later, or until unbind_anim() is called
+//               with this name.
+////////////////////////////////////////////////////////////////////
+95
+void AnimControlCollection::store_anim(AnimControl *control, basic_string< char > const &name);
+
+208 9 find_anim 4 279 32 AnimControlCollection::find_anim 0 1 69 352
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::find_anim
+//       Access: Published
+//  Description: Returns the AnimControl associated with the given
+//               name, or NULL if no such control has been associated.
+////////////////////////////////////////////////////////////////////
+86
+AnimControl *AnimControlCollection::find_anim(basic_string< char > const &name) const;
+
+209 11 unbind_anim 4 279 34 AnimControlCollection::unbind_anim 0 1 70 452
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::unbind_anim
+//       Access: Published
+//  Description: Removes the AnimControl associated with the given
+//               name, if any.  Returns true if an AnimControl was
+//               removed, false if there was no AnimControl with the
+//               indicated name.
+////////////////////////////////////////////////////////////////////
+74
+bool AnimControlCollection::unbind_anim(basic_string< char > const &name);
+
+210 13 get_num_anims 4 279 36 AnimControlCollection::get_num_anims 0 1 71 320
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_num_anims
+//       Access: Published
+//  Description: Returns the number of AnimControls associated with
+//               this collection.
+////////////////////////////////////////////////////////////////////
+53
+int AnimControlCollection::get_num_anims(void) const;
+
+211 8 get_anim 4 279 31 AnimControlCollection::get_anim 0 1 72 308
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_anim
+//       Access: Published
+//  Description: Returns the nth AnimControl associated with
+//               this collection.
+////////////////////////////////////////////////////////////////////
+58
+AnimControl *AnimControlCollection::get_anim(int n) const;
+
+212 13 get_anim_name 4 279 36 AnimControlCollection::get_anim_name 0 1 73 325
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_anim_name
+//       Access: Published
+//  Description: Returns the name of the nth AnimControl associated
+//               with this collection.
+////////////////////////////////////////////////////////////////////
+71
+basic_string< char > AnimControlCollection::get_anim_name(int n) const;
+
+213 11 clear_anims 4 279 34 AnimControlCollection::clear_anims 0 1 74 279
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::clear_anims
+//       Access: Published
+//  Description: Disassociates all anims from this collection.
+////////////////////////////////////////////////////////////////////
+46
+void AnimControlCollection::clear_anims(void);
+
+214 4 play 4 279 27 AnimControlCollection::play 0 2 75 76 1334
+// The following functions are convenience functions that vector
+// directly into the AnimControl's functionality by anim name.
+
+// Filename: animControlCollection.I
+// Created by:  drose (22Feb00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::play
+//       Access: Public
+//  Description: Starts the named animation playing.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::play
+//       Access: Public
+//  Description: Starts the named animation playing.
+////////////////////////////////////////////////////////////////////
+79
+inline bool AnimControlCollection::play(basic_string< char > const &anim_name);
+
+215 4 loop 4 279 27 AnimControlCollection::loop 0 2 77 78 520
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::loop
+//       Access: Public
+//  Description: Starts the named animation looping.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::loop
+//       Access: Public
+//  Description: Starts the named animation looping.
+////////////////////////////////////////////////////////////////////
+93
+inline bool AnimControlCollection::loop(basic_string< char > const &anim_name, bool restart);
+
+216 4 stop 4 279 27 AnimControlCollection::stop 0 1 79 250
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::stop
+//       Access: Public
+//  Description: Stops the named animation.
+////////////////////////////////////////////////////////////////////
+79
+inline bool AnimControlCollection::stop(basic_string< char > const &anim_name);
+
+217 4 pose 4 279 27 AnimControlCollection::pose 0 1 80 274
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::pose
+//       Access: Public
+//  Description: Sets to a particular frame in the named animation.
+////////////////////////////////////////////////////////////////////
+90
+inline bool AnimControlCollection::pose(basic_string< char > const &anim_name, int frame);
+
+218 8 play_all 4 279 31 AnimControlCollection::play_all 0 2 81 82 624
+// These functions operate on all anims at once.
+
+// These functions operate on all anims at once.
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::play_all
+//       Access: Published
+//  Description: Starts all animations playing.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::play_all
+//       Access: Published
+//  Description: Starts all animations playing.
+////////////////////////////////////////////////////////////////////
+43
+void AnimControlCollection::play_all(void);
+
+219 8 loop_all 4 279 31 AnimControlCollection::loop_all 0 2 83 84 524
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::loop_all
+//       Access: Published
+//  Description: Starts all animations looping.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::loop_all
+//       Access: Published
+//  Description: Starts all animations looping.
+////////////////////////////////////////////////////////////////////
+51
+void AnimControlCollection::loop_all(bool restart);
+
+220 8 stop_all 4 279 31 AnimControlCollection::stop_all 0 1 85 378
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::stop_all
+//       Access: Published
+//  Description: Stops all currently playing animations.  Returns true
+//               if any animations were stopped, false if none were
+//               playing.
+////////////////////////////////////////////////////////////////////
+43
+bool AnimControlCollection::stop_all(void);
+
+221 8 pose_all 4 279 31 AnimControlCollection::pose_all 0 1 86 274
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::pose_all
+//       Access: Published
+//  Description: Sets all animations to the indicated frame.
+////////////////////////////////////////////////////////////////////
+48
+void AnimControlCollection::pose_all(int frame);
+
+222 9 get_frame 4 279 32 AnimControlCollection::get_frame 0 2 87 88 635
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_frame
+//       Access: Public
+//  Description: Returns the current frame in the named animation, or
+//               0 if the animation is not found.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_frame
+//       Access: Public
+//  Description: Returns the current frame in the last-started
+//               animation.
+////////////////////////////////////////////////////////////////////
+89
+inline int AnimControlCollection::get_frame(basic_string< char > const &anim_name) const;
+
+223 14 get_num_frames 4 279 37 AnimControlCollection::get_num_frames 0 2 89 90 663
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_num_frames
+//       Access: Public
+//  Description: Returns the total number of frames in the named
+//               animation, or 0 if the animation is not found.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::get_num_frames
+//       Access: Public
+//  Description: Returns the total number of frames in the
+//               last-started animation.
+////////////////////////////////////////////////////////////////////
+94
+inline int AnimControlCollection::get_num_frames(basic_string< char > const &anim_name) const;
+
+224 10 is_playing 4 279 33 AnimControlCollection::is_playing 0 2 91 92 651
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::is_playing
+//       Access: Public
+//  Description: Returns true if the named animation is currently
+//               playing, false otherwise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::is_playing
+//       Access: Public
+//  Description: Returns true if the last-started animation is
+//               currently playing, false otherwise.
+////////////////////////////////////////////////////////////////////
+91
+inline bool AnimControlCollection::is_playing(basic_string< char > const &anim_name) const;
+
+225 18 which_anim_playing 4 279 41 AnimControlCollection::which_anim_playing 0 1 93 458
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::which_anim_playing
+//       Access: Published
+//  Description: Returns the name of the bound AnimControl currently
+//               playing, if any.  If more than one AnimControl is
+//               currently playing, returns all of the names separated
+//               by spaces.
+////////////////////////////////////////////////////////////////////
+75
+basic_string< char > AnimControlCollection::which_anim_playing(void) const;
+
+226 6 output 4 279 29 AnimControlCollection::output 0 1 94 229
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+55
+void AnimControlCollection::output(ostream &out) const;
+
+227 5 write 4 279 28 AnimControlCollection::write 0 1 95 228
+////////////////////////////////////////////////////////////////////
+//     Function: AnimControlCollection::write
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+54
+void AnimControlCollection::write(ostream &out) const;
+
+228 9 auto_bind 1 0 9 auto_bind 0 2 127 128 480
+////////////////////////////////////////////////////////////////////
+//     Function: auto_bind
+//  Description: Walks the scene graph or subgraph beginning at the
+//               indicated node, and attempts to bind any AnimBundles
+//               found to their matching PartBundles, when possible.
+//
+//               The list of all resulting AnimControls created is
+//               filled into controls.
+////////////////////////////////////////////////////////////////////
+103
+void auto_bind(PandaNode *root_node, AnimControlCollection &controls, int hierarchy_match_flags = (0));
+
+229 10 PartSubset 4 280 22 PartSubset::PartSubset 0 2 96 97 453
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::Copy Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+29
+PartSubset::PartSubset(void);
+
+230 10 operator = 4 280 22 PartSubset::operator = 0 1 98 236
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::Copy Assignment Operator
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+52
+void PartSubset::operator =(PartSubset const &copy);
+
+231 17 add_include_joint 4 280 29 PartSubset::add_include_joint 0 1 99 650
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::add_include_joint
+//       Access: Published
+//  Description: Adds the named joint to the list of joints that will
+//               be explicitly included in the subset.  Any joint at
+//               or below a named node will be included in the subset
+//               (unless a lower node is also listed in the exclude
+//               list).
+//
+//               Since the name is a GlobPattern, it may of course
+//               include filename globbing characters like * and ?.
+////////////////////////////////////////////////////////////////////
+60
+void PartSubset::add_include_joint(GlobPattern const &name);
+
+232 17 add_exclude_joint 4 280 29 PartSubset::add_exclude_joint 0 1 100 657
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::add_exclude_joint
+//       Access: Published
+//  Description: Adds the named joint to the list of joints that will
+//               be explicitly exlcluded from the subset.  Any joint at
+//               or below a named node will not be included in the
+//               subset (unless a lower node is also listed in the
+//               include list).
+//
+//               Since the name is a GlobPattern, it may of course
+//               include filename globbing characters like * and ?.
+////////////////////////////////////////////////////////////////////
+60
+void PartSubset::add_exclude_joint(GlobPattern const &name);
+
+233 6 append 4 280 18 PartSubset::append 0 1 101 319
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::append
+//       Access: Published
+//  Description: Appends the include and exclude list from the other
+//               object onto this object's lists.
+////////////////////////////////////////////////////////////////////
+49
+void PartSubset::append(PartSubset const &other);
+
+234 6 output 4 280 18 PartSubset::output 0 1 102 218
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+44
+void PartSubset::output(ostream &out) const;
+
+235 16 is_include_empty 4 280 28 PartSubset::is_include_empty 0 1 103 395
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::is_include_empty
+//       Access: Published
+//  Description: Returns true if the include list is completely empty,
+//               false otherwise.  If it is empty, it is the same
+//               thing as including all joints.
+////////////////////////////////////////////////////////////////////
+46
+bool PartSubset::is_include_empty(void) const;
+
+236 15 matches_include 4 280 27 PartSubset::matches_include 0 1 104 331
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::matches_include
+//       Access: Published
+//  Description: Returns true if the indicated name matches a name on
+//               the include list, false otherwise.
+////////////////////////////////////////////////////////////////////
+79
+bool PartSubset::matches_include(basic_string< char > const &joint_name) const;
+
+237 15 matches_exclude 4 280 27 PartSubset::matches_exclude 0 1 105 331
+////////////////////////////////////////////////////////////////////
+//     Function: PartSubset::matches_exclude
+//       Access: Published
+//  Description: Returns true if the indicated name matches a name on
+//               the exclude list, false otherwise.
+////////////////////////////////////////////////////////////////////
+79
+bool PartSubset::matches_exclude(basic_string< char > const &joint_name) const;
+
+238 11 ~PartSubset 4 280 23 PartSubset::~PartSubset 0 0 0
+30
+PartSubset::~PartSubset(void);
+
+239 14 set_blend_type 4 281 26 PartBundle::set_blend_type 0 1 106 1088
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::set_blend_type
+//       Access: Published
+//  Description: Defines the way the character responds to multiple
+//               set_control_effect()).  By default, the blend_type is
+//               BT_single, which disallows multiple animations.  In
+//               BT_single mode, it is not necessary to explicitly set
+//               the control_effect when starting an animation;
+//               starting the animation will implicitly remove the
+//               control_effect from the previous animation and set it
+//               on the current one.
+//
+//               However, if the blend_type is set to any other value,
+//               the control_effect must be explicitly set via
+//               set_control_effect() whenever an animation is to
+//               affect the character.
+//
+//               See partBundle.h for a description of the meaning of
+//               each of the BlendType values.
+////////////////////////////////////////////////////////////////////
+58
+void PartBundle::set_blend_type(PartBundle::BlendType bt);
+
+240 14 get_blend_type 4 281 26 PartBundle::get_blend_type 0 1 107 1006
+// Filename: partBundle.I
+// Created by:  drose (22Feb99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::get_blend_type
+//       Access: Published
+//  Description: Returns the way the character responds to multiple
+//               animations being bound simultaneously.
+////////////////////////////////////////////////////////////////////
+68
+inline PartBundle::BlendType PartBundle::get_blend_type(void) const;
+
+241 8 get_node 4 281 20 PartBundle::get_node 0 1 108 296
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::get_node
+//       Access: Published
+//  Description: Returns the PartBundleNode associated with this
+//               PartBundle.
+////////////////////////////////////////////////////////////////////
+56
+inline PartBundleNode *PartBundle::get_node(void) const;
+
+242 21 clear_control_effects 4 281 33 PartBundle::clear_control_effects 0 1 109 840
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::clear_control_effects
+//       Access: Published
+//  Description: Sets the control effect of all AnimControls to zero
+//               (but does not "stop" the AnimControls).  The
+//               character will no longer be affected by any
+//               animation, and will return to its original Jesus
+//               pose.
+//
+//               The AnimControls which are no longer associated will
+//               not be using any CPU cycles, but they may still be in
+//               the "playing" state; if they are later reassociated
+//               with the PartBundle they will resume at their current
+//               frame as if they'd been running all along.
+////////////////////////////////////////////////////////////////////
+45
+void PartBundle::clear_control_effects(void);
+
+243 18 set_control_effect 4 281 30 PartBundle::set_control_effect 0 1 110 890
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::set_control_effect
+//       Access: Published
+//  Description: Sets the amount by which the character is affected by
+//               the indicated AnimControl (and its associated
+//               animation).  Normally, this will only be zero or one.
+//               Zero indicates the animation does not affect the
+//               character, and one means it does.
+//
+//               If the blend_type is not BT_single (see
+//               set_blend_type()), it is possible to have multiple
+//               AnimControls in effect simultaneously.  In this case,
+//               the effect is a weight that indicates the relative
+//               importance of each AnimControl to the final
+//               animation.
+////////////////////////////////////////////////////////////////////
+79
+inline void PartBundle::set_control_effect(AnimControl *control, float effect);
+
+244 18 get_control_effect 4 281 30 PartBundle::get_control_effect 0 1 111 403
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::get_control_effect
+//       Access: Published
+//  Description: Returns the amount by which the character is affected
+//               by the indicated AnimControl and its associated
+//               animation.  See set_control_effect().
+////////////////////////////////////////////////////////////////////
+72
+inline float PartBundle::get_control_effect(AnimControl *control) const;
+
+245 6 output 4 281 18 PartBundle::output 0 1 112 271
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::output
+//       Access: Published, Virtual
+//  Description: Writes a one-line description of the bundle.
+////////////////////////////////////////////////////////////////////
+52
+virtual void PartBundle::output(ostream &out) const;
+
+246 9 bind_anim 4 281 21 PartBundle::bind_anim 0 3 113 114 115 1221
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundle::bind_anim
+//       Access: Published
+//  Description: Binds the animation to the bundle, if possible, and
+//               returns a new AnimControl that can be used to start
+//               and stop the animation.  If the anim hierarchy does
+//               not match the part hierarchy, returns NULL.
+//
+//               If hierarchy_match_flags is 0, only an exact match is
+//               accepted; otherwise, it may contain a union of
+//               PartGroup::HierarchyMatchFlags values indicating
+//               conditions that will be tolerated (but warnings will
+//               still be issued).
+//
+//               If subset is specified, it restricts the binding only
+//               to the named subtree of joints.
+//
+//               The AnimControl is not stored within the PartBundle;
+//               it is the user's responsibility to maintain the
+//               pointer.  The animation will automatically unbind
+//               itself when the AnimControl destructs (i.e. its
+//               reference count goes to zero).
+////////////////////////////////////////////////////////////////////
+133
+PointerTo< AnimControl > PartBundle::bind_anim(AnimBundle *anim, int hierarchy_match_flags = (0), PartSubset const &subset = ((())));
+
+247 14 get_class_type 4 281 26 PartBundle::get_class_type 0 1 116 0
+51
+static TypeHandle PartBundle::get_class_type(void);
+
+248 11 ~PartBundle 4 281 23 PartBundle::~PartBundle 0 0 0
+30
+PartBundle::~PartBundle(void);
+
+249 13 get_max_bound 4 283 29 MovingPartBase::get_max_bound 0 1 117 604
+////////////////////////////////////////////////////////////////////
+//     Function: MovingPartBase::get_max_bound
+//       Access: Published
+//  Description: Returns the number of channels that might be bound to
+//               this PartGroup.  This might not be the actual number
+//               of channels, since there might be holes in the list;
+//               it is one more than the index number of the highest
+//               bound channel.  Thus, it is called get_max_bound()
+//               instead of get_num_bound().
+////////////////////////////////////////////////////////////////////
+53
+inline int MovingPartBase::get_max_bound(void) const;
+
+250 9 get_bound 4 283 25 MovingPartBase::get_bound 0 1 118 690
+////////////////////////////////////////////////////////////////////
+//     Function: MovingPartBase::get_bound
+//       Access: Published
+//  Description: Returns the nth bound channel on this PartGroup.  n
+//               can be determined by iterating from 0 to one less
+//               than get_max_bound(); or n might be
+//               AnimControl::get_channel_index().
+//
+//               This will return NULL if there is no channel bound on
+//               the indicated index.  It is an error to call this if
+//               n is less than zero or greater than or equal to
+//               get_max_bound().
+////////////////////////////////////////////////////////////////////
+63
+inline AnimChannelBase *MovingPartBase::get_bound(int n) const;
+
+251 12 output_value 4 283 28 MovingPartBase::output_value 0 1 119 0
+66
+virtual void MovingPartBase::output_value(ostream &out) const = 0;
+
+252 14 get_class_type 4 283 30 MovingPartBase::get_class_type 0 1 120 0
+55
+static TypeHandle MovingPartBase::get_class_type(void);
+
+253 15 ~MovingPartBase 4 283 31 MovingPartBase::~MovingPartBase 0 0 0
+38
+MovingPartBase::~MovingPartBase(void);
+
+254 14 get_class_type 4 285 48 MovingPart< ACMatrixSwitchType >::get_class_type 0 1 122 0
+75
+static TypeHandle ::MovingPart< ACMatrixSwitchType >::get_class_type(void);
+
+255 9 get_value 4 285 43 MovingPart< ACMatrixSwitchType >::get_value 0 1 123 0
+75
+inline LMatrix4f ::MovingPart< ACMatrixSwitchType >::get_value(void) const;
+
+256 17 get_initial_value 4 285 51 MovingPart< ACMatrixSwitchType >::get_initial_value 0 1 124 0
+83
+inline LMatrix4f ::MovingPart< ACMatrixSwitchType >::get_initial_value(void) const;
+
+257 11 ~MovingPart 4 285 45 MovingPart< ACMatrixSwitchType >::~MovingPart 0 0 0
+54
+::MovingPart< ACMatrixSwitchType >::~MovingPart(void);
+
+258 14 get_class_type 4 284 32 MovingPartMatrix::get_class_type 0 1 121 0
+57
+static TypeHandle MovingPartMatrix::get_class_type(void);
+
+259 10 get_bundle 4 286 26 PartBundleNode::get_bundle 0 1 125 222
+////////////////////////////////////////////////////////////////////
+//     Function: PartBundleNode::get_bundle
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+58
+inline PartBundle *PartBundleNode::get_bundle(void) const;
+
+260 14 get_class_type 4 286 30 PartBundleNode::get_class_type 0 1 126 0
+55
+static TypeHandle PartBundleNode::get_class_type(void);
+
+261 15 ~PartBundleNode 4 286 31 PartBundleNode::~PartBundleNode 0 0 0
+38
+PartBundleNode::~PartBundleNode(void);
+
+128
+1 14 Dtool_n9gMW3b6 6 9 289 0 14 Dtool_n9gMW3b6 1 4 this 3 287  
+2 14 Dtool_n9gM6J5P 7 10 290 133 14 Dtool_n9gM6J5P 2 4 this 3 287  1 n 1 289  
+3 14 Dtool_n9gMsjDj 7 11 290 133 14 Dtool_n9gMsjDj 2 4 this 3 287  4 name 1 291  
+4 14 Dtool_n9gMf1Wm 7 12 290 133 14 Dtool_n9gMf1Wm 2 4 this 3 290  4 name 1 291  
+5 14 Dtool_n9gM7_Rm 4 13 294 0 14 Dtool_n9gM7_Rm 2 4 this 3 287  3 out 1 292  
+6 14 Dtool_n9gM5QWd 4 14 294 0 14 Dtool_n9gM5QWd 3 4 this 3 287  3 out 1 292  12 indent_level 1 289  
+7 14 Dtool_n9gMXRDS 7 15 296 0 14 Dtool_n9gMXRDS 0 
+8 14 Dtool_n9gMnzi7 7 3 297 0 14 Dtool_n9gMnzi7 1 4 this 3 290  
+9 14 Dtool_n9gMrs9M 7 4 290 133 14 Dtool_n9gMrs9M 1 4 this 3 297  
+10 14 Dtool_n9gMGlFu 6 6 298 0 14 Dtool_n9gMGlFu 1 4 this 3 290  
+11 14 Dtool_n9gM4p9k 7 7 290 133 14 Dtool_n9gM4p9k 1 4 this 3 298  
+12 14 Dtool_n9gM3LBr 7 17 300 145 14 Dtool_n9gM3LBr 3 4 name 1 291  3 fps 1 299  10 num_frames 1 289  
+13 14 Dtool_n9gM6Ty_ 6 18 303 0 14 Dtool_n9gM6Ty_ 1 4 this 3 301  
+14 14 Dtool_n9gMRxeQ 6 19 289 0 14 Dtool_n9gMRxeQ 1 4 this 3 301  
+15 14 Dtool_n9gMzlnG 7 20 296 0 14 Dtool_n9gMzlnG 0 
+16 14 Dtool_n9gMwwyB 7 24 300 145 14 Dtool_n9gMwwyB 1 4 this 3 304  
+17 14 Dtool_n9gMYNUG 7 25 296 0 14 Dtool_n9gMYNUG 0 
+18 14 Dtool_n9gMwfp4 6 33 289 0 14 Dtool_n9gMwfp4 1 4 this 3 306  
+19 14 Dtool_n9gMMhIO 7 34 308 153 14 Dtool_n9gMMhIO 2 4 this 3 306  1 n 1 289  
+20 14 Dtool_n9gM6aSh 7 35 308 153 14 Dtool_n9gM6aSh 2 4 this 3 306  4 name 1 291  
+21 14 Dtool_n9gMNFkb 4 36 294 0 14 Dtool_n9gMNFkb 3 4 this 3 306  3 out 1 292  12 indent_level 1 289  
+22 14 Dtool_n9gM6PSE 4 37 294 0 14 Dtool_n9gM6PSE 3 4 this 3 306  3 out 1 292  12 indent_level 1 289  
+23 14 Dtool_n9gMHmRQ 7 38 296 0 14 Dtool_n9gMHmRQ 0 
+24 14 Dtool_n9gMnLw5 7 28 297 0 14 Dtool_n9gMnLw5 1 4 this 3 308  
+25 14 Dtool_n9gM0Te7 7 29 308 153 14 Dtool_n9gM0Te7 1 4 this 3 297  
+26 14 Dtool_n9gMEyTs 6 30 298 0 14 Dtool_n9gMEyTs 1 4 this 3 308  
+27 14 Dtool_n9gMoV3X 7 31 308 153 14 Dtool_n9gMoV3X 1 4 this 3 298  
+28 14 Dtool_n9gMinR8 6 47 311 0 14 Dtool_n9gMinR8 1 4 this 3 309  
+29 14 Dtool_n9gMfBvN 7 48 300 145 14 Dtool_n9gMfBvN 1 4 this 3 309  
+30 14 Dtool_n9gMMgs9 6 49 289 0 14 Dtool_n9gMMgs9 1 4 this 3 309  
+31 14 Dtool_n9gMmv5w 6 50 312 0 14 Dtool_n9gMmv5w 1 4 this 3 309  
+32 14 Dtool_n9gMmvA5 4 51 294 0 14 Dtool_n9gMmvA5 2 4 this 3 309  3 out 1 292  
+33 14 Dtool_n9gMsoch 7 52 296 0 14 Dtool_n9gMsoch 0 
+34 14 Dtool_n9gMmZFG 6 41 316 0 14 Dtool_n9gMmZFG 1 4 this 3 315  
+35 14 Dtool_n9gMGXtF 7 42 315 164 14 Dtool_n9gMGXtF 1 4 this 3 316  
+36 14 Dtool_n9gMEgr1 6 44 317 0 14 Dtool_n9gMEgr1 1 4 this 3 315  
+37 14 Dtool_n9gMVM10 7 45 315 164 14 Dtool_n9gMVM10 1 4 this 3 317  
+38 14 Dtool_n9gMORV4 7 54 296 0 14 Dtool_n9gMORV4 0 
+39 14 Dtool_n9gMqZzQ 4 57 294 0 14 Dtool_n9gMqZzQ 3 4 this 3 318  5 frame 1 289  5 value 1 319  
+40 14 Dtool_n9gM5C0s 4 58 294 0 14 Dtool_n9gM5C0s 3 4 this 3 318  5 frame 1 289  5 value 1 319  
+41 14 Dtool_n9gMz_3E 4 59 294 0 14 Dtool_n9gMz_3E 3 4 this 3 318  5 frame 1 289  5 scale 1 321  
+42 14 Dtool_n9gMUEM9 4 60 294 0 14 Dtool_n9gMUEM9 3 4 this 3 318  5 frame 1 289  3 hpr 1 321  
+43 14 Dtool_n9gMOmSj 4 61 294 0 14 Dtool_n9gMOmSj 3 4 this 3 318  5 frame 1 289  4 quat 1 323  
+44 14 Dtool_n9gMqs83 4 62 294 0 14 Dtool_n9gMqs83 3 4 this 3 318  5 frame 1 289  3 pos 1 321  
+45 14 Dtool_n9gMl2ej 4 63 294 0 14 Dtool_n9gMl2ej 3 4 this 3 318  5 frame 1 289  5 shear 1 321  
+46 14 Dtool_n9gM7LXI 7 64 296 0 14 Dtool_n9gM7LXI 0 
+47 14 Dtool_n9gMIOa5 4 68 294 0 14 Dtool_n9gMIOa5 3 4 this 3 325  5 frame 1 289  5 scale 1 321  
+48 14 Dtool_n9gMNRwx 4 69 294 0 14 Dtool_n9gMNRwx 3 4 this 3 325  5 frame 1 289  3 hpr 1 321  
+49 14 Dtool_n9gMEl2X 4 70 294 0 14 Dtool_n9gMEl2X 3 4 this 3 325  5 frame 1 289  4 quat 1 323  
+50 14 Dtool_n9gMU_gs 4 71 294 0 14 Dtool_n9gMU_gs 3 4 this 3 325  5 frame 1 289  3 pos 1 321  
+51 14 Dtool_n9gMzYDY 4 72 294 0 14 Dtool_n9gMzYDY 3 4 this 3 325  5 frame 1 289  5 shear 1 321  
+52 14 Dtool_n9gMdX78 7 73 296 0 14 Dtool_n9gMdX78 0 
+53 14 Dtool_n9gMwi1P 4 75 294 0 14 Dtool_n9gMwi1P 2 4 this 3 326  5 value 1 327  
+54 14 Dtool_n9gM4XtZ 4 75 294 0 14 Dtool_n9gM4XtZ 2 4 this 3 326  5 value 1 329  
+55 14 Dtool_n9gMAd6G 4 76 294 0 14 Dtool_n9gMAd6G 2 4 this 3 326  4 node 1 332  
+56 14 Dtool_n9gMdU9M 7 77 296 0 14 Dtool_n9gMdU9M 0 
+57 14 Dtool_n9gMvh4K 4 80 294 0 14 Dtool_n9gMvh4K 1 4 this 3 333  
+58 14 Dtool_n9gMZcqj 6 81 337 0 14 Dtool_n9gMZcqj 2 4 this 3 334  8 table_id 1 336  
+59 14 Dtool_n9gMO_k0 4 82 294 0 14 Dtool_n9gMO_k0 2 4 this 3 333  8 table_id 1 336  
+60 14 Dtool_n9gMBX4a 7 83 296 0 14 Dtool_n9gMBX4a 0 
+61 14 Dtool_n9gMVD_1 4 85 294 0 14 Dtool_n9gMVD_1 2 4 this 3 338  5 value 1 299  
+62 14 Dtool_n9gM6Avw 4 86 294 0 14 Dtool_n9gM6Avw 2 4 this 3 338  4 node 1 332  
+63 14 Dtool_n9gMxwy2 7 87 296 0 14 Dtool_n9gMxwy2 0 
+64 14 Dtool_n9gM1YIG 6 90 337 0 14 Dtool_n9gM1YIG 1 4 this 3 339  
+65 14 Dtool_n9gMPoPB 4 91 294 0 14 Dtool_n9gMPoPB 1 4 this 3 341  
+66 14 Dtool_n9gMptvC 7 92 296 0 14 Dtool_n9gMptvC 0 
+67 14 Dtool_n9gMEVyR 7 95 342 206 14 Dtool_n9gMEVyR 0 
+68 14 Dtool_n9gMJmt2 4 97 294 0 14 Dtool_n9gMJmt2 3 4 this 3 342  7 control 1 315  4 name 1 291  
+69 14 Dtool_n9gMDivI 7 98 315 164 14 Dtool_n9gMDivI 2 4 this 3 343  4 name 1 291  
+70 14 Dtool_n9gMe9bu 6 99 337 0 14 Dtool_n9gMe9bu 2 4 this 3 342  4 name 1 291  
+71 14 Dtool_n9gMoONk 6 100 289 0 14 Dtool_n9gMoONk 1 4 this 3 343  
+72 14 Dtool_n9gMVtrB 7 101 315 164 14 Dtool_n9gMVtrB 2 4 this 3 343  1 n 1 289  
+73 14 Dtool_n9gMBXsg 6 102 291 0 14 Dtool_n9gMBXsg 2 4 this 3 343  1 n 1 289  
+74 14 Dtool_n9gMNiLN 4 103 294 0 14 Dtool_n9gMNiLN 1 4 this 3 342  
+75 14 Dtool_n9gMUNjN 6 104 337 0 14 Dtool_n9gMUNjN 2 4 this 3 342  9 anim_name 1 291  
+76 14 Dtool_n9gM_GRl 6 104 337 0 14 Dtool_n9gM_GRl 4 4 this 3 342  9 anim_name 1 291  4 from 1 289  2 to 1 289  
+77 14 Dtool_n9gMBJEH 6 105 337 0 14 Dtool_n9gMBJEH 3 4 this 3 342  9 anim_name 1 291  7 restart 1 337  
+78 14 Dtool_n9gMTOG2 6 105 337 0 14 Dtool_n9gMTOG2 5 4 this 3 342  9 anim_name 1 291  7 restart 1 337  4 from 1 289  2 to 1 289  
+79 14 Dtool_n9gMunhQ 6 106 337 0 14 Dtool_n9gMunhQ 2 4 this 3 342  9 anim_name 1 291  
+80 14 Dtool_n9gMmA9Z 6 107 337 0 14 Dtool_n9gMmA9Z 3 4 this 3 342  9 anim_name 1 291  5 frame 1 289  
+81 14 Dtool_n9gMtiz5 4 108 294 0 14 Dtool_n9gMtiz5 1 4 this 3 342  
+82 14 Dtool_n9gMc5qb 4 108 294 0 14 Dtool_n9gMc5qb 3 4 this 3 342  4 from 1 289  2 to 1 289  
+83 14 Dtool_n9gMMeO5 4 109 294 0 14 Dtool_n9gMMeO5 2 4 this 3 342  7 restart 1 337  
+84 14 Dtool_n9gMRl09 4 109 294 0 14 Dtool_n9gMRl09 4 4 this 3 342  7 restart 1 337  4 from 1 289  2 to 1 289  
+85 14 Dtool_n9gMXUx8 6 110 337 0 14 Dtool_n9gMXUx8 1 4 this 3 342  
+86 14 Dtool_n9gMJter 4 111 294 0 14 Dtool_n9gMJter 2 4 this 3 342  5 frame 1 289  
+87 14 Dtool_n9gMhXpY 6 112 289 0 14 Dtool_n9gMhXpY 1 4 this 3 343  
+88 14 Dtool_n9gM6Cy2 6 112 289 0 14 Dtool_n9gM6Cy2 2 4 this 3 343  9 anim_name 1 291  
+89 14 Dtool_n9gMfa0S 6 113 289 0 14 Dtool_n9gMfa0S 1 4 this 3 343  
+90 14 Dtool_n9gMvkKP 6 113 289 0 14 Dtool_n9gMvkKP 2 4 this 3 343  9 anim_name 1 291  
+91 14 Dtool_n9gM6Fhs 6 114 337 0 14 Dtool_n9gM6Fhs 1 4 this 3 343  
+92 14 Dtool_n9gMme5y 6 114 337 0 14 Dtool_n9gMme5y 2 4 this 3 343  9 anim_name 1 291  
+93 14 Dtool_n9gMBIcV 6 115 291 0 14 Dtool_n9gMBIcV 1 4 this 3 343  
+94 14 Dtool_n9gMV3NB 4 116 294 0 14 Dtool_n9gMV3NB 2 4 this 3 343  3 out 1 292  
+95 14 Dtool_n9gMI5P2 4 117 294 0 14 Dtool_n9gMI5P2 2 4 this 3 343  3 out 1 292  
+96 14 Dtool_n9gMoGGG 7 120 345 238 14 Dtool_n9gMoGGG 0 
+97 14 Dtool_n9gM_gKp 7 120 345 238 14 Dtool_n9gM_gKp 1 4 copy 1 346  
+98 14 Dtool_n9gMxWwX 6 121 345 0 14 Dtool_n9gMxWwX 2 4 this 3 345  4 copy 1 346  
+99 14 Dtool_n9gM0f2j 4 122 294 0 14 Dtool_n9gM0f2j 2 4 this 3 345  4 name 1 348  
+100 14 Dtool_n9gMMvgq 4 123 294 0 14 Dtool_n9gMMvgq 2 4 this 3 345  4 name 1 348  
+101 14 Dtool_n9gM69Ls 4 124 294 0 14 Dtool_n9gM69Ls 2 4 this 3 345  5 other 1 346  
+102 14 Dtool_n9gM80i_ 4 125 294 0 14 Dtool_n9gM80i_ 2 4 this 3 346  3 out 1 292  
+103 14 Dtool_n9gMpRPq 6 126 337 0 14 Dtool_n9gMpRPq 1 4 this 3 346  
+104 14 Dtool_n9gMFDUF 6 127 337 0 14 Dtool_n9gMFDUF 2 4 this 3 346  10 joint_name 1 291  
+105 14 Dtool_n9gMEavl 6 128 337 0 14 Dtool_n9gMEavl 2 4 this 3 346  10 joint_name 1 291  
+106 14 Dtool_n9gM0WPI 4 132 294 0 14 Dtool_n9gM0WPI 2 4 this 3 311  2 bt 1 282  
+107 14 Dtool_n9gMyXKU 6 133 282 0 14 Dtool_n9gMyXKU 1 4 this 3 351  
+108 14 Dtool_n9gMwx2U 6 134 353 0 14 Dtool_n9gMwx2U 1 4 this 3 351  
+109 14 Dtool_n9gMXSiY 4 135 294 0 14 Dtool_n9gMXSiY 1 4 this 3 311  
+110 14 Dtool_n9gMc9Oe 4 136 294 0 14 Dtool_n9gMc9Oe 3 4 this 3 311  7 control 1 315  6 effect 1 299  
+111 14 Dtool_n9gMSOyr 6 137 299 0 14 Dtool_n9gMSOyr 2 4 this 3 351  7 control 1 315  
+112 14 Dtool_n9gMGRkL 4 138 294 0 14 Dtool_n9gMGRkL 2 4 this 3 351  3 out 1 292  
+113 14 Dtool_n9gMfmGJ 7 139 315 164 14 Dtool_n9gMfmGJ 4 4 this 3 311  4 anim 1 300  21 hierarchy_match_flags 1 289  6 subset 1 346  
+114 14 Dtool_n9gM9D6Q 7 139 315 164 14 Dtool_n9gM9D6Q 3 4 this 3 311  4 anim 1 300  21 hierarchy_match_flags 1 289  
+115 14 Dtool_n9gMesSx 7 139 315 164 14 Dtool_n9gMesSx 2 4 this 3 311  4 anim 1 300  
+116 14 Dtool_n9gM7Q2E 7 140 296 0 14 Dtool_n9gM7Q2E 0 
+117 14 Dtool_n9gMTdB6 6 143 289 0 14 Dtool_n9gMTdB6 1 4 this 3 354  
+118 14 Dtool_n9gMY4V7 7 144 356 172 14 Dtool_n9gMY4V7 2 4 this 3 354  1 n 1 289  
+119 14 Dtool_n9gMunKd 4 145 294 0 14 Dtool_n9gMunKd 2 4 this 3 354  3 out 1 292  
+120 14 Dtool_n9gMhPU6 7 146 296 0 14 Dtool_n9gMhPU6 0 
+121 14 Dtool_n9gM56Kh 7 154 296 0 14 Dtool_n9gM56Kh 0 
+122 14 Dtool_n9gM_XwN 7 150 296 0 14 Dtool_n9gM_XwN 0 
+123 14 Dtool_n9gM9Cqq 7 151 319 0 14 Dtool_n9gM9Cqq 1 4 this 3 357  
+124 14 Dtool_n9gMogNJ 7 152 319 0 14 Dtool_n9gMogNJ 1 4 this 3 357  
+125 14 Dtool_n9gMSfBA 7 156 311 248 14 Dtool_n9gMSfBA 1 4 this 3 359  
+126 14 Dtool_n9gMGgiE 7 157 296 0 14 Dtool_n9gMGgiE 0 
+127 14 Dtool_n9gMknU_ 4 118 294 0 14 Dtool_n9gMknU_ 3 9 root_node 1 332  8 controls 1 342  21 hierarchy_match_flags 1 289  
+128 14 Dtool_n9gMP30i 4 118 294 0 14 Dtool_n9gMP30i 2 9 root_node 1 332  8 controls 1 342  
+99
+262 9 AnimGroup 26625 9 AnimGroup 9 AnimGroup 0 0 0 0 133 0 7 134 135 136 137 138 139 140 0 2 3 263 129 130 3 264 131 132 0 0 381
+////////////////////////////////////////////////////////////////////
+//       Class : AnimGroup
+// Description : This is the base class for AnimChannel and
+//               AnimBundle.  It implements a hierarchy of
+//               AnimChannels.  The root of the hierarchy must be an
+//               AnimBundle.
+////////////////////////////////////////////////////////////////////
+
+263 27 TypedWritableReferenceCount 2049 27 TypedWritableReferenceCount 27 TypedWritableReferenceCount 0 0 0 0 0 0 0 0 0 0 0 722
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritableReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedWritable and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedWritables and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+264 7 Namable 2049 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 324
+////////////////////////////////////////////////////////////////////
+//       Class : Namable
+// Description : A base class for all things which can have a name.
+//               The name is either empty or nonempty, but it is never
+//               NULL.
+////////////////////////////////////////////////////////////////////
+
+265 10 AnimBundle 141313 10 AnimBundle 10 AnimBundle 0 0 0 1 141 145 0 3 142 143 144 0 1 0 262 0 0 0 0 369
+////////////////////////////////////////////////////////////////////
+//       Class : AnimBundle
+// Description : This is the root of an AnimChannel hierarchy.  It
+//               knows the frame rate and number of frames of all the
+//               channels in the hierarchy (which must all match).
+////////////////////////////////////////////////////////////////////
+
+266 14 AnimBundleNode 141313 14 AnimBundleNode 14 AnimBundleNode 0 0 0 0 148 0 2 146 147 0 1 0 267 0 0 0 0 373
+////////////////////////////////////////////////////////////////////
+//       Class : AnimBundleNode
+// Description : This is a node that contains a pointer to an
+//               AnimBundle.  Like AnimBundleNode, it exists solely to
+//               make it easy to store AnimBundles in the scene graph.
+////////////////////////////////////////////////////////////////////
+
+267 9 PandaNode 2049 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+268 9 PartGroup 26625 9 PartGroup 9 PartGroup 0 0 0 0 153 0 6 154 155 156 157 158 159 0 2 3 263 149 150 3 264 151 152 0 0 290
+////////////////////////////////////////////////////////////////////
+//       Class : PartGroup
+// Description : This is the base class for PartRoot and
+//               MovingPart.  It defines a hierarchy of MovingParts.
+////////////////////////////////////////////////////////////////////
+
+269 11 AnimControl 26625 11 AnimControl 11 AnimControl 0 0 0 0 164 0 6 165 166 167 168 169 170 0 2 3 270 160 161 3 271 162 163 0 0 487
+////////////////////////////////////////////////////////////////////
+//       Class : AnimControl
+// Description : Controls the timing of a character animation.  An
+//               AnimControl object is created for each
+//               character/bundle binding and manages the state of the
+//               animation: whether started, stopped, or looping, and
+//               the current frame number and play rate.
+////////////////////////////////////////////////////////////////////
+
+270 14 ReferenceCount 2049 14 ReferenceCount 14 ReferenceCount 0 0 0 0 0 0 0 0 0 0 0 425
+////////////////////////////////////////////////////////////////////
+//       Class : ReferenceCount
+// Description : A base class for all things that want to be
+//               reference-counted.  ReferenceCount works in
+//               conjunction with PointerTo to automatically delete
+//               objects when the last pointer to them goes away.
+////////////////////////////////////////////////////////////////////
+
+271 13 AnimInterface 2049 13 AnimInterface 13 AnimInterface 0 0 0 0 0 0 0 0 0 0 0 464
+////////////////////////////////////////////////////////////////////
+//       Class : AnimInterface
+// Description : This is the fundamental interface for things that
+//               have a play/loop/stop type interface for frame-based
+//               animation, such as animated characters.  This is the
+//               base class for AnimControl and other, similar
+//               classes.
+////////////////////////////////////////////////////////////////////
+
+272 15 AnimChannelBase 141313 15 AnimChannelBase 15 AnimChannelBase 0 0 0 0 172 0 1 171 0 1 0 262 0 0 0 0 489
+////////////////////////////////////////////////////////////////////
+//       Class : AnimChannelBase
+// Description : Parent class for all animation channels.  An
+//               AnimChannel is an arbitrary function that changes
+//               over time (actually, over frames), usually defined by
+//               a table read from an egg file (but possibly computed
+//               or generated in any other way).
+////////////////////////////////////////////////////////////////////
+
+273 33 AnimChannel< ACMatrixSwitchType > 75777 33 AnimChannel< ACMatrixSwitchType > 33 AnimChannel< ACMatrixSwitchType > 0 0 0 0 172 0 8 173 174 175 176 177 178 179 180 0 1 0 272 0 0 0 0 0
+
+274 33 AnimChannel< ACScalarSwitchType > 75777 33 AnimChannel< ACScalarSwitchType > 33 AnimChannel< ACScalarSwitchType > 0 0 0 0 172 0 8 181 182 183 184 185 186 187 188 0 1 0 272 0 0 0 0 0
+
+275 24 AnimChannelMatrixDynamic 141313 24 AnimChannelMatrixDynamic 24 AnimChannelMatrixDynamic 0 0 0 0 192 0 3 189 190 191 0 1 0 273 0 0 0 0 683
+////////////////////////////////////////////////////////////////////
+//       Class : AnimChannelMatrixDynamic
+// Description : An animation channel that accepts a matrix each frame
+//               from some dynamic input provided by code.
+//
+//               This object operates in two modes: in explicit mode,
+//               the programmer should call set_value() each frame to
+//               indicate the new value; in implicit mode, the
+//               programmer should call set_value_node() to indicate
+//               the node whose transform will be copied to the joint
+//               each frame.
+////////////////////////////////////////////////////////////////////
+
+276 25 AnimChannelMatrixXfmTable 75777 25 AnimChannelMatrixXfmTable 25 AnimChannelMatrixXfmTable 0 0 0 0 172 0 4 193 194 195 196 0 1 0 273 0 0 0 0 509
+////////////////////////////////////////////////////////////////////
+//       Class : AnimChannelMatrixXfmTable
+// Description : An animation channel that issues a matrix each frame,
+//               read from a table such as might have been read from
+//               an egg file.  The table actually consists of nine
+//               sub-tables, each representing one component of the
+//               transform: scale, rotate, translate.
+////////////////////////////////////////////////////////////////////
+
+277 24 AnimChannelScalarDynamic 141313 24 AnimChannelScalarDynamic 24 AnimChannelScalarDynamic 0 0 0 0 200 0 3 197 198 199 0 1 0 274 0 0 0 0 686
+////////////////////////////////////////////////////////////////////
+//       Class : AnimChannelScalarDynamic
+// Description : An animation channel that accepts a scalar each frame
+//               from some dynamic input provided by code.
+//
+//               This object operates in two modes: in explicit mode,
+//               the programmer should call set_value() each frame to
+//               indicate the new value; in implicit mode, the
+//               programmer should call set_value_node() to indicate
+//               the node whose X component will be copied to the
+//               scalar each frame.
+////////////////////////////////////////////////////////////////////
+
+278 22 AnimChannelScalarTable 141313 22 AnimChannelScalarTable 22 AnimChannelScalarTable 0 0 0 0 204 0 3 201 202 203 0 1 0 274 0 0 0 0 347
+////////////////////////////////////////////////////////////////////
+//       Class : AnimChannelScalarTable
+// Description : An animation channel that issues a scalar each frame,
+//               read from a table such as might have been read from
+//               an egg file.
+////////////////////////////////////////////////////////////////////
+
+279 21 AnimControlCollection 26625 21 AnimControlCollection 21 AnimControlCollection 0 0 0 1 205 206 0 21 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 0 0 0 0 628
+////////////////////////////////////////////////////////////////////
+//       Class : AnimControlCollection
+// Description : This is a named collection of AnimControl pointers.
+//               An AnimControl may be added to the collection by
+//               name.  While an AnimControl is associated, its
+//               reference count is maintained; associating a new
+//               AnimControl with the same name will decrement the
+//               previous control's reference count (and possibly
+//               delete it, unbinding its animation).
+////////////////////////////////////////////////////////////////////
+
+280 10 PartSubset 141313 10 PartSubset 10 PartSubset 0 0 0 1 229 238 0 8 230 231 232 233 234 235 236 237 0 0 0 0 406
+////////////////////////////////////////////////////////////////////
+//       Class : PartSubset
+// Description : This class is used to define a subset of part names
+//               to apply to the PartBundle::bind_anim() operation.
+//               Only those part names within the subset will be
+//               included in the bind.
+////////////////////////////////////////////////////////////////////
+
+281 10 PartBundle 141313 10 PartBundle 10 PartBundle 0 0 0 0 248 0 9 239 240 241 242 243 244 245 246 247 0 1 0 268 0 0 0 1 282 337
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundle
+// Description : This is the root of a MovingPart hierarchy.  It
+//               defines the hierarchy of moving parts that make up an
+//               animatable object.
+////////////////////////////////////////////////////////////////////
+
+282 9 BlendType 794624 21 PartBundle::BlendType 21 PartBundle::BlendType 281 0 0 0 0 0 0 0 0 5 9 BT_single 21 PartBundle::BT_single 0 9 BT_linear 21 PartBundle::BT_linear 1 20 BT_normalized_linear 32 PartBundle::BT_normalized_linear 2 16 BT_componentwise 28 PartBundle::BT_componentwise 3 21 BT_componentwise_quat 33 PartBundle::BT_componentwise_quat 4 0 191
+// This is the parameter to set_blend_type() and specifies the kind
+// of blending operation to be performed when multiple controls are
+// in effect simultaneously (see set_control_effect()).
+
+283 14 MovingPartBase 141313 14 MovingPartBase 14 MovingPartBase 0 0 0 0 253 0 4 249 250 251 252 0 1 0 268 0 0 0 0 580
+////////////////////////////////////////////////////////////////////
+//       Class : MovingPartBase
+// Description : This is the base class for a single animatable piece
+//               that may be bound to one channel (or more, if
+//               blending is in effect).  It corresponds to, for
+//               instance, a single joint or slider of a character.
+//
+//               MovingPartBase does not have a particular value type.
+//               See the derived template class, MovingPart, for this.
+////////////////////////////////////////////////////////////////////
+
+284 16 MovingPartMatrix 75777 16 MovingPartMatrix 16 MovingPartMatrix 0 0 0 0 257 0 1 258 0 1 0 285 0 0 0 0 279
+////////////////////////////////////////////////////////////////////
+//       Class : MovingPartMatrix
+// Description : This is a particular kind of MovingPart that accepts
+//               a matrix each frame.
+////////////////////////////////////////////////////////////////////
+
+285 32 MovingPart< ACMatrixSwitchType > 141313 32 MovingPart< ACMatrixSwitchType > 32 MovingPart< ACMatrixSwitchType > 0 0 0 0 257 0 3 254 255 256 0 1 0 283 0 0 0 0 0
+
+286 14 PartBundleNode 141313 14 PartBundleNode 14 PartBundleNode 0 0 0 0 261 0 2 259 260 0 1 0 267 0 0 0 0 373
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundleNode
+// Description : This is a node that contains a pointer to an
+//               PartBundle.  Like AnimBundleNode, it exists solely to
+//               make it easy to store PartBundles in the scene graph.
+////////////////////////////////////////////////////////////////////
+
+287 17 AnimGroup const * 8576 17 AnimGroup const * 17 AnimGroup const * 0 0 288 0 0 0 0 0 0 0 0 0
+
+288 15 AnimGroup const 8832 15 AnimGroup const 15 AnimGroup const 0 0 262 0 0 0 0 0 0 0 0 0
+
+289 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+290 11 AnimGroup * 8576 11 AnimGroup * 11 AnimGroup * 0 0 262 0 0 0 0 0 0 0 0 0
+
+291 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+292 9 ostream * 8576 9 ostream * 9 ostream * 0 0 293 0 0 0 0 0 0 0 0 0
+
+293 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+294 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+295 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+296 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 295 0 0 0 0 0 0 0 0 0
+
+297 29 TypedWritableReferenceCount * 8576 29 TypedWritableReferenceCount * 29 TypedWritableReferenceCount * 0 0 263 0 0 0 0 0 0 0 0 0
+
+298 9 Namable * 8576 9 Namable * 9 Namable * 0 0 264 0 0 0 0 0 0 0 0 0
+
+299 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+300 12 AnimBundle * 8576 12 AnimBundle * 12 AnimBundle * 0 0 265 0 0 0 0 0 0 0 0 0
+
+301 18 AnimBundle const * 8576 18 AnimBundle const * 18 AnimBundle const * 0 0 302 0 0 0 0 0 0 0 0 0
+
+302 16 AnimBundle const 8832 16 AnimBundle const 16 AnimBundle const 0 0 265 0 0 0 0 0 0 0 0 0
+
+303 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+304 22 AnimBundleNode const * 8576 22 AnimBundleNode const * 22 AnimBundleNode const * 0 0 305 0 0 0 0 0 0 0 0 0
+
+305 20 AnimBundleNode const 8832 20 AnimBundleNode const 20 AnimBundleNode const 0 0 266 0 0 0 0 0 0 0 0 0
+
+306 17 PartGroup const * 8576 17 PartGroup const * 17 PartGroup const * 0 0 307 0 0 0 0 0 0 0 0 0
+
+307 15 PartGroup const 8832 15 PartGroup const 15 PartGroup const 0 0 268 0 0 0 0 0 0 0 0 0
+
+308 11 PartGroup * 8576 11 PartGroup * 11 PartGroup * 0 0 268 0 0 0 0 0 0 0 0 0
+
+309 19 AnimControl const * 8576 19 AnimControl const * 19 AnimControl const * 0 0 310 0 0 0 0 0 0 0 0 0
+
+310 17 AnimControl const 8832 17 AnimControl const 17 AnimControl const 0 0 269 0 0 0 0 0 0 0 0 0
+
+311 12 PartBundle * 8576 12 PartBundle * 12 PartBundle * 0 0 281 0 0 0 0 0 0 0 0 0
+
+312 16 BitArray const * 8576 16 BitArray const * 16 BitArray const * 0 0 313 0 0 0 0 0 0 0 0 0
+
+313 14 BitArray const 8832 14 BitArray const 14 BitArray const 0 0 314 0 0 0 0 0 0 0 0 0
+
+314 8 BitArray 2048 8 BitArray 8 BitArray 0 0 0 0 0 0 0 0 0 0 0 425
+////////////////////////////////////////////////////////////////////
+//       Class : BitArray
+// Description : A dynamic array with an unlimited number of bits.
+//
+//               This is similar to a BitMask, except it appears to
+//               contain an infinite number of bits.  You can use it
+//               very much as you would use a BitMask.
+////////////////////////////////////////////////////////////////////
+
+315 13 AnimControl * 8576 13 AnimControl * 13 AnimControl * 0 0 269 0 0 0 0 0 0 0 0 0
+
+316 16 ReferenceCount * 8576 16 ReferenceCount * 16 ReferenceCount * 0 0 270 0 0 0 0 0 0 0 0 0
+
+317 15 AnimInterface * 8576 15 AnimInterface * 15 AnimInterface * 0 0 271 0 0 0 0 0 0 0 0 0
+
+318 35 AnimChannel< ACMatrixSwitchType > * 8576 35 AnimChannel< ACMatrixSwitchType > * 35 AnimChannel< ACMatrixSwitchType > * 0 0 273 0 0 0 0 0 0 0 0 0
+
+319 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 320 0 0 0 0 0 0 0 0 0
+
+320 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+321 12 LVecBase3f * 8576 12 LVecBase3f * 12 LVecBase3f * 0 0 322 0 0 0 0 0 0 0 0 0
+
+322 9 RGBColorf 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+323 14 LQuaternionf * 8576 14 LQuaternionf * 14 LQuaternionf * 0 0 324 0 0 0 0 0 0 0 0 0
+
+324 12 LQuaternionf 2048 12 LQuaternionf 12 LQuaternionf 0 0 0 0 0 0 0 0 0 0 0 907
+// Filename: lquaternion_src.h
+// Created by:  frang (06Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : FLOATNAME(LQuaternion)
+// Description : This is the base quaternion class
+////////////////////////////////////////////////////////////////////
+
+325 35 AnimChannel< ACScalarSwitchType > * 8576 35 AnimChannel< ACScalarSwitchType > * 35 AnimChannel< ACScalarSwitchType > * 0 0 274 0 0 0 0 0 0 0 0 0
+
+326 26 AnimChannelMatrixDynamic * 8576 26 AnimChannelMatrixDynamic * 26 AnimChannelMatrixDynamic * 0 0 275 0 0 0 0 0 0 0 0 0
+
+327 17 LMatrix4f const * 8576 17 LMatrix4f const * 17 LMatrix4f const * 0 0 328 0 0 0 0 0 0 0 0 0
+
+328 15 LMatrix4f const 8832 15 LMatrix4f const 15 LMatrix4f const 0 0 320 0 0 0 0 0 0 0 0 0
+
+329 22 TransformState const * 8576 22 TransformState const * 22 TransformState const * 0 0 330 0 0 0 0 0 0 0 0 0
+
+330 20 TransformState const 8832 20 TransformState const 20 TransformState const 0 0 331 0 0 0 0 0 0 0 0 0
+
+331 14 TransformState 2048 14 TransformState 14 TransformState 0 0 0 0 0 0 0 0 0 0 0 1138
+////////////////////////////////////////////////////////////////////
+//       Class : TransformState
+// Description : Indicates a coordinate-system transform on vertices.
+//               TransformStates are the primary means for storing
+//               transformations on the scene graph.
+//
+//               Transforms may be specified in one of two ways:
+//               componentwise, with a pos-hpr-scale, or with an
+//               arbitrary transform matrix.  If you specify a
+//               transform componentwise, it will remember its
+//               original components.
+//
+//               TransformState objects are managed very much like
+//               RenderState objects.  They are immutable and
+//               reference-counted automatically.
+//
+//               You should not attempt to create or modify a
+//               TransformState object directly.  Instead, call one of
+//               the make() functions to create one for you.  And
+//               instead of modifying a TransformState object, create a
+//               new one.
+////////////////////////////////////////////////////////////////////
+
+332 11 PandaNode * 8576 11 PandaNode * 11 PandaNode * 0 0 267 0 0 0 0 0 0 0 0 0
+
+333 27 AnimChannelMatrixXfmTable * 8576 27 AnimChannelMatrixXfmTable * 27 AnimChannelMatrixXfmTable * 0 0 276 0 0 0 0 0 0 0 0 0
+
+334 33 AnimChannelMatrixXfmTable const * 8576 33 AnimChannelMatrixXfmTable const * 33 AnimChannelMatrixXfmTable const * 0 0 335 0 0 0 0 0 0 0 0 0
+
+335 31 AnimChannelMatrixXfmTable const 8832 31 AnimChannelMatrixXfmTable const 31 AnimChannelMatrixXfmTable const 0 0 276 0 0 0 0 0 0 0 0 0
+
+336 4 char 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0
+
+337 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+338 26 AnimChannelScalarDynamic * 8576 26 AnimChannelScalarDynamic * 26 AnimChannelScalarDynamic * 0 0 277 0 0 0 0 0 0 0 0 0
+
+339 30 AnimChannelScalarTable const * 8576 30 AnimChannelScalarTable const * 30 AnimChannelScalarTable const * 0 0 340 0 0 0 0 0 0 0 0 0
+
+340 28 AnimChannelScalarTable const 8832 28 AnimChannelScalarTable const 28 AnimChannelScalarTable const 0 0 278 0 0 0 0 0 0 0 0 0
+
+341 24 AnimChannelScalarTable * 8576 24 AnimChannelScalarTable * 24 AnimChannelScalarTable * 0 0 278 0 0 0 0 0 0 0 0 0
+
+342 23 AnimControlCollection * 8576 23 AnimControlCollection * 23 AnimControlCollection * 0 0 279 0 0 0 0 0 0 0 0 0
+
+343 29 AnimControlCollection const * 8576 29 AnimControlCollection const * 29 AnimControlCollection const * 0 0 344 0 0 0 0 0 0 0 0 0
+
+344 27 AnimControlCollection const 8832 27 AnimControlCollection const 27 AnimControlCollection const 0 0 279 0 0 0 0 0 0 0 0 0
+
+345 12 PartSubset * 8576 12 PartSubset * 12 PartSubset * 0 0 280 0 0 0 0 0 0 0 0 0
+
+346 18 PartSubset const * 8576 18 PartSubset const * 18 PartSubset const * 0 0 347 0 0 0 0 0 0 0 0 0
+
+347 16 PartSubset const 8832 16 PartSubset const 16 PartSubset const 0 0 280 0 0 0 0 0 0 0 0 0
+
+348 19 GlobPattern const * 8576 19 GlobPattern const * 19 GlobPattern const * 0 0 349 0 0 0 0 0 0 0 0 0
+
+349 17 GlobPattern const 8832 17 GlobPattern const 17 GlobPattern const 0 0 350 0 0 0 0 0 0 0 0 0
+
+350 11 GlobPattern 2048 11 GlobPattern 11 GlobPattern 0 0 0 0 0 0 0 0 0 0 0 859
+////////////////////////////////////////////////////////////////////
+//       Class : GlobPattern
+// Description : This class can be used to test for string matches
+//               against standard Unix-shell filename globbing
+//               conventions.  It serves as a portable standin for the
+//               Posix fnmatch() call.
+//
+//               A GlobPattern is given a pattern string, which can
+//               contain operators like *, ?, and [].  Then it can be
+//               tested against any number of candidate strings; for
+//               each candidate, it will indicate whether the string
+//               matches the pattern or not.  It can be used, for
+//               example, to scan a directory for all files matching a
+//               particular pattern.
+////////////////////////////////////////////////////////////////////
+
+351 18 PartBundle const * 8576 18 PartBundle const * 18 PartBundle const * 0 0 352 0 0 0 0 0 0 0 0 0
+
+352 16 PartBundle const 8832 16 PartBundle const 16 PartBundle const 0 0 281 0 0 0 0 0 0 0 0 0
+
+353 16 PartBundleNode * 8576 16 PartBundleNode * 16 PartBundleNode * 0 0 286 0 0 0 0 0 0 0 0 0
+
+354 22 MovingPartBase const * 8576 22 MovingPartBase const * 22 MovingPartBase const * 0 0 355 0 0 0 0 0 0 0 0 0
+
+355 20 MovingPartBase const 8832 20 MovingPartBase const 20 MovingPartBase const 0 0 283 0 0 0 0 0 0 0 0 0
+
+356 17 AnimChannelBase * 8576 17 AnimChannelBase * 17 AnimChannelBase * 0 0 272 0 0 0 0 0 0 0 0 0
+
+357 40 MovingPart< ACMatrixSwitchType > const * 8576 40 MovingPart< ACMatrixSwitchType > const * 40 MovingPart< ACMatrixSwitchType > const * 0 0 358 0 0 0 0 0 0 0 0 0
+
+358 38 MovingPart< ACMatrixSwitchType > const 8832 38 MovingPart< ACMatrixSwitchType > const 38 MovingPart< ACMatrixSwitchType > const 0 0 285 0 0 0 0 0 0 0 0 0
+
+359 22 PartBundleNode const * 8576 22 PartBundleNode const * 22 PartBundleNode const * 0 0 360 0 0 0 0 0 0 0 0 0
+
+360 20 PartBundleNode const 8832 20 PartBundleNode const 20 PartBundleNode const 0 0 286 0 0 0 0 0 0 0 0 0
+
+0
+0

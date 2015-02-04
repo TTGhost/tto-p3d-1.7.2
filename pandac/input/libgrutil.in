@@ -1,0 +1,1581 @@
+1145554809
+2 2
+9 libgrutil 4 Xs2x 5 panda 
+60
+79 9 CardMaker 4 139 20 CardMaker::CardMaker 0 1 1 891
+// Filename: cardMaker.I
+// Created by:  drose (16Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+62
+inline CardMaker::CardMaker(basic_string< char > const &name);
+
+80 10 ~CardMaker 4 139 21 CardMaker::~CardMaker 0 0 217
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+35
+inline CardMaker::~CardMaker(void);
+
+81 5 reset 4 139 16 CardMaker::reset 0 1 2 265
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::reset
+//       Access: Public
+//  Description: Resets all the parameters to their initial defaults.
+////////////////////////////////////////////////////////////////////
+28
+void CardMaker::reset(void);
+
+82 12 set_uv_range 4 139 23 CardMaker::set_uv_range 0 4 3 4 5 6 2038
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_uv_range
+//       Access: Public
+//  Description: Sets the range of UV's that will be applied to the
+//               vertices.  If set_has_uvs() is true (as it is by
+//               default), the vertices will be generated with the
+//               indicated range of UV's, which will be useful if a
+//               texture is applied.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_uv_range
+//       Access: Public
+//  Description: Sets the range of UV's that will be applied to the
+//               vertices.  If set_has_uvs() is true (as it is by
+//               default), the vertices will be generated with the
+//               indicated range of UV's, which will be useful if a
+//               texture is applied.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_uv_range
+//       Access: Public
+//  Description: Sets the range of UV's that will be applied to the
+//               vertices.  If set_has_uvs() is true (as it is by
+//               default), the vertices will be generated with the
+//               indicated range of UV's, which will be useful if a
+//               texture is applied.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_uv_range
+//       Access: Public
+//  Description: Sets the range of UV's that will be applied to the
+//               vertices.  If set_has_uvs() is true (as it is by
+//               default), the vertices will be generated with the
+//               indicated range of UV's, which will be useful if a
+//               texture is applied.
+////////////////////////////////////////////////////////////////////
+69
+void CardMaker::set_uv_range(LPoint2f const &ll, LPoint2f const &ur);
+
+83 17 set_uv_range_cube 4 139 28 CardMaker::set_uv_range_cube 0 1 7 336
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_uv_range_cube
+//       Access: Public
+//  Description: Sets the range of UV's that will be applied to the
+//               vertices appropriately for a cube-map face.
+////////////////////////////////////////////////////////////////////
+44
+void CardMaker::set_uv_range_cube(int face);
+
+84 11 set_has_uvs 4 139 22 CardMaker::set_has_uvs 0 1 8 313
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_has_uvs
+//       Access: Public
+//  Description: Sets the flag indicating whether vertices will be
+//               generated with UV's or not.
+////////////////////////////////////////////////////////////////////
+46
+inline void CardMaker::set_has_uvs(bool flag);
+
+85 14 set_has_3d_uvs 4 139 25 CardMaker::set_has_3d_uvs 0 1 9 468
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_has_3d_uvs
+//       Access: Public
+//  Description: Sets the flag indicating whether vertices will be
+//               generated with 3-component UVW's (true) or
+//               2-component UV's (the default, false).  Normally,
+//               this will be implicitly set by setting the uv_range.
+////////////////////////////////////////////////////////////////////
+49
+inline void CardMaker::set_has_3d_uvs(bool flag);
+
+86 9 set_frame 4 139 20 CardMaker::set_frame 0 3 10 11 12 733
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_frame
+//       Access: Public
+//  Description: Sets the size of the card.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_frame
+//       Access: Public
+//  Description: Sets the size of the card.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_frame
+//       Access: Public
+//  Description: Sets the size of the card.
+////////////////////////////////////////////////////////////////////
+83
+inline void CardMaker::set_frame(float left, float right, float bottom, float top);
+
+87 9 set_color 4 139 20 CardMaker::set_color 0 2 13 14 490
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_color
+//       Access: Public
+//  Description: Sets the color of the card.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_color
+//       Access: Public
+//  Description: Sets the color of the card.
+////////////////////////////////////////////////////////////////////
+69
+inline void CardMaker::set_color(float r, float g, float b, float a);
+
+88 15 set_has_normals 4 139 26 CardMaker::set_has_normals 0 1 15 657
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_has_normals
+//       Access: Public
+//  Description: Sets the flag indicating whether vertices will be
+//               generated with normals or not.  Normals are required
+//               if you intend to enable lighting on the card, but are
+//               just wasted space and bandwidth otherwise, so there
+//               is a (slight) optimization for disabling them.  If
+//               enabled, the normals will be generated perpendicular
+//               to the card's face.
+////////////////////////////////////////////////////////////////////
+50
+inline void CardMaker::set_has_normals(bool flag);
+
+89 19 set_source_geometry 4 139 30 CardMaker::set_source_geometry 0 1 16 799
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::set_source_geometry
+//       Access: Published
+//  Description: Sets a node that will be copied (and scaled and
+//               translated) to generate the frame, instead of
+//               generating a new polygon.  The node may contain
+//               arbitrary geometry that describes a flat polygon
+//               contained within the indicated left, right, bottom,
+//               top frame.
+//
+//               When generate() is called, the geometry in this node
+//               will be scaled and translated appropriately to give
+//               it the size and aspect ratio specified by
+//               set_frame().
+////////////////////////////////////////////////////////////////////
+85
+inline void CardMaker::set_source_geometry(PandaNode *node, LVecBase4f const &frame);
+
+90 21 clear_source_geometry 4 139 32 CardMaker::clear_source_geometry 0 1 17 320
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::clear_source_geometry
+//       Access: Published
+//  Description: Removes the node specified by an earlier call to
+//               set_source_geometry().
+////////////////////////////////////////////////////////////////////
+51
+inline void CardMaker::clear_source_geometry(void);
+
+91 8 generate 4 139 19 CardMaker::generate 0 1 18 290
+////////////////////////////////////////////////////////////////////
+//     Function: CardMaker::generate
+//       Access: Public
+//  Description: Generates a GeomNode that renders the specified
+//               geometry.
+////////////////////////////////////////////////////////////////////
+49
+PointerTo< PandaNode > CardMaker::generate(void);
+
+92 12 FisheyeMaker 4 141 26 FisheyeMaker::FisheyeMaker 0 1 19 896
+// Filename: fisheyeMaker.I
+// Created by:  drose (3Oct05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+68
+inline FisheyeMaker::FisheyeMaker(basic_string< char > const &name);
+
+93 13 ~FisheyeMaker 4 141 27 FisheyeMaker::~FisheyeMaker 0 0 220
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+41
+inline FisheyeMaker::~FisheyeMaker(void);
+
+94 5 reset 4 141 19 FisheyeMaker::reset 0 1 20 268
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::reset
+//       Access: Public
+//  Description: Resets all the parameters to their initial defaults.
+////////////////////////////////////////////////////////////////////
+31
+void FisheyeMaker::reset(void);
+
+95 7 set_fov 4 141 21 FisheyeMaker::set_fov 0 1 21 384
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::set_fov
+//       Access: Public
+//  Description: Specifies the field of view of the fisheye
+//               projection.  A sphere map will have a 360-degree
+//               field of view (and this is the default).
+////////////////////////////////////////////////////////////////////
+38
+void FisheyeMaker::set_fov(float fov);
+
+96 16 set_num_vertices 4 141 30 FisheyeMaker::set_num_vertices 0 1 22 596
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::set_num_vertices
+//       Access: Public
+//  Description: Specifies the approximate number of vertices to be
+//               used to generate the rose.  This is the approximate
+//               number of vertices that will be located within the
+//               rose's unit circle, not counting the inscribing
+//               square (if any).  The actual number of vertices used
+//               may be +/- 25% of this value.
+////////////////////////////////////////////////////////////////////
+61
+inline void FisheyeMaker::set_num_vertices(int num_vertices);
+
+97 20 set_square_inscribed 4 141 34 FisheyeMaker::set_square_inscribed 0 1 23 946
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::set_square_inscribed
+//       Access: Public
+//  Description: Sets the flag that indicates whether the rose should
+//               be inscribed within a square.  When this is true, an
+//               additional square is generated to inscribed the
+//               circular rose, with the indicated "radius" (the sides
+//               of the square will be 2 * square_radius).  The
+//               texture coordinates of the square will uniformly map
+//               to the back pole of the cube map.
+//
+//               This is mainly useful to provide a good uniform
+//               background color for a sphere map so that it does not
+//               have a sharp circular edge that might produce
+//               artifacts due to numerical imprecision when mapping.
+////////////////////////////////////////////////////////////////////
+91
+inline void FisheyeMaker::set_square_inscribed(bool square_inscribed, float square_radius);
+
+98 14 set_reflection 4 141 28 FisheyeMaker::set_reflection 0 1 24 614
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::set_reflection
+//       Access: Public
+//  Description: Sets the flag indicating whether the texture image
+//               should be mirrored (true) or normal (false).  When
+//               this is true, the 3-D texture coordinates will be
+//               reversed so that the image is appropriate for a
+//               reflection.  This is the best choice for generating a
+//               sphere map from a cube map.  The default is false.
+////////////////////////////////////////////////////////////////////
+58
+inline void FisheyeMaker::set_reflection(bool reflection);
+
+99 8 generate 4 141 22 FisheyeMaker::generate 0 1 25 293
+////////////////////////////////////////////////////////////////////
+//     Function: FisheyeMaker::generate
+//       Access: Public
+//  Description: Generates a GeomNode that renders the specified
+//               geometry.
+////////////////////////////////////////////////////////////////////
+52
+PointerTo< PandaNode > FisheyeMaker::generate(void);
+
+100 14 FrameRateMeter 4 142 30 FrameRateMeter::FrameRateMeter 0 1 26 227
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+65
+FrameRateMeter::FrameRateMeter(basic_string< char > const &name);
+
+101 12 setup_window 4 142 28 FrameRateMeter::setup_window 0 1 27 360
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::setup_window
+//       Access: Published
+//  Description: Sets up the frame rate meter to create a
+//               DisplayRegion to render itself into the indicated
+//               window.
+////////////////////////////////////////////////////////////////////
+58
+void FrameRateMeter::setup_window(GraphicsOutput *window);
+
+102 12 clear_window 4 142 28 FrameRateMeter::clear_window 0 1 28 300
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::clear_window
+//       Access: Published
+//  Description: Undoes the effect of a previous call to
+//               setup_window().
+////////////////////////////////////////////////////////////////////
+40
+void FrameRateMeter::clear_window(void);
+
+103 10 get_window 4 142 26 FrameRateMeter::get_window 0 1 29 1046
+// Filename: frameRateMeter.I
+// Created by:  drose (23Dec03)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::get_window
+//       Access: Published
+//  Description: Returns the GraphicsOutput that was passed to
+//               setup_window(), or NULL if setup_window() has not
+//               been called.
+////////////////////////////////////////////////////////////////////
+62
+inline GraphicsOutput *FrameRateMeter::get_window(void) const;
+
+104 18 get_display_region 4 142 34 FrameRateMeter::get_display_region 0 1 30 419
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::get_display_region
+//       Access: Published
+//  Description: Returns the DisplayRegion that the meter has created
+//               to render itself into the window to setup_window(),
+//               or NULL if setup_window() has not been called.
+////////////////////////////////////////////////////////////////////
+69
+inline DisplayRegion *FrameRateMeter::get_display_region(void) const;
+
+105 19 set_update_interval 4 142 35 FrameRateMeter::set_update_interval 0 1 31 537
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::set_update_interval
+//       Access: Published
+//  Description: Specifies the number of seconds that should elapse
+//               between updates to the frame rate indication.  This
+//               should be reasonably slow (e.g. 0.2 to 1.0) so that
+//               the calculation of the frame rate text does not
+//               itself dominate the frame rate.
+////////////////////////////////////////////////////////////////////
+72
+inline void FrameRateMeter::set_update_interval(double update_interval);
+
+106 19 get_update_interval 4 142 35 FrameRateMeter::get_update_interval 0 1 32 344
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::get_update_interval
+//       Access: Published
+//  Description: Returns the number of seconds that will elapse
+//               between updates to the frame rate indication.
+////////////////////////////////////////////////////////////////////
+62
+inline double FrameRateMeter::get_update_interval(void) const;
+
+107 16 set_text_pattern 4 142 32 FrameRateMeter::set_text_pattern 0 1 33 442
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::set_text_pattern
+//       Access: Published
+//  Description: Sets the sprintf() pattern that is used to format the
+//               text.  The string "%f" or some variant will be
+//               replaced with the current frame rate in frames per
+//               second.
+////////////////////////////////////////////////////////////////////
+87
+inline void FrameRateMeter::set_text_pattern(basic_string< char > const &text_pattern);
+
+108 16 get_text_pattern 4 142 32 FrameRateMeter::get_text_pattern 0 1 34 311
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::get_text_pattern
+//       Access: Published
+//  Description: Returns the sprintf() pattern that is used to format the
+//               text.
+////////////////////////////////////////////////////////////////////
+80
+inline basic_string< char > const &FrameRateMeter::get_text_pattern(void) const;
+
+109 16 set_clock_object 4 142 32 FrameRateMeter::set_clock_object 0 1 35 404
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::set_clock_object
+//       Access: Published
+//  Description: Sets the clock that is used to determine the frame
+//               rate.  The default is the application's global clock
+//               (ClockObject::get_global_clock()).
+////////////////////////////////////////////////////////////////////
+72
+inline void FrameRateMeter::set_clock_object(ClockObject *clock_object);
+
+110 16 get_clock_object 4 142 32 FrameRateMeter::get_clock_object 0 1 36 308
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::get_clock_object
+//       Access: Published
+//  Description: Returns the clock that is used to determine the frame
+//               rate.
+////////////////////////////////////////////////////////////////////
+65
+inline ClockObject *FrameRateMeter::get_clock_object(void) const;
+
+111 6 update 4 142 22 FrameRateMeter::update 0 1 37 442
+////////////////////////////////////////////////////////////////////
+//     Function: FrameRateMeter::update
+//       Access: Published
+//  Description: You can call this to explicitly force the
+//               FrameRateMeter to update itself with the latest frame
+//               rate information.  Normally, it is not necessary to
+//               call this explicitly.
+////////////////////////////////////////////////////////////////////
+41
+inline void FrameRateMeter::update(void);
+
+112 14 get_class_type 4 142 30 FrameRateMeter::get_class_type 0 1 38 0
+55
+static TypeHandle FrameRateMeter::get_class_type(void);
+
+113 8 LineSegs 4 144 18 LineSegs::LineSegs 0 2 39 40 649
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::Constructor
+//       Access: Public
+//  Description: Constructs a LineSegs object, which can be used to
+//               create any number of disconnected lines or points of
+//               various thicknesses and colors through the visible
+//               scene.  After creating the object, call move_to() and
+//               draw_to() repeatedly to describe the path, then call
+//               create() to create a GeomNode which will render the
+//               described path.
+////////////////////////////////////////////////////////////////////
+65
+LineSegs::LineSegs(basic_string< char > const &name = ("lines"));
+
+114 9 ~LineSegs 4 144 19 LineSegs::~LineSegs 0 0 199
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::Destructor
+//       Access: Public
+////////////////////////////////////////////////////////////////////
+26
+LineSegs::~LineSegs(void);
+
+115 5 reset 4 144 15 LineSegs::reset 0 1 41 297
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::reset
+//       Access: Public
+//  Description: Removes any lines in progress and resets to the
+//               initial empty state.
+////////////////////////////////////////////////////////////////////
+27
+void LineSegs::reset(void);
+
+116 9 set_color 4 144 19 LineSegs::set_color 0 3 42 43 44 724
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_color
+//       Access: Public
+//  Description: Establishes the color that will be assigned to all
+//               vertices created by future calls to move_to() and
+//               draw_to().
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_color
+//       Access: Public
+//  Description: Establishes the color that will be assigned to all
+//               vertices created by future calls to move_to() and
+//               draw_to().
+////////////////////////////////////////////////////////////////////
+74
+inline void LineSegs::set_color(float r, float g, float b, float a = (1));
+
+117 13 set_thickness 4 144 23 LineSegs::set_thickness 0 1 45 391
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_thickness
+//       Access: Public
+//  Description: Establishes the line thickness or point size in
+//               pixels that will be assigned to all lines and points
+//               created by future calls to create().
+////////////////////////////////////////////////////////////////////
+49
+inline void LineSegs::set_thickness(float thick);
+
+118 7 move_to 4 144 17 LineSegs::move_to 0 2 46 47 932
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::move_to
+//       Access: Public
+//  Description: Moves the pen to the given point without drawing a
+//               line.  When followed by draw_to(), this marks the
+//               first point of a line segment; when followed by
+//               move_to() or create(), this creates a single point.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::move_to
+//       Access: Public
+//  Description: Moves the pen to the given point without drawing a
+//               line.  When followed by draw_to(), this marks the
+//               first point of a line segment; when followed by
+//               move_to() or create(), this creates a single point.
+////////////////////////////////////////////////////////////////////
+57
+inline void LineSegs::move_to(float x, float y, float z);
+
+119 7 draw_to 4 144 17 LineSegs::draw_to 0 2 48 49 992
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::draw_to
+//       Access: Public
+//  Description: Draws a line segment from the pen's last position
+//               (the last call to move_to or draw_to) to the
+//               indicated point.  move_to() and draw_to() only update
+//               tables; the actual drawing is performed when create()
+//               is called.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::draw_to
+//       Access: Public
+//  Description: Draws a line segment from the pen's last position
+//               (the last call to move_to or draw_to) to the
+//               indicated point.  move_to() and draw_to() only update
+//               tables; the actual drawing is performed when create()
+//               is called.
+////////////////////////////////////////////////////////////////////
+57
+inline void LineSegs::draw_to(float x, float y, float z);
+
+120 20 get_current_position 4 144 30 LineSegs::get_current_position 0 1 50 349
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::get_current_position
+//       Access: Public
+//  Description: Returns the pen's current position.  The next call to
+//               draw_to() will draw a line segment from this point.
+////////////////////////////////////////////////////////////////////
+53
+LPoint3f const &LineSegs::get_current_position(void);
+
+121 8 is_empty 4 144 18 LineSegs::is_empty 0 1 51 358
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::empty
+//       Access: Public
+//  Description: Returns true if move_to() or draw_to() have not been
+//               called since the last reset() or create(), false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+30
+bool LineSegs::is_empty(void);
+
+122 6 create 4 144 16 LineSegs::create 0 4 52 53 54 55 1455
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::create
+//       Access: Public
+//  Description: Creates a new GeomNode that will render the series of
+//               line segments and points described via calls to
+//               move_to() and draw_to().  The lines and points are
+//               created with the color and thickness established by
+//               calls to set_color() and set_thick().
+//
+//               If dynamic is true, the line segments will be created
+//               with the dynamic Geom setting, optimizing them for
+//               runtime vertex animation.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::create
+//       Access: Public
+//  Description: Appends to an existing GeomNode a new Geom that
+//               will render the series of line segments and points
+//               described via calls to move_to() and draw_to().  The
+//               lines and points are created with the color and
+//               thickness established by calls to set_color() and
+//               set_thick().
+//
+//               If dynamic is true, the line segments will be created
+//               with the dynamic Geom setting, optimizing them for
+//               runtime vertex animation.
+////////////////////////////////////////////////////////////////////
+54
+inline GeomNode *LineSegs::create(bool dynamic = (0));
+
+123 16 get_num_vertices 4 144 26 LineSegs::get_num_vertices 0 1 56 540
+// Functions to move the line vertices after they have been created.
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::get_num_vertices
+//       Access: Public
+//  Description: Returns the total number of line segment and point
+//               vertices generated by the last call to create().  The
+//               positions of these vertices may be read and adjusted
+//               through get_vertex() and set_vertex().
+////////////////////////////////////////////////////////////////////
+50
+inline int LineSegs::get_num_vertices(void) const;
+
+124 10 get_vertex 4 144 20 LineSegs::get_vertex 0 1 57 513
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::get_vertex
+//       Access: Public
+//  Description: Returns the nth point or vertex of the line segment
+//               sequence generated by the last call to create().  The
+//               first move_to() generates vertex 0; subsequent
+//               move_to() and draw_to() calls generate consecutively
+//               higher vertex numbers.
+////////////////////////////////////////////////////////////////////
+43
+LPoint3f LineSegs::get_vertex(int n) const;
+
+125 10 set_vertex 4 144 20 LineSegs::set_vertex 0 2 58 59 1024
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_vertex
+//       Access: Public
+//  Description: Moves the nth point or vertex of the line segment
+//               sequence generated by the last call to create().  The
+//               first move_to() generates vertex 0; subsequent
+//               move_to() and draw_to() calls generate consecutively
+//               higher vertex numbers.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_vertex
+//       Access: Public
+//  Description: Moves the nth point or vertex of the line segment
+//               sequence generated by the last call to create().  The
+//               first move_to() generates vertex 0; subsequent
+//               move_to() and draw_to() calls generate consecutively
+//               higher vertex numbers.
+////////////////////////////////////////////////////////////////////
+55
+void LineSegs::set_vertex(int n, LPoint3f const &vert);
+
+126 16 get_vertex_color 4 144 26 LineSegs::get_vertex_color 0 1 60 268
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::get_vertex_color
+//       Access: Public
+//  Description: Returns the color of the nth point or vertex.
+////////////////////////////////////////////////////////////////////
+56
+LVecBase4f LineSegs::get_vertex_color(int vertex) const;
+
+127 16 set_vertex_color 4 144 26 LineSegs::set_vertex_color 0 3 61 62 63 622
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_vertex_color
+//       Access: Public
+//  Description: Changes the vertex color of the nth point or vertex.
+//               See set_vertex().
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: LineSegs::set_vertex_color
+//       Access: Public
+//  Description: Changes the vertex color of the nth point or vertex.
+//               See set_vertex().
+////////////////////////////////////////////////////////////////////
+65
+void LineSegs::set_vertex_color(int vertex, LVecBase4f const &c);
+
+128 15 MultitexReducer 4 145 32 MultitexReducer::MultitexReducer 0 1 64 228
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+39
+MultitexReducer::MultitexReducer(void);
+
+129 16 ~MultitexReducer 4 145 33 MultitexReducer::~MultitexReducer 0 0 227
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::Destructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+40
+MultitexReducer::~MultitexReducer(void);
+
+130 5 clear 4 145 22 MultitexReducer::clear 0 1 65 309
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::clear
+//       Access: Published
+//  Description: Removes the record of nodes that were previously
+//               discovered by scan().
+////////////////////////////////////////////////////////////////////
+34
+void MultitexReducer::clear(void);
+
+131 4 scan 4 145 21 MultitexReducer::scan 0 3 66 67 68 3594
+// Filename: multitexReducer.I
+// Created by:  drose (30Nov04)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::scan
+//       Access: Published
+//  Description: Starts scanning the hierarchy beginning at the
+//               indicated node.  Any GeomNodes discovered in the
+//               hierarchy with multitexture will be added to internal
+//               structures in the MultitexReducer so that a future
+//               call to flatten() will operate on all of these at
+//               once.
+//
+//               This version of this method does not accumulate state
+//               from the parents of the indicated node; thus, only
+//               multitexture effects that have been applied at node
+//               and below will be considered.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::scan
+//       Access: Published
+//  Description: Starts scanning the hierarchy beginning at the
+//               indicated node.  Any GeomNodes discovered in the
+//               hierarchy with multitexture will be added to internal
+//               structures in the MultitexReducer so that a future
+//               call to flatten() will operate on all of these at
+//               once.
+//
+//               The second parameter represents the NodePath from
+//               which to accumulate the state that is considered for
+//               the multitexture.  Pass an empty NodePath to
+//               accumulate all the state from the root of the graph,
+//               or you may specify some other node here in order to
+//               not consider nodes above that as contributing to the
+//               state to be flattened.  This is particularly useful
+//               if you have some texture stage which is applied
+//               globally to a scene (for instance, a caustics
+//               effect), which you don't want to be considered for
+//               flattening by the MultitexReducer.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::scan
+//       Access: Published
+//  Description: Starts scanning the hierarchy beginning at the
+//               indicated node.  Any GeomNodes discovered in the
+//               hierarchy with multitexture will be added to internal
+//               structures in the MultitexReducer so that a future
+//               call to flatten() will operate on all of these at
+//               once.
+//
+//               The indicated transform and state are the state
+//               inherited from the node's ancestors; any multitexture
+//               operations will be accumulated from the indicated
+//               starting state.
+////////////////////////////////////////////////////////////////////
+56
+inline void MultitexReducer::scan(NodePath const &node);
+
+132 10 set_target 4 145 27 MultitexReducer::set_target 0 1 69 400
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::set_target
+//       Access: Published
+//  Description: Specifies the target TextureStage (and InternalName)
+//               that will be left on each multitexture node after the
+//               flatten operation has completed.
+////////////////////////////////////////////////////////////////////
+54
+void MultitexReducer::set_target(TextureStage *stage);
+
+133 12 set_use_geom 4 145 29 MultitexReducer::set_use_geom 0 1 70 1409
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::set_use_geom
+//       Access: Published
+//  Description: Indicates whether the actual geometry will be used to
+//               generate the textures.  
+//
+//               If this is set to true, the geometry discovered by
+//               scan() will be used to generate the textures, which
+//               allows for the vertex and polygon colors to be made
+//               part of the texture itself (and makes the M_decal
+//               multitexture mode more reliable).  However, this only
+//               works if the geometry does not contain multiple
+//               different polygons that map to the same UV range.
+//
+//               If this is set to false (the default), a plain flat
+//               card will be used to generate the textures, which is
+//               more robust in general, but the resulting texture
+//               will not include vertex colors and M_decal won't work
+//               properly.
+//
+//               Note that in case multiple sets of texture
+//               coordinates are in effect, then the additional sets
+//               will always use the geometry anyway regardless of the
+//               setting of this flag (but this will not affect vertex
+//               color).
+////////////////////////////////////////////////////////////////////
+50
+void MultitexReducer::set_use_geom(bool use_geom);
+
+134 17 set_allow_tex_mat 4 145 34 MultitexReducer::set_allow_tex_mat 0 1 71 1018
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::set_allow_tex_mat
+//       Access: Published
+//  Description: Indicates whether the resulting texture should be
+//               expected to be animated beyond its current range via
+//               a texture matrix (true), or whether the current range
+//               of texture coordinates will be sufficient forever
+//               (false).
+//
+//               If this is set to true, then the entire texture image
+//               must be generated, in the assumption that the user
+//               may animate the texture around on the surface after
+//               it has been composed.
+//
+//               If this is set to false (the default), then only the
+//               portion of the texture image which is actually in use
+//               must be generated, which may be a significant savings
+//               in texture memory.
+////////////////////////////////////////////////////////////////////
+60
+void MultitexReducer::set_allow_tex_mat(bool allow_tex_mat);
+
+135 7 flatten 4 145 24 MultitexReducer::flatten 0 1 72 583
+////////////////////////////////////////////////////////////////////
+//     Function: MultitexReducer::flatten
+//       Access: Published
+//  Description: Actually performs the reducing operations on the
+//               nodes that were previously scanned.
+//
+//               A window that can be used to create texture buffers
+//               suitable for rendering this geometry must be
+//               supplied.  This specifies the particular GSG that
+//               will be used to composite the textures.
+////////////////////////////////////////////////////////////////////
+54
+void MultitexReducer::flatten(GraphicsOutput *window);
+
+136 13 OpenCVTexture 4 146 28 OpenCVTexture::OpenCVTexture 0 2 73 74 609
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Constructor
+//       Access: Published
+//  Description: Sets up the texture to read frames from a camera
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Copy Constructor
+//       Access: Protected
+//  Description: Use OpenCVTexture::make_copy() to make a duplicate copy of
+//               an existing OpenCVTexture.
+////////////////////////////////////////////////////////////////////
+78
+OpenCVTexture::OpenCVTexture(basic_string< char > const &name = ((string())));
+
+137 11 from_camera 4 146 26 OpenCVTexture::from_camera 0 3 75 76 77 483
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published, Virtual
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+////////////////////////////////////////////////////////////////////
+70
+bool OpenCVTexture::from_camera(int camera_index = (-1), int z = (0));
+
+138 14 get_class_type 4 146 29 OpenCVTexture::get_class_type 0 1 78 0
+54
+static TypeHandle OpenCVTexture::get_class_type(void);
+
+78
+1 14 Dtool_Xs2xJ3MS 7 3 149 80 14 Dtool_Xs2xJ3MS 1 4 name 1 148  
+2 14 Dtool_Xs2xcuRh 4 5 150 0 14 Dtool_Xs2xcuRh 1 4 this 3 149  
+3 14 Dtool_Xs2x_5fw 4 6 150 0 14 Dtool_Xs2x_5fw 3 4 this 3 149  2 ll 1 151  2 ur 1 151  
+4 14 Dtool_Xs2xZxSq 4 6 150 0 14 Dtool_Xs2xZxSq 5 4 this 3 149  2 ll 1 151  2 lr 1 151  2 ur 1 151  2 ul 1 151  
+5 14 Dtool_Xs2xbEBS 4 6 150 0 14 Dtool_Xs2xbEBS 5 4 this 3 149  2 ll 1 154  2 lr 1 154  2 ur 1 154  2 ul 1 154  
+6 14 Dtool_Xs2xPjcg 4 6 150 0 14 Dtool_Xs2xPjcg 4 4 this 3 149  1 x 1 157  1 y 1 157  1 z 1 157  
+7 14 Dtool_Xs2xQ5BM 4 7 150 0 14 Dtool_Xs2xQ5BM 2 4 this 3 149  4 face 1 160  
+8 14 Dtool_Xs2x_g_I 4 8 150 0 14 Dtool_Xs2x_g_I 2 4 this 3 149  4 flag 1 161  
+9 14 Dtool_Xs2xHbQa 4 9 150 0 14 Dtool_Xs2xHbQa 2 4 this 3 149  4 flag 1 161  
+10 14 Dtool_Xs2xUJOB 4 10 150 0 14 Dtool_Xs2xUJOB 5 4 this 3 149  2 ll 1 154  2 lr 1 154  2 ur 1 154  2 ul 1 154  
+11 14 Dtool_Xs2xKOM1 4 10 150 0 14 Dtool_Xs2xKOM1 2 4 this 3 149  5 frame 1 162  
+12 14 Dtool_Xs2x3xT3 4 10 150 0 14 Dtool_Xs2x3xT3 5 4 this 3 149  4 left 1 165  5 right 1 165  6 bottom 1 165  3 top 1 165  
+13 14 Dtool_Xs2xolpK 4 11 150 0 14 Dtool_Xs2xolpK 2 4 this 3 149  5 color 1 162  
+14 14 Dtool_Xs2x0RvM 4 11 150 0 14 Dtool_Xs2x0RvM 5 4 this 3 149  1 r 1 165  1 g 1 165  1 b 1 165  1 a 1 165  
+15 14 Dtool_Xs2xjaAn 4 12 150 0 14 Dtool_Xs2xjaAn 2 4 this 3 149  4 flag 1 161  
+16 14 Dtool_Xs2xvDmZ 4 13 150 0 14 Dtool_Xs2xvDmZ 3 4 this 3 149  4 node 1 166  5 frame 1 162  
+17 14 Dtool_Xs2xH1YC 4 14 150 0 14 Dtool_Xs2xH1YC 1 4 this 3 149  
+18 14 Dtool_Xs2xscLf 7 15 166 0 14 Dtool_Xs2xscLf 1 4 this 3 149  
+19 14 Dtool_Xs2xH_r8 7 17 168 93 14 Dtool_Xs2xH_r8 1 4 name 1 148  
+20 14 Dtool_Xs2xXR72 4 19 150 0 14 Dtool_Xs2xXR72 1 4 this 3 168  
+21 14 Dtool_Xs2xi0Pu 4 20 150 0 14 Dtool_Xs2xi0Pu 2 4 this 3 168  3 fov 1 165  
+22 14 Dtool_Xs2xtqHT 4 21 150 0 14 Dtool_Xs2xtqHT 2 4 this 3 168  12 num_vertices 1 160  
+23 14 Dtool_Xs2x7SsF 4 22 150 0 14 Dtool_Xs2x7SsF 3 4 this 3 168  16 square_inscribed 1 161  13 square_radius 1 165  
+24 14 Dtool_Xs2xS249 4 23 150 0 14 Dtool_Xs2xS249 2 4 this 3 168  10 reflection 1 161  
+25 14 Dtool_Xs2x86hh 7 24 166 0 14 Dtool_Xs2x86hh 1 4 this 3 168  
+26 14 Dtool_Xs2xYERg 7 27 169 0 14 Dtool_Xs2xYERg 1 4 name 1 148  
+27 14 Dtool_Xs2xU30L 4 28 150 0 14 Dtool_Xs2xU30L 2 4 this 3 169  6 window 1 170  
+28 14 Dtool_Xs2xxnBF 4 29 150 0 14 Dtool_Xs2xxnBF 1 4 this 3 169  
+29 14 Dtool_Xs2xYSXV 7 30 170 0 14 Dtool_Xs2xYSXV 1 4 this 3 172  
+30 14 Dtool_Xs2xtWk2 7 31 175 0 14 Dtool_Xs2xtWk2 1 4 this 3 172  
+31 14 Dtool_Xs2xUvgr 4 32 150 0 14 Dtool_Xs2xUvgr 2 4 this 3 169  15 update_interval 1 176  
+32 14 Dtool_Xs2x0Ouf 6 33 176 0 14 Dtool_Xs2x0Ouf 1 4 this 3 172  
+33 14 Dtool_Xs2xNbmG 4 34 150 0 14 Dtool_Xs2xNbmG 2 4 this 3 169  12 text_pattern 1 148  
+34 14 Dtool_Xs2xJ3wF 6 35 148 0 14 Dtool_Xs2xJ3wF 1 4 this 3 172  
+35 14 Dtool_Xs2xqr7U 4 36 150 0 14 Dtool_Xs2xqr7U 2 4 this 3 169  12 clock_object 1 177  
+36 14 Dtool_Xs2xZmdy 6 37 177 0 14 Dtool_Xs2xZmdy 1 4 this 3 172  
+37 14 Dtool_Xs2xCl_G 4 38 150 0 14 Dtool_Xs2xCl_G 1 4 this 3 169  
+38 14 Dtool_Xs2xKim9 7 39 180 0 14 Dtool_Xs2xKim9 0 
+39 14 Dtool_Xs2xcyYH 7 41 181 114 14 Dtool_Xs2xcyYH 1 4 name 1 148  
+40 14 Dtool_Xs2xWNQY 7 41 181 114 14 Dtool_Xs2xWNQY 0 
+41 14 Dtool_Xs2xgqmq 4 43 150 0 14 Dtool_Xs2xgqmq 1 4 this 3 181  
+42 14 Dtool_Xs2x0j3d 4 44 150 0 14 Dtool_Xs2x0j3d 2 4 this 3 181  5 color 1 162  
+43 14 Dtool_Xs2xoG3B 4 44 150 0 14 Dtool_Xs2xoG3B 5 4 this 3 181  1 r 1 165  1 g 1 165  1 b 1 165  1 a 1 165  
+44 14 Dtool_Xs2xIOs9 4 44 150 0 14 Dtool_Xs2xIOs9 4 4 this 3 181  1 r 1 165  1 g 1 165  1 b 1 165  
+45 14 Dtool_Xs2xJ0o7 4 45 150 0 14 Dtool_Xs2xJ0o7 2 4 this 3 181  5 thick 1 165  
+46 14 Dtool_Xs2x8wH1 4 46 150 0 14 Dtool_Xs2x8wH1 2 4 this 3 181  1 v 1 182  
+47 14 Dtool_Xs2xrLxC 4 46 150 0 14 Dtool_Xs2xrLxC 4 4 this 3 181  1 x 1 165  1 y 1 165  1 z 1 165  
+48 14 Dtool_Xs2xq1dS 4 47 150 0 14 Dtool_Xs2xq1dS 2 4 this 3 181  1 v 1 182  
+49 14 Dtool_Xs2x8oGg 4 47 150 0 14 Dtool_Xs2x8oGg 4 4 this 3 181  1 x 1 165  1 y 1 165  1 z 1 165  
+50 14 Dtool_Xs2xHil_ 6 48 154 0 14 Dtool_Xs2xHil_ 1 4 this 3 181  
+51 14 Dtool_Xs2xBf1p 6 49 161 0 14 Dtool_Xs2xBf1p 1 4 this 3 181  
+52 14 Dtool_Xs2xZFoc 7 50 186 0 14 Dtool_Xs2xZFoc 3 4 this 3 181  8 previous 1 186  7 dynamic 1 161  
+53 14 Dtool_Xs2x_ama 7 50 186 0 14 Dtool_Xs2x_ama 2 4 this 3 181  8 previous 1 186  
+54 14 Dtool_Xs2xDS3i 7 50 186 0 14 Dtool_Xs2xDS3i 2 4 this 3 181  7 dynamic 1 161  
+55 14 Dtool_Xs2xt4D_ 7 50 186 0 14 Dtool_Xs2xt4D_ 1 4 this 3 181  
+56 14 Dtool_Xs2xLyjT 6 51 160 0 14 Dtool_Xs2xLyjT 1 4 this 3 187  
+57 14 Dtool_Xs2x62YQ 7 52 189 0 14 Dtool_Xs2x62YQ 2 4 this 3 187  1 n 1 160  
+58 14 Dtool_Xs2xMZV4 4 53 150 0 14 Dtool_Xs2xMZV4 3 4 this 3 181  1 n 1 160  4 vert 1 154  
+59 14 Dtool_Xs2xx0WV 4 53 150 0 14 Dtool_Xs2xx0WV 5 4 this 3 181  6 vertex 1 160  1 x 1 165  1 y 1 165  1 z 1 165  
+60 14 Dtool_Xs2x6Cje 7 54 190 0 14 Dtool_Xs2x6Cje 2 4 this 3 187  6 vertex 1 160  
+61 14 Dtool_Xs2xzZOI 4 55 150 0 14 Dtool_Xs2xzZOI 3 4 this 3 181  6 vertex 1 160  1 c 1 162  
+62 14 Dtool_Xs2xP_Xd 4 55 150 0 14 Dtool_Xs2xP_Xd 6 4 this 3 181  6 vertex 1 160  1 r 1 165  1 g 1 165  1 b 1 165  1 a 1 165  
+63 14 Dtool_Xs2xFwym 4 55 150 0 14 Dtool_Xs2xFwym 5 4 this 3 181  6 vertex 1 160  1 r 1 165  1 g 1 165  1 b 1 165  
+64 14 Dtool_Xs2xwAX5 7 57 191 129 14 Dtool_Xs2xwAX5 0 
+65 14 Dtool_Xs2xDQSi 4 59 150 0 14 Dtool_Xs2xDQSi 1 4 this 3 191  
+66 14 Dtool_Xs2xEInR 4 60 150 0 14 Dtool_Xs2xEInR 2 4 this 3 191  4 node 1 192  
+67 14 Dtool_Xs2xqawa 4 60 150 0 14 Dtool_Xs2xqawa 3 4 this 3 191  4 node 1 192  10 state_from 1 192  
+68 14 Dtool_Xs2xcyhS 4 60 150 0 14 Dtool_Xs2xcyhS 4 4 this 3 191  4 node 1 166  5 state 1 195  9 transform 1 198  
+69 14 Dtool_Xs2xjnJP 4 61 150 0 14 Dtool_Xs2xjnJP 2 4 this 3 191  5 stage 1 201  
+70 14 Dtool_Xs2xl_cC 4 62 150 0 14 Dtool_Xs2xl_cC 2 4 this 3 191  8 use_geom 1 161  
+71 14 Dtool_Xs2xhlww 4 63 150 0 14 Dtool_Xs2xhlww 2 4 this 3 191  13 allow_tex_mat 1 161  
+72 14 Dtool_Xs2xq9Y9 4 64 150 0 14 Dtool_Xs2xq9Y9 2 4 this 3 191  6 window 1 170  
+73 14 Dtool_Xs2xRy9m 7 67 203 0 14 Dtool_Xs2xRy9m 1 4 name 1 148  
+74 14 Dtool_Xs2xHWbq 7 67 203 0 14 Dtool_Xs2xHWbq 0 
+75 14 Dtool_Xs2xZLGx 6 68 161 0 14 Dtool_Xs2xZLGx 3 4 this 3 203  12 camera_index 1 160  1 z 1 160  
+76 14 Dtool_Xs2xfvx2 6 68 161 0 14 Dtool_Xs2xfvx2 2 4 this 3 203  12 camera_index 1 160  
+77 14 Dtool_Xs2xdqKA 6 68 161 0 14 Dtool_Xs2xdqKA 1 4 this 3 203  
+78 14 Dtool_Xs2xWKHM 7 69 180 0 14 Dtool_Xs2xWKHM 0 
+65
+139 9 CardMaker 26625 9 CardMaker 9 CardMaker 0 0 0 1 79 80 0 11 81 82 83 84 85 86 87 88 89 90 91 0 1 0 140 0 0 0 0 350
+////////////////////////////////////////////////////////////////////
+//       Class : CardMaker
+// Description : This class generates 2-d "cards", that is,
+//               rectangular polygons, particularly useful for showing
+//               textures etc. in the 2-d scene graph.
+////////////////////////////////////////////////////////////////////
+
+140 7 Namable 2049 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 324
+////////////////////////////////////////////////////////////////////
+//       Class : Namable
+// Description : A base class for all things which can have a name.
+//               The name is either empty or nonempty, but it is never
+//               NULL.
+////////////////////////////////////////////////////////////////////
+
+141 12 FisheyeMaker 26625 12 FisheyeMaker 12 FisheyeMaker 0 0 0 1 92 93 0 6 94 95 96 97 98 99 0 1 0 140 0 0 0 0 743
+////////////////////////////////////////////////////////////////////
+//       Class : FisheyeMaker
+// Description : This class is similar to CardMaker, but instead of
+//               generating ordinary cards, it generates a circular
+//               rose that represents the projection of a 3-D scene
+//               through a fisheye lens.  The texture coordinates of
+//               the rose are defined so that each 2-D vertex has a
+//               3-D UVW that reflects the corresponding position in
+//               3-D space of that particular vertex.
+//
+//               This class is particularly suited for converting cube
+//               maps to sphere maps.
+////////////////////////////////////////////////////////////////////
+
+142 14 FrameRateMeter 75777 14 FrameRateMeter 14 FrameRateMeter 0 0 0 1 100 0 0 12 101 102 103 104 105 106 107 108 109 110 111 112 0 1 0 143 0 0 0 0 673
+////////////////////////////////////////////////////////////////////
+//       Class : FrameRateMeter
+// Description : This is a special TextNode that automatically updates
+//               itself with the current frame rate.  It can be placed
+//               anywhere in the world where you'd like to see the
+//               frame rate.
+//
+//               It also has a special mode in which it may be
+//               attached directly to a channel or window.  If this is
+//               done, it creates a DisplayRegion for itself and renders
+//               itself in the upper-right-hand corner.
+////////////////////////////////////////////////////////////////////
+
+143 8 TextNode 2049 8 TextNode 8 TextNode 0 0 0 0 0 0 0 0 0 0 0 1336
+////////////////////////////////////////////////////////////////////
+//       Class : TextNode
+// Description : The primary interface to this module.  This class
+//               does basic text assembly; given a string of text and
+//               a TextFont object, it creates a piece of geometry
+//               that may be placed in the 3-d or 2-d world to
+//               represent the indicated text.
+//
+//               The TextNode may be used in one of two ways.
+//               Naively, it may simply be parented directly into the
+//               scene graph and rendered as if it were a GeomNode; in
+//               this mode, the actual polygon geometry that renders
+//               the text is not directly visible or accessible, but
+//               remains hidden within the TextNode.
+//
+//               The second way TextNode may be used is as a text
+//               generator.  To use it in this way, do not parent the
+//               TextNode to the scene graph; instead, set the
+//               properties of the text and call generate() to return
+//               an ordinary node, containing ordinary geometry, which
+//               you may use however you like.  Each time you call
+//               generate() a new node is returned.
+////////////////////////////////////////////////////////////////////
+
+144 8 LineSegs 26625 8 LineSegs 8 LineSegs 0 0 0 1 113 114 0 13 115 116 117 118 119 120 121 122 123 124 125 126 127 0 1 0 140 0 0 0 0 493
+////////////////////////////////////////////////////////////////////
+//       Class : LineSegs
+// Description : Encapsulates creation of a series of connected or
+//               disconnected line segments or points, for drawing
+//               paths or rays.  This class doesn't attempt to be the
+//               smartest it could possibly be; it's intended
+//               primarily as a visualization and editing tool.
+////////////////////////////////////////////////////////////////////
+
+145 15 MultitexReducer 26625 15 MultitexReducer 15 MultitexReducer 0 0 0 1 128 129 0 6 130 131 132 133 134 135 0 0 0 0 964
+////////////////////////////////////////////////////////////////////
+//       Class : MultitexReducer
+// Description : This object presents an interface for generating new
+//               texture images that represent the combined images
+//               from one or more individual textures, reproducing 
+//               certain kinds of multitexture effects without
+//               depending on multitexture support in the hardware.
+//
+//               This also flattens out texture matrices and removes
+//               extra texture coordinates from the Geoms.  It is thus
+//               not a complete substitute for true multitexturing,
+//               because it does not lend itself well to dynamic
+//               animation of the textures once they have been
+//               flattened.  It is, however, useful for "baking in" a
+//               particular multitexture effect.
+////////////////////////////////////////////////////////////////////
+
+146 13 OpenCVTexture 75777 13 OpenCVTexture 13 OpenCVTexture 0 0 0 1 136 0 0 2 137 138 0 1 0 147 0 0 0 0 408
+////////////////////////////////////////////////////////////////////
+//       Class : OpenCVTexture
+// Description : A specialization on VideoTexture that takes its input
+//               using the CV library, to produce an animated texture,
+//               with its source taken from an .avi file or from a
+//               camera input.
+////////////////////////////////////////////////////////////////////
+
+147 12 VideoTexture 2049 12 VideoTexture 12 VideoTexture 0 0 0 0 0 0 0 0 0 0 0 480
+////////////////////////////////////////////////////////////////////
+//       Class : VideoTexture
+// Description : The base class for a family of animated Textures that
+//               take their input from a video source, such as a movie
+//               file.  These Textures may be stopped, started,
+//               etc. using the AnimInterface controls, similar to an
+//               animated character.
+////////////////////////////////////////////////////////////////////
+
+148 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+149 11 CardMaker * 8576 11 CardMaker * 11 CardMaker * 0 0 139 0 0 0 0 0 0 0 0 0
+
+150 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+151 16 LPoint2f const * 8576 16 LPoint2f const * 16 LPoint2f const * 0 0 152 0 0 0 0 0 0 0 0 0
+
+152 14 LPoint2f const 8832 14 LPoint2f const 14 LPoint2f const 0 0 153 0 0 0 0 0 0 0 0 0
+
+153 9 TexCoordf 2048 8 LPoint2f 8 LPoint2f 0 0 0 0 0 0 0 0 0 0 0 894
+// Filename: lpoint2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint2
+// Description : This is a two-component point in space.
+////////////////////////////////////////////////////////////////////
+
+154 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 155 0 0 0 0 0 0 0 0 0
+
+155 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 156 0 0 0 0 0 0 0 0 0
+
+156 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 1271
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+157 17 LVector4f const * 8576 17 LVector4f const * 17 LVector4f const * 0 0 158 0 0 0 0 0 0 0 0 0
+
+158 15 LVector4f const 8832 15 LVector4f const 15 LVector4f const 0 0 159 0 0 0 0 0 0 0 0 0
+
+159 9 LVector4f 2048 9 LVector4f 9 LVector4f 0 0 0 0 0 0 0 0 0 0 0 898
+// Filename: lvector4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector4
+// Description : This is a four-component vector distance.
+////////////////////////////////////////////////////////////////////
+
+160 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+161 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+162 18 LVecBase4f const * 8576 18 LVecBase4f const * 18 LVecBase4f const * 0 0 163 0 0 0 0 0 0 0 0 0
+
+163 16 LVecBase4f const 8832 16 LVecBase4f const 16 LVecBase4f const 0 0 164 0 0 0 0 0 0 0 0 0
+
+164 6 Colorf 2048 10 LVecBase4f 10 LVecBase4f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase4
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+165 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+166 11 PandaNode * 8576 11 PandaNode * 11 PandaNode * 0 0 167 0 0 0 0 0 0 0 0 0
+
+167 9 PandaNode 2048 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+168 14 FisheyeMaker * 8576 14 FisheyeMaker * 14 FisheyeMaker * 0 0 141 0 0 0 0 0 0 0 0 0
+
+169 16 FrameRateMeter * 8576 16 FrameRateMeter * 16 FrameRateMeter * 0 0 142 0 0 0 0 0 0 0 0 0
+
+170 16 GraphicsOutput * 8576 16 GraphicsOutput * 16 GraphicsOutput * 0 0 171 0 0 0 0 0 0 0 0 0
+
+171 14 GraphicsOutput 2048 14 GraphicsOutput 14 GraphicsOutput 0 0 0 0 0 0 0 0 0 0 0 1111
+////////////////////////////////////////////////////////////////////
+//       Class : GraphicsOutput
+// Description : This is a base class for the various different
+//               classes that represent the result of a frame of
+//               rendering.  The most common kind of GraphicsOutput is
+//               a GraphicsWindow, which is a real-time window on the
+//               desktop, but another example is GraphicsBuffer, which
+//               is an offscreen buffer.
+//
+//               The actual rendering, and anything associated with
+//               the graphics context itself, is managed by the
+//               associated GraphicsStateGuardian (which might output
+//               to multiple GraphicsOutput objects).
+//
+//               GraphicsOutputs are not actually writable to bam
+//               files, of course, but they may be passed as event
+//               parameters, so they inherit from
+//               TypedWritableReferenceCount instead of
+//               TypedReferenceCount for that convenience.
+////////////////////////////////////////////////////////////////////
+
+172 22 FrameRateMeter const * 8576 22 FrameRateMeter const * 22 FrameRateMeter const * 0 0 173 0 0 0 0 0 0 0 0 0
+
+173 20 FrameRateMeter const 8832 20 FrameRateMeter const 20 FrameRateMeter const 0 0 142 0 0 0 0 0 0 0 0 0
+
+174 13 DisplayRegion 2048 13 DisplayRegion 13 DisplayRegion 0 0 0 0 0 0 0 0 0 0 0 677
+////////////////////////////////////////////////////////////////////
+//       Class : DisplayRegion
+// Description : A rectangular subregion within a window for rendering
+//               into.  Typically, there is one DisplayRegion that
+//               covers the whole window, but you may also create
+//               smaller DisplayRegions for having different regions
+//               within the window that represent different scenes.
+//               You may also stack up DisplayRegions like panes of
+//               glass, usually for layering 2-d interfaces on top of
+//               a 3-d scene.
+////////////////////////////////////////////////////////////////////
+
+175 15 DisplayRegion * 8576 15 DisplayRegion * 15 DisplayRegion * 0 0 174 0 0 0 0 0 0 0 0 0
+
+176 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+177 13 ClockObject * 8576 13 ClockObject * 13 ClockObject * 0 0 178 0 0 0 0 0 0 0 0 0
+
+178 11 ClockObject 2048 11 ClockObject 11 ClockObject 0 0 0 0 0 0 0 0 0 0 0 1483
+////////////////////////////////////////////////////////////////////
+//       Class : ClockObject
+// Description : A ClockObject keeps track of elapsed real time and
+//               discrete time.  It can run in two modes: In normal
+//               mode, get_frame_time() returns the time as of the
+//               last time tick() was called.  This is the "discrete"
+//               time, and is usually used to get the time as of, for
+//               instance, the beginning of the current frame.  In
+//               non-real-time mode, get_frame_time() returns a
+//               constant increment since the last time tick() was
+//               called; this is useful when it is desirable to fake
+//               the clock out, for instance for non-real-time
+//               animation rendering.
+//
+//               In both modes, get_real_time() always returns the
+//               elapsed real time in seconds since the ClockObject
+//               was constructed, or since it was last reset.
+//
+//               You can create your own ClockObject whenever you want
+//               to have your own local timer.  There is also a
+//               default, global ClockObject intended to represent
+//               global time for the application; this is normally set
+//               up to tick every frame so that its get_frame_time()
+//               will return the time for the current frame.
+////////////////////////////////////////////////////////////////////
+
+179 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+180 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 179 0 0 0 0 0 0 0 0 0
+
+181 10 LineSegs * 8576 10 LineSegs * 10 LineSegs * 0 0 144 0 0 0 0 0 0 0 0 0
+
+182 18 LVecBase3f const * 8576 18 LVecBase3f const * 18 LVecBase3f const * 0 0 183 0 0 0 0 0 0 0 0 0
+
+183 16 LVecBase3f const 8832 16 LVecBase3f const 16 LVecBase3f const 0 0 184 0 0 0 0 0 0 0 0 0
+
+184 9 RGBColorf 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+185 8 GeomNode 2048 8 GeomNode 8 GeomNode 0 0 0 0 0 0 0 0 0 0 0 423
+////////////////////////////////////////////////////////////////////
+//       Class : GeomNode
+// Description : A node that holds Geom objects, renderable pieces of
+//               geometry.  This is the primary kind of leaf node in
+//               the scene graph; almost all visible objects will be
+//               contained in a GeomNode somewhere.
+////////////////////////////////////////////////////////////////////
+
+186 10 GeomNode * 8576 10 GeomNode * 10 GeomNode * 0 0 185 0 0 0 0 0 0 0 0 0
+
+187 16 LineSegs const * 8576 16 LineSegs const * 16 LineSegs const * 0 0 188 0 0 0 0 0 0 0 0 0
+
+188 14 LineSegs const 8832 14 LineSegs const 14 LineSegs const 0 0 144 0 0 0 0 0 0 0 0 0
+
+189 10 LPoint3f * 8576 10 LPoint3f * 10 LPoint3f * 0 0 156 0 0 0 0 0 0 0 0 0
+
+190 12 LVecBase4f * 8576 12 LVecBase4f * 12 LVecBase4f * 0 0 164 0 0 0 0 0 0 0 0 0
+
+191 17 MultitexReducer * 8576 17 MultitexReducer * 17 MultitexReducer * 0 0 145 0 0 0 0 0 0 0 0 0
+
+192 16 NodePath const * 8576 16 NodePath const * 16 NodePath const * 0 0 193 0 0 0 0 0 0 0 0 0
+
+193 14 NodePath const 8832 14 NodePath const 14 NodePath const 0 0 194 0 0 0 0 0 0 0 0 0
+
+194 8 NodePath 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+195 19 RenderState const * 8576 19 RenderState const * 19 RenderState const * 0 0 196 0 0 0 0 0 0 0 0 0
+
+196 17 RenderState const 8832 17 RenderState const 17 RenderState const 0 0 197 0 0 0 0 0 0 0 0 0
+
+197 11 RenderState 2048 11 RenderState 11 RenderState 0 0 0 0 0 0 0 0 0 0 0 621
+////////////////////////////////////////////////////////////////////
+//       Class : RenderState
+// Description : This represents a unique collection of RenderAttrib
+//               objects that correspond to a particular renderable
+//               state.
+//
+//               You should not attempt to create or modify a
+//               RenderState object directly.  Instead, call one of
+//               the make() functions to create one for you.  And
+//               instead of modifying a RenderState object, create a
+//               new one.
+////////////////////////////////////////////////////////////////////
+
+198 22 TransformState const * 8576 22 TransformState const * 22 TransformState const * 0 0 199 0 0 0 0 0 0 0 0 0
+
+199 20 TransformState const 8832 20 TransformState const 20 TransformState const 0 0 200 0 0 0 0 0 0 0 0 0
+
+200 14 TransformState 2048 14 TransformState 14 TransformState 0 0 0 0 0 0 0 0 0 0 0 1138
+////////////////////////////////////////////////////////////////////
+//       Class : TransformState
+// Description : Indicates a coordinate-system transform on vertices.
+//               TransformStates are the primary means for storing
+//               transformations on the scene graph.
+//
+//               Transforms may be specified in one of two ways:
+//               componentwise, with a pos-hpr-scale, or with an
+//               arbitrary transform matrix.  If you specify a
+//               transform componentwise, it will remember its
+//               original components.
+//
+//               TransformState objects are managed very much like
+//               RenderState objects.  They are immutable and
+//               reference-counted automatically.
+//
+//               You should not attempt to create or modify a
+//               TransformState object directly.  Instead, call one of
+//               the make() functions to create one for you.  And
+//               instead of modifying a TransformState object, create a
+//               new one.
+////////////////////////////////////////////////////////////////////
+
+201 14 TextureStage * 8576 14 TextureStage * 14 TextureStage * 0 0 202 0 0 0 0 0 0 0 0 0
+
+202 12 TextureStage 2048 12 TextureStage 12 TextureStage 0 0 0 0 0 0 0 0 0 0 0 600
+////////////////////////////////////////////////////////////////////
+//       Class : TextureStage
+// Description : Defines the properties of a named stage of the
+//               multitexture pipeline.  The TextureAttrib will
+//               associated a number of these stages with Texture
+//               objects, and the GSG will render geometry by sorting
+//               all of the currently active TextureStages in order
+//               and then issuing the appropriate rendering calls to
+//               activate them.
+////////////////////////////////////////////////////////////////////
+
+203 15 OpenCVTexture * 8576 15 OpenCVTexture * 15 OpenCVTexture * 0 0 146 0 0 0 0 0 0 0 0 0
+
+0
+0

@@ -1,0 +1,934 @@
+1145555724
+2 2
+10 libdeadrec 4 w5Y6 6 direct 
+47
+51 11 SmoothMover 4 98 24 SmoothMover::SmoothMover 0 1 1 224
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+31
+SmoothMover::SmoothMover(void);
+
+52 12 ~SmoothMover 4 98 25 SmoothMover::~SmoothMover 0 0 223
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::Destructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+32
+SmoothMover::~SmoothMover(void);
+
+53 9 set_scale 4 98 22 SmoothMover::set_scale 0 2 2 3 2099
+// This method is just used to specify a scale which is only used
+// when composing the matrix for return by get_smooth_mat().  It
+// might change from time to time, but it is not smoothed.
+
+// This method is just used to specify a scale which is only used
+// when composing the matrix for return by get_smooth_mat().  It
+// might change from time to time, but it is not smoothed.
+
+// Filename: smoothMover.I
+// Created by:  drose (19Oct01)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_scale
+//       Access: Published
+//  Description: Specifies the current scale that should be applied to
+//               the transform.  This is not smoothed along with pos
+//               and hpr, but rather takes effect immediately; it is
+//               only here at all so we can return a complete matrix
+//               in get_smooth_mat().
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_scale
+//       Access: Published
+//  Description: Specifies the current scale that should be applied to
+//               the transform.  This is not smoothed along with pos
+//               and hpr, but rather takes effect immediately; it is
+//               only here at all so we can return a complete matrix
+//               in get_smooth_mat().
+////////////////////////////////////////////////////////////////////
+60
+inline bool SmoothMover::set_scale(LVecBase3f const &scale);
+
+54 6 set_sx 4 98 19 SmoothMover::set_sx 0 1 4 264
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_sx
+//       Access: Published
+//  Description: Sets the X-axis scale only.  See set_scale().
+////////////////////////////////////////////////////////////////////
+42
+inline bool SmoothMover::set_sx(float sx);
+
+55 6 set_sy 4 98 19 SmoothMover::set_sy 0 1 5 264
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_sy
+//       Access: Published
+//  Description: Sets the Y-axis scale only.  See set_scale().
+////////////////////////////////////////////////////////////////////
+42
+inline bool SmoothMover::set_sy(float sy);
+
+56 6 set_sz 4 98 19 SmoothMover::set_sz 0 1 6 264
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_sz
+//       Access: Published
+//  Description: Sets the Z-axis scale only.  See set_scale().
+////////////////////////////////////////////////////////////////////
+42
+inline bool SmoothMover::set_sz(float sz);
+
+57 7 set_pos 4 98 20 SmoothMover::set_pos 0 2 7 8 2162
+// These methods are used to specify each position update.  Call the
+// appropriate set_* function(s), as needed, and then call
+// mark_position().  The return value of each function is true if
+// the parameter value has changed, or false if it remains the same
+// as last time.
+
+// These methods are used to specify each position update.  Call the
+// appropriate set_* function(s), as needed, and then call
+// mark_position().  The return value of each function is true if
+// the parameter value has changed, or false if it remains the same
+// as last time.
+
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_pos
+//       Access: Published
+//  Description: Specifies the position of the SmoothMover at a
+//               particular time in the past.  When mark_position() is
+//               called, this will be recorded (along with hpr and
+//               timestamp) in a position report, which will then be
+//               used along with all other position reports to
+//               determine the smooth position at any particular
+//               instant.
+//
+//               The return value is true if any parameter has changed
+//               since the last call to set_pos(), or false if they
+//               are the same.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_pos
+//       Access: Published
+//  Description: Specifies the position of the SmoothMover at a
+//               particular time in the past.  When mark_position() is
+//               called, this will be recorded (along with hpr and
+//               timestamp) in a position report, which will then be
+//               used along with all other position reports to
+//               determine the smooth position at any particular
+//               instant.
+//
+//               The return value is true if any parameter has changed
+//               since the last call to set_pos(), or false if they
+//               are the same.
+////////////////////////////////////////////////////////////////////
+56
+inline bool SmoothMover::set_pos(LVecBase3f const &pos);
+
+58 5 set_x 4 98 18 SmoothMover::set_x 0 1 9 259
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_x
+//       Access: Published
+//  Description: Sets the X position only.  See set_pos().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_x(float x);
+
+59 5 set_y 4 98 18 SmoothMover::set_y 0 1 10 259
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_y
+//       Access: Published
+//  Description: Sets the Y position only.  See set_pos().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_y(float y);
+
+60 5 set_z 4 98 18 SmoothMover::set_z 0 1 11 259
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_z
+//       Access: Published
+//  Description: Sets the Z position only.  See set_pos().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_z(float z);
+
+61 7 set_hpr 4 98 20 SmoothMover::set_hpr 0 2 12 13 1608
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_hpr
+//       Access: Published
+//  Description: Specifies the orientation of the SmoothMover at a
+//               particular time in the past.  When mark_position() is
+//               called, this will be recorded (along with hpr and
+//               timestamp) in a position report, which will then be
+//               used along with all other position reports to
+//               determine the smooth position at any particular
+//               instant.
+//
+//               The return value is true if any parameter has changed
+//               since the last call to set_hpr(), or false if they
+//               are the same.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_hpr
+//       Access: Published
+//  Description: Specifies the orientation of the SmoothMover at a
+//               particular time in the past.  When mark_position() is
+//               called, this will be recorded (along with hpr and
+//               timestamp) in a position report, which will then be
+//               used along with all other position reports to
+//               determine the smooth position at any particular
+//               instant.
+//
+//               The return value is true if any parameter has changed
+//               since the last call to set_hpr(), or false if they
+//               are the same.
+////////////////////////////////////////////////////////////////////
+56
+inline bool SmoothMover::set_hpr(LVecBase3f const &hpr);
+
+62 5 set_h 4 98 18 SmoothMover::set_h 0 1 14 256
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_h
+//       Access: Published
+//  Description: Sets the heading only.  See set_hpr().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_h(float h);
+
+63 5 set_p 4 98 18 SmoothMover::set_p 0 1 15 254
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_p
+//       Access: Published
+//  Description: Sets the pitch only.  See set_hpr().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_p(float p);
+
+64 5 set_r 4 98 18 SmoothMover::set_r 0 1 16 253
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_r
+//       Access: Published
+//  Description: Sets the roll only.  See set_hpr().
+////////////////////////////////////////////////////////////////////
+40
+inline bool SmoothMover::set_r(float r);
+
+65 7 set_mat 4 98 20 SmoothMover::set_mat 0 1 17 337
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_mat
+//       Access: Published
+//  Description: Specifies the scale, hpr, and pos for the SmoothMover
+//               at some particular point, based on the matrix.
+////////////////////////////////////////////////////////////////////
+48
+bool SmoothMover::set_mat(LMatrix4f const &mat);
+
+66 19 set_phony_timestamp 4 98 32 SmoothMover::set_phony_timestamp 0 1 18 457
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_phony_timestamp
+//       Access: Published
+//  Description: Lies and specifies that the current position report
+//               was received now.  This is usually used for very old
+//               position reports for which we're not sure of the
+//               actual receipt time.
+////////////////////////////////////////////////////////////////////
+51
+inline void SmoothMover::set_phony_timestamp(void);
+
+67 13 set_timestamp 4 98 26 SmoothMover::set_timestamp 0 1 19 414
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_timestamp
+//       Access: Published
+//  Description: Specifies the time that the current position report
+//               applies.  This should be called, along with set_pos()
+//               and set_hpr(), before a call to mark_position().
+////////////////////////////////////////////////////////////////////
+57
+inline void SmoothMover::set_timestamp(double timestamp);
+
+68 13 mark_position 4 98 26 SmoothMover::mark_position 0 1 20 618
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::mark_position
+//       Access: Published
+//  Description: Stores the position, orientation, and timestamp (if
+//               relevant) indicated by previous calls to set_pos(),
+//               set_hpr(), and set_timestamp() in a new position
+//               report.
+//
+//               When compute_smooth_position() is called, it uses
+//               these stored position reports to base its computation
+//               of the known position.
+////////////////////////////////////////////////////////////////////
+38
+void SmoothMover::mark_position(void);
+
+69 15 clear_positions 4 98 28 SmoothMover::clear_positions 0 1 21 540
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::clear_positions
+//       Access: Published
+//  Description: Erases all the old position reports.  This should be
+//               done, for instance, prior to teleporting the avatar
+//               to a new position; otherwise, the smoother might try
+//               to lerp the avatar there.  If reset_velocity is true,
+//               the velocity is also reset to 0.
+////////////////////////////////////////////////////////////////////
+55
+void SmoothMover::clear_positions(bool reset_velocity);
+
+70 23 compute_smooth_position 4 98 36 SmoothMover::compute_smooth_position 0 2 22 23 1435
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::compute_smooth_position
+//       Access: Published
+//  Description: Computes the smoothed position (and orientation) of
+//               the mover at the indicated point in time, based on
+//               the previous position reports.  After this call has
+//               been made, get_smooth_pos() etc. may be called to
+//               retrieve the smoothed position.
+//
+//               With no parameter, the function uses
+//               ClockObject::get_frame_time() as the default time.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::compute_smooth_position
+//       Access: Published
+//  Description: Computes the smoothed position (and orientation) of
+//               the mover at the indicated point in time, based on
+//               the previous position reports.  After this call has
+//               been made, get_smooth_pos() etc. may be called to
+//               retrieve the smoothed position.
+//
+//               The return value is true if the value has changed (or
+//               might have changed) since the last call to
+//               compute_smooth_position(), or false if it remains the
+//               same.
+////////////////////////////////////////////////////////////////////
+55
+inline bool SmoothMover::compute_smooth_position(void);
+
+71 19 get_latest_position 4 98 32 SmoothMover::get_latest_position 0 1 24 554
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_latest_position
+//       Access: Published
+//  Description: Updates the smooth_pos (and smooth_hpr, etc.) members
+//               to reflect the absolute latest position known for
+//               this avatar.  This may result in a pop to the most
+//               recent position.
+//
+//               Returns true if the latest position is known, false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+44
+bool SmoothMover::get_latest_position(void);
+
+72 14 get_smooth_pos 4 98 27 SmoothMover::get_smooth_pos 0 1 25 334
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_pos
+//       Access: Published
+//  Description: Returns the smoothed position as computed by a
+//               previous call to compute_smooth_position().
+////////////////////////////////////////////////////////////////////
+63
+inline LPoint3f const &SmoothMover::get_smooth_pos(void) const;
+
+73 14 get_smooth_hpr 4 98 27 SmoothMover::get_smooth_hpr 0 1 26 337
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_hpr
+//       Access: Published
+//  Description: Returns the smoothed orientation as computed by a
+//               previous call to compute_smooth_position().
+////////////////////////////////////////////////////////////////////
+65
+inline LVecBase3f const &SmoothMover::get_smooth_hpr(void) const;
+
+74 14 get_smooth_mat 4 98 27 SmoothMover::get_smooth_mat 0 1 27 373
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_mat
+//       Access: Published
+//  Description: Returns the complete smoothed transformation matrix
+//               as computed by a previous call to
+//               compute_smooth_position().
+////////////////////////////////////////////////////////////////////
+58
+inline LMatrix4f const &SmoothMover::get_smooth_mat(void);
+
+75 16 apply_smooth_pos 4 98 29 SmoothMover::apply_smooth_pos 0 1 28 532
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::apply_smooth_pos
+//       Access: Published
+//  Description: Applies the smoothed position to the indicated
+//               NodePath.  This is equivalent to calling
+//               node.set_pos(smooth_mover->get_smooth_pos()).  It
+//               exists as an optimization only, to avoid the overhead
+//               of passing the return value through Python.
+////////////////////////////////////////////////////////////////////
+64
+inline void SmoothMover::apply_smooth_pos(NodePath &node) const;
+
+76 16 apply_smooth_hpr 4 98 29 SmoothMover::apply_smooth_hpr 0 1 29 535
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::apply_smooth_hpr
+//       Access: Published
+//  Description: Applies the smoothed orientation to the indicated
+//               NodePath.  This is equivalent to calling
+//               node.set_hpr(smooth_mover->get_smooth_hpr()).  It
+//               exists as an optimization only, to avoid the overhead
+//               of passing the return value through Python.
+////////////////////////////////////////////////////////////////////
+64
+inline void SmoothMover::apply_smooth_hpr(NodePath &node) const;
+
+77 16 apply_smooth_mat 4 98 29 SmoothMover::apply_smooth_mat 0 1 30 533
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::apply_smooth_mat
+//       Access: Published
+//  Description: Applies the smoothed transform to the indicated
+//               NodePath.  This is equivalent to calling
+//               node.set_mat(smooth_mover->get_smooth_mat()).  It
+//               exists as an optimization only, to avoid the overhead
+//               of passing the return value through Python.
+////////////////////////////////////////////////////////////////////
+58
+inline void SmoothMover::apply_smooth_mat(NodePath &node);
+
+78 28 compute_and_apply_smooth_pos 4 98 41 SmoothMover::compute_and_apply_smooth_pos 0 1 31 406
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::compute_and_apply_smooth_pos
+//       Access: Published
+//  Description: A further optimization to reduce Python calls.  This
+//               computes the smooth position and applies it to the
+//               indicated node in one call.
+////////////////////////////////////////////////////////////////////
+70
+inline void SmoothMover::compute_and_apply_smooth_pos(NodePath &node);
+
+79 32 compute_and_apply_smooth_pos_hpr 4 98 45 SmoothMover::compute_and_apply_smooth_pos_hpr 0 1 32 491
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::compute_and_apply_smooth_pos_hpr
+//       Access: Published
+//  Description: A further optimization to reduce Python calls.  This
+//               computes the smooth position and applies it to the
+//               indicated node or nodes in one call.  The pos_node
+//               and hpr_node might be the same NodePath.
+////////////////////////////////////////////////////////////////////
+98
+inline void SmoothMover::compute_and_apply_smooth_pos_hpr(NodePath &pos_node, NodePath &hpr_node);
+
+80 28 compute_and_apply_smooth_mat 4 98 41 SmoothMover::compute_and_apply_smooth_mat 0 1 33 406
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::compute_and_apply_smooth_mat
+//       Access: Published
+//  Description: A further optimization to reduce Python calls.  This
+//               computes the smooth position and applies it to the
+//               indicated node in one call.
+////////////////////////////////////////////////////////////////////
+70
+inline void SmoothMover::compute_and_apply_smooth_mat(NodePath &node);
+
+81 27 get_smooth_forward_velocity 4 98 40 SmoothMover::get_smooth_forward_velocity 0 1 34 551
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_forward_velocity
+//       Access: Published
+//  Description: Returns the speed at which the avatar is moving, in
+//               feet per second, along its own forward axis (after
+//               applying the avatar's hpr).  This will be a positive
+//               number if the avatar is moving forward, and a
+//               negative number if it is moving backward.
+////////////////////////////////////////////////////////////////////
+66
+inline float SmoothMover::get_smooth_forward_velocity(void) const;
+
+82 30 get_smooth_rotational_velocity 4 98 43 SmoothMover::get_smooth_rotational_velocity 0 1 35 481
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_rotational_velocity
+//       Access: Published
+//  Description: Returns the speed at which the avatar is rotating in
+//               the horizontal plane (i.e. heading), in degrees per
+//               second.  This may be positive or negative, according
+//               to the direction of rotation.
+////////////////////////////////////////////////////////////////////
+69
+inline float SmoothMover::get_smooth_rotational_velocity(void) const;
+
+83 16 get_forward_axis 4 98 29 SmoothMover::get_forward_axis 0 1 36 336
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_forward_axis
+//       Access: Published
+//  Description: Returns the smoothed position as computed by a
+//               previous call to compute_smooth_position().
+////////////////////////////////////////////////////////////////////
+67
+inline LVecBase3f const &SmoothMover::get_forward_axis(void) const;
+
+84 15 set_smooth_mode 4 98 28 SmoothMover::set_smooth_mode 0 1 37 492
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_smooth_mode
+//       Access: Published, Static
+//  Description: Sets the smoothing mode of all SmoothMovers in the
+//               world.  If this is SM_off, no smoothing or prediction
+//               will be performed, and get_smooth_pos() will simply
+//               return the position last set by mark_position().
+////////////////////////////////////////////////////////////////////
+78
+static inline void SmoothMover::set_smooth_mode(SmoothMover::SmoothMode mode);
+
+85 15 get_smooth_mode 4 98 28 SmoothMover::get_smooth_mode 0 1 38 337
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_smooth_mode
+//       Access: Published, Static
+//  Description: Returns the smoothing mode of all SmoothMovers in the
+//               world.  See set_smooth_mode().
+////////////////////////////////////////////////////////////////////
+73
+static inline SmoothMover::SmoothMode SmoothMover::get_smooth_mode(void);
+
+86 19 set_prediction_mode 4 98 32 SmoothMover::set_prediction_mode 0 1 39 428
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_prediction_mode
+//       Access: Published, Static
+//  Description: Sets the predictioning mode of all SmoothMovers in the
+//               world.  If this is PM_off, no prediction will be
+//               performed, but smoothing might still be performed.
+////////////////////////////////////////////////////////////////////
+86
+static inline void SmoothMover::set_prediction_mode(SmoothMover::PredictionMode mode);
+
+87 19 get_prediction_mode 4 98 32 SmoothMover::get_prediction_mode 0 1 40 349
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_prediction_mode
+//       Access: Published, Static
+//  Description: Returns the predictioning mode of all SmoothMovers in the
+//               world.  See set_prediction_mode().
+////////////////////////////////////////////////////////////////////
+81
+static inline SmoothMover::PredictionMode SmoothMover::get_prediction_mode(void);
+
+88 9 set_delay 4 98 22 SmoothMover::set_delay 0 1 41 658
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_delay
+//       Access: Published, Static
+//  Description: Sets the amount of time, in seconds, to delay the
+//               computed position of a SmoothMover.  This is
+//               particularly useful when the prediction mode is off,
+//               because it can allow the apparent motion of an avatar
+//               to appear smooth without relying on prediction, at
+//               the cost of introducing additional lag in the
+//               avatar's apparent position.
+////////////////////////////////////////////////////////////////////
+56
+static inline void SmoothMover::set_delay(double delay);
+
+89 9 get_delay 4 98 22 SmoothMover::get_delay 0 1 42 353
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_delay
+//       Access: Published, Static
+//  Description: Returns the amount of time, in seconds, to delay the
+//               computed position of a SmoothMover.  See set_delay().
+////////////////////////////////////////////////////////////////////
+50
+static inline double SmoothMover::get_delay(void);
+
+90 21 set_accept_clock_skew 4 98 34 SmoothMover::set_accept_clock_skew 0 1 43 962
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_accept_clock_skew
+//       Access: Published, Static
+//  Description: Sets the 'accept clock skew' flag.  When this flag is
+//               true, clock skew from the other clients will be
+//               tolerated by delaying each smooth mover's position an
+//               additional amount, on top of that specified by
+//               set_delay(), based on the measured average latency
+//               for timestamp messages received by the client.
+//
+//               In this way, if the other client has significant
+//               clock skew with respect to our clock, it will be
+//               evident as a large positive or negative average
+//               latency for timestamps.  By subtracting out this
+//               average latency, we compensate for poor clock sync.
+////////////////////////////////////////////////////////////////////
+65
+static inline void SmoothMover::set_accept_clock_skew(bool flag);
+
+91 21 get_accept_clock_skew 4 98 34 SmoothMover::get_accept_clock_skew 0 1 44 347
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_accept_clock_skew
+//       Access: Published, Static
+//  Description: Returns the current state of the 'accept clock skew'
+//               flag.  See set_accept_clock_skew().
+////////////////////////////////////////////////////////////////////
+60
+static inline bool SmoothMover::get_accept_clock_skew(void);
+
+92 20 set_max_position_age 4 98 33 SmoothMover::set_max_position_age 0 1 45 414
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_max_position_age
+//       Access: Published, Static
+//  Description: Sets the maximum amount of time a position is allowed
+//               to remain unchanged before assuming it represents the
+//               avatar actually standing still.
+////////////////////////////////////////////////////////////////////
+65
+static inline void SmoothMover::set_max_position_age(double age);
+
+93 20 get_max_position_age 4 98 33 SmoothMover::get_max_position_age 0 1 46 417
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_max_position_age
+//       Access: Published, Static
+//  Description: Returns the maximum amount of time a position is
+//               allowed to remain unchanged before assuming it
+//               represents the avatar actually standing still.
+////////////////////////////////////////////////////////////////////
+61
+static inline double SmoothMover::get_max_position_age(void);
+
+94 22 set_reset_velocity_age 4 98 35 SmoothMover::set_reset_velocity_age 0 1 47 611
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::set_reset_velocity_age
+//       Access: Published, Static
+//  Description: Sets the amount of time that should elapse after the
+//               last position report before the velocity is reset to
+//               0.  This is similar to max_position_age, but it is
+//               only used to determine the resetting of the reported
+//               velocity.  It should always be greater than or equal
+//               to max_position_age.
+////////////////////////////////////////////////////////////////////
+67
+static inline void SmoothMover::set_reset_velocity_age(double age);
+
+95 22 get_reset_velocity_age 4 98 35 SmoothMover::get_reset_velocity_age 0 1 48 419
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::get_reset_velocity_age
+//       Access: Published, Static
+//  Description: Returns the amount of time that should elapse after
+//               the last position report before the velocity is reset
+//               to 0.  See set_reset_velocity_age().
+////////////////////////////////////////////////////////////////////
+63
+static inline double SmoothMover::get_reset_velocity_age(void);
+
+96 6 output 4 98 19 SmoothMover::output 0 1 49 219
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+45
+void SmoothMover::output(ostream &out) const;
+
+97 5 write 4 98 18 SmoothMover::write 0 1 50 218
+////////////////////////////////////////////////////////////////////
+//     Function: SmoothMover::write
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+44
+void SmoothMover::write(ostream &out) const;
+
+50
+1 14 Dtool_w5Y6PfNd 7 2 101 52 14 Dtool_w5Y6PfNd 0 
+2 14 Dtool_w5Y6WYzt 6 4 105 0 14 Dtool_w5Y6WYzt 2 4 this 3 101  5 scale 1 102  
+3 14 Dtool_w5Y6wGHJ 6 4 105 0 14 Dtool_w5Y6wGHJ 4 4 this 3 101  2 sx 1 106  2 sy 1 106  2 sz 1 106  
+4 14 Dtool_w5Y6oQsW 6 5 105 0 14 Dtool_w5Y6oQsW 2 4 this 3 101  2 sx 1 106  
+5 14 Dtool_w5Y6evtd 6 6 105 0 14 Dtool_w5Y6evtd 2 4 this 3 101  2 sy 1 106  
+6 14 Dtool_w5Y6Mutk 6 7 105 0 14 Dtool_w5Y6Mutk 2 4 this 3 101  2 sz 1 106  
+7 14 Dtool_w5Y6O99C 6 8 105 0 14 Dtool_w5Y6O99C 2 4 this 3 101  3 pos 1 102  
+8 14 Dtool_w5Y641r_ 6 8 105 0 14 Dtool_w5Y641r_ 4 4 this 3 101  1 x 1 106  1 y 1 106  1 z 1 106  
+9 14 Dtool_w5Y6uc6s 6 9 105 0 14 Dtool_w5Y6uc6s 2 4 this 3 101  1 x 1 106  
+10 14 Dtool_w5Y6tcIJ 6 10 105 0 14 Dtool_w5Y6tcIJ 2 4 this 3 101  1 y 1 106  
+11 14 Dtool_w5Y6jcWl 6 11 105 0 14 Dtool_w5Y6jcWl 2 4 this 3 101  1 z 1 106  
+12 14 Dtool_w5Y6HbNI 6 12 105 0 14 Dtool_w5Y6HbNI 2 4 this 3 101  3 hpr 1 102  
+13 14 Dtool_w5Y63N7D 6 12 105 0 14 Dtool_w5Y63N7D 4 4 this 3 101  1 h 1 106  1 p 1 106  1 r 1 106  
+14 14 Dtool_w5Y6Xdap 6 13 105 0 14 Dtool_w5Y6Xdap 2 4 this 3 101  1 h 1 106  
+15 14 Dtool_w5Y67cKL 6 14 105 0 14 Dtool_w5Y67cKL 2 4 this 3 101  1 p 1 106  
+16 14 Dtool_w5Y68cmD 6 15 105 0 14 Dtool_w5Y68cmD 2 4 this 3 101  1 r 1 106  
+17 14 Dtool_w5Y6eUzA 6 16 105 0 14 Dtool_w5Y6eUzA 2 4 this 3 101  3 mat 1 107  
+18 14 Dtool_w5Y6h7VW 4 17 110 0 14 Dtool_w5Y6h7VW 1 4 this 3 101  
+19 14 Dtool_w5Y66Ag7 4 18 110 0 14 Dtool_w5Y66Ag7 2 4 this 3 101  9 timestamp 1 111  
+20 14 Dtool_w5Y6FTFs 4 19 110 0 14 Dtool_w5Y6FTFs 1 4 this 3 101  
+21 14 Dtool_w5Y6_lt8 4 20 110 0 14 Dtool_w5Y6_lt8 2 4 this 3 101  14 reset_velocity 1 105  
+22 14 Dtool_w5Y6NhMU 6 21 105 0 14 Dtool_w5Y6NhMU 1 4 this 3 101  
+23 14 Dtool_w5Y6BIgu 6 21 105 0 14 Dtool_w5Y6BIgu 2 4 this 3 101  9 timestamp 1 111  
+24 14 Dtool_w5Y6p1_G 6 22 105 0 14 Dtool_w5Y6p1_G 1 4 this 3 101  
+25 14 Dtool_w5Y67_MU 6 23 114 0 14 Dtool_w5Y67_MU 1 4 this 3 112  
+26 14 Dtool_w5Y6TcHB 6 24 102 0 14 Dtool_w5Y6TcHB 1 4 this 3 112  
+27 14 Dtool_w5Y6HMYE 6 25 107 0 14 Dtool_w5Y6HMYE 1 4 this 3 101  
+28 14 Dtool_w5Y6Jn_4 4 26 110 0 14 Dtool_w5Y6Jn_4 2 4 this 3 112  4 node 1 117  
+29 14 Dtool_w5Y6Ygpx 4 27 110 0 14 Dtool_w5Y6Ygpx 2 4 this 3 112  4 node 1 117  
+30 14 Dtool_w5Y6TY85 4 28 110 0 14 Dtool_w5Y6TY85 2 4 this 3 101  4 node 1 117  
+31 14 Dtool_w5Y6XkNP 4 29 110 0 14 Dtool_w5Y6XkNP 2 4 this 3 101  4 node 1 117  
+32 14 Dtool_w5Y6l8l_ 4 30 110 0 14 Dtool_w5Y6l8l_ 3 4 this 3 101  8 pos_node 1 117  8 hpr_node 1 117  
+33 14 Dtool_w5Y6Y68B 4 31 110 0 14 Dtool_w5Y6Y68B 2 4 this 3 101  4 node 1 117  
+34 14 Dtool_w5Y6DxNc 6 32 106 0 14 Dtool_w5Y6DxNc 1 4 this 3 112  
+35 14 Dtool_w5Y6lTjX 6 33 106 0 14 Dtool_w5Y6lTjX 1 4 this 3 112  
+36 14 Dtool_w5Y6OLUG 6 34 102 0 14 Dtool_w5Y6OLUG 1 4 this 3 112  
+37 14 Dtool_w5Y6_UPz 4 37 110 0 14 Dtool_w5Y6_UPz 1 4 mode 1 99  
+38 14 Dtool_w5Y6jHbf 6 38 99 0 14 Dtool_w5Y6jHbf 0 
+39 14 Dtool_w5Y64I6v 4 39 110 0 14 Dtool_w5Y64I6v 1 4 mode 1 100  
+40 14 Dtool_w5Y6sYHY 6 40 100 0 14 Dtool_w5Y6sYHY 0 
+41 14 Dtool_w5Y6A_i_ 4 41 110 0 14 Dtool_w5Y6A_i_ 1 5 delay 1 111  
+42 14 Dtool_w5Y65AIs 6 42 111 0 14 Dtool_w5Y65AIs 0 
+43 14 Dtool_w5Y6zWkf 4 43 110 0 14 Dtool_w5Y6zWkf 1 4 flag 1 105  
+44 14 Dtool_w5Y6gmDB 6 44 105 0 14 Dtool_w5Y6gmDB 0 
+45 14 Dtool_w5Y631KR 4 45 110 0 14 Dtool_w5Y631KR 1 3 age 1 111  
+46 14 Dtool_w5Y6A52x 6 46 111 0 14 Dtool_w5Y6A52x 0 
+47 14 Dtool_w5Y6Cgwu 4 47 110 0 14 Dtool_w5Y6Cgwu 1 3 age 1 111  
+48 14 Dtool_w5Y6cH9v 6 48 111 0 14 Dtool_w5Y6cH9v 0 
+49 14 Dtool_w5Y6WhUX 4 49 110 0 14 Dtool_w5Y6WhUX 2 4 this 3 112  3 out 1 119  
+50 14 Dtool_w5Y6ednE 4 50 110 0 14 Dtool_w5Y6ednE 2 4 this 3 112  3 out 1 119  
+23
+98 11 SmoothMover 26625 11 SmoothMover 11 SmoothMover 0 0 0 1 51 52 0 45 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 0 0 0 2 99 100 1068
+////////////////////////////////////////////////////////////////////
+//       Class : SmoothMover
+// Description : This class handles smoothing of sampled motion points
+//               over time, e.g. for smoothing the apparent movement
+//               of remote avatars, whose positions are sent via
+//               occasional telemetry updates.
+//
+//               It can operate in any of three modes: off, in which
+//               it does not smooth any motion but provides the last
+//               position it was told; smoothing only, in which it
+//               smooths motion information but never tries to
+//               anticipate where the avatar might be going; or full
+//               prediction, in which it smooths motion as well as
+//               tries to predict the avatar's position in lead of the
+//               last position update.  The assumption is that all
+//               SmoothMovers in the world will be operating in the
+//               same mode together.
+////////////////////////////////////////////////////////////////////
+
+99 10 SmoothMode 794624 23 SmoothMover::SmoothMode 23 SmoothMover::SmoothMode 98 0 0 0 0 0 0 0 0 2 6 SM_off 19 SmoothMover::SM_off 0 5 SM_on 18 SmoothMover::SM_on 1 0 77
+// These static methods control the global properties of all
+// SmoothMovers.
+
+100 14 PredictionMode 794624 27 SmoothMover::PredictionMode 27 SmoothMover::PredictionMode 98 0 0 0 0 0 0 0 0 2 6 PM_off 19 SmoothMover::PM_off 0 5 PM_on 18 SmoothMover::PM_on 1 0 89
+// We might conceivably add more kinds of smooth modes later, for
+// instance, SM_spline.
+
+101 13 SmoothMover * 8576 13 SmoothMover * 13 SmoothMover * 0 0 98 0 0 0 0 0 0 0 0 0
+
+102 18 LVecBase3f const * 8576 18 LVecBase3f const * 18 LVecBase3f const * 0 0 103 0 0 0 0 0 0 0 0 0
+
+103 16 LVecBase3f const 8832 16 LVecBase3f const 16 LVecBase3f const 0 0 104 0 0 0 0 0 0 0 0 0
+
+104 9 RGBColorf 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+105 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+106 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0
+
+107 17 LMatrix4f const * 8576 17 LMatrix4f const * 17 LMatrix4f const * 0 0 108 0 0 0 0 0 0 0 0 0
+
+108 15 LMatrix4f const 8832 15 LMatrix4f const 15 LMatrix4f const 0 0 109 0 0 0 0 0 0 0 0 0
+
+109 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 0 0 0 0 891
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+110 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+111 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+112 19 SmoothMover const * 8576 19 SmoothMover const * 19 SmoothMover const * 0 0 113 0 0 0 0 0 0 0 0 0
+
+113 17 SmoothMover const 8832 17 SmoothMover const 17 SmoothMover const 0 0 98 0 0 0 0 0 0 0 0 0
+
+114 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 115 0 0 0 0 0 0 0 0 0
+
+115 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 116 0 0 0 0 0 0 0 0 0
+
+116 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 1271
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+117 10 NodePath * 8576 10 NodePath * 10 NodePath * 0 0 118 0 0 0 0 0 0 0 0 0
+
+118 8 NodePath 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+119 9 ostream * 8576 9 ostream * 9 ostream * 0 0 120 0 0 0 0 0 0 0 0 0
+
+120 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0

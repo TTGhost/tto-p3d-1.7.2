@@ -1,0 +1,94 @@
+1145553961
+2 2
+10 libgsgbase 4 dSYD 5 panda 
+5
+5 24 get_supports_multisample 4 10 51 GraphicsStateGuardianBase::get_supports_multisample 0 1 1 0
+81
+virtual bool GraphicsStateGuardianBase::get_supports_multisample(void) const = 0;
+
+6 28 get_supported_geom_rendering 4 10 55 GraphicsStateGuardianBase::get_supported_geom_rendering 0 1 2 0
+84
+virtual int GraphicsStateGuardianBase::get_supported_geom_rendering(void) const = 0;
+
+7 28 get_supports_occlusion_query 4 10 55 GraphicsStateGuardianBase::get_supports_occlusion_query 0 1 3 0
+85
+virtual bool GraphicsStateGuardianBase::get_supports_occlusion_query(void) const = 0;
+
+8 14 get_class_type 4 10 41 GraphicsStateGuardianBase::get_class_type 0 1 4 0
+66
+static TypeHandle GraphicsStateGuardianBase::get_class_type(void);
+
+9 26 ~GraphicsStateGuardianBase 4 10 53 GraphicsStateGuardianBase::~GraphicsStateGuardianBase 0 0 0
+60
+GraphicsStateGuardianBase::~GraphicsStateGuardianBase(void);
+
+4
+1 14 Dtool_dSYDqkID 6 3 14 0 14 Dtool_dSYDqkID 1 4 this 3 12  
+2 14 Dtool_dSYDE6bP 6 4 15 0 14 Dtool_dSYDE6bP 1 4 this 3 12  
+3 14 Dtool_dSYD_NuT 6 5 14 0 14 Dtool_dSYD_NuT 1 4 this 3 12  
+4 14 Dtool_dSYDuwjz 7 6 17 0 14 Dtool_dSYDuwjz 0 
+8
+10 25 GraphicsStateGuardianBase 141313 25 GraphicsStateGuardianBase 25 GraphicsStateGuardianBase 0 0 0 0 9 0 4 5 6 7 8 0 1 0 11 0 0 0 0 957
+////////////////////////////////////////////////////////////////////
+//       Class : GraphicsStateGuardianBase
+// Description : This is a base class for the GraphicsStateGuardian
+//               class, which is itself a base class for the various
+//               GSG's for different platforms.  This class contains
+//               all the function prototypes to support the
+//               double-dispatch of GSG to geoms, transitions, etc.  It
+//               lives in a separate class in its own package so we
+//               can avoid circular build dependency problems.
+//
+//               GraphicsStateGuardians are not actually writable to
+//               bam files, of course, but they may be passed as event
+//               parameters, so they inherit from
+//               TypedWritableReferenceCount instead of
+//               TypedReferenceCount for that convenience.
+////////////////////////////////////////////////////////////////////
+
+11 27 TypedWritableReferenceCount 2049 27 TypedWritableReferenceCount 27 TypedWritableReferenceCount 0 0 0 0 0 0 0 0 0 0 0 722
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritableReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedWritable and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedWritables and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+12 33 GraphicsStateGuardianBase const * 8576 33 GraphicsStateGuardianBase const * 33 GraphicsStateGuardianBase const * 0 0 13 0 0 0 0 0 0 0 0 0
+
+13 31 GraphicsStateGuardianBase const 8832 31 GraphicsStateGuardianBase const 31 GraphicsStateGuardianBase const 0 0 10 0 0 0 0 0 0 0 0 0
+
+14 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+15 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+16 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+17 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 16 0 0 0 0 0 0 0 0 0
+
+0
+0

@@ -1,0 +1,1801 @@
+1145553971
+2 2
+11 libpnmimage 4 5U4k 5 panda 
+97
+164 8 get_name 4 261 21 PNMFileType::get_name 0 1 1 0
+67
+virtual basic_string< char > PNMFileType::get_name(void) const = 0;
+
+165 18 get_num_extensions 4 261 31 PNMFileType::get_num_extensions 0 1 2 360
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileType::get_num_extensions
+//       Access: Published, Virtual
+//  Description: Returns the number of different possible filename
+//               extensions associated with this particular file type.
+////////////////////////////////////////////////////////////////////
+56
+virtual int PNMFileType::get_num_extensions(void) const;
+
+166 13 get_extension 4 261 26 PNMFileType::get_extension 0 1 3 378
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileType::get_extension
+//       Access: Published, Virtual
+//  Description: Returns the nth possible filename extension
+//               associated with this particular file type, without a
+//               leading dot.
+////////////////////////////////////////////////////////////////////
+69
+virtual basic_string< char > PNMFileType::get_extension(int n) const;
+
+167 23 get_suggested_extension 4 261 36 PNMFileType::get_suggested_extension 0 1 4 424
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileType::get_suggested_extension
+//       Access: Published, Virtual
+//  Description: Returns a suitable filename extension (without a
+//               leading dot) to suggest for files of this type, or
+//               empty string if no suggestions are available.
+////////////////////////////////////////////////////////////////////
+78
+virtual basic_string< char > PNMFileType::get_suggested_extension(void) const;
+
+168 14 get_class_type 4 261 27 PNMFileType::get_class_type 0 1 5 0
+52
+static TypeHandle PNMFileType::get_class_type(void);
+
+169 20 ~PNMFileTypeRegistry 4 263 41 PNMFileTypeRegistry::~PNMFileTypeRegistry 0 0 227
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+48
+PNMFileTypeRegistry::~PNMFileTypeRegistry(void);
+
+170 13 get_num_types 4 263 34 PNMFileTypeRegistry::get_num_types 0 1 6 279
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_num_types
+//       Access: Published
+//  Description: Returns the total number of types registered.
+////////////////////////////////////////////////////////////////////
+51
+int PNMFileTypeRegistry::get_num_types(void) const;
+
+171 8 get_type 4 263 29 PNMFileTypeRegistry::get_type 0 1 7 261
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_type
+//       Access: Published
+//  Description: Returns the nth type registered.
+////////////////////////////////////////////////////////////////////
+56
+PNMFileType *PNMFileTypeRegistry::get_type(int n) const;
+
+172 23 get_type_from_extension 4 263 44 PNMFileTypeRegistry::get_type_from_extension 0 1 8 481
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_type_from_extension
+//       Access: Published
+//  Description: Tries to determine what the PNMFileType is likely to
+//               be for a particular image file based on its
+//               extension.  Returns a suitable PNMFileType pointer,
+//               or NULL if no type can be determined.
+////////////////////////////////////////////////////////////////////
+102
+PNMFileType *PNMFileTypeRegistry::get_type_from_extension(basic_string< char > const &filename) const;
+
+173 26 get_type_from_magic_number 4 263 47 PNMFileTypeRegistry::get_type_from_magic_number 0 1 9 544
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_type_from_magic_number
+//       Access: Published
+//  Description: Tries to determine what the PNMFileType is likely to
+//               be for a particular image file based on its
+//               magic number, the first two bytes read from the
+//               file.  Returns a suitable PNMFileType pointer, or
+//               NULL if no type can be determined.
+////////////////////////////////////////////////////////////////////
+109
+PNMFileType *PNMFileTypeRegistry::get_type_from_magic_number(basic_string< char > const &magic_number) const;
+
+174 18 get_type_by_handle 4 263 39 PNMFileTypeRegistry::get_type_by_handle 0 1 10 444
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_type_by_handle
+//       Access: Published
+//  Description: Returns the PNMFileType instance stored in the
+//               registry for the given TypeHandle, e.g. as retrieved
+//               by a previous call to get_type() on the type
+//               instance.
+////////////////////////////////////////////////////////////////////
+78
+PNMFileType *PNMFileTypeRegistry::get_type_by_handle(TypeHandle handle) const;
+
+175 5 write 4 263 26 PNMFileTypeRegistry::write 0 2 11 12 332
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::write
+//       Access: Published
+//  Description: Writes a list of supported image file types to the
+//               indicated output stream, one per line.
+////////////////////////////////////////////////////////////////////
+76
+void PNMFileTypeRegistry::write(ostream &out, int indent_level = (0)) const;
+
+176 14 get_global_ptr 4 263 35 PNMFileTypeRegistry::get_global_ptr 0 1 13 319
+////////////////////////////////////////////////////////////////////
+//     Function: PNMFileTypeRegistry::get_global_ptr
+//       Access: Published, Static
+//  Description: Returns a pointer to the global PNMFileTypeRegistry
+//               object.
+////////////////////////////////////////////////////////////////////
+70
+static PNMFileTypeRegistry *PNMFileTypeRegistry::get_global_ptr(void);
+
+177 14 PNMImageHeader 4 264 30 PNMImageHeader::PNMImageHeader 0 2 14 15 1137
+// Filename: pnmImageHeader.I
+// Created by:  drose (15Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+44
+inline PNMImageHeader::PNMImageHeader(void);
+
+178 10 operator = 4 264 26 PNMImageHeader::operator = 0 1 16 239
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::Copy Assignment Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+67
+inline void PNMImageHeader::operator =(PNMImageHeader const &copy);
+
+179 15 ~PNMImageHeader 4 264 31 PNMImageHeader::~PNMImageHeader 0 0 225
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+45
+inline PNMImageHeader::~PNMImageHeader(void);
+
+180 14 get_color_type 4 264 30 PNMImageHeader::get_color_type 0 1 17 397
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_color_type
+//       Access: Published
+//  Description: Returns the image type of the image, as an enumerated
+//               value.  This is really just the number of channels
+//               cast to the enumerated type.
+////////////////////////////////////////////////////////////////////
+76
+inline PNMImageHeader::ColorType PNMImageHeader::get_color_type(void) const;
+
+181 16 get_num_channels 4 264 32 PNMImageHeader::get_num_channels 0 1 18 276
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_num_channels
+//       Access: Published
+//  Description: Returns the number of channels in the image.
+////////////////////////////////////////////////////////////////////
+56
+inline int PNMImageHeader::get_num_channels(void) const;
+
+182 12 is_grayscale 4 264 28 PNMImageHeader::is_grayscale 0 2 19 20 948
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::is_grayscale
+//       Access: Published, Static
+//  Description: This static variant of is_grayscale() returns true if
+//               the indicated image type represents a grayscale
+//               image, false otherwise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::is_grayscale
+//       Access: Published
+//  Description: Returns false if the image is a full-color image, and
+//               has red, green, and blue components; true if it is a
+//               grayscale image and has only a gray component.  (The
+//               gray color is actually stored in the blue channel,
+//               and the red and green channels are ignored.)
+////////////////////////////////////////////////////////////////////
+86
+static inline bool PNMImageHeader::is_grayscale(PNMImageHeader::ColorType color_type);
+
+183 9 has_alpha 4 264 25 PNMImageHeader::has_alpha 0 2 21 22 852
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::has_alpha
+//       Access: Published, Static
+//  Description: This static variant of has_alpha() returns true if
+//               the indicated image type includes an alpha channel,
+//               false otherwise.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::has_alpha
+//       Access: Published
+//  Description: Returns true if the image includes an alpha channel,
+//               false otherwise.  Unlike is_grayscale(), if this
+//               returns false it is an error to call any of the
+//               functions accessing the alpha channel.
+////////////////////////////////////////////////////////////////////
+83
+static inline bool PNMImageHeader::has_alpha(PNMImageHeader::ColorType color_type);
+
+184 10 get_maxval 4 264 26 PNMImageHeader::get_maxval 0 1 23 443
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_maxval
+//       Access: Published
+//  Description: Returns the maximum channel value allowable for any
+//               pixel in this image; for instance, 255 for a typical
+//               8-bit-per-channel image.  A pixel with this value is
+//               full on.
+////////////////////////////////////////////////////////////////////
+65
+inline unsigned short int PNMImageHeader::get_maxval(void) const;
+
+185 10 get_x_size 4 264 26 PNMImageHeader::get_x_size 0 1 24 366
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_x_size
+//       Access: Published
+//  Description: Returns the number of pixels in the X direction.
+//               This is one more than the largest allowable X
+//               coordinate.
+////////////////////////////////////////////////////////////////////
+50
+inline int PNMImageHeader::get_x_size(void) const;
+
+186 10 get_y_size 4 264 26 PNMImageHeader::get_y_size 0 1 25 366
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_y_size
+//       Access: Published
+//  Description: Returns the number of pixels in the Y direction.
+//               This is one more than the largest allowable Y
+//               coordinate.
+////////////////////////////////////////////////////////////////////
+50
+inline int PNMImageHeader::get_y_size(void) const;
+
+187 11 get_comment 4 264 27 PNMImageHeader::get_comment 0 1 26 263
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_comment
+//       Access: Published
+//  Description: Gets the user comment from the file.
+////////////////////////////////////////////////////////////////////
+68
+inline basic_string< char > PNMImageHeader::get_comment(void) const;
+
+188 11 set_comment 4 264 27 PNMImageHeader::set_comment 0 1 27 278
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::set_comment
+//       Access: Published
+//  Description: Writes a user comment string to the image (header).
+////////////////////////////////////////////////////////////////////
+77
+inline void PNMImageHeader::set_comment(basic_string< char > const &comment);
+
+189 8 has_type 4 264 24 PNMImageHeader::has_type 0 1 28 315
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::has_type
+//       Access: Published
+//  Description: Returns true if the PNMImageHeader knows what type it
+//               is, false otherwise.
+////////////////////////////////////////////////////////////////////
+49
+inline bool PNMImageHeader::has_type(void) const;
+
+190 8 get_type 4 264 24 PNMImageHeader::get_type 0 1 29 373
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::get_type
+//       Access: Published
+//  Description: If the file type is known (e.g. has_type() returns
+//               true), returns its PNMFileType pointer; otherwise,
+//               returns NULL.
+////////////////////////////////////////////////////////////////////
+57
+inline PNMFileType *PNMImageHeader::get_type(void) const;
+
+191 8 set_type 4 264 24 PNMImageHeader::set_type 0 1 30 583
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::set_type
+//       Access: Published
+//  Description: Sets the file type of this PNMImage.  This will be
+//               the default type used when an image is read, if the
+//               type cannot be determined by magic number or inferred
+//               by extension, or the type used when the image is
+//               written, if the type cannot be inferred from the
+//               filename extension.
+////////////////////////////////////////////////////////////////////
+56
+inline void PNMImageHeader::set_type(PNMFileType *type);
+
+192 11 read_header 4 264 27 PNMImageHeader::read_header 0 2 31 32 498
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::read_header
+//       Access: Published
+//  Description: Opens up the image file and tries to read its header
+//               information to determine its size, number of
+//               channels, etc.  If successful, updates the header
+//               information and returns true; otherwise, returns
+//               false.
+////////////////////////////////////////////////////////////////////
+94
+bool PNMImageHeader::read_header(Filename const &filename, PNMFileType *type = ((void *)(0)));
+
+193 11 make_reader 4 264 27 PNMImageHeader::make_reader 0 9 33 34 35 36 37 38 39 40 41 2105
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::make_reader
+//       Access: Published
+//  Description: Returns a newly-allocated PNMReader of the suitable
+//               type for reading from the indicated image filename,
+//               or NULL if the filename cannot be read for some
+//               reason.  The filename "-" always stands for standard
+//               input.  If type is specified, it is a suggestion for
+//               the file type to use.
+//
+//               The PNMReader should be deleted when it is no longer
+//               needed.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::make_reader
+//       Access: Published
+//  Description: Returns a newly-allocated PNMReader of the suitable
+//               type for reading from the already-opened image file,
+//               or NULL if the file cannot be read for some reason.
+//
+//               owns_file should be set true if the PNMReader is to
+//               be considered the owner of the stream pointer (in
+//               which case the stream will be deleted on completion,
+//               whether successful or not), or false if it should not
+//               delete it.
+//
+//               The filename parameter is optional here, since the
+//               file has already been opened; it is only used to
+//               examine the extension and attempt to guess the file
+//               type.
+//
+//               If magic_number is nonempty, it is assumed to
+//               represent the first few bytes that have already been
+//               read from the file.  Some file types may have
+//               difficulty if this is more than two bytes.
+//
+//               If type is non-NULL, it is a suggestion for the file
+//               type to use.
+//
+//               The PNMReader should be deleted when it is no longer
+//               needed.
+////////////////////////////////////////////////////////////////////
+138
+PNMReader *PNMImageHeader::make_reader(Filename const &filename, PNMFileType *type = ((void *)(0)), bool report_unknown_type = (1)) const;
+
+194 11 make_writer 4 264 27 PNMImageHeader::make_writer 0 6 42 43 44 45 46 47 1861
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::make_writer
+//       Access: Published
+//  Description: Returns a newly-allocated PNMWriter of the suitable
+//               type for writing an image to the indicated filename,
+//               or NULL if the filename cannot be written for some
+//               reason.  The filename "-" always stands for standard
+//               output.  If type is specified, it is a suggestion for
+//               the file type to use.
+//
+//               The PNMWriter should be deleted when it is no longer
+//               needed.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::make_writer
+//       Access: Published
+//  Description: Returns a newly-allocated PNMWriter of the suitable
+//               type for writing to the already-opened image file, or
+//               NULL if the file cannot be written for some reason.
+//
+//               owns_file should be set true if the PNMWriter is to
+//               be considered the owner of the stream pointer (in
+//               which case the stream will be deleted on completion,
+//               whether successful or not), or false if it should not
+//               delete it.
+//
+//               The filename parameter is optional here, since the
+//               file has already been opened; it is only used to
+//               examine the extension and attempt to guess the
+//               intended file type.
+//
+//               If type is non-NULL, it is a suggestion for the file
+//               type to use.
+//
+//               The PNMWriter should be deleted when it is no longer
+//               needed.
+////////////////////////////////////////////////////////////////////
+106
+PNMWriter *PNMImageHeader::make_writer(Filename const &filename, PNMFileType *type = ((void *)(0))) const;
+
+195 17 read_magic_number 4 264 33 PNMImageHeader::read_magic_number 0 1 48 602
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::read_magic_number
+//       Access: Published, Static
+//  Description: Ensures that the first n bytes of the file are read
+//               into magic_number.  If magic_number is initially
+//               nonempty, assumes these represent the first few bytes
+//               already extracted.  Returns true if successful, false
+//               if an end of file or error occurred before num_bytes
+//               could be read.
+////////////////////////////////////////////////////////////////////
+112
+static bool PNMImageHeader::read_magic_number(istream *file, basic_string< char > &magic_number, int num_bytes);
+
+196 6 output 4 264 22 PNMImageHeader::output 0 1 49 221
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImageHeader::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+48
+void PNMImageHeader::output(ostream &out) const;
+
+197 8 PNMImage 4 266 18 PNMImage::PNMImage 0 8 50 51 52 53 54 55 56 57 1563
+// Filename: pnmImage.I
+// Created by:  drose (15Jun00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+32
+inline PNMImage::PNMImage(void);
+
+198 10 operator = 4 266 20 PNMImage::operator = 0 1 58 232
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Copy Assigment Operator
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+inline void PNMImage::operator =(PNMImage const &copy);
+
+199 9 ~PNMImage 4 266 19 PNMImage::~PNMImage 0 0 219
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+33
+inline PNMImage::~PNMImage(void);
+
+200 9 clamp_val 4 266 19 PNMImage::clamp_val 0 1 59 290
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::clamp_val
+//       Access: Published
+//  Description: A handy function to clamp values to
+//               [0..get_maxval()].
+////////////////////////////////////////////////////////////////////
+69
+inline unsigned short int PNMImage::clamp_val(int input_value) const;
+
+201 6 to_val 4 266 16 PNMImage::to_val 0 1 60 299
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::to_val
+//       Access: Published
+//  Description: A handy function to scale values from [0..1] to
+//               [0..get_maxval()].
+////////////////////////////////////////////////////////////////////
+69
+inline unsigned short int PNMImage::to_val(double input_value) const;
+
+202 8 from_val 4 266 18 PNMImage::from_val 0 1 61 301
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::from_val
+//       Access: Published
+//  Description: A handy function to scale values from
+//               [0..get_maxval()] to [0..1].
+////////////////////////////////////////////////////////////////////
+71
+inline double PNMImage::from_val(unsigned short int input_value) const;
+
+203 5 clear 4 266 15 PNMImage::clear 0 5 62 63 64 65 66 662
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::clear
+//       Access: Published
+//  Description: Frees all memory allocated for the image, and clears
+//               all its parameters (size, color, type, etc).
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::clear
+//       Access: Published
+//  Description: This flavor of clear() reinitializes the image to an
+//               empty (black) image with the given dimensions.
+////////////////////////////////////////////////////////////////////
+27
+void PNMImage::clear(void);
+
+204 9 copy_from 4 266 19 PNMImage::copy_from 0 1 67 269
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::copy_from
+//       Access: Published
+//  Description: Makes this image become a copy of the other image.
+////////////////////////////////////////////////////////////////////
+47
+void PNMImage::copy_from(PNMImage const &copy);
+
+205 16 copy_header_from 4 266 26 PNMImage::copy_header_from 0 1 68 445
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::copy_header_from
+//       Access: Published
+//  Description: Copies just the header information into this image.
+//               This will blow away any image data stored in the
+//               image.  The new image data will be allocated, but
+//               left unitialized.
+////////////////////////////////////////////////////////////////////
+62
+void PNMImage::copy_header_from(PNMImageHeader const &header);
+
+206 4 fill 4 266 14 PNMImage::fill 0 3 69 70 71 610
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::fill
+//       Access: Published
+//  Description: Sets the entire image (except the alpha channel) to
+//               the given color.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::fill
+//       Access: Published
+//  Description: Sets the entire image (except the alpha channel) to
+//               the given grayscale level.
+////////////////////////////////////////////////////////////////////
+66
+inline void PNMImage::fill(double red, double green, double blue);
+
+207 8 fill_val 4 266 18 PNMImage::fill_val 0 3 72 73 74 618
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::fill_val
+//       Access: Published
+//  Description: Sets the entire image (except the alpha channel) to
+//               the given grayscale level.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::fill_val
+//       Access: Published
+//  Description: Sets the entire image (except the alpha channel) to
+//               the given color.
+////////////////////////////////////////////////////////////////////
+99
+void PNMImage::fill_val(unsigned short int red, unsigned short int green, unsigned short int blue);
+
+208 10 alpha_fill 4 266 20 PNMImage::alpha_fill 0 2 75 76 269
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::alpha_fill
+//       Access: Published
+//  Description: Sets the entire alpha channel to the given level.
+////////////////////////////////////////////////////////////////////
+53
+inline void PNMImage::alpha_fill(double alpha = (0));
+
+209 14 alpha_fill_val 4 266 24 PNMImage::alpha_fill_val 0 2 77 78 273
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::alpha_fill_val
+//       Access: Published
+//  Description: Sets the entire alpha channel to the given level.
+////////////////////////////////////////////////////////////////////
+62
+void PNMImage::alpha_fill_val(unsigned short int alpha = (0));
+
+210 4 read 4 266 14 PNMImage::read 0 8 79 80 81 82 83 84 85 86 1759
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::read
+//       Access: Published
+//  Description: Reads the indicated image filename.  If type is
+//               non-NULL, it is a suggestion for the type of file it
+//               is.  Returns true if successful, false on error.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::read
+//       Access: Published
+//  Description: Reads the image data from the indicated stream.  
+//
+//               The filename is advisory only, and may be used
+//               to suggest a type if it has a known extension.
+//
+//               If type is non-NULL, it is a suggestion for the type
+//               of file it is (and a non-NULL type will override any
+//               magic number test or filename extension lookup).
+//
+//               Returns true if successful, false on error.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::read
+//       Access: Published
+//  Description: This flavor of read() uses an already-existing
+//               PNMReader to read the image file.  You can get a
+//               reader via the PNMImageHeader::make_reader() methods.
+//               This is a good way to examine the header of a file
+//               (for instance, to determine its size) before actually
+//               reading the entire image.
+//
+//               The PNMReader is always deleted upon completion,
+//               whether succesful or not.
+////////////////////////////////////////////////////////////////////
+113
+bool PNMImage::read(Filename const &filename, PNMFileType *type = ((void *)(0)), bool report_unknown_type = (1));
+
+211 5 write 4 266 15 PNMImage::write 0 6 87 88 89 90 91 92 1385
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::write
+//       Access: Published
+//  Description: Writes the image to the indicated filename.  If type
+//               is non-NULL, it is a suggestion for the type of image
+//               file to write.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::write
+//       Access: Published
+//  Description: Writes the image to the indicated ostream.
+//
+//               The filename is advisory only, and may be used
+//               suggest a type if it has a known extension.
+//
+//               If type is non-NULL, it is a suggestion for the type
+//               of image file to write.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::write
+//       Access: Published
+//  Description: This flavor of write() uses an already-existing
+//               PNMWriter to write the image file.  You can get a
+//               writer via the PNMImageHeader::make_writer() methods.
+//
+//               The PNMWriter is always deleted upon completion,
+//               whether succesful or not.
+////////////////////////////////////////////////////////////////////
+88
+bool PNMImage::write(Filename const &filename, PNMFileType *type = ((void *)(0))) const;
+
+212 8 is_valid 4 266 18 PNMImage::is_valid 0 1 93 470
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::is_valid
+//       Access: Published
+//  Description: Returns true if the image has been read in or
+//               correctly initialized with a height and width.  If
+//               this returns false, virtually all member functions
+//               except clear() and read() are invalid function calls.
+////////////////////////////////////////////////////////////////////
+43
+inline bool PNMImage::is_valid(void) const;
+
+213 16 set_num_channels 4 266 26 PNMImage::set_num_channels 0 1 94 530
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_num_channels
+//       Access: Published
+//  Description: Changes the number of channels associated with the
+//               image.  The new number of channels must be an integer
+//               in the range 1 through 4, inclusive.  This will
+//               allocate and/or deallocate memory as necessary to
+//               accomodate; see set_color_type().
+////////////////////////////////////////////////////////////////////
+57
+inline void PNMImage::set_num_channels(int num_channels);
+
+214 14 set_color_type 4 266 24 PNMImage::set_color_type 0 1 95 606
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_color_type
+//       Access: Published
+//  Description: Translates the image to or from grayscale, color, or
+//               four-color mode.  Grayscale images are converted to
+//               full-color images with R, G, B set to the original
+//               gray level; color images are converted to grayscale
+//               according to the value of Bright().  The alpha
+//               channel, if added, is initialized to zero.
+////////////////////////////////////////////////////////////////////
+68
+void PNMImage::set_color_type(PNMImageHeader::ColorType color_type);
+
+215 9 add_alpha 4 266 19 PNMImage::add_alpha 0 1 96 365
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::add_alpha
+//       Access: Published
+//  Description: Adds an alpha channel to the image, if it does not
+//               already have one.  The alpha channel is initialized
+//               to zeros.
+////////////////////////////////////////////////////////////////////
+38
+inline void PNMImage::add_alpha(void);
+
+216 12 remove_alpha 4 266 22 PNMImage::remove_alpha 0 1 97 270
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::remove_alpha
+//       Access: Published
+//  Description: Removes the image's alpha channel, if it exists.
+////////////////////////////////////////////////////////////////////
+41
+inline void PNMImage::remove_alpha(void);
+
+217 14 make_grayscale 4 266 24 PNMImage::make_grayscale 0 2 98 99 839
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::make_grayscale
+//       Access: Published
+//  Description: Converts the image from RGB to grayscale.  Any alpha
+//               channel, if present, is left undisturbed.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::make_grayscale
+//       Access: Published
+//  Description: Converts the image from RGB to grayscale.  Any alpha
+//               channel, if present, is left undisturbed.  The
+//               optional rc, gc, bc values represent the relative
+//               weights to apply to each channel to convert it to
+//               grayscale.
+////////////////////////////////////////////////////////////////////
+43
+inline void PNMImage::make_grayscale(void);
+
+218 8 make_rgb 4 266 18 PNMImage::make_rgb 0 1 100 329
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::make_rgb
+//       Access: Published
+//  Description: Converts the image from grayscale to RGB.  Any alpha
+//               channel, if present, is left undisturbed.
+////////////////////////////////////////////////////////////////////
+37
+inline void PNMImage::make_rgb(void);
+
+219 10 set_maxval 4 266 20 PNMImage::set_maxval 0 1 101 263
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_maxval
+//       Access: Published
+//  Description: Rescales the image to the indicated maxval.
+////////////////////////////////////////////////////////////////////
+53
+void PNMImage::set_maxval(unsigned short int maxval);
+
+220 11 get_xel_val 4 266 21 PNMImage::get_xel_val 0 1 102 565
+// The *_val() functions return or set the color values in the range
+// [0..get_maxval()].  This range may be different for different
+// images!  Use the corresponding functions (without _val()) to work
+// in the normalized range [0..1].
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_xel_val
+//       Access: Published
+//  Description: Returns the RGB color at the indicated pixel.  Each
+//               component is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+62
+inline pixel const &PNMImage::get_xel_val(int x, int y) const;
+
+221 11 set_xel_val 4 266 21 PNMImage::set_xel_val 0 3 103 104 105 1025
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel_val
+//       Access: Published
+//  Description: Changes the RGB color at the indicated pixel.  Each
+//               component is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel_val
+//       Access: Published
+//  Description: Changes the RGB color at the indicated pixel.  Each
+//               component is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel_val
+//       Access: Published
+//  Description: Changes all three color components at the indicated
+//               pixel to the same value.  The value is in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+68
+inline void PNMImage::set_xel_val(int x, int y, pixel const &value);
+
+222 11 get_red_val 4 266 21 PNMImage::get_red_val 0 1 106 340
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_red_val
+//       Access: Published
+//  Description: Returns the red component color at the indicated
+//               pixel.  The value returned is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+68
+inline unsigned short int PNMImage::get_red_val(int x, int y) const;
+
+223 13 get_green_val 4 266 23 PNMImage::get_green_val 0 1 107 344
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_green_val
+//       Access: Published
+//  Description: Returns the green component color at the indicated
+//               pixel.  The value returned is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+70
+inline unsigned short int PNMImage::get_green_val(int x, int y) const;
+
+224 12 get_blue_val 4 266 22 PNMImage::get_blue_val 0 1 108 342
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_blue_val
+//       Access: Published
+//  Description: Returns the blue component color at the indicated
+//               pixel.  The value returned is in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+69
+inline unsigned short int PNMImage::get_blue_val(int x, int y) const;
+
+225 12 get_gray_val 4 266 22 PNMImage::get_gray_val 0 1 109 584
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_gray_val
+//       Access: Published
+//  Description: Returns the gray component color at the indicated
+//               pixel.  This only has a meaningful value for
+//               grayscale images; for other image types, this returns
+//               the value of the blue channel only.  However, also
+//               see the get_bright() function.  The value returned is
+//               in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+69
+inline unsigned short int PNMImage::get_gray_val(int x, int y) const;
+
+226 13 get_alpha_val 4 266 23 PNMImage::get_alpha_val 0 1 110 435
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_alpha_val
+//       Access: Published
+//  Description: Returns the alpha component color at the indicated
+//               pixel.  It is an error to call this unless
+//               has_alpha() is true.  The value returned is in the
+//               range 0..maxval.
+////////////////////////////////////////////////////////////////////
+70
+inline unsigned short int PNMImage::get_alpha_val(int x, int y) const;
+
+227 11 set_red_val 4 266 21 PNMImage::set_red_val 0 1 111 363
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_red_val
+//       Access: Published
+//  Description: Sets the red component color only at the indicated
+//               pixel.  The value given should be in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+70
+inline void PNMImage::set_red_val(int x, int y, unsigned short int r);
+
+228 13 set_green_val 4 266 23 PNMImage::set_green_val 0 1 112 367
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_green_val
+//       Access: Published
+//  Description: Sets the green component color only at the indicated
+//               pixel.  The value given should be in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+72
+inline void PNMImage::set_green_val(int x, int y, unsigned short int g);
+
+229 12 set_blue_val 4 266 22 PNMImage::set_blue_val 0 1 113 365
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_blue_val
+//       Access: Published
+//  Description: Sets the blue component color only at the indicated
+//               pixel.  The value given should be in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+71
+inline void PNMImage::set_blue_val(int x, int y, unsigned short int b);
+
+230 12 set_gray_val 4 266 22 PNMImage::set_gray_val 0 1 114 723
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_gray_val
+//       Access: Published
+//  Description: Sets the gray component color at the indicated
+//               pixel.  This is only meaningful for grayscale images;
+//               for other image types, this simply sets the blue
+//               component color.  However, also see set_xel_val(),
+//               which can set all the component colors to the same
+//               grayscale level, and hence works correctly both for
+//               grayscale and color images.  The value given should
+//               be in the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+74
+inline void PNMImage::set_gray_val(int x, int y, unsigned short int gray);
+
+231 13 set_alpha_val 4 266 23 PNMImage::set_alpha_val 0 1 115 441
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_alpha_val
+//       Access: Published
+//  Description: Sets the alpha component color only at the indicated
+//               pixel.  It is an error to call this unless
+//               has_alpha() is true.  The value given should be in
+//               the range 0..maxval.
+////////////////////////////////////////////////////////////////////
+72
+inline void PNMImage::set_alpha_val(int x, int y, unsigned short int a);
+
+232 15 get_channel_val 4 266 25 PNMImage::get_channel_val 0 1 116 630
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_channel_val
+//       Access: Published
+//  Description: Returns the nth component color at the indicated
+//               pixel.  The channel index should be in the range
+//               0..(get_num_channels()-1).  The channels are ordered B,
+//               G, R, A.  This is slightly less optimal than
+//               accessing the component values directly by named
+//               methods.  The value returned is in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+78
+unsigned short int PNMImage::get_channel_val(int x, int y, int channel) const;
+
+233 15 set_channel_val 4 266 25 PNMImage::set_channel_val 0 1 117 629
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_channel_val
+//       Access: Published
+//  Description: Sets the nth component color at the indicated
+//               pixel.  The channel index should be in the range
+//               0..(get_num_channels()-1).  The channels are ordered B,
+//               G, R, A.  This is slightly less optimal than
+//               setting the component values directly by named
+//               methods.  The value given should be in the range
+//               0..maxval.
+////////////////////////////////////////////////////////////////////
+84
+void PNMImage::set_channel_val(int x, int y, int channel, unsigned short int value);
+
+234 7 get_xel 4 266 17 PNMImage::get_xel 0 1 118 474
+// The corresponding get_xel(), set_xel(), get_red(), etc. functions
+// automatically scale their values by get_maxval() into the range
+// [0..1].
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_xel
+//       Access: Published
+//  Description: Returns the RGB color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+56
+inline LVecBase3d PNMImage::get_xel(int x, int y) const;
+
+235 7 set_xel 4 266 17 PNMImage::set_xel 0 3 119 120 121 1025
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel
+//       Access: Published
+//  Description: Changes the RGB color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel
+//       Access: Published
+//  Description: Changes the RGB color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel
+//       Access: Published
+//  Description: Changes all three color components at the indicated
+//               pixel to the same value.  The value is a double in
+//               the range 0..1.
+////////////////////////////////////////////////////////////////////
+69
+inline void PNMImage::set_xel(int x, int y, LVecBase3d const &value);
+
+236 9 get_xel_a 4 266 19 PNMImage::get_xel_a 0 1 122 329
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_xel_a
+//       Access: Published
+//  Description: Returns the RGBA color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+58
+inline LVecBase4d PNMImage::get_xel_a(int x, int y) const;
+
+237 9 set_xel_a 4 266 19 PNMImage::set_xel_a 0 2 123 124 660
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel_a
+//       Access: Published
+//  Description: Changes the RGBA color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_xel_a
+//       Access: Published
+//  Description: Changes the RGBA color at the indicated pixel.  Each
+//               component is a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+71
+inline void PNMImage::set_xel_a(int x, int y, LVecBase4d const &value);
+
+238 7 get_red 4 266 17 PNMImage::get_red 0 1 125 357
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_red
+//       Access: Published
+//  Description: Returns the red component color at the indicated
+//               pixel.  The value returned is a double in the range
+//               0..1.
+////////////////////////////////////////////////////////////////////
+52
+inline double PNMImage::get_red(int x, int y) const;
+
+239 9 get_green 4 266 19 PNMImage::get_green 0 1 126 361
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_green
+//       Access: Published
+//  Description: Returns the green component color at the indicated
+//               pixel.  The value returned is a double in the range
+//               0..1.
+////////////////////////////////////////////////////////////////////
+54
+inline double PNMImage::get_green(int x, int y) const;
+
+240 8 get_blue 4 266 18 PNMImage::get_blue 0 1 127 359
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_blue
+//       Access: Published
+//  Description: Returns the blue component color at the indicated
+//               pixel.  The value returned is a double in the range
+//               0..1.
+////////////////////////////////////////////////////////////////////
+53
+inline double PNMImage::get_blue(int x, int y) const;
+
+241 8 get_gray 4 266 18 PNMImage::get_gray 0 1 128 584
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_gray
+//       Access: Published
+//  Description: Returns the gray component color at the indicated
+//               pixel.  This only has a meaningful value for
+//               grayscale images; for other image types, this returns
+//               the value of the blue channel only.  However, also
+//               see the get_bright() function.  The value returned is
+//               a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+53
+inline double PNMImage::get_gray(int x, int y) const;
+
+242 9 get_alpha 4 266 19 PNMImage::get_alpha 0 1 129 435
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_alpha
+//       Access: Published
+//  Description: Returns the alpha component color at the indicated
+//               pixel.  It is an error to call this unless
+//               has_alpha() is true.  The value returned is a double
+//               in the range 0..1.
+////////////////////////////////////////////////////////////////////
+54
+inline double PNMImage::get_alpha(int x, int y) const;
+
+243 7 set_red 4 266 17 PNMImage::set_red 0 1 130 363
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_red
+//       Access: Published
+//  Description: Sets the red component color only at the indicated
+//               pixel.  The value given should be a double in the
+//               range 0..1.
+////////////////////////////////////////////////////////////////////
+54
+inline void PNMImage::set_red(int x, int y, double r);
+
+244 9 set_green 4 266 19 PNMImage::set_green 0 1 131 367
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_green
+//       Access: Published
+//  Description: Sets the green component color only at the indicated
+//               pixel.  The value given should be a double in the
+//               range 0..1.
+////////////////////////////////////////////////////////////////////
+56
+inline void PNMImage::set_green(int x, int y, double g);
+
+245 8 set_blue 4 266 18 PNMImage::set_blue 0 1 132 365
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_blue
+//       Access: Published
+//  Description: Sets the blue component color only at the indicated
+//               pixel.  The value given should be a double in the
+//               range 0..1.
+////////////////////////////////////////////////////////////////////
+55
+inline void PNMImage::set_blue(int x, int y, double b);
+
+246 8 set_gray 4 266 18 PNMImage::set_gray 0 1 133 719
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_gray
+//       Access: Published
+//  Description: Sets the gray component color at the indicated
+//               pixel.  This is only meaningful for grayscale images;
+//               for other image types, this simply sets the blue
+//               component color.  However, also see set_xel(), which
+//               can set all the component colors to the same
+//               grayscale level, and hence works correctly both for
+//               grayscale and color images.  The value given should
+//               be a double in the range 0..1.
+////////////////////////////////////////////////////////////////////
+58
+inline void PNMImage::set_gray(int x, int y, double gray);
+
+247 9 set_alpha 4 266 19 PNMImage::set_alpha 0 1 134 432
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_alpha
+//       Access: Published
+//  Description: Sets the alpha component color only at the indicated
+//               pixel.  It is an error to call this unless
+//               has_alpha() is true.  The value given should be in
+//               the range 0..1.
+////////////////////////////////////////////////////////////////////
+56
+inline void PNMImage::set_alpha(int x, int y, double a);
+
+248 11 get_channel 4 266 21 PNMImage::get_channel 0 1 135 630
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_channel
+//       Access: Published
+//  Description: Returns the nth component color at the indicated
+//               pixel.  The channel index should be in the range
+//               0..(get_num_channels()-1).  The channels are ordered B,
+//               G, R, A.  This is slightly less optimal than
+//               accessing the component values directly by named
+//               methods.  The value returned is a double in the range
+//               0..1.
+////////////////////////////////////////////////////////////////////
+69
+inline double PNMImage::get_channel(int x, int y, int channel) const;
+
+249 11 set_channel 4 266 21 PNMImage::set_channel 0 1 136 633
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::set_channel_val
+//       Access: Published
+//  Description: Sets the nth component color at the indicated
+//               pixel.  The channel index should be in the range
+//               0..(get_num_channels()-1).  The channels are ordered B,
+//               G, R, A.  This is slightly less optimal than
+//               setting the component values directly by named
+//               methods.  The value given should be a double in the
+//               range 0..1.
+////////////////////////////////////////////////////////////////////
+75
+inline void PNMImage::set_channel(int x, int y, int channel, double value);
+
+250 10 get_bright 4 266 20 PNMImage::get_bright 0 3 137 138 139 1413
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_bright
+//       Access: Published
+//  Description: Returns the linear brightness of the given xel, as a
+//               double in the range 0..1.  This flavor of
+//               get_bright() returns the correct grayscale brightness
+//               level for both full-color and grayscale images.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_bright
+//       Access: Published
+//  Description: This flavor of get_bright() works correctly only for
+//               color images.  It returns a single brightness value
+//               for the RGB color at the indicated pixel, based on
+//               the supplied weights for each component.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::get_bright
+//       Access: Published
+//  Description: This flavor of get_bright() works correctly only for
+//               four-channel images.  It returns a single brightness
+//               value for the RGBA color at the indicated pixel,
+//               based on the supplied weights for each component.
+////////////////////////////////////////////////////////////////////
+55
+inline double PNMImage::get_bright(int x, int y) const;
+
+251 5 blend 4 266 15 PNMImage::blend 0 2 140 141 1080
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::blend
+//       Access: Published
+//  Description: Smoothly blends the indicated pixel value in with
+//               whatever was already in the image, based on the given
+//               alpha value.  An alpha of 1.0 is fully opaque and
+//               completely replaces whatever was there previously;
+//               alpha of 0.0 is fully transparent and does nothing.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::blend
+//       Access: Published
+//  Description: Smoothly blends the indicated pixel value in with
+//               whatever was already in the image, based on the given
+//               alpha value.  An alpha of 1.0 is fully opaque and
+//               completely replaces whatever was there previously;
+//               alpha of 0.0 is fully transparent and does nothing.
+////////////////////////////////////////////////////////////////////
+79
+inline void PNMImage::blend(int x, int y, LVecBase3d const &val, double alpha);
+
+252 11 operator [] 4 266 21 PNMImage::operator [] 0 2 142 143 784
+// If you're used to the NetPBM library and like working with a 2-d
+// array of xels, and using the PNM macros to access their components,
+// you may treat the PNMImage as such directly.
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Array Operator
+//       Access: Published
+//  Description: Allows the PNMImage to appear to be a 2-d array of
+//               xels.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::Array Operator
+//       Access: Published
+//  Description: Allows the PNMImage to appear to be a 2-d array of
+//               xels.
+////////////////////////////////////////////////////////////////////
+43
+inline pixel *PNMImage::operator [](int y);
+
+253 14 copy_sub_image 4 266 24 PNMImage::copy_sub_image 0 5 144 145 146 147 148 647
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::copy_sub_image
+//       Access: Published
+//  Description: Copies a rectangular area of another image into a
+//               rectangular area of this image.  Both images must
+//               already have been initialized.  The upper-left corner
+//               of the region in both images is specified, and the
+//               size of the area; if the size is omitted, it defaults
+//               to the entire other image, or the largest piece that
+//               will fit.
+////////////////////////////////////////////////////////////////////
+142
+void PNMImage::copy_sub_image(PNMImage const &copy, int xto, int yto, int xfrom = (0), int yfrom = (0), int x_size = (-1), int y_size = (-1));
+
+254 15 blend_sub_image 4 266 25 PNMImage::blend_sub_image 0 5 149 150 151 152 153 555
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::blend_sub_image
+//       Access: Published
+//  Description: Behaves like copy_sub_image(), except the alpha
+//               channel of the copy is used to blend the copy into
+//               the destination image, instead of overwriting pixels
+//               unconditionally.
+//
+//               If the copy has no alpha channel, this degenerates
+//               into copy_sub_image().
+////////////////////////////////////////////////////////////////////
+143
+void PNMImage::blend_sub_image(PNMImage const &copy, int xto, int yto, int xfrom = (0), int yfrom = (0), int x_size = (-1), int y_size = (-1));
+
+255 11 render_spot 4 266 21 PNMImage::render_spot 0 1 154 762
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::render_spot
+//       Access: Published
+//  Description: Renders a solid-color circle, with a fuzzy edge, into
+//               the center of the PNMImage.  If the PNMImage is
+//               non-square, this actually renders an ellipse.
+//
+//               The min_radius and max_radius are in the scale 0..1,
+//               where 1.0 means the full width of the image.  If
+//               min_radius == max_radius, there is no fuzzy edge;
+//               otherwise, the pixels between min_radius and
+//               max_radius are smoothly blended between fg and bg
+//               colors.
+////////////////////////////////////////////////////////////////////
+109
+void PNMImage::render_spot(LVecBase4d const &fg, LVecBase4d const &bg, double min_radius, double max_radius);
+
+256 10 box_filter 4 266 20 PNMImage::box_filter 0 2 155 156 499
+// The bodies for the non-inline *_filter() functions can be found
+// in the file pnm-image-filter.cxx.
+
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::box_filter
+//       Access: Published
+//  Description: This flavor of box_filter() will apply the filter
+//               over the entire image without resizing or copying;
+//               the effect is that of a blur operation.
+////////////////////////////////////////////////////////////////////
+54
+inline void PNMImage::box_filter(double radius = (1));
+
+257 15 gaussian_filter 4 266 25 PNMImage::gaussian_filter 0 2 157 158 404
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::gaussian_filter
+//       Access: Published
+//  Description: This flavor of gaussian_filter() will apply the filter
+//               over the entire image without resizing or copying;
+//               the effect is that of a blur operation.
+////////////////////////////////////////////////////////////////////
+59
+inline void PNMImage::gaussian_filter(double radius = (1));
+
+258 15 box_filter_from 4 266 25 PNMImage::box_filter_from 0 1 159 530
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::box_filter_from
+//       Access: Public
+//  Description: Makes a resized copy of the indicated image into this
+//               one using the indicated filter.  The image to be
+//               copied is squashed and stretched to match the
+//               dimensions of the current image, applying the
+//               appropriate filter to perform the stretching.
+////////////////////////////////////////////////////////////////////
+68
+void PNMImage::box_filter_from(double radius, PNMImage const &copy);
+
+259 20 gaussian_filter_from 4 266 30 PNMImage::gaussian_filter_from 0 1 160 535
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::gaussian_filter_from
+//       Access: Public
+//  Description: Makes a resized copy of the indicated image into this
+//               one using the indicated filter.  The image to be
+//               copied is squashed and stretched to match the
+//               dimensions of the current image, applying the
+//               appropriate filter to perform the stretching.
+////////////////////////////////////////////////////////////////////
+73
+void PNMImage::gaussian_filter_from(double radius, PNMImage const &copy);
+
+260 17 quick_filter_from 4 266 27 PNMImage::quick_filter_from 0 3 161 162 163 731
+////////////////////////////////////////////////////////////////////
+//     Function: PNMImage::quick_filter_from
+//       Access: Public
+//  Description: Resizes from the given image, with a fixed radius of
+//               0.5. This is a very specialized and simple algorithm
+//               that doesn't handle dropping below the Nyquist rate
+//               very well, but is quite a bit faster than the more
+//               general box_filter(), above.  If borders are
+//               specified, they will further restrict the size of the
+//               resulting image. There's no point in using
+//               quick_box_filter() on a single image.
+////////////////////////////////////////////////////////////////////
+93
+void PNMImage::quick_filter_from(PNMImage const &copy, int xborder = (0), int yborder = (0));
+
+163
+1 14 Dtool_5U4kmp_V 6 3 269 0 14 Dtool_5U4kmp_V 1 4 this 3 267  
+2 14 Dtool_5U4ks8xu 6 4 270 0 14 Dtool_5U4ks8xu 1 4 this 3 267  
+3 14 Dtool_5U4k_4Ze 6 5 269 0 14 Dtool_5U4k_4Ze 2 4 this 3 267  1 n 1 270  
+4 14 Dtool_5U4kmZL5 6 6 269 0 14 Dtool_5U4kmZL5 1 4 this 3 267  
+5 14 Dtool_5U4kP0PY 7 7 272 0 14 Dtool_5U4kP0PY 0 
+6 14 Dtool_5U4k4WfZ 6 10 270 0 14 Dtool_5U4k4WfZ 1 4 this 3 273  
+7 14 Dtool_5U4kQ4tf 6 11 275 0 14 Dtool_5U4kQ4tf 2 4 this 3 273  1 n 1 270  
+8 14 Dtool_5U4kul04 6 12 275 0 14 Dtool_5U4kul04 2 4 this 3 273  8 filename 1 269  
+9 14 Dtool_5U4kE_a6 6 13 275 0 14 Dtool_5U4kE_a6 2 4 this 3 273  12 magic_number 1 269  
+10 14 Dtool_5U4kULKw 6 14 275 0 14 Dtool_5U4kULKw 2 4 this 3 273  6 handle 1 272  
+11 14 Dtool_5U4kPi13 4 15 278 0 14 Dtool_5U4kPi13 3 4 this 3 273  3 out 1 276  12 indent_level 1 270  
+12 14 Dtool_5U4kfjWd 4 15 278 0 14 Dtool_5U4kfjWd 2 4 this 3 273  3 out 1 276  
+13 14 Dtool_5U4kFElp 6 16 279 0 14 Dtool_5U4kFElp 0 
+14 14 Dtool_5U4kBReb 7 18 280 179 14 Dtool_5U4kBReb 0 
+15 14 Dtool_5U4k2f0p 7 18 280 179 14 Dtool_5U4k2f0p 1 4 copy 1 281  
+16 14 Dtool_5U4kglLY 6 19 280 0 14 Dtool_5U4kglLY 2 4 this 3 280  4 copy 1 281  
+17 14 Dtool_5U4k7arZ 6 22 265 0 14 Dtool_5U4k7arZ 1 4 this 3 281  
+18 14 Dtool_5U4kieYf 6 23 270 0 14 Dtool_5U4kieYf 1 4 this 3 281  
+19 14 Dtool_5U4kAZAi 6 24 283 0 14 Dtool_5U4kAZAi 1 4 this 3 281  
+20 14 Dtool_5U4kc8Xa 6 24 283 0 14 Dtool_5U4kc8Xa 1 10 color_type 1 265  
+21 14 Dtool_5U4kAlRN 6 25 283 0 14 Dtool_5U4kAlRN 1 4 this 3 281  
+22 14 Dtool_5U4kLbsW 6 25 283 0 14 Dtool_5U4kLbsW 1 10 color_type 1 265  
+23 14 Dtool_5U4k_pzV 6 26 284 0 14 Dtool_5U4k_pzV 1 4 this 3 281  
+24 14 Dtool_5U4koepx 6 27 270 0 14 Dtool_5U4koepx 1 4 this 3 281  
+25 14 Dtool_5U4k488x 6 28 270 0 14 Dtool_5U4k488x 1 4 this 3 281  
+26 14 Dtool_5U4kH6FH 6 29 269 0 14 Dtool_5U4kH6FH 1 4 this 3 281  
+27 14 Dtool_5U4ktnwk 4 30 278 0 14 Dtool_5U4ktnwk 2 4 this 3 280  7 comment 1 269  
+28 14 Dtool_5U4kVIh0 6 31 283 0 14 Dtool_5U4kVIh0 1 4 this 3 281  
+29 14 Dtool_5U4kN1gn 6 32 275 0 14 Dtool_5U4kN1gn 1 4 this 3 281  
+30 14 Dtool_5U4kKhXL 4 33 278 0 14 Dtool_5U4kKhXL 2 4 this 3 280  4 type 1 275  
+31 14 Dtool_5U4k6NNp 6 34 283 0 14 Dtool_5U4k6NNp 3 4 this 3 280  8 filename 1 285  4 type 1 275  
+32 14 Dtool_5U4kMN61 6 34 283 0 14 Dtool_5U4kMN61 2 4 this 3 280  8 filename 1 285  
+33 14 Dtool_5U4kyMEf 6 35 288 0 14 Dtool_5U4kyMEf 4 4 this 3 281  8 filename 1 285  4 type 1 275  19 report_unknown_type 1 283  
+34 14 Dtool_5U4kXjYE 6 35 288 0 14 Dtool_5U4kXjYE 3 4 this 3 281  8 filename 1 285  4 type 1 275  
+35 14 Dtool_5U4kHm13 6 35 288 0 14 Dtool_5U4kHm13 2 4 this 3 281  8 filename 1 285  
+36 14 Dtool_5U4khavn 6 35 288 0 14 Dtool_5U4khavn 7 4 this 3 281  4 file 1 290  9 owns_file 1 283  8 filename 1 285  12 magic_number 1 269  4 type 1 275  19 report_unknown_type 1 283  
+37 14 Dtool_5U4kB_GS 6 35 288 0 14 Dtool_5U4kB_GS 6 4 this 3 281  4 file 1 290  9 owns_file 1 283  8 filename 1 285  12 magic_number 1 269  4 type 1 275  
+38 14 Dtool_5U4k9Nkt 6 35 288 0 14 Dtool_5U4k9Nkt 5 4 this 3 281  4 file 1 290  9 owns_file 1 283  8 filename 1 285  12 magic_number 1 269  
+39 14 Dtool_5U4kXIKf 6 35 288 0 14 Dtool_5U4kXIKf 4 4 this 3 281  4 file 1 290  9 owns_file 1 283  8 filename 1 285  
+40 14 Dtool_5U4khpvx 6 35 288 0 14 Dtool_5U4khpvx 3 4 this 3 281  4 file 1 290  9 owns_file 1 283  
+41 14 Dtool_5U4kG56G 6 35 288 0 14 Dtool_5U4kG56G 2 4 this 3 281  4 file 1 290  
+42 14 Dtool_5U4k5aMD 6 36 292 0 14 Dtool_5U4k5aMD 3 4 this 3 281  8 filename 1 285  4 type 1 275  
+43 14 Dtool_5U4kZHo2 6 36 292 0 14 Dtool_5U4kZHo2 2 4 this 3 281  8 filename 1 285  
+44 14 Dtool_5U4knxIJ 6 36 292 0 14 Dtool_5U4knxIJ 5 4 this 3 281  4 file 1 276  9 owns_file 1 283  8 filename 1 285  4 type 1 275  
+45 14 Dtool_5U4kMA9F 6 36 292 0 14 Dtool_5U4kMA9F 4 4 this 3 281  4 file 1 276  9 owns_file 1 283  8 filename 1 285  
+46 14 Dtool_5U4kvviY 6 36 292 0 14 Dtool_5U4kvviY 3 4 this 3 281  4 file 1 276  9 owns_file 1 283  
+47 14 Dtool_5U4kKDut 6 36 292 0 14 Dtool_5U4kKDut 2 4 this 3 281  4 file 1 276  
+48 14 Dtool_5U4k3Qff 6 37 283 0 14 Dtool_5U4k3Qff 3 4 file 1 290  12 magic_number 1 294  9 num_bytes 1 270  
+49 14 Dtool_5U4kN1NO 4 38 278 0 14 Dtool_5U4kN1NO 2 4 this 3 281  3 out 1 276  
+50 14 Dtool_5U4kJuU_ 7 40 296 199 14 Dtool_5U4kJuU_ 0 
+51 14 Dtool_5U4kZniN 7 40 296 199 14 Dtool_5U4kZniN 2 8 filename 1 285  4 type 1 275  
+52 14 Dtool_5U4kGo3y 7 40 296 199 14 Dtool_5U4kGo3y 1 8 filename 1 285  
+53 14 Dtool_5U4k9JI_ 7 40 296 199 14 Dtool_5U4k9JI_ 1 4 copy 1 297  
+54 14 Dtool_5U4kGUHz 7 40 296 199 14 Dtool_5U4kGUHz 5 6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  6 maxval 1 284  4 type 1 275  
+55 14 Dtool_5U4k3kSc 7 40 296 199 14 Dtool_5U4k3kSc 4 6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  6 maxval 1 284  
+56 14 Dtool_5U4k0Ehq 7 40 296 199 14 Dtool_5U4k0Ehq 3 6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  
+57 14 Dtool_5U4kxphz 7 40 296 199 14 Dtool_5U4kxphz 2 6 x_size 1 270  6 y_size 1 270  
+58 14 Dtool_5U4kW6D7 6 41 296 0 14 Dtool_5U4kW6D7 2 4 this 3 296  4 copy 1 297  
+59 14 Dtool_5U4k1Od2 6 43 284 0 14 Dtool_5U4k1Od2 2 4 this 3 297  11 input_value 1 270  
+60 14 Dtool_5U4kJVnd 6 44 284 0 14 Dtool_5U4kJVnd 2 4 this 3 297  11 input_value 1 299  
+61 14 Dtool_5U4k78bW 6 45 299 0 14 Dtool_5U4k78bW 2 4 this 3 297  11 input_value 1 284  
+62 14 Dtool_5U4kgRyO 4 46 278 0 14 Dtool_5U4kgRyO 1 4 this 3 296  
+63 14 Dtool_5U4kFn3z 4 46 278 0 14 Dtool_5U4kFn3z 6 4 this 3 296  6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  6 maxval 1 284  4 type 1 275  
+64 14 Dtool_5U4k32h2 4 46 278 0 14 Dtool_5U4k32h2 5 4 this 3 296  6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  6 maxval 1 284  
+65 14 Dtool_5U4kJDi_ 4 46 278 0 14 Dtool_5U4kJDi_ 4 4 this 3 296  6 x_size 1 270  6 y_size 1 270  12 num_channels 1 270  
+66 14 Dtool_5U4kJQp3 4 46 278 0 14 Dtool_5U4kJQp3 3 4 this 3 296  6 x_size 1 270  6 y_size 1 270  
+67 14 Dtool_5U4k1EcB 4 47 278 0 14 Dtool_5U4k1EcB 2 4 this 3 296  4 copy 1 297  
+68 14 Dtool_5U4kfIQ5 4 48 278 0 14 Dtool_5U4kfIQ5 2 4 this 3 296  6 header 1 281  
+69 14 Dtool_5U4kVQQT 4 49 278 0 14 Dtool_5U4kVQQT 2 4 this 3 296  4 gray 1 299  
+70 14 Dtool_5U4k_Hno 4 49 278 0 14 Dtool_5U4k_Hno 1 4 this 3 296  
+71 14 Dtool_5U4kFZy4 4 49 278 0 14 Dtool_5U4kFZy4 4 4 this 3 296  3 red 1 299  5 green 1 299  4 blue 1 299  
+72 14 Dtool_5U4k9TTf 4 50 278 0 14 Dtool_5U4k9TTf 2 4 this 3 296  4 gray 1 284  
+73 14 Dtool_5U4kgsJ_ 4 50 278 0 14 Dtool_5U4kgsJ_ 1 4 this 3 296  
+74 14 Dtool_5U4kJAW_ 4 50 278 0 14 Dtool_5U4kJAW_ 4 4 this 3 296  3 red 1 284  5 green 1 284  4 blue 1 284  
+75 14 Dtool_5U4kJekT 4 51 278 0 14 Dtool_5U4kJekT 2 4 this 3 296  5 alpha 1 299  
+76 14 Dtool_5U4kZk_o 4 51 278 0 14 Dtool_5U4kZk_o 1 4 this 3 296  
+77 14 Dtool_5U4k_dAZ 4 52 278 0 14 Dtool_5U4k_dAZ 2 4 this 3 296  5 alpha 1 284  
+78 14 Dtool_5U4k7C1N 4 52 278 0 14 Dtool_5U4k7C1N 1 4 this 3 296  
+79 14 Dtool_5U4kC64S 6 53 283 0 14 Dtool_5U4kC64S 4 4 this 3 296  8 filename 1 285  4 type 1 275  19 report_unknown_type 1 283  
+80 14 Dtool_5U4kPAvM 6 53 283 0 14 Dtool_5U4kPAvM 3 4 this 3 296  8 filename 1 285  4 type 1 275  
+81 14 Dtool_5U4kvCUh 6 53 283 0 14 Dtool_5U4kvCUh 2 4 this 3 296  8 filename 1 285  
+82 14 Dtool_5U4kdJLw 6 53 283 0 14 Dtool_5U4kdJLw 2 4 this 3 296  6 reader 1 288  
+83 14 Dtool_5U4k9o7O 6 53 283 0 14 Dtool_5U4k9o7O 5 4 this 3 296  4 data 1 290  8 filename 1 269  4 type 1 275  19 report_unknown_type 1 283  
+84 14 Dtool_5U4kwKxG 6 53 283 0 14 Dtool_5U4kwKxG 4 4 this 3 296  4 data 1 290  8 filename 1 269  4 type 1 275  
+85 14 Dtool_5U4kgtc5 6 53 283 0 14 Dtool_5U4kgtc5 3 4 this 3 296  4 data 1 290  8 filename 1 269  
+86 14 Dtool_5U4k5luU 6 53 283 0 14 Dtool_5U4k5luU 2 4 this 3 296  4 data 1 290  
+87 14 Dtool_5U4kryAQ 6 54 283 0 14 Dtool_5U4kryAQ 3 4 this 3 297  8 filename 1 285  4 type 1 275  
+88 14 Dtool_5U4kibdu 6 54 283 0 14 Dtool_5U4kibdu 2 4 this 3 297  8 filename 1 285  
+89 14 Dtool_5U4kl0d0 6 54 283 0 14 Dtool_5U4kl0d0 2 4 this 3 297  6 writer 1 292  
+90 14 Dtool_5U4k3I_7 6 54 283 0 14 Dtool_5U4k3I_7 4 4 this 3 297  4 data 1 276  8 filename 1 269  4 type 1 275  
+91 14 Dtool_5U4kSl_y 6 54 283 0 14 Dtool_5U4kSl_y 3 4 this 3 297  4 data 1 276  8 filename 1 269  
+92 14 Dtool_5U4klWrL 6 54 283 0 14 Dtool_5U4klWrL 2 4 this 3 297  4 data 1 276  
+93 14 Dtool_5U4kbtI8 6 55 283 0 14 Dtool_5U4kbtI8 1 4 this 3 297  
+94 14 Dtool_5U4kvlnH 4 56 278 0 14 Dtool_5U4kvlnH 2 4 this 3 296  12 num_channels 1 270  
+95 14 Dtool_5U4kHw_e 4 57 278 0 14 Dtool_5U4kHw_e 2 4 this 3 296  10 color_type 1 265  
+96 14 Dtool_5U4kudkF 4 58 278 0 14 Dtool_5U4kudkF 1 4 this 3 296  
+97 14 Dtool_5U4kuXS6 4 59 278 0 14 Dtool_5U4kuXS6 1 4 this 3 296  
+98 14 Dtool_5U4kvd8W 4 60 278 0 14 Dtool_5U4kvd8W 1 4 this 3 296  
+99 14 Dtool_5U4ksKwX 4 60 278 0 14 Dtool_5U4ksKwX 4 4 this 3 296  2 rc 1 299  2 gc 1 299  2 bc 1 299  
+100 14 Dtool_5U4kWxCH 4 61 278 0 14 Dtool_5U4kWxCH 1 4 this 3 296  
+101 14 Dtool_5U4kqQ4f 4 62 278 0 14 Dtool_5U4kqQ4f 2 4 this 3 296  6 maxval 1 284  
+102 14 Dtool_5U4kZ_t1 6 63 300 0 14 Dtool_5U4kZ_t1 3 4 this 3 297  1 x 1 270  1 y 1 270  
+103 14 Dtool_5U4kBLQe 4 64 278 0 14 Dtool_5U4kBLQe 4 4 this 3 296  1 x 1 270  1 y 1 270  5 value 1 300  
+104 14 Dtool_5U4kwSca 4 64 278 0 14 Dtool_5U4kwSca 4 4 this 3 296  1 x 1 270  1 y 1 270  4 gray 1 284  
+105 14 Dtool_5U4keokV 4 64 278 0 14 Dtool_5U4keokV 6 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 284  1 g 1 284  1 b 1 284  
+106 14 Dtool_5U4kvbnu 6 65 284 0 14 Dtool_5U4kvbnu 3 4 this 3 297  1 x 1 270  1 y 1 270  
+107 14 Dtool_5U4kim_o 6 66 284 0 14 Dtool_5U4kim_o 3 4 this 3 297  1 x 1 270  1 y 1 270  
+108 14 Dtool_5U4kfY0A 6 67 284 0 14 Dtool_5U4kfY0A 3 4 this 3 297  1 x 1 270  1 y 1 270  
+109 14 Dtool_5U4k3oeE 6 68 284 0 14 Dtool_5U4k3oeE 3 4 this 3 297  1 x 1 270  1 y 1 270  
+110 14 Dtool_5U4kKba3 6 69 284 0 14 Dtool_5U4kKba3 3 4 this 3 297  1 x 1 270  1 y 1 270  
+111 14 Dtool_5U4kB1WT 4 70 278 0 14 Dtool_5U4kB1WT 4 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 284  
+112 14 Dtool_5U4k4_Bi 4 71 278 0 14 Dtool_5U4k4_Bi 4 4 this 3 296  1 x 1 270  1 y 1 270  1 g 1 284  
+113 14 Dtool_5U4kq9d9 4 72 278 0 14 Dtool_5U4kq9d9 4 4 this 3 296  1 x 1 270  1 y 1 270  1 b 1 284  
+114 14 Dtool_5U4kjFIB 4 73 278 0 14 Dtool_5U4kjFIB 4 4 this 3 296  1 x 1 270  1 y 1 270  4 gray 1 284  
+115 14 Dtool_5U4kjmcw 4 74 278 0 14 Dtool_5U4kjmcw 4 4 this 3 296  1 x 1 270  1 y 1 270  1 a 1 284  
+116 14 Dtool_5U4k5dxI 6 75 284 0 14 Dtool_5U4k5dxI 4 4 this 3 297  1 x 1 270  1 y 1 270  7 channel 1 270  
+117 14 Dtool_5U4k4AHG 4 76 278 0 14 Dtool_5U4k4AHG 5 4 this 3 296  1 x 1 270  1 y 1 270  7 channel 1 270  5 value 1 284  
+118 14 Dtool_5U4kE1Ub 7 77 304 0 14 Dtool_5U4kE1Ub 3 4 this 3 297  1 x 1 270  1 y 1 270  
+119 14 Dtool_5U4klCyT 4 78 278 0 14 Dtool_5U4klCyT 4 4 this 3 296  1 x 1 270  1 y 1 270  5 value 1 305  
+120 14 Dtool_5U4kkAzw 4 78 278 0 14 Dtool_5U4kkAzw 4 4 this 3 296  1 x 1 270  1 y 1 270  4 gray 1 299  
+121 14 Dtool_5U4kJNjN 4 78 278 0 14 Dtool_5U4kJNjN 6 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 299  1 g 1 299  1 b 1 299  
+122 14 Dtool_5U4kV6AJ 7 79 308 0 14 Dtool_5U4kV6AJ 3 4 this 3 297  1 x 1 270  1 y 1 270  
+123 14 Dtool_5U4k0Zb6 4 80 278 0 14 Dtool_5U4k0Zb6 4 4 this 3 296  1 x 1 270  1 y 1 270  5 value 1 309  
+124 14 Dtool_5U4kkHvU 4 80 278 0 14 Dtool_5U4kkHvU 7 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 299  1 g 1 299  1 b 1 299  1 a 1 299  
+125 14 Dtool_5U4k2WPU 6 81 299 0 14 Dtool_5U4k2WPU 3 4 this 3 297  1 x 1 270  1 y 1 270  
+126 14 Dtool_5U4khyC9 6 82 299 0 14 Dtool_5U4khyC9 3 4 this 3 297  1 x 1 270  1 y 1 270  
+127 14 Dtool_5U4kWrcz 6 83 299 0 14 Dtool_5U4kWrcz 3 4 this 3 297  1 x 1 270  1 y 1 270  
+128 14 Dtool_5U4k55I3 6 84 299 0 14 Dtool_5U4k55I3 3 4 this 3 297  1 x 1 270  1 y 1 270  
+129 14 Dtool_5U4ka6eL 6 85 299 0 14 Dtool_5U4ka6eL 3 4 this 3 297  1 x 1 270  1 y 1 270  
+130 14 Dtool_5U4kWqtp 4 86 278 0 14 Dtool_5U4kWqtp 4 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 299  
+131 14 Dtool_5U4k2K1_ 4 87 278 0 14 Dtool_5U4k2K1_ 4 4 this 3 296  1 x 1 270  1 y 1 270  1 g 1 299  
+132 14 Dtool_5U4kr0aG 4 88 278 0 14 Dtool_5U4kr0aG 4 4 this 3 296  1 x 1 270  1 y 1 270  1 b 1 299  
+133 14 Dtool_5U4kiwGK 4 89 278 0 14 Dtool_5U4kiwGK 4 4 this 3 296  1 x 1 270  1 y 1 270  4 gray 1 299  
+134 14 Dtool_5U4k9QPO 4 90 278 0 14 Dtool_5U4k9QPO 4 4 this 3 296  1 x 1 270  1 y 1 270  1 a 1 299  
+135 14 Dtool_5U4kjZD3 6 91 299 0 14 Dtool_5U4kjZD3 4 4 this 3 297  1 x 1 270  1 y 1 270  7 channel 1 270  
+136 14 Dtool_5U4kPshy 4 92 278 0 14 Dtool_5U4kPshy 5 4 this 3 296  1 x 1 270  1 y 1 270  7 channel 1 270  5 value 1 299  
+137 14 Dtool_5U4kcpGI 6 93 299 0 14 Dtool_5U4kcpGI 3 4 this 3 297  1 x 1 270  1 y 1 270  
+138 14 Dtool_5U4kN9Lp 6 93 299 0 14 Dtool_5U4kN9Lp 6 4 this 3 297  1 x 1 270  1 y 1 270  2 rc 1 299  2 gc 1 299  2 bc 1 299  
+139 14 Dtool_5U4k1KaX 6 93 299 0 14 Dtool_5U4k1KaX 7 4 this 3 297  1 x 1 270  1 y 1 270  2 rc 1 299  2 gc 1 299  2 bc 1 299  2 ac 1 299  
+140 14 Dtool_5U4kVicO 4 94 278 0 14 Dtool_5U4kVicO 5 4 this 3 296  1 x 1 270  1 y 1 270  3 val 1 305  5 alpha 1 299  
+141 14 Dtool_5U4k9I6e 4 94 278 0 14 Dtool_5U4k9I6e 7 4 this 3 296  1 x 1 270  1 y 1 270  1 r 1 299  1 g 1 299  1 b 1 299  5 alpha 1 299  
+142 14 Dtool_5U4k_EKA 6 95 311 0 14 Dtool_5U4k_EKA 2 4 this 3 296  1 y 1 270  
+143 14 Dtool_5U4kwxq_ 6 95 300 0 14 Dtool_5U4kwxq_ 2 4 this 3 297  1 y 1 270  
+144 14 Dtool_5U4kiW_W 4 96 278 0 14 Dtool_5U4kiW_W 8 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  6 x_size 1 270  6 y_size 1 270  
+145 14 Dtool_5U4kxEW3 4 96 278 0 14 Dtool_5U4kxEW3 7 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  6 x_size 1 270  
+146 14 Dtool_5U4kWkin 4 96 278 0 14 Dtool_5U4kWkin 6 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  
+147 14 Dtool_5U4kXAof 4 96 278 0 14 Dtool_5U4kXAof 5 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  
+148 14 Dtool_5U4krmrb 4 96 278 0 14 Dtool_5U4krmrb 4 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  
+149 14 Dtool_5U4knnVh 4 97 278 0 14 Dtool_5U4knnVh 8 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  6 x_size 1 270  6 y_size 1 270  
+150 14 Dtool_5U4k_Jps 4 97 278 0 14 Dtool_5U4k_Jps 7 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  6 x_size 1 270  
+151 14 Dtool_5U4k9rTy 4 97 278 0 14 Dtool_5U4k9rTy 6 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  5 yfrom 1 270  
+152 14 Dtool_5U4kHoI1 4 97 278 0 14 Dtool_5U4kHoI1 5 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  5 xfrom 1 270  
+153 14 Dtool_5U4k5Bk2 4 97 278 0 14 Dtool_5U4k5Bk2 4 4 this 3 296  4 copy 1 297  3 xto 1 270  3 yto 1 270  
+154 14 Dtool_5U4kj9HN 4 98 278 0 14 Dtool_5U4kj9HN 5 4 this 3 296  2 fg 1 309  2 bg 1 309  10 min_radius 1 299  10 max_radius 1 299  
+155 14 Dtool_5U4k0QpA 4 99 278 0 14 Dtool_5U4k0QpA 2 4 this 3 296  6 radius 1 299  
+156 14 Dtool_5U4kKBDW 4 99 278 0 14 Dtool_5U4kKBDW 1 4 this 3 296  
+157 14 Dtool_5U4kSjEC 4 100 278 0 14 Dtool_5U4kSjEC 2 4 this 3 296  6 radius 1 299  
+158 14 Dtool_5U4kN02s 4 100 278 0 14 Dtool_5U4kN02s 1 4 this 3 296  
+159 14 Dtool_5U4kPYod 4 101 278 0 14 Dtool_5U4kPYod 3 4 this 3 296  6 radius 1 299  4 copy 1 297  
+160 14 Dtool_5U4kRiE8 4 102 278 0 14 Dtool_5U4kRiE8 3 4 this 3 296  6 radius 1 299  4 copy 1 297  
+161 14 Dtool_5U4k2C4m 4 103 278 0 14 Dtool_5U4k2C4m 4 4 this 3 296  4 copy 1 297  7 xborder 1 270  7 yborder 1 270  
+162 14 Dtool_5U4kocJ5 4 103 278 0 14 Dtool_5U4kocJ5 3 4 this 3 296  4 copy 1 297  7 xborder 1 270  
+163 14 Dtool_5U4kRBRi 4 103 278 0 14 Dtool_5U4kRBRi 2 4 this 3 296  4 copy 1 297  
+51
+261 11 PNMFileType 75777 11 PNMFileType 11 PNMFileType 0 0 0 0 0 0 5 164 165 166 167 168 0 1 0 262 0 0 0 0 330
+////////////////////////////////////////////////////////////////////
+//       Class : PNMFileType
+// Description : This is the base class of a family of classes that
+//               represent particular image file types that PNMImage
+//               supports.
+////////////////////////////////////////////////////////////////////
+
+262 13 TypedWritable 2049 13 TypedWritable 13 TypedWritable 0 0 0 0 0 0 0 0 0 0 0 356
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritable
+// Description : Base class for objects that can be written to and
+//               read from Bam files.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+263 19 PNMFileTypeRegistry 26625 19 PNMFileTypeRegistry 19 PNMFileTypeRegistry 0 0 0 0 169 0 7 170 171 172 173 174 175 176 0 0 0 0 280
+////////////////////////////////////////////////////////////////////
+//       Class : PNMFileTypeRegistry
+// Description : This class maintains the set of all known
+//               PNMFileTypes in the universe.
+////////////////////////////////////////////////////////////////////
+
+264 14 PNMImageHeader 26625 14 PNMImageHeader 14 PNMImageHeader 0 0 0 1 177 179 0 18 178 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 0 0 0 1 265 616
+////////////////////////////////////////////////////////////////////
+//       Class : PNMImageHeader
+// Description : This is the base class of PNMImage, PNMReader, and
+//               PNMWriter.  It encapsulates all the information
+//               associated with an image that describes its size,
+//               number of channels, etc; that is, all the information
+//               about the image except the image data itself.  It's
+//               the sort of information you typically read from the
+//               image file's header.
+////////////////////////////////////////////////////////////////////
+
+265 9 ColorType 794624 25 PNMImageHeader::ColorType 25 PNMImageHeader::ColorType 264 0 0 0 0 0 0 0 0 5 10 CT_invalid 26 PNMImageHeader::CT_invalid 0 12 CT_grayscale 28 PNMImageHeader::CT_grayscale 1 14 CT_two_channel 30 PNMImageHeader::CT_two_channel 2 8 CT_color 24 PNMImageHeader::CT_color 3 15 CT_four_channel 31 PNMImageHeader::CT_four_channel 4 0 198
+// This enumerated type indicates the number of channels in the
+// image, and also implies an image type.  You can treat it either
+// as an integer number of channels or as an enumerated image type.
+
+266 8 PNMImage 26625 8 PNMImage 8 PNMImage 0 0 0 1 197 199 0 62 198 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 0 1 0 264 0 0 0 0 1506
+////////////////////////////////////////////////////////////////////
+//       Class : PNMImage
+// Description : The name of this class derives from the fact that we
+//               originally implemented it as a layer on top of the
+//               "pnm library", based on netpbm, which was built to
+//               implement pbm, pgm, and pbm files, and is the
+//               underlying support of a number of public-domain image
+//               file converters.  Nowadays we are no longer derived
+//               directly from the pnm library, mainly to allow
+//               support of C++ iostreams instead of the C stdio FILE
+//               interface.
+//
+//               Conceptually, a PNMImage is a two-dimensional array
+//               of xels, which are the PNM-defined generic pixel
+//               type.  Each xel may have a red, green, and blue
+//               component, or (if the image is grayscale) a gray
+//               component.  The image may be read in, the individual
+//               xels manipulated, and written out again, or a black
+//               image may be constructed from scratch.
+//
+//               The image is of size XSize() by YSize() xels,
+//               numbered from top to bottom, left to right, beginning
+//               at zero.
+//
+//               Files can be specified by filename, or by an iostream
+//               pointer.  The filename "-" refers to stdin or stdout.
+////////////////////////////////////////////////////////////////////
+
+267 19 PNMFileType const * 8576 19 PNMFileType const * 19 PNMFileType const * 0 0 268 0 0 0 0 0 0 0 0 0
+
+268 17 PNMFileType const 8832 17 PNMFileType const 17 PNMFileType const 0 0 261 0 0 0 0 0 0 0 0 0
+
+269 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+
+270 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+
+271 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+272 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 271 0 0 0 0 0 0 0 0 0
+
+273 27 PNMFileTypeRegistry const * 8576 27 PNMFileTypeRegistry const * 27 PNMFileTypeRegistry const * 0 0 274 0 0 0 0 0 0 0 0 0
+
+274 25 PNMFileTypeRegistry const 8832 25 PNMFileTypeRegistry const 25 PNMFileTypeRegistry const 0 0 263 0 0 0 0 0 0 0 0 0
+
+275 13 PNMFileType * 8576 13 PNMFileType * 13 PNMFileType * 0 0 261 0 0 0 0 0 0 0 0 0
+
+276 9 ostream * 8576 9 ostream * 9 ostream * 0 0 277 0 0 0 0 0 0 0 0 0
+
+277 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+
+278 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+
+279 21 PNMFileTypeRegistry * 8576 21 PNMFileTypeRegistry * 21 PNMFileTypeRegistry * 0 0 263 0 0 0 0 0 0 0 0 0
+
+280 16 PNMImageHeader * 8576 16 PNMImageHeader * 16 PNMImageHeader * 0 0 264 0 0 0 0 0 0 0 0 0
+
+281 22 PNMImageHeader const * 8576 22 PNMImageHeader const * 22 PNMImageHeader const * 0 0 282 0 0 0 0 0 0 0 0 0
+
+282 20 PNMImageHeader const 8832 20 PNMImageHeader const 20 PNMImageHeader const 0 0 264 0 0 0 0 0 0 0 0 0
+
+283 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+
+284 18 unsigned short int 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0
+
+285 16 Filename const * 8576 16 Filename const * 16 Filename const * 0 0 286 0 0 0 0 0 0 0 0 0
+
+286 14 Filename const 8832 14 Filename const 14 Filename const 0 0 287 0 0 0 0 0 0 0 0 0
+
+287 8 Filename 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 869
+////////////////////////////////////////////////////////////////////
+//       Class : Filename
+// Description : The name of a file, such as a texture file or an Egg
+//               file.  Stores the full pathname, and includes
+//               functions for extracting out the directory prefix
+//               part and the file extension and stuff.
+//
+//               A Filename is also aware of the mapping between the
+//               Unix-like filename convention we use internally, and
+//               the local OS's specific filename convention, and it
+//               knows how to perform basic OS-specific I/O, like
+//               testing for file existence and searching a
+//               searchpath, as well as the best way to open an
+//               fstream for reading or writing.
+////////////////////////////////////////////////////////////////////
+
+288 11 PNMReader * 8576 11 PNMReader * 11 PNMReader * 0 0 289 0 0 0 0 0 0 0 0 0
+
+289 9 PNMReader 2048 9 PNMReader 9 PNMReader 0 0 0 0 0 0 0 0 0 0 0 0
+
+290 9 istream * 8576 9 istream * 9 istream * 0 0 291 0 0 0 0 0 0 0 0 0
+
+291 7 istream 2048 7 istream 7 istream 0 0 0 0 0 0 0 0 0 0 0 0
+
+292 11 PNMWriter * 8576 11 PNMWriter * 11 PNMWriter * 0 0 293 0 0 0 0 0 0 0 0 0
+
+293 9 PNMWriter 2048 9 PNMWriter 9 PNMWriter 0 0 0 0 0 0 0 0 0 0 0 0
+
+294 22 basic_string< char > * 8576 22 basic_string< char > * 22 basic_string< char > * 0 0 295 0 0 0 0 0 0 0 0 0
+
+295 6 string 2048 20 basic_string< char > 20 basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0
+
+296 10 PNMImage * 8576 10 PNMImage * 10 PNMImage * 0 0 266 0 0 0 0 0 0 0 0 0
+
+297 16 PNMImage const * 8576 16 PNMImage const * 16 PNMImage const * 0 0 298 0 0 0 0 0 0 0 0 0
+
+298 14 PNMImage const 8832 14 PNMImage const 14 PNMImage const 0 0 266 0 0 0 0 0 0 0 0 0
+
+299 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+
+300 13 pixel const * 8576 13 pixel const * 13 pixel const * 0 0 301 0 0 0 0 0 0 0 0 0
+
+301 11 pixel const 8832 11 pixel const 11 pixel const 0 0 302 0 0 0 0 0 0 0 0 0
+
+302 3 xel 1049600 5 pixel 5 pixel 0 0 0 0 0 0 0 0 0 0 0 0
+
+303 9 RGBColord 2048 10 LVecBase3d 10 LVecBase3d 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+304 12 LVecBase3d * 8576 12 LVecBase3d * 12 LVecBase3d * 0 0 303 0 0 0 0 0 0 0 0 0
+
+305 18 LVecBase3d const * 8576 18 LVecBase3d const * 18 LVecBase3d const * 0 0 306 0 0 0 0 0 0 0 0 0
+
+306 16 LVecBase3d const 8832 16 LVecBase3d const 16 LVecBase3d const 0 0 303 0 0 0 0 0 0 0 0 0
+
+307 6 Colord 2048 10 LVecBase4d 10 LVecBase4d 0 0 0 0 0 0 0 0 0 0 0 942
+// Filename: lvecBase4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) 2001 - 2004, Disney Enterprises, Inc.  All rights reserved
+//
+// All use of this software is subject to the terms of the Panda 3d
+// Software license.  You should have received a copy of this license
+// along with this source code; you will also find a current copy of
+// the license at http://etc.cmu.edu/panda3d/docs/license/ .
+//
+// To contact the maintainers of this program write to
+// panda3d-general@lists.sourceforge.net .
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase4
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+308 12 LVecBase4d * 8576 12 LVecBase4d * 12 LVecBase4d * 0 0 307 0 0 0 0 0 0 0 0 0
+
+309 18 LVecBase4d const * 8576 18 LVecBase4d const * 18 LVecBase4d const * 0 0 310 0 0 0 0 0 0 0 0 0
+
+310 16 LVecBase4d const 8832 16 LVecBase4d const 16 LVecBase4d const 0 0 307 0 0 0 0 0 0 0 0 0
+
+311 7 pixel * 8576 7 pixel * 7 pixel * 0 0 302 0 0 0 0 0 0 0 0 0
+
+0
+0
