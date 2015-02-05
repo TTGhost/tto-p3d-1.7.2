@@ -22,12 +22,12 @@ show-frame-rate-meter  #f
 audio-library-name fmod_audio
 hardware-animated-vertices 0
 
-window-title Toontown Online
+window-title Toontown
 
 game-server 127.0.0.1
 download-server http://s3.amazonaws.com/ttadls/
 eventlog-host 127.0.0.1
-server-version 1.0.1
+server-version sv1.0.1
 
 want-dev #f
 
