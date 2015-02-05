@@ -2,7 +2,7 @@
 # Embedded file name: toontown.ai.HolidayDecorator
 from toontown.toonbase import ToontownGlobals
 from direct.interval.IntervalGlobal import Parallel, Sequence, Func, Wait
-from pandac.PandaModules import Vec4, loadDNAFile, CSDefault, TransformState, NodePath, TransparencyAttrib
+from pandac.PandaModules import Vec4, CSDefault, TransformState, NodePath, TransparencyAttrib
 
 class HolidayDecorator():
     __module__ = __name__

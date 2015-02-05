@@ -1,7 +1,123 @@
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
+from libpanda import *
+
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
+from libpanda import *
+
+####################################################################
+#Dtool_funcToMethod(func, class)        
+#del func
+#####################################################################
+
+"""
+Mat3-extensions module: contains methods to extend functionality
+of the LMatrix3f class.
+"""
+
+
+def pPrintValues(self):
+        """
+        Pretty print
+        """
+        return "\n%s\n%s\n%s" % (
+            self.getRow(0).pPrintValues(), self.getRow(1).pPrintValues(), self.getRow(2).pPrintValues())
+Dtool_funcToMethod(pPrintValues, Mat3)        
+del pPrintValues
+#####################################################################
+
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
+from libpanda import *
+
+#####################################################################
+
+# For iterating over children
+def asList(self):
+    """Converts a NodePathCollection into a list"""
+    print "Warning: NodePathCollection.asList() is no longer needed and deprecated.  Iterate on the collection directly instead."
+    return list(self)
+        
+Dtool_funcToMethod(asList, NodePathCollection)        
+del asList
+#####################################################################3333      
+
+def getTightBounds(self):
+    from pandac.PandaModules import Point3
+    
+    if self.getNumPaths() == 0:
+        return (Point3.Point3(0), Point3.Point3(0))
+    v1, v2 = self.getPath(0).getTightBounds()
+    for i in range(1, self.getNumPaths()):
+        v1x, v2x = self.getPath(i).getTightBounds()
+        v1 = Point3.Point3(min(v1[0], v1x[0]),
+                           min(v1[1], v1x[1]),
+                           min(v1[2], v1x[2]))
+        v2 = Point3.Point3(max(v2[0], v2x[0]),
+                           max(v2[1], v2x[1]),
+                           max(v2[2], v2x[2]))
+    return v1, v2
+    
+Dtool_funcToMethod(getTightBounds, NodePathCollection)        
+del getTightBounds
+#####################################################################3333      
+
+"""
+Methods to extend functionality of the VBase3 class
+"""
+
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
 from libpanda import *
 
 
+def pPrintValues(self):
+    """
+    Pretty print
+    """
+    return "% 10.4f, % 10.4f, % 10.4f" % (self[0], self[1], self[2])
+Dtool_funcToMethod(pPrintValues, VBase3)
+del pPrintValues
+
+def asTuple(self):
+    """
+    Returns the vector as a tuple.
+    """
+    print "Warning: VBase3.asTuple() is no longer needed and deprecated.  Use the vector directly instead."
+    return tuple(self)
+Dtool_funcToMethod(asTuple, VBase3)
+del asTuple
+
+"""
+Methods to extend functionality of the VBase4 class
+"""
+
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
+from libpanda import *
+
+
+def pPrintValues(self):
+    """
+    Pretty print
+    """
+    return "% 10.4f, % 10.4f, % 10.4f, % 10.4f" % (self[0], self[1], self[2], self[3])
+Dtool_funcToMethod(pPrintValues, VBase4)
+del pPrintValues
+
+def asTuple(self):
+    """
+    Returns the vector as a tuple.
+    """
+    print "Warning: VBase4.asTuple() is no longer needed and deprecated.  Use the vector directly instead."
+    return tuple(self)
+
+Dtool_funcToMethod(asTuple, VBase4)
+del asTuple
+
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpanda")
 from libpanda import *
 
 ####################################################################
@@ -30,7 +146,8 @@ del id
     # For iterating over children
 def getChildrenAsList(self):
         """Converts a node path's child NodePathCollection into a list"""
-        return self.getChildren().asList()
+        print "Warning: NodePath.getChildrenAsList() is deprecated.  Use getChildren() instead."
+        return list(self.getChildren())
 
 Dtool_funcToMethod(getChildrenAsList, NodePath)
 del getChildrenAsList
@@ -38,7 +155,7 @@ del getChildrenAsList
 
 def printChildren(self):
         """Prints out the children of the bottom node of a node path"""
-        for child in self.getChildrenAsList():
+        for child in self.getChildren():
             print child.getName()
 Dtool_funcToMethod(printChildren, NodePath)
 del printChildren
@@ -46,8 +163,7 @@ del printChildren
 
 def removeChildren(self):
         """Deletes the children of the bottom node of a node path"""
-        for child in self.getChildrenAsList():
-            child.removeNode()
+        self.getChildren().detach()
 Dtool_funcToMethod(removeChildren, NodePath)
 del removeChildren
 #####################################################################
@@ -66,7 +182,7 @@ del toggleVis
 
 def showSiblings(self):
         """Show all the siblings of a node path"""
-        for sib in self.getParent().getChildrenAsList():
+        for sib in self.getParent().getChildren():
             if sib.node() != self.node():
                 sib.show()
 Dtool_funcToMethod(showSiblings, NodePath)
@@ -75,7 +191,7 @@ del showSiblings
 
 def hideSiblings(self):
         """Hide all the siblings of a node path"""
-        for sib in self.getParent().getChildrenAsList():
+        for sib in self.getParent().getChildren():
             if sib.node() != self.node():
                 sib.hide()
 Dtool_funcToMethod(hideSiblings, NodePath)
@@ -85,7 +201,7 @@ del hideSiblings
 def showAllDescendants(self):
         """Show the node path and all its children"""
         self.show()
-        for child in self.getChildrenAsList():
+        for child in self.getChildren():
             child.showAllDescendants()
 Dtool_funcToMethod(showAllDescendants, NodePath)
 del showAllDescendants
@@ -125,7 +241,7 @@ del lsNames
 #####################################################################
 def lsNamesRecurse(self, indentString=' '):
         """Walk down a tree and print out the path"""
-        for nodePath in self.getChildrenAsList():
+        for nodePath in self.getChildren():
             type = nodePath.node().getType().getName()
             name = nodePath.getName()
             print indentString + type + "  " + name
@@ -136,7 +252,8 @@ del lsNamesRecurse
 #####################################################################
 def reverseLsNames(self):
         """Walk up a tree and print out the path to the root"""
-        ancestry = self.getAncestry()
+        ancestors = list(self.getAncestors())
+        ancestry = ancestors.reverse()
         indentString = ""
         for nodePath in ancestry:
             type = nodePath.node().getType().getName()
@@ -149,13 +266,10 @@ del reverseLsNames
 #####################################################################
 def getAncestry(self):
         """Get a list of a node path's ancestors"""
-        node = self.node()
-        if (self.hasParent()):
-            ancestry = self.getParent().getAncestry()
-            ancestry.append(self)
-            return ancestry
-        else:
-            return [self]
+        print "NodePath.getAncestry() is deprecated.  Use getAncestors() instead."""
+        ancestors = list(self.getAncestors())
+        ancestors.reverse()
+        return ancestors
 
 Dtool_funcToMethod(getAncestry, NodePath)
 del getAncestry
@@ -339,7 +453,7 @@ def printTransform(self, other = None, sd = 2, fRecursive = 0):
                 outputString = '%s.setScale(%s, %s, %s)' % (name, fmtStr, fmtStr, fmtStr)
                 print outputString % (scale[0], scale[1], scale[2])
     if fRecursive:
-        for child in self.getChildrenAsList():
+        for child in self.getChildren():
             child.printTransform(other, sd, fRecursive)
 
 Dtool_funcToMethod(printTransform, NodePath)
@@ -412,18 +526,6 @@ def __lerp(self, functorFunc, duration, blendType, taskName=None):
         from direct.showbase import LerpBlendHelpers
         from direct.task.TaskManagerGlobal import taskMgr
 
-        # upon death remove the functorFunc
-        def lerpUponDeath(task):
-            # Try to break circular references
-            try:
-                del task.functorFunc
-            except:
-                pass
-            try:
-                del task.lerp
-            except:
-                pass
-
         # make the task function
         def lerpTaskFunc(task):
             from pandac.PandaModules import Lerp
@@ -450,7 +552,6 @@ def __lerp(self, functorFunc, duration, blendType, taskName=None):
         lerpTask.functorFunc = functorFunc
         lerpTask.duration = duration
         lerpTask.blendType = LerpBlendHelpers.getBlend(blendType)
-        lerpTask.uponDeath = lerpUponDeath
 
         if (taskName == None):
             # don't spawn a task, return one instead
@@ -1131,14 +1232,14 @@ del rgbPanel
 #####################################################################
 def select(self):
         base.startDirect(fWantTk = 0)
-        direct.select(self)
+        base.direct.select(self)
 
 Dtool_funcToMethod(select, NodePath)
 del select
 #####################################################################
 def deselect(self):
         base.startDirect(fWantTk = 0)
-        direct.deselect(self)
+        base.direct.deselect(self)
 
 Dtool_funcToMethod(deselect, NodePath)
 del deselect
@@ -1342,100 +1443,180 @@ def flattenMultitex(self, stateFrom = None, target = None,
 Dtool_funcToMethod(flattenMultitex, NodePath)
 del flattenMultitex
 #####################################################################
-
-from extension_native_helpers import *
-from libpanda import *
-####################################################################
-#Dtool_funcToMethod(func, class)        
-#del func
+def getNumDescendants(self):
+        return len(self.findAllMatches('**')) - 1
+Dtool_funcToMethod(getNumDescendants, NodePath)
+del getNumDescendants
+#####################################################################
+def removeNonCollisions(self):
+        # remove anything that is not collision-related
+        stack = [self]
+        while len(stack):
+                np = stack.pop()
+                # if there are no CollisionNodes under this node, remove it
+                if np.find('**/+CollisionNode').isEmpty():
+                        np.detachNode()
+                else:
+                        stack.extend(np.getChildren())
+Dtool_funcToMethod(removeNonCollisions, NodePath)
+del removeNonCollisions
 #####################################################################
 
-"""
-Mat3-extensions module: contains methods to extend functionality
-of the LMatrix3f class.
-"""
-
-
-def pPrintValues(self):
+def subdivideCollisions(self, numSolidsInLeaves):
         """
-        Pretty print
+        expand CollisionNodes out into balanced trees, with a particular number
+        of solids in the leaves
+        TODO: better splitting logic at each level of the tree wrt spatial separation
+        and cost of bounding volume tests vs. cost of collision solid tests
         """
-        return "\n%s\n%s\n%s" % (
-            self.getRow(0).pPrintValues(), self.getRow(1).pPrintValues(), self.getRow(2).pPrintValues())
-Dtool_funcToMethod(pPrintValues, Mat3)        
-del pPrintValues
+        colNps = self.findAllMatches('**/+CollisionNode')
+        for colNp in colNps:
+            node = colNp.node()
+            numSolids = node.getNumSolids()
+            if numSolids <= numSolidsInLeaves:
+                # this CollisionNode doesn't need to be split
+                continue
+            solids = []
+            for i in xrange(numSolids):
+                solids.append(node.getSolid(i))
+            # recursively subdivide the solids into a spatial binary tree
+            solidTree = self.r_subdivideCollisions(solids, numSolidsInLeaves)
+            root = colNp.getParent().attachNewNode('%s-subDivRoot' % colNp.getName())
+            self.r_constructCollisionTree(solidTree, root, colNp.getName())
+            colNp.stash()
+
+def r_subdivideCollisions(self, solids, numSolidsInLeaves):
+        # takes a list of solids, returns a list containing some number of lists,
+        # with the solids evenly distributed between them (recursively nested until
+        # the lists at the leaves contain no more than numSolidsInLeaves)
+        # if solids is already small enough, returns solids unchanged
+        if len(solids) <= numSolidsInLeaves:
+            return solids
+        origins = []
+        avgX = 0; avgY = 0; avgZ = 0
+        minX = None; minY = None; minZ = None
+        maxX = None; maxY = None; maxZ = None
+        for solid in solids:
+            origin = solid.getCollisionOrigin()
+            origins.append(origin)
+            x = origin.getX(); y = origin.getY(); z = origin.getZ()
+            avgX += x; avgY += y; avgZ += z
+            if minX is None:
+                minX = x; minY = y; minZ = z
+                maxX = x; maxY = y; maxZ = z
+            else:
+                minX = min(x, minX); minY = min(y, minY); minZ = min(z, minZ)
+                maxX = max(x, maxX); maxY = max(y, maxY); maxZ = max(z, maxZ)
+        avgX /= len(solids); avgY /= len(solids); avgZ /= len(solids)
+        extentX = maxX - minX; extentY = maxY - minY; extentZ = maxZ - minZ
+        maxExtent = max(max(extentX, extentY), extentZ)
+        # sparse octree
+        xyzSolids = []
+        XyzSolids = []
+        xYzSolids = []
+        XYzSolids = []
+        xyZSolids = []
+        XyZSolids = []
+        xYZSolids = []
+        XYZSolids = []
+        midX = avgX
+        midY = avgY
+        midZ = avgZ
+        # throw out axes that are not close to the max axis extent; try and keep
+        # the divisions square/spherical
+        if extentX < (maxExtent * .75) or extentX > (maxExtent * 1.25):
+                midX += maxExtent
+        if extentY < (maxExtent * .75) or extentY > (maxExtent * 1.25):
+                midY += maxExtent
+        if extentZ < (maxExtent * .75) or extentZ > (maxExtent * 1.25):
+                midZ += maxExtent
+        for i in xrange(len(solids)):
+                origin = origins[i]
+                x = origin.getX(); y = origin.getY(); z = origin.getZ()
+                if x < midX:
+                        if y < midY:
+                                if z < midZ:
+                                        xyzSolids.append(solids[i])
+                                else:
+                                        xyZSolids.append(solids[i])
+                        else:
+                                if z < midZ:
+                                        xYzSolids.append(solids[i])
+                                else:
+                                        xYZSolids.append(solids[i])
+                else:
+                        if y < midY:
+                                if z < midZ:
+                                        XyzSolids.append(solids[i])
+                                else:
+                                        XyZSolids.append(solids[i])
+                        else:
+                                if z < midZ:
+                                        XYzSolids.append(solids[i])
+                                else:
+                                        XYZSolids.append(solids[i])
+        newSolids = []
+        if len(xyzSolids):
+                newSolids.append(self.r_subdivideCollisions(xyzSolids, numSolidsInLeaves))
+        if len(XyzSolids):
+                newSolids.append(self.r_subdivideCollisions(XyzSolids, numSolidsInLeaves))
+        if len(xYzSolids):
+                newSolids.append(self.r_subdivideCollisions(xYzSolids, numSolidsInLeaves))
+        if len(XYzSolids):
+                newSolids.append(self.r_subdivideCollisions(XYzSolids, numSolidsInLeaves))
+        if len(xyZSolids):
+                newSolids.append(self.r_subdivideCollisions(xyZSolids, numSolidsInLeaves))
+        if len(XyZSolids):
+                newSolids.append(self.r_subdivideCollisions(XyZSolids, numSolidsInLeaves))
+        if len(xYZSolids):
+                newSolids.append(self.r_subdivideCollisions(xYZSolids, numSolidsInLeaves))
+        if len(XYZSolids):
+                newSolids.append(self.r_subdivideCollisions(XYZSolids, numSolidsInLeaves))
+        #import pdb;pdb.set_trace()
+        return newSolids
+
+def r_constructCollisionTree(self, solidTree, parentNode, colName):
+        for item in solidTree:
+            if type(item[0]) == type([]):
+                newNode = parentNode.attachNewNode('%s-branch' % colName)
+                self.r_constructCollisionTree(item, newNode, colName)
+            else:
+                cn = CollisionNode('%s-leaf' % colName)
+                for solid in item:
+                    cn.addSolid(solid)
+                parentNode.attachNewNode(cn)
+
+Dtool_funcToMethod(subdivideCollisions, NodePath)
+Dtool_funcToMethod(r_subdivideCollisions, NodePath)
+Dtool_funcToMethod(r_constructCollisionTree, NodePath)
+del subdivideCollisions
+del r_subdivideCollisions
+del r_constructCollisionTree
+
 #####################################################################
+def analyze(self):
+        from pandac.PandaModules import SceneGraphAnalyzer
+        sga = SceneGraphAnalyzer()
+        sga.addNode(self.node())
+        if sga.getNumLodNodes() == 0:
+                print sga
+        else:
+                print "At highest LOD:"
+                sga2 = SceneGraphAnalyzer()
+                sga2.setLodMode(sga2.LMHighest)
+                sga2.addNode(self.node())
+                print sga2
 
-"""
-Methods to extend functionality of the VBase4 class
-"""
+                print "\nAt lowest LOD:"
+                sga2.clear()
+                sga2.setLodMode(sga2.LMLowest)
+                sga2.addNode(self.node())
+                print sga2
 
-from extension_native_helpers import *
-from libpanda import *
+                print "\nAll nodes:"
+                print sga
 
-
-def pPrintValues(self):
-    """
-    Pretty print
-    """
-    return "% 10.4f, % 10.4f, % 10.4f, % 10.4f" % (self[0], self[1], self[2], self[3])
-Dtool_funcToMethod(pPrintValues, VBase4)
-del pPrintValues
-
-from extension_native_helpers import *
-from libpanda import *
-
-
+Dtool_funcToMethod(analyze, NodePath)
+del analyze
 #####################################################################
-
-# For iterating over children
-def asList(self):
-    """Converts a NodePathCollection into a list"""
-    if self.isEmpty():
-        return []
-    else:
-        npList = []
-        for nodePathIndex in range(self.getNumPaths()):
-            npList.append(self.getPath(nodePathIndex))
-        return npList
-        
-Dtool_funcToMethod(asList, NodePathCollection)        
-del asList
-#####################################################################3333      
-
-def getTightBounds(self):
-    from pandac.PandaModules import Point3
-    
-    if self.getNumPaths() == 0:
-        return (Point3.Point3(0), Point3.Point3(0))
-    v1, v2 = self.getPath(0).getTightBounds()
-    for i in range(1, self.getNumPaths()):
-        v1x, v2x = self.getPath(i).getTightBounds()
-        v1 = Point3.Point3(min(v1[0], v1x[0]),
-                           min(v1[1], v1x[1]),
-                           min(v1[2], v1x[2]))
-        v2 = Point3.Point3(max(v2[0], v2x[0]),
-                           max(v2[1], v2x[1]),
-                           max(v2[2], v2x[2]))
-    return v1, v2
-    
-Dtool_funcToMethod(getTightBounds, NodePathCollection)        
-del getTightBounds
-#####################################################################3333      
-
-"""
-Methods to extend functionality of the VBase3 class
-"""
-
-from extension_native_helpers import *
-from libpanda import *
-
-
-def pPrintValues(self):
-    """
-    Pretty print
-    """
-    return "% 10.4f, % 10.4f, % 10.4f" % (self[0], self[1], self[2])
-Dtool_funcToMethod(pPrintValues, VBase3)
-del pPrintValues
 

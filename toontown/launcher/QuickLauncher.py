@@ -133,6 +133,8 @@ class QuickLauncher(LauncherBase):
         self.resumeInstall()
 
     def resumeMultifileDownload(self):
+        return
+        ##temporary until i add the bz2 files
         curVer, expectedSize, expectedMd5 = self.mfDetails[self.currentMfname]
         localFilename = Filename(self.topDir, Filename('_%s.%s.%s' % (self.currentMfname, curVer, self.CompressionExt)))
         serverFilename = '%s%s.%s.%s' % (self.contentDir,
@@ -312,11 +314,13 @@ class QuickLauncher(LauncherBase):
             self.secretNeedsParentPasswordKey = dict['secretsNeedsParentPassword']
             self.notify.info('secretNeedsParentPassword = %d' % self.secretNeedsParentPasswordKey)
         else:
+            self.secretNeedsParentPasswordKey = None
             self.notify.warning('no secretNeedsParentPassword token in webAcctParams')
         if dict.has_key('chatEligible'):
             self.chatEligibleKey = dict['chatEligible']
             self.notify.info('chatEligibleKey = %d' % self.chatEligibleKey)
         else:
+            self.chatEligibleKey = None
             self.notify.warning('no chatEligible token in webAcctParams')
 
     def getBlue(self):

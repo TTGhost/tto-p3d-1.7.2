@@ -4,7 +4,7 @@ Utility functions for manipulating directories and directory trees."""
 
 # This module should be kept compatible with Python 2.1.
 
-__revision__ = "$Id: dir_util.py,v 1.15.2.1 2005/08/24 14:55:42 loewis Exp $"
+__revision__ = "$Id: dir_util.py 60923 2008-02-21 18:18:37Z guido.van.rossum $"
 
 import os, sys
 from types import *
@@ -31,7 +31,7 @@ def mkpath (name, mode=0777, verbose=0, dry_run=0):
     global _path_created
 
     # Detect a common bug -- name is None
-    if not isinstance(name, StringTypes):   
+    if not isinstance(name, StringTypes):
         raise DistutilsInternalError, \
               "mkpath: 'name' must be a string (got %r)" % (name,)
 
@@ -207,7 +207,7 @@ def remove_tree (directory, verbose=0, dry_run=0):
             apply(cmd[0], (cmd[1],))
             # remove dir from cache if it's already there
             abspath = os.path.abspath(cmd[1])
-            if _path_created.has_key(abspath):
+            if abspath in _path_created:
                 del _path_created[abspath]
         except (IOError, OSError), exc:
             log.warn(grok_environment_error(

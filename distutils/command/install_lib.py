@@ -1,16 +1,20 @@
 # This module should be kept compatible with Python 2.1.
 
-__revision__ = "$Id: install_lib.py,v 1.44 2004/11/10 22:23:15 loewis Exp $"
+__revision__ = "$Id: install_lib.py 77376 2010-01-08 23:27:23Z tarek.ziade $"
 
-import sys, os, string
+import os
 from types import IntType
+import sys
+
 from distutils.core import Command
 from distutils.errors import DistutilsOptionError
 
 
 # Extension for Python source files.
-PYTHON_SOURCE_EXTENSION = os.extsep + "py"
-
+if hasattr(os, 'extsep'):
+    PYTHON_SOURCE_EXTENSION = os.extsep + "py"
+else:
+    PYTHON_SOURCE_EXTENSION = ".py"
 
 class install_lib (Command):
 
@@ -78,7 +82,8 @@ class install_lib (Command):
         if type(self.optimize) is not IntType:
             try:
                 self.optimize = int(self.optimize)
-                assert 0 <= self.optimize <= 2
+                if self.optimize not in (0, 1, 2):
+                    raise AssertionError
             except (ValueError, AssertionError):
                 raise DistutilsOptionError, "optimize must be 0, 1, or 2"
 
@@ -119,6 +124,10 @@ class install_lib (Command):
         return outfiles
 
     def byte_compile (self, files):
+        if sys.dont_write_bytecode:
+            self.warn('byte-compiling is disabled, skipping.')
+            return
+
         from distutils.util import byte_compile
 
         # Get the "--root" directory supplied to the "install" command,

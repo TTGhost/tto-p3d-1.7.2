@@ -105,7 +105,8 @@ class InventoryBase(DirectObject.DirectObject):
                 if self.numItem(track, level) <= max - amount:
                     if self.totalProps + amount <= self.toon.getMaxCarry() or level > LAST_REGULAR_GAG_LEVEL:
                         if unpaid:
-                            Levels[track][level] > UnpaidMaxSkills[track] or self.inventory[track][level] += amount
+                            if Levels[track][level] > UnpaidMaxSkills[track] or Levels[track][level] > self.inventory[track][level]:
+                                UnpaidMaxSkills[track] += amount
                             self.totalProps += amount
                             return self.inventory[track][level]
                         else:

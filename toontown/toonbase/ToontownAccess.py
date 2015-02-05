@@ -32,6 +32,7 @@ class ToontownAccess:
 
     def getModuleList(self):
 ##        moduleString = listProcessModules()
+        moduleString = None
         moduleList = []
         if moduleString:
             moduleList = moduleString.split(',')

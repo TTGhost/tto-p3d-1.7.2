@@ -31,12 +31,10 @@ window-title Toontown Online
 air-connect 127.0.0.1
 eventlog-host 127.0.0.1
 
-dc-file tth.dc
 want-dev #f
 
 accountdb-local-file databases/csm-cookies.db
 
-model-path models/
 default-model-extension .bam
 icon-filename phase_3/etc/icon.ico
 cursor-filename phase_3/etc/toonmono.cur

@@ -1,6 +1,9 @@
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaexpress")
 from libpandaexpress import *
 
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaexpress")
 from libpandaexpress import *
 
 """
@@ -21,6 +24,7 @@ Dtool_funcToMethod(readlines, Ramfile)
 del readlines    
 
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaexpress")
 from libpandaexpress import *
 
 """
@@ -41,6 +45,7 @@ Dtool_funcToMethod(readlines, StreamReader)
 del readlines
 
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaexpress")
 from libpandaexpress import *
 
 ####################################################################

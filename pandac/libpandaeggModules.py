@@ -1,7 +1,11 @@
+from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaegg")
 from libpandaegg import *
 
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaegg")
 from libpandaegg import *
+
 ####################################################################
 #Dtool_funcToMethod(func, class)        
 #del func
@@ -17,7 +21,9 @@ Dtool_funcToMethod(getVertices, EggPrimitive)
 del getVertices
 
 from extension_native_helpers import *
+Dtool_PreloadDLL("libpandaegg")
 from libpandaegg import *
+
 ####################################################################
 #Dtool_funcToMethod(func, class)        
 #del func

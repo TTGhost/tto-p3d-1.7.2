@@ -126,9 +126,9 @@ class OptionsTabPage(DirectFrame):
     DisplaySettingsDelay = 60
     ChangeDisplaySettings = base.config.GetBool('change-display-settings', 1)
     ChangeDisplayAPI = base.config.GetBool('change-display-api', 0)
-    DisplaySettingsApiMap = {'OpenGL': Settings.GL,
-     'DirectX7': Settings.DX7,
-     'DirectX8': Settings.DX8}
+##    DisplaySettingsApiMap = {'OpenGL': Settings.GL,
+##     'DirectX7': Settings.DX7,
+##     'DirectX8': Settings.DX8}
 
     def __init__(self, parent = aspect2d):
         self.parent = parent

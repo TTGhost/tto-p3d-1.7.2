@@ -50,9 +50,9 @@ CashbotStageMiddleRoomIDs = (1,)
 CashbotStageFinalRoomIDs = (2,)
 CashbotStageConnectorRooms = ('phase_11/models/lawbotHQ/LB_connector_7cubeL2', 'phase_11/models/lawbotHQ/LB_connector_7cubeLR')
 CashbotStageSpecModules = {}
-if not isClient():
-    print 'EXECWARNING StageRoomSpecs: %s' % CashbotStageRoomName2RoomId
-    printStack()
+##if not isClient():
+##    print 'EXECWARNING StageRoomSpecs: %s' % CashbotStageRoomName2RoomId
+##    printStack()
 for roomName, roomId in CashbotStageRoomName2RoomId.items():
     exec 'from toontown.coghq import %s' % roomName
     CashbotStageSpecModules[roomId] = eval(roomName)
@@ -108,6 +108,3 @@ for roomName, roomId in CashbotStageRoomName2RoomId.items():
 middleRoomId2numBattles = {}
 for roomId in CashbotStageMiddleRoomIDs:
     middleRoomId2numBattles[roomId] = roomId2numBattles[roomId]
-# okay decompyling C:\Users\Maverick\Documents\Visual Studio 2010\Projects\Unfreezer\py2\toontown\coghq\StageRoomSpecs.pyc 
-# decompiled 1 files: 1 okay, 0 failed, 0 verify failed
-# 2013.08.22 22:19:26 Pacific Daylight Time

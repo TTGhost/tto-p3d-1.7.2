@@ -9,9 +9,12 @@ Exported classes:
 
     DynLoadSuffixImporter
 """
+from warnings import warnpy3k
+warnpy3k("the imputil module has been removed in Python 3.0", stacklevel=2)
+del warnpy3k
 
 # note: avoid importing non-builtin modules
-import imp                      ### not available in JPython?
+import imp                      ### not available in Jython?
 import sys
 import __builtin__
 
@@ -22,7 +25,7 @@ import marshal
 __all__ = ["ImportManager","Importer","BuiltinImporter"]
 
 _StringType = type('')
-_ModuleType = type(sys)         ### doesn't work in JPython...
+_ModuleType = type(sys)         ### doesn't work in Jython...
 
 class ImportManager:
     "Manage the import process."
@@ -131,9 +134,12 @@ class ImportManager:
         if importer:
             return importer._finish_import(top_module, parts[1:], fromlist)
 
-        # Grrr, some people "import os.path"
+        # Grrr, some people "import os.path" or do "from os.path import ..."
         if len(parts) == 2 and hasattr(top_module, parts[1]):
-            return top_module
+            if fromlist:
+                return getattr(top_module, parts[1])
+            else:
+                return top_module
 
         # If the importer does not exist, then we have to bail. A missing
         # importer means that something else imported the module, and we have
@@ -549,6 +555,10 @@ class _FilesystemImporter(Importer):
         # This method is only used when we look for a module within a package.
         assert parent
 
+        for submodule_path in parent.__path__:
+            code = self._import_pathname(_os_path_join(submodule_path, modname), fqname)
+            if code is not None:
+                return code
         return self._import_pathname(_os_path_join(parent.__pkgdir__, modname),
                                      fqname)
 
@@ -629,8 +639,8 @@ def _test_revamp():
 # TODO
 #
 # from Finn Bock:
-#   type(sys) is not a module in JPython. what to use instead?
-#   imp.C_EXTENSION is not in JPython. same for get_suffixes and new_module
+#   type(sys) is not a module in Jython. what to use instead?
+#   imp.C_EXTENSION is not in Jython. same for get_suffixes and new_module
 #
 #   given foo.py of:
 #      import sys

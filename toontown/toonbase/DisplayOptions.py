@@ -5,7 +5,8 @@ import string
 import os
 import sys
 import datetime
-from pandac.PandaModules import loadPrcFileData, Settings, WindowProperties
+from pandac.PandaModules import loadPrcFileData, WindowProperties
+from libotp import Settings
 from otp.otpgui import OTPDialog
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPRender
@@ -24,53 +25,56 @@ class DisplayOptions():
         self.loadFromSettings()
 
     def loadFromSettings(self):
-        Settings.readSettings()
-        mode = not Settings.getWindowedMode()
-        music = Settings.getMusic()
-        sfx = Settings.getSfx()
-        toonChatSounds = Settings.getToonChatSounds()
-        musicVol = Settings.getMusicVolume()
-        sfxVol = Settings.getSfxVolume()
-        resList = [(640, 480),
-         (800, 600),
-         (1024, 768),
-         (1280, 1024),
-         (1600, 1200)]
-        res = resList[Settings.getResolution()]
-        embed = Settings.getEmbeddedMode()
-        self.notify.debug('before prc settings embedded mode=%s' % str(embed))
-        self.notify.debug('before prc settings full screen mode=%s' % str(mode))
-        if mode == None:
-            mode = 1
-        if res == None:
-            res = (800, 600)
-        if not Settings.doSavedSettingsExist():
-            self.notify.info('loadFromSettings: No settings; isDefaultEmbedded=%s' % self.isDefaultEmbedded())
-            embed = self.isDefaultEmbedded()
-        if embed and not self.isEmbeddedPossible():
-            self.notify.warning('Embedded mode is not possible.')
-            embed = False
-        if not mode and not self.isWindowedPossible():
-            self.notify.warning('Windowed mode is not possible.')
-            mode = True
-        loadPrcFileData('toonBase Settings Window Res', 'win-size %s %s' % (res[0], res[1]))
-        self.notify.debug('settings resolution = %s' % str(res))
-        loadPrcFileData('toonBase Settings Window FullScreen', 'fullscreen %s' % mode)
-        self.notify.debug('settings full screen mode=%s' % str(mode))
-        loadPrcFileData('toonBase Settings Music Active', 'audio-music-active %s' % music)
-        loadPrcFileData('toonBase Settings Sound Active', 'audio-sfx-active %s' % sfx)
-        loadPrcFileData('toonBase Settings Music Volume', 'audio-master-music-volume %s' % musicVol)
-        loadPrcFileData('toonBase Settings Sfx Volume', 'audio-master-sfx-volume %s' % sfxVol)
-        loadPrcFileData('toonBase Settings Toon Chat Sounds', 'toon-chat-sounds %s' % toonChatSounds)
-        self.settingsFullScreen = mode
-        self.settingsWidth = res[0]
-        self.settingsHeight = res[1]
-        self.settingsEmbedded = embed
-        self.notify.debug('settings embedded mode=%s' % str(self.settingsEmbedded))
-        self.notify.info('settingsFullScreen = %s, embedded = %s width=%d height=%d' % (self.settingsFullScreen,
-         self.settingsEmbedded,
-         self.settingsWidth,
-         self.settingsHeight))
+        try:
+            Settings.readSettings()
+            mode = not Settings.getWindowedMode()
+            music = Settings.getMusic()
+            sfx = Settings.getSfx()
+            toonChatSounds = Settings.getToonChatSounds()
+            musicVol = Settings.getMusicVolume()
+            sfxVol = Settings.getSfxVolume()
+            resList = [(640, 480),
+             (800, 600),
+             (1024, 768),
+             (1280, 1024),
+             (1600, 1200)]
+            res = resList[Settings.getResolution()]
+            embed = Settings.getEmbeddedMode()
+            self.notify.debug('before prc settings embedded mode=%s' % str(embed))
+            self.notify.debug('before prc settings full screen mode=%s' % str(mode))
+            if mode == None:
+                mode = 1
+            if res == None:
+                res = (800, 600)
+            if not Settings.doSavedSettingsExist():
+                self.notify.info('loadFromSettings: No settings; isDefaultEmbedded=%s' % self.isDefaultEmbedded())
+                embed = self.isDefaultEmbedded()
+            if embed and not self.isEmbeddedPossible():
+                self.notify.warning('Embedded mode is not possible.')
+                embed = False
+            if not mode and not self.isWindowedPossible():
+                self.notify.warning('Windowed mode is not possible.')
+                mode = True
+            loadPrcFileData('toonBase Settings Window Res', 'win-size %s %s' % (res[0], res[1]))
+            self.notify.debug('settings resolution = %s' % str(res))
+            loadPrcFileData('toonBase Settings Window FullScreen', 'fullscreen %s' % mode)
+            self.notify.debug('settings full screen mode=%s' % str(mode))
+            loadPrcFileData('toonBase Settings Music Active', 'audio-music-active %s' % music)
+            loadPrcFileData('toonBase Settings Sound Active', 'audio-sfx-active %s' % sfx)
+            loadPrcFileData('toonBase Settings Music Volume', 'audio-master-music-volume %s' % musicVol)
+            loadPrcFileData('toonBase Settings Sfx Volume', 'audio-master-sfx-volume %s' % sfxVol)
+            loadPrcFileData('toonBase Settings Toon Chat Sounds', 'toon-chat-sounds %s' % toonChatSounds)
+            self.settingsFullScreen = mode
+            self.settingsWidth = res[0]
+            self.settingsHeight = res[1]
+            self.settingsEmbedded = embed
+            self.notify.debug('settings embedded mode=%s' % str(self.settingsEmbedded))
+            self.notify.info('settingsFullScreen = %s, embedded = %s width=%d height=%d' % (self.settingsFullScreen,
+             self.settingsEmbedded,
+             self.settingsWidth,
+             self.settingsHeight))
+        except:
+            pass
         return
 
     def restrictToEmbedded(self, restrict, change_display = True):

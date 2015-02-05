@@ -1,24 +1,25 @@
-1145553979
+1302895403
 2 2
 6 libnet 4 9ImM 5 panda 
-123
-126 5 clear 4 250 34 PointerToBase< Connection >::clear 0 1 9 0
+153
+160 5 clear 4 314 34 PointerToBase< Connection >::clear 0 1 9 0
 55
 inline void ::PointerToBase< Connection >::clear(void);
 
-127 6 output 4 250 35 PointerToBase< Connection >::output 0 1 10 0
+161 6 output 4 314 35 PointerToBase< Connection >::output 0 1 10 0
 63
 void ::PointerToBase< Connection >::output(ostream &out) const;
 
-128 9 PointerTo 4 249 34 PointerTo< Connection >::PointerTo 0 3 1 2 3 0
-93
+162 9 PointerTo 4 313 34 PointerTo< Connection >::PointerTo 0 3 1 2 3 0
+175
 inline ::PointerTo< Connection >::PointerTo(Connection *ptr = ((Connection *)((void *)(0))));
+inline ::PointerTo< Connection >::PointerTo(PointerTo< Connection > const &copy);
 
-129 10 ~PointerTo 4 249 35 PointerTo< Connection >::~PointerTo 0 0 0
+163 10 ~PointerTo 4 313 35 PointerTo< Connection >::~PointerTo 0 0 0
 51
 inline ::PointerTo< Connection >::~PointerTo(void);
 
-130 1 p 4 249 26 PointerTo< Connection >::p 0 1 4 663
+164 1 p 4 313 26 PointerTo< Connection >::p 0 1 4 663
 // When downcasting to a derived class from a PointerTo<BaseClass>,
 // C++ would normally require you to cast twice: once to an actual
 // BaseClass pointer, and then again to your desired pointer.  You
@@ -33,11 +34,12 @@ inline ::PointerTo< Connection >::~PointerTo(void);
 60
 inline Connection *::PointerTo< Connection >::p(void) const;
 
-131 10 operator = 4 249 35 PointerTo< Connection >::operator = 0 2 5 6 0
-87
+165 10 operator = 4 313 35 PointerTo< Connection >::operator = 0 2 5 6 0
+195
 inline PointerTo< Connection > &::PointerTo< Connection >::operator =(Connection *ptr);
+inline PointerTo< Connection > &::PointerTo< Connection >::operator =(PointerTo< Connection > const &copy);
 
-132 7 is_null 4 249 32 PointerTo< Connection >::is_null 0 1 7 259
+166 7 is_null 4 313 32 PointerTo< Connection >::is_null 0 1 7 259
 // These functions normally wouldn't need to be redefined here, but
 // we do so anyway just to help out interrogate (which doesn't seem
 // to want to automatically export the PointerToBase class).  When
@@ -45,7 +47,7 @@ inline PointerTo< Connection > &::PointerTo< Connection >::operator =(Connection
 59
 inline bool ::PointerTo< Connection >::is_null(void) const;
 
-133 5 clear 4 249 30 PointerTo< Connection >::clear 0 1 8 259
+167 5 clear 4 313 30 PointerTo< Connection >::clear 0 1 8 259
 // These functions normally wouldn't need to be redefined here, but
 // we do so anyway just to help out interrogate (which doesn't seem
 // to want to automatically export the PointerToBase class).  When
@@ -53,7 +55,7 @@ inline bool ::PointerTo< Connection >::is_null(void) const;
 51
 inline void ::PointerTo< Connection >::clear(void);
 
-134 10 NetAddress 4 252 22 NetAddress::NetAddress 0 2 11 12 728
+168 10 NetAddress 4 316 22 NetAddress::NetAddress 0 2 11 12 733
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::Constructor
 //       Access: Public
@@ -63,15 +65,16 @@ inline void ::PointerTo< Connection >::clear(void);
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::Constructor
 //       Access: Public
-//  Description: Constructs an address from a given PRNetAddr.
+//  Description: Constructs an address from a given Socket_Address.
 //               Normally, this constructor should not be used by user
 //               code; instead, create a default NetAddress and use
 //               one of the set_*() functions to set up an address.
 ////////////////////////////////////////////////////////////////////
-29
+81
 NetAddress::NetAddress(void);
+NetAddress::NetAddress(Socket_Address const &addr);
 
-135 7 set_any 4 252 19 NetAddress::set_any 0 1 13 429
+169 7 set_any 4 316 19 NetAddress::set_any 0 1 13 429
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::set_any
 //       Access: Public
@@ -83,7 +86,7 @@ NetAddress::NetAddress(void);
 35
 bool NetAddress::set_any(int port);
 
-136 13 set_localhost 4 252 25 NetAddress::set_localhost 0 1 14 303
+170 13 set_localhost 4 316 25 NetAddress::set_localhost 0 1 14 303
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::set_localhost
 //       Access: Public
@@ -93,7 +96,7 @@ bool NetAddress::set_any(int port);
 41
 bool NetAddress::set_localhost(int port);
 
-137 8 set_host 4 252 20 NetAddress::set_host 0 1 15 379
+171 8 set_host 4 316 20 NetAddress::set_host 0 1 15 379
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::set_host
 //       Access: Public
@@ -104,7 +107,7 @@ bool NetAddress::set_localhost(int port);
 74
 bool NetAddress::set_host(basic_string< char > const &hostname, int port);
 
-138 5 clear 4 252 17 NetAddress::clear 0 1 16 257
+172 5 clear 4 316 17 NetAddress::clear 0 1 16 257
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::clear
 //       Access: Public
@@ -113,7 +116,7 @@ bool NetAddress::set_host(basic_string< char > const &hostname, int port);
 29
 void NetAddress::clear(void);
 
-139 8 get_port 4 252 20 NetAddress::get_port 0 1 17 270
+173 8 get_port 4 316 20 NetAddress::get_port 0 1 17 270
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::get_port
 //       Access: Public
@@ -122,7 +125,7 @@ void NetAddress::clear(void);
 37
 int NetAddress::get_port(void) const;
 
-140 8 set_port 4 252 20 NetAddress::set_port 0 1 18 296
+174 8 set_port 4 316 20 NetAddress::set_port 0 1 18 296
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::set_port
 //       Access: Public
@@ -132,7 +135,7 @@ int NetAddress::get_port(void) const;
 36
 void NetAddress::set_port(int port);
 
-141 13 get_ip_string 4 252 25 NetAddress::get_ip_string 0 1 19 314
+175 13 get_ip_string 4 316 25 NetAddress::get_ip_string 0 1 19 314
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::get_ip_string
 //       Access: Public
@@ -142,7 +145,7 @@ void NetAddress::set_port(int port);
 59
 basic_string< char > NetAddress::get_ip_string(void) const;
 
-142 6 get_ip 4 252 18 NetAddress::get_ip 0 1 20 325
+176 6 get_ip 4 316 18 NetAddress::get_ip 0 1 20 325
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::get_ip
 //       Access: Public
@@ -152,7 +155,7 @@ basic_string< char > NetAddress::get_ip_string(void) const;
 44
 unsigned int NetAddress::get_ip(void) const;
 
-143 16 get_ip_component 4 252 28 NetAddress::get_ip_component 0 1 21 471
+177 16 get_ip_component 4 316 28 NetAddress::get_ip_component 0 1 21 471
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::get_ip_component
 //       Access: Public
@@ -164,16 +167,16 @@ unsigned int NetAddress::get_ip(void) const;
 56
 unsigned char NetAddress::get_ip_component(int n) const;
 
-144 8 get_addr 4 252 20 NetAddress::get_addr 0 1 22 256
+178 8 get_addr 4 316 20 NetAddress::get_addr 0 1 22 261
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::get_addr
 //       Access: Public
-//  Description: Returns the PRNetAddr for this address.
+//  Description: Returns the Socket_Address for this address.
 ////////////////////////////////////////////////////////////////////
-44
-PRNetAddr *NetAddress::get_addr(void) const;
+55
+Socket_Address const &NetAddress::get_addr(void) const;
 
-145 6 output 4 252 18 NetAddress::output 0 1 23 214
+179 6 output 4 316 18 NetAddress::output 0 1 23 214
 ////////////////////////////////////////////////////////////////////
 //     Function: NetAddress::output
 //       Access: Public
@@ -182,11 +185,11 @@ PRNetAddr *NetAddress::get_addr(void) const;
 44
 void NetAddress::output(ostream &out) const;
 
-146 11 ~NetAddress 4 252 23 NetAddress::~NetAddress 0 0 0
+180 11 ~NetAddress 4 316 23 NetAddress::~NetAddress 0 0 0
 30
 NetAddress::~NetAddress(void);
 
-147 10 Connection 4 253 22 Connection::Connection 0 1 24 434
+181 10 Connection 4 317 22 Connection::Connection 0 1 24 434
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::Constructor
 //       Access: Published
@@ -195,19 +198,10 @@ NetAddress::~NetAddress(void);
 //               the methods in ConnectionManager to make a new
 //               connection.
 ////////////////////////////////////////////////////////////////////
-71
-Connection::Connection(ConnectionManager *manager, PRFileDesc *socket);
+70
+Connection::Connection(ConnectionManager *manager, Socket_IP *socket);
 
-148 11 ~Connection 4 253 23 Connection::~Connection 0 0 242
-////////////////////////////////////////////////////////////////////
-//     Function: Connection::Destructor
-//       Access: Published
-//  Description: Closes a connection.
-////////////////////////////////////////////////////////////////////
-30
-Connection::~Connection(void);
-
-149 11 get_address 4 253 23 Connection::get_address 0 1 25 312
+182 11 get_address 4 317 23 Connection::get_address 0 1 25 312
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::get_address
 //       Access: Published
@@ -217,7 +211,7 @@ Connection::~Connection(void);
 47
 NetAddress Connection::get_address(void) const;
 
-150 11 get_manager 4 253 23 Connection::get_manager 0 1 26 318
+183 11 get_manager 4 317 23 Connection::get_manager 0 1 26 318
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::get_manager
 //       Access: Published
@@ -227,17 +221,17 @@ NetAddress Connection::get_address(void) const;
 55
 ConnectionManager *Connection::get_manager(void) const;
 
-151 10 get_socket 4 253 22 Connection::get_socket 0 1 27 301
+184 10 get_socket 4 317 22 Connection::get_socket 0 1 27 298
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::get_socket
 //       Access: Published
-//  Description: Returns the internal NSPR pointer that defines the
+//  Description: Returns the internal Socket_IP that defines the
 //               connection.
 ////////////////////////////////////////////////////////////////////
-47
-PRFileDesc *Connection::get_socket(void) const;
+46
+Socket_IP *Connection::get_socket(void) const;
 
-152 15 set_collect_tcp 4 253 27 Connection::set_collect_tcp 0 1 28 1146
+185 15 set_collect_tcp 4 317 27 Connection::set_collect_tcp 0 1 28 1146
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_collect_tcp
 //       Access: Published
@@ -262,7 +256,7 @@ PRFileDesc *Connection::get_socket(void) const;
 51
 void Connection::set_collect_tcp(bool collect_tcp);
 
-153 15 get_collect_tcp 4 253 27 Connection::get_collect_tcp 0 1 29 317
+186 15 get_collect_tcp 4 317 27 Connection::get_collect_tcp 0 1 29 317
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::get_collect_tcp
 //       Access: Published
@@ -272,7 +266,7 @@ void Connection::set_collect_tcp(bool collect_tcp);
 45
 bool Connection::get_collect_tcp(void) const;
 
-154 24 set_collect_tcp_interval 4 253 36 Connection::set_collect_tcp_interval 0 1 30 518
+187 24 set_collect_tcp_interval 4 317 36 Connection::set_collect_tcp_interval 0 1 30 518
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_collect_tcp_interval
 //       Access: Published
@@ -285,7 +279,7 @@ bool Connection::get_collect_tcp(void) const;
 59
 void Connection::set_collect_tcp_interval(double interval);
 
-155 24 get_collect_tcp_interval 4 253 36 Connection::get_collect_tcp_interval 0 1 31 516
+188 24 get_collect_tcp_interval 4 317 36 Connection::get_collect_tcp_interval 0 1 31 516
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::get_collect_tcp_interval
 //       Access: Published
@@ -298,7 +292,7 @@ void Connection::set_collect_tcp_interval(double interval);
 56
 double Connection::get_collect_tcp_interval(void) const;
 
-156 14 consider_flush 4 253 26 Connection::consider_flush 0 1 32 400
+189 14 consider_flush 4 317 26 Connection::consider_flush 0 1 32 400
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::consider_flush
 //       Access: Published
@@ -309,7 +303,7 @@ double Connection::get_collect_tcp_interval(void) const;
 38
 bool Connection::consider_flush(void);
 
-157 5 flush 4 253 17 Connection::flush 0 1 33 367
+190 5 flush 4 317 17 Connection::flush 0 1 33 367
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::flush
 //       Access: Published
@@ -320,19 +314,9 @@ bool Connection::consider_flush(void);
 29
 bool Connection::flush(void);
 
-158 12 set_nonblock 4 253 24 Connection::set_nonblock 0 1 34 293
+191 10 set_linger 4 317 22 Connection::set_linger 0 1 34 785
 // Socket options.
-
-////////////////////////////////////////////////////////////////////
-//     Function: Connection::set_nonblock
-//       Access: Published
-//  Description: Sets whether nonblocking I/O should be in effect.
-////////////////////////////////////////////////////////////////////
-41
-void Connection::set_nonblock(bool flag);
-
-159 10 set_linger 4 253 22 Connection::set_linger 0 1 35 751
-// Socket options.
+//  void set_nonblock(bool flag);
 
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_linger
@@ -349,7 +333,10 @@ void Connection::set_nonblock(bool flag);
 52
 void Connection::set_linger(bool flag, double time);
 
-160 14 set_reuse_addr 4 253 26 Connection::set_reuse_addr 0 1 36 270
+192 14 set_reuse_addr 4 317 26 Connection::set_reuse_addr 0 1 35 324
+// Socket options.
+//  void set_nonblock(bool flag);
+
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_reuse_addr
 //       Access: Published
@@ -358,7 +345,7 @@ void Connection::set_linger(bool flag, double time);
 43
 void Connection::set_reuse_addr(bool flag);
 
-161 14 set_keep_alive 4 253 26 Connection::set_keep_alive 0 1 37 322
+193 14 set_keep_alive 4 317 26 Connection::set_keep_alive 0 1 36 322
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_keep_alive
 //       Access: Published
@@ -368,7 +355,7 @@ void Connection::set_reuse_addr(bool flag);
 43
 void Connection::set_keep_alive(bool flag);
 
-162 20 set_recv_buffer_size 4 253 32 Connection::set_recv_buffer_size 0 1 38 278
+194 20 set_recv_buffer_size 4 317 32 Connection::set_recv_buffer_size 0 1 37 278
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_recv_buffer_size
 //       Access: Published
@@ -377,7 +364,7 @@ void Connection::set_keep_alive(bool flag);
 48
 void Connection::set_recv_buffer_size(int size);
 
-163 20 set_send_buffer_size 4 253 32 Connection::set_send_buffer_size 0 1 39 275
+195 20 set_send_buffer_size 4 317 32 Connection::set_send_buffer_size 0 1 38 275
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_send_buffer_size
 //       Access: Published
@@ -386,7 +373,7 @@ void Connection::set_recv_buffer_size(int size);
 48
 void Connection::set_send_buffer_size(int size);
 
-164 19 set_ip_time_to_live 4 253 31 Connection::set_ip_time_to_live 0 1 40 252
+196 19 set_ip_time_to_live 4 317 31 Connection::set_ip_time_to_live 0 1 39 252
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_ip_time_to_live
 //       Access: Published
@@ -395,7 +382,7 @@ void Connection::set_send_buffer_size(int size);
 46
 void Connection::set_ip_time_to_live(int ttl);
 
-165 22 set_ip_type_of_service 4 253 34 Connection::set_ip_type_of_service 0 1 41 273
+197 22 set_ip_type_of_service 4 317 34 Connection::set_ip_type_of_service 0 1 40 273
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_ip_type_of_service
 //       Access: Published
@@ -404,7 +391,7 @@ void Connection::set_ip_time_to_live(int ttl);
 49
 void Connection::set_ip_type_of_service(int tos);
 
-166 12 set_no_delay 4 253 24 Connection::set_no_delay 0 1 42 343
+198 12 set_no_delay 4 317 24 Connection::set_no_delay 0 1 41 343
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_no_delay
 //       Access: Published
@@ -414,7 +401,7 @@ void Connection::set_ip_type_of_service(int tos);
 41
 void Connection::set_no_delay(bool flag);
 
-167 15 set_max_segment 4 253 27 Connection::set_max_segment 0 1 43 257
+199 15 set_max_segment 4 317 27 Connection::set_max_segment 0 1 42 257
 ////////////////////////////////////////////////////////////////////
 //     Function: Connection::set_max_segment
 //       Access: Published
@@ -423,19 +410,19 @@ void Connection::set_no_delay(bool flag);
 43
 void Connection::set_max_segment(int size);
 
-168 17 ~ConnectionReader 4 255 35 ConnectionReader::~ConnectionReader 0 0 233
+200 17 ~ConnectionReader 4 319 35 ConnectionReader::~ConnectionReader 0 0 236
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::Destructor
-//       Access: Public, Virtual
+//       Access: Published, Virtual
 //  Description:
 ////////////////////////////////////////////////////////////////////
 50
 virtual ConnectionReader::~ConnectionReader(void);
 
-169 14 add_connection 4 255 32 ConnectionReader::add_connection 0 1 44 872
+201 14 add_connection 4 319 32 ConnectionReader::add_connection 0 1 43 875
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::add_connection
-//       Access: Public
+//       Access: Published
 //  Description: Adds a new socket to the list of sockets the
 //               ConnectionReader will monitor.  A datagram that comes
 //               in on any of the monitored sockets will be reported.
@@ -450,13 +437,13 @@ virtual ConnectionReader::~ConnectionReader(void);
 //               add_connection() is thread-safe, and may be called at
 //               will by any thread.
 ////////////////////////////////////////////////////////////////////
-81
-bool ConnectionReader::add_connection(PointerTo< Connection > const &connection);
+62
+bool ConnectionReader::add_connection(Connection *connection);
 
-170 17 remove_connection 4 255 35 ConnectionReader::remove_connection 0 1 45 558
+202 17 remove_connection 4 319 35 ConnectionReader::remove_connection 0 1 44 561
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::remove_connection
-//       Access: Public
+//       Access: Published
 //  Description: Removes a socket from the list of sockets being
 //               monitored.  Returns true if the socket was correctly
 //               removed, false if it was not on the list in the first
@@ -465,13 +452,13 @@ bool ConnectionReader::add_connection(PointerTo< Connection > const &connection)
 //               remove_connection() is thread-safe, and may be called
 //               at will by any thread.
 ////////////////////////////////////////////////////////////////////
-84
-bool ConnectionReader::remove_connection(PointerTo< Connection > const &connection);
+65
+bool ConnectionReader::remove_connection(Connection *connection);
 
-171 16 is_connection_ok 4 255 34 ConnectionReader::is_connection_ok 0 1 46 655
+203 16 is_connection_ok 4 319 34 ConnectionReader::is_connection_ok 0 1 45 658
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::is_connection_ok
-//       Access: Public
+//       Access: Published
 //  Description: Returns true if the indicated connection has been
 //               added to the ConnectionReader and is being monitored
 //               properly, false if it is not known, or if there was
@@ -480,13 +467,13 @@ bool ConnectionReader::remove_connection(PointerTo< Connection > const &connecti
 //               ConnectionManager would have been informed and closed
 //               the connection.)
 ////////////////////////////////////////////////////////////////////
-83
-bool ConnectionReader::is_connection_ok(PointerTo< Connection > const &connection);
+64
+bool ConnectionReader::is_connection_ok(Connection *connection);
 
-172 4 poll 4 255 22 ConnectionReader::poll 0 1 47 625
+204 4 poll 4 319 22 ConnectionReader::poll 0 1 46 628
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::poll
-//       Access: Public
+//       Access: Published
 //  Description: Explicitly polls the available sockets to see if any
 //               of them have any noise.  This function does nothing
 //               unless this is a polling-type ConnectionReader,
@@ -499,40 +486,53 @@ bool ConnectionReader::is_connection_ok(PointerTo< Connection > const &connectio
 34
 void ConnectionReader::poll(void);
 
-173 11 get_manager 4 255 29 ConnectionReader::get_manager 0 1 48 327
+205 11 get_manager 4 319 29 ConnectionReader::get_manager 0 1 47 330
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::get_manager
-//       Access: Public
+//       Access: Published
 //  Description: Returns a pointer to the ConnectionManager object
 //               that serves this ConnectionReader.
 ////////////////////////////////////////////////////////////////////
 61
 ConnectionManager *ConnectionReader::get_manager(void) const;
 
-174 10 is_polling 4 255 28 ConnectionReader::is_polling 0 1 49 313
+206 10 is_polling 4 319 28 ConnectionReader::is_polling 0 1 48 808
+// Filename: connectionReader.I
+// Created by:  drose (15Feb09)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::is_polling
-//       Access: Public
+//       Access: Published
 //  Description: Returns true if the reader is a polling reader,
 //               i.e. it has no threads.
 ////////////////////////////////////////////////////////////////////
-46
-bool ConnectionReader::is_polling(void) const;
+53
+inline bool ConnectionReader::is_polling(void) const;
 
-175 15 get_num_threads 4 255 33 ConnectionReader::get_num_threads 0 1 50 320
+207 15 get_num_threads 4 319 33 ConnectionReader::get_num_threads 0 1 49 323
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::get_num_threads
-//       Access: Public
+//       Access: Published
 //  Description: Returns the number of threads the ConnectionReader
 //               has been created with.
 ////////////////////////////////////////////////////////////////////
 50
 int ConnectionReader::get_num_threads(void) const;
 
-176 12 set_raw_mode 4 255 30 ConnectionReader::set_raw_mode 0 1 51 603
+208 12 set_raw_mode 4 319 30 ConnectionReader::set_raw_mode 0 1 50 606
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::set_raw_mode
-//       Access: Public
+//       Access: Published
 //  Description: Sets the ConnectionReader into raw mode (or turns off
 //               raw mode).  In raw mode, datagram headers are not
 //               expected; instead, all the data available on the pipe
@@ -544,20 +544,20 @@ int ConnectionReader::get_num_threads(void) const;
 47
 void ConnectionReader::set_raw_mode(bool mode);
 
-177 12 get_raw_mode 4 255 30 ConnectionReader::get_raw_mode 0 1 52 313
+209 12 get_raw_mode 4 319 30 ConnectionReader::get_raw_mode 0 1 51 316
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::get_raw_mode
-//       Access: Public
+//       Access: Published
 //  Description: Returns the current setting of the raw mode flag.
 //               See set_raw_mode().
 ////////////////////////////////////////////////////////////////////
 48
 bool ConnectionReader::get_raw_mode(void) const;
 
-178 19 set_tcp_header_size 4 255 37 ConnectionReader::set_tcp_header_size 0 1 53 552
+210 19 set_tcp_header_size 4 319 37 ConnectionReader::set_tcp_header_size 0 1 52 555
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::set_tcp_header_size
-//       Access: Public
+//       Access: Published
 //  Description: Sets the header size of TCP packets.  At the present,
 //               legal values for this are 0, 2, or 4; this specifies
 //               the number of bytes to use encode the datagram length
@@ -567,21 +567,32 @@ bool ConnectionReader::get_raw_mode(void) const;
 64
 void ConnectionReader::set_tcp_header_size(int tcp_header_size);
 
-179 19 get_tcp_header_size 4 255 37 ConnectionReader::get_tcp_header_size 0 1 54 325
+211 19 get_tcp_header_size 4 319 37 ConnectionReader::get_tcp_header_size 0 1 53 328
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionReader::get_tcp_header_size
-//       Access: Public
+//       Access: Published
 //  Description: Returns the current setting of TCP header size.
 //               See set_tcp_header_size().
 ////////////////////////////////////////////////////////////////////
 54
 int ConnectionReader::get_tcp_header_size(void) const;
 
-180 19 ~ConnectionListener 4 256 39 ConnectionListener::~ConnectionListener 0 0 0
+212 8 shutdown 4 319 26 ConnectionReader::shutdown 0 1 54 392
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::shutdown
+//       Access: Published
+//  Description: Terminates all threads cleanly.  Normally this is
+//               only called by the destructor, but it may be called
+//               explicitly before destruction.
+////////////////////////////////////////////////////////////////////
+38
+void ConnectionReader::shutdown(void);
+
+213 19 ~ConnectionListener 4 320 39 ConnectionListener::~ConnectionListener 0 0 0
 46
 ConnectionListener::~ConnectionListener(void);
 
-181 11 NetDatagram 4 257 24 NetDatagram::NetDatagram 0 3 55 56 57 980
+214 11 NetDatagram 4 321 24 NetDatagram::NetDatagram 0 3 55 56 57 980
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::Constructor
 //       Access: Public
@@ -605,10 +616,13 @@ ConnectionListener::~ConnectionListener(void);
 //       Access: Public
 //  Description:
 ////////////////////////////////////////////////////////////////////
-31
+193
 NetDatagram::NetDatagram(void);
+NetDatagram::NetDatagram(void const *data, unsigned int size);
+NetDatagram::NetDatagram(Datagram const &copy);
+NetDatagram::NetDatagram(NetDatagram const &copy);
 
-182 10 operator = 4 257 23 NetDatagram::operator = 0 2 58 59 468
+215 10 operator = 4 321 23 NetDatagram::operator = 0 2 58 59 468
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::Copy Assignment Operator
 //       Access: Public
@@ -620,10 +634,11 @@ NetDatagram::NetDatagram(void);
 //       Access: Public
 //  Description:
 ////////////////////////////////////////////////////////////////////
-51
+106
 void NetDatagram::operator =(Datagram const &copy);
+void NetDatagram::operator =(NetDatagram const &copy);
 
-183 14 set_connection 4 257 27 NetDatagram::set_connection 0 1 60 302
+216 14 set_connection 4 321 27 NetDatagram::set_connection 0 1 60 302
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::set_connection
 //       Access: Public
@@ -633,7 +648,7 @@ void NetDatagram::operator =(Datagram const &copy);
 76
 void NetDatagram::set_connection(PointerTo< Connection > const &connection);
 
-184 14 get_connection 4 257 27 NetDatagram::get_connection 0 1 61 338
+217 14 get_connection 4 321 27 NetDatagram::get_connection 0 1 61 338
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::set_connection
 //       Access: Public
@@ -643,7 +658,7 @@ void NetDatagram::set_connection(PointerTo< Connection > const &connection);
 64
 PointerTo< Connection > NetDatagram::get_connection(void) const;
 
-185 11 set_address 4 257 24 NetDatagram::set_address 0 1 62 294
+218 11 set_address 4 321 24 NetDatagram::set_address 0 1 62 294
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::set_address
 //       Access: Public
@@ -653,7 +668,7 @@ PointerTo< Connection > NetDatagram::get_connection(void) const;
 57
 void NetDatagram::set_address(NetAddress const &address);
 
-186 11 get_address 4 257 24 NetDatagram::get_address 0 1 63 330
+219 11 get_address 4 321 24 NetDatagram::get_address 0 1 63 330
 ////////////////////////////////////////////////////////////////////
 //     Function: NetDatagram::set_address
 //       Access: Public
@@ -663,15 +678,15 @@ void NetDatagram::set_address(NetAddress const &address);
 55
 NetAddress const &NetDatagram::get_address(void) const;
 
-187 14 get_class_type 4 257 27 NetDatagram::get_class_type 0 1 64 0
+220 14 get_class_type 4 321 27 NetDatagram::get_class_type 0 1 64 0
 52
 static TypeHandle NetDatagram::get_class_type(void);
 
-188 12 ~NetDatagram 4 257 25 NetDatagram::~NetDatagram 0 0 0
+221 12 ~NetDatagram 4 321 25 NetDatagram::~NetDatagram 0 0 0
 32
 NetDatagram::~NetDatagram(void);
 
-189 17 ConnectionManager 4 259 36 ConnectionManager::ConnectionManager 0 1 65 226
+222 17 ConnectionManager 4 323 36 ConnectionManager::ConnectionManager 0 1 65 226
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::Constructor
 //       Access: Public
@@ -680,7 +695,7 @@ NetDatagram::~NetDatagram(void);
 43
 ConnectionManager::ConnectionManager(void);
 
-190 18 ~ConnectionManager 4 259 37 ConnectionManager::~ConnectionManager 0 0 234
+223 18 ~ConnectionManager 4 323 37 ConnectionManager::~ConnectionManager 0 0 234
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::Destructor
 //       Access: Public, Virtual
@@ -689,18 +704,15 @@ ConnectionManager::ConnectionManager(void);
 52
 virtual ConnectionManager::~ConnectionManager(void);
 
-191 19 open_UDP_connection 4 259 38 ConnectionManager::open_UDP_connection 0 2 66 67 857
+224 19 open_UDP_connection 4 323 38 ConnectionManager::open_UDP_connection 0 2 66 67 636
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::open_UDP_connection
 //       Access: Public
 //  Description: Opens a socket for sending and/or receiving UDP
-//               packets.  If the port number is negative, it will not
-//               be bound to a socket; this is generally a pointless
-//               thing to do.  If the port number is zero, a random
-//               socket will be chosen.  Otherwise, the specified
-//               port number is used.  Normally, you don't care what
-//               port a UDP connection is opened on, so you should use
-//               the default value of zero.
+//               packets.  If the port number is greater than zero,
+//               the UDP connection will be opened for listening on
+//               the indicated port; otherwise, it will be useful only
+//               for sending.
 //
 //               Use a ConnectionReader and ConnectionWriter to handle
 //               the actual communication.
@@ -708,7 +720,7 @@ virtual ConnectionManager::~ConnectionManager(void);
 79
 PointerTo< Connection > ConnectionManager::open_UDP_connection(int port = (0));
 
-192 26 open_TCP_server_rendezvous 4 259 45 ConnectionManager::open_TCP_server_rendezvous 0 1 68 624
+225 26 open_TCP_server_rendezvous 4 323 45 ConnectionManager::open_TCP_server_rendezvous 0 3 68 69 70 2568
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::open_TCP_server_rendezvous
 //       Access: Public
@@ -718,13 +730,56 @@ PointerTo< Connection > ConnectionManager::open_UDP_connection(int port = (0));
 //               a ConnectionListener (not to a generic
 //               ConnectionReader).
 //
+//               This variant of this method accepts a single port,
+//               and will listen to that port on all available
+//               interfaces.
+//
 //               backlog is the maximum length of the queue of pending
 //               connections.
 ////////////////////////////////////////////////////////////////////
-93
-PointerTo< Connection > ConnectionManager::open_TCP_server_rendezvous(int port, int backlog);
 
-193 26 open_TCP_client_connection 4 259 45 ConnectionManager::open_TCP_client_connection 0 2 69 70 860
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_server_rendezvous
+//       Access: Public
+//  Description: Creates a socket to be used as a rendezvous socket
+//               for a server to listen for TCP connections.  The
+//               socket returned by this call should only be added to
+//               a ConnectionListener (not to a generic
+//               ConnectionReader).
+//
+//               This variant of this method accepts a "hostname",
+//               which is usually just an IP address in dotted
+//               notation, and a port number.  It will listen on the
+//               interface indicated by the IP address.  If the IP
+//               address is empty string, it will listen on all
+//               interfaces.
+//
+//               backlog is the maximum length of the queue of pending
+//               connections.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_server_rendezvous
+//       Access: Public
+//  Description: Creates a socket to be used as a rendezvous socket
+//               for a server to listen for TCP connections.  The
+//               socket returned by this call should only be added to
+//               a ConnectionListener (not to a generic
+//               ConnectionReader).
+//
+//               This variant of this method accepts a NetAddress,
+//               which allows you to specify a specific interface to
+//               listen to.
+//
+//               backlog is the maximum length of the queue of pending
+//               connections.
+////////////////////////////////////////////////////////////////////
+336
+PointerTo< Connection > ConnectionManager::open_TCP_server_rendezvous(int port, int backlog);
+PointerTo< Connection > ConnectionManager::open_TCP_server_rendezvous(basic_string< char > const &hostname, int port, int backlog);
+PointerTo< Connection > ConnectionManager::open_TCP_server_rendezvous(NetAddress const &address, int backlog);
+
+226 26 open_TCP_client_connection 4 323 45 ConnectionManager::open_TCP_client_connection 0 2 71 72 861
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::open_TCP_client_connection
 //       Access: Public
@@ -738,13 +793,14 @@ PointerTo< Connection > ConnectionManager::open_TCP_server_rendezvous(int port, 
 //     Function: ConnectionManager::open_TCP_client_connection
 //       Access: Public
 //  Description: This is a shorthand version of the function to
-//               directly establish communcations to a named host and
+//               directly establish communications to a named host and
 //               port.
 ////////////////////////////////////////////////////////////////////
-113
+248
 PointerTo< Connection > ConnectionManager::open_TCP_client_connection(NetAddress const &address, int timeout_ms);
+PointerTo< Connection > ConnectionManager::open_TCP_client_connection(basic_string< char > const &hostname, int port, int timeout_ms);
 
-194 16 close_connection 4 259 35 ConnectionManager::close_connection 0 1 71 1090
+227 16 close_connection 4 323 35 ConnectionManager::close_connection 0 1 73 1090
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::close_connection
 //       Access: Public
@@ -767,7 +823,7 @@ PointerTo< Connection > ConnectionManager::open_TCP_client_connection(NetAddress
 84
 bool ConnectionManager::close_connection(PointerTo< Connection > const &connection);
 
-195 13 get_host_name 4 259 32 ConnectionManager::get_host_name 0 1 72 402
+228 13 get_host_name 4 323 32 ConnectionManager::get_host_name 0 1 74 402
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionManager::get_host_name
 //       Access: Public, Static
@@ -778,7 +834,7 @@ bool ConnectionManager::close_connection(PointerTo< Connection > const &connecti
 67
 static basic_string< char > ConnectionManager::get_host_name(void);
 
-196 16 ConnectionWriter 4 260 34 ConnectionWriter::ConnectionWriter 0 1 73 498
+229 16 ConnectionWriter 4 324 34 ConnectionWriter::ConnectionWriter 0 2 75 76 498
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::Constructor
 //       Access: Public
@@ -789,10 +845,10 @@ static basic_string< char > ConnectionManager::get_host_name(void);
 //               immediately instead of queueing for later
 //               transmission by a thread.
 ////////////////////////////////////////////////////////////////////
-80
-ConnectionWriter::ConnectionWriter(ConnectionManager *manager, int num_threads);
+136
+ConnectionWriter::ConnectionWriter(ConnectionManager *manager, int num_threads, basic_string< char > const &thread_name = ((string())));
 
-197 17 ~ConnectionWriter 4 260 35 ConnectionWriter::~ConnectionWriter 0 0 224
+230 17 ~ConnectionWriter 4 324 35 ConnectionWriter::~ConnectionWriter 0 0 224
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::Destructor
 //       Access: Public
@@ -801,7 +857,38 @@ ConnectionWriter::ConnectionWriter(ConnectionManager *manager, int num_threads);
 42
 ConnectionWriter::~ConnectionWriter(void);
 
-198 4 send 4 260 22 ConnectionWriter::send 0 2 74 75 1642
+231 18 set_max_queue_size 4 324 36 ConnectionWriter::set_max_queue_size 0 1 77 460
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::set_max_queue_size
+//       Access: Public
+//  Description: Limits the number of packets that may be pending on
+//               the outbound queue.  This only has an effect when
+//               using threads; if num_threads is 0, then all packets
+//               are sent immediately.
+////////////////////////////////////////////////////////////////////
+56
+void ConnectionWriter::set_max_queue_size(int max_size);
+
+232 18 get_max_queue_size 4 324 36 ConnectionWriter::get_max_queue_size 0 1 78 334
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_max_queue_size
+//       Access: Public
+//  Description: Returns the maximum size the queue is allowed to grow
+//               to.  See set_max_queue_size().
+////////////////////////////////////////////////////////////////////
+53
+int ConnectionWriter::get_max_queue_size(void) const;
+
+233 22 get_current_queue_size 4 324 40 ConnectionWriter::get_current_queue_size 0 1 79 287
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_current_queue_size
+//       Access: Public
+//  Description: Returns the current number of things in the queue.
+////////////////////////////////////////////////////////////////////
+57
+int ConnectionWriter::get_current_queue_size(void) const;
+
+234 4 send 4 324 22 ConnectionWriter::send 0 4 80 81 82 83 2006
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::send
 //       Access: Public
@@ -816,6 +903,10 @@ ConnectionWriter::~ConnectionWriter(void);
 //               only returns false if the send queue is filled; it's
 //               impossible to detect a transmission error at this
 //               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
 ////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////
@@ -832,11 +923,16 @@ ConnectionWriter::~ConnectionWriter(void);
 //               only returns false if the send queue is filled; it's
 //               impossible to detect a transmission error at this
 //               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
 ////////////////////////////////////////////////////////////////////
-97
-bool ConnectionWriter::send(Datagram const &datagram, PointerTo< Connection > const &connection);
+258
+bool ConnectionWriter::send(Datagram const &datagram, PointerTo< Connection > const &connection, bool block = (0));
+bool ConnectionWriter::send(Datagram const &datagram, PointerTo< Connection > const &connection, NetAddress const &address, bool block = (0));
 
-199 16 is_valid_for_udp 4 260 34 ConnectionWriter::is_valid_for_udp 0 1 76 339
+235 16 is_valid_for_udp 4 324 34 ConnectionWriter::is_valid_for_udp 0 1 84 339
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::is_valid_for_udp
 //       Access: Public
@@ -846,7 +942,7 @@ bool ConnectionWriter::send(Datagram const &datagram, PointerTo< Connection > co
 72
 bool ConnectionWriter::is_valid_for_udp(Datagram const &datagram) const;
 
-200 11 get_manager 4 260 29 ConnectionWriter::get_manager 0 1 77 327
+236 11 get_manager 4 324 29 ConnectionWriter::get_manager 0 1 85 327
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::get_manager
 //       Access: Public
@@ -856,7 +952,7 @@ bool ConnectionWriter::is_valid_for_udp(Datagram const &datagram) const;
 61
 ConnectionManager *ConnectionWriter::get_manager(void) const;
 
-201 12 is_immediate 4 260 30 ConnectionWriter::is_immediate 0 1 78 318
+237 12 is_immediate 4 324 30 ConnectionWriter::is_immediate 0 1 86 318
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::is_immediate
 //       Access: Public
@@ -866,7 +962,7 @@ ConnectionManager *ConnectionWriter::get_manager(void) const;
 48
 bool ConnectionWriter::is_immediate(void) const;
 
-202 15 get_num_threads 4 260 33 ConnectionWriter::get_num_threads 0 1 79 320
+238 15 get_num_threads 4 324 33 ConnectionWriter::get_num_threads 0 1 87 320
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::get_num_threads
 //       Access: Public
@@ -876,7 +972,7 @@ bool ConnectionWriter::is_immediate(void) const;
 50
 int ConnectionWriter::get_num_threads(void) const;
 
-203 12 set_raw_mode 4 260 30 ConnectionWriter::set_raw_mode 0 1 80 789
+239 12 set_raw_mode 4 324 30 ConnectionWriter::set_raw_mode 0 1 88 789
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::set_raw_mode
 //       Access: Public
@@ -894,7 +990,7 @@ int ConnectionWriter::get_num_threads(void) const;
 47
 void ConnectionWriter::set_raw_mode(bool mode);
 
-204 12 get_raw_mode 4 260 30 ConnectionWriter::get_raw_mode 0 1 81 313
+240 12 get_raw_mode 4 324 30 ConnectionWriter::get_raw_mode 0 1 89 313
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::get_raw_mode
 //       Access: Public
@@ -904,7 +1000,7 @@ void ConnectionWriter::set_raw_mode(bool mode);
 48
 bool ConnectionWriter::get_raw_mode(void) const;
 
-205 19 set_tcp_header_size 4 260 37 ConnectionWriter::set_tcp_header_size 0 1 82 552
+241 19 set_tcp_header_size 4 324 37 ConnectionWriter::set_tcp_header_size 0 1 90 552
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::set_tcp_header_size
 //       Access: Public
@@ -917,7 +1013,7 @@ bool ConnectionWriter::get_raw_mode(void) const;
 64
 void ConnectionWriter::set_tcp_header_size(int tcp_header_size);
 
-206 19 get_tcp_header_size 4 260 37 ConnectionWriter::get_tcp_header_size 0 1 83 325
+242 19 get_tcp_header_size 4 324 37 ConnectionWriter::get_tcp_header_size 0 1 91 325
 ////////////////////////////////////////////////////////////////////
 //     Function: ConnectionWriter::get_tcp_header_size
 //       Access: Public
@@ -927,47 +1023,270 @@ void ConnectionWriter::set_tcp_header_size(int tcp_header_size);
 54
 int ConnectionWriter::get_tcp_header_size(void) const;
 
-207 28 upcast_to_ConnectionListener 12 261 54 QueuedConnectionListener::upcast_to_ConnectionListener 0 1 88 58
+243 8 shutdown 4 324 26 ConnectionWriter::shutdown 0 1 92 402
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::shutdown
+//       Access: Published
+//  Description: Stops all the threads and cleans them up.  This is
+//               called automatically by the destructor, but it may be
+//               called explicitly before destruction.
+////////////////////////////////////////////////////////////////////
+38
+void ConnectionWriter::shutdown(void);
+
+244 27 upcast_to_DatagramGenerator 12 325 49 DatagramGeneratorNet::upcast_to_DatagramGenerator 0 1 97 53
+upcast from DatagramGeneratorNet to DatagramGenerator
+75
+DatagramGenerator *DatagramGeneratorNet::upcast_to_DatagramGenerator(void);
+
+245 32 downcast_to_DatagramGeneratorNet 12 326 51 DatagramGenerator::downcast_to_DatagramGeneratorNet 0 1 98 55
+downcast from DatagramGenerator to DatagramGeneratorNet
+80
+DatagramGeneratorNet *DatagramGenerator::downcast_to_DatagramGeneratorNet(void);
+
+246 26 upcast_to_ConnectionReader 12 325 48 DatagramGeneratorNet::upcast_to_ConnectionReader 0 1 99 52
+upcast from DatagramGeneratorNet to ConnectionReader
+73
+ConnectionReader *DatagramGeneratorNet::upcast_to_ConnectionReader(void);
+
+247 32 downcast_to_DatagramGeneratorNet 12 319 50 ConnectionReader::downcast_to_DatagramGeneratorNet 0 1 100 54
+downcast from ConnectionReader to DatagramGeneratorNet
+79
+DatagramGeneratorNet *ConnectionReader::downcast_to_DatagramGeneratorNet(void);
+
+248 18 set_max_queue_size 4 327 44 QueuedReturn< Datagram >::set_max_queue_size 0 1 103 0
+66
+void ::QueuedReturn< Datagram >::set_max_queue_size(int max_size);
+
+249 18 get_max_queue_size 4 327 44 QueuedReturn< Datagram >::get_max_queue_size 0 1 104 0
+63
+int ::QueuedReturn< Datagram >::get_max_queue_size(void) const;
+
+250 22 get_current_queue_size 4 327 48 QueuedReturn< Datagram >::get_current_queue_size 0 1 105 0
+67
+int ::QueuedReturn< Datagram >::get_current_queue_size(void) const;
+
+251 17 get_overflow_flag 4 327 43 QueuedReturn< Datagram >::get_overflow_flag 0 1 106 0
+63
+bool ::QueuedReturn< Datagram >::get_overflow_flag(void) const;
+
+252 19 reset_overflow_flag 4 327 45 QueuedReturn< Datagram >::reset_overflow_flag 0 1 107 0
+59
+void ::QueuedReturn< Datagram >::reset_overflow_flag(void);
+
+253 31 upcast_to_QueuedReturn_Datagram 12 325 53 DatagramGeneratorNet::upcast_to_QueuedReturn_Datagram 0 1 101 60
+upcast from DatagramGeneratorNet to QueuedReturn< Datagram >
+86
+QueuedReturn< Datagram > *DatagramGeneratorNet::upcast_to_QueuedReturn_Datagram(void);
+
+254 32 downcast_to_DatagramGeneratorNet 12 327 58 QueuedReturn< Datagram >::downcast_to_DatagramGeneratorNet 0 1 102 62
+downcast from QueuedReturn< Datagram > to DatagramGeneratorNet
+89
+DatagramGeneratorNet *::QueuedReturn< Datagram >::downcast_to_DatagramGeneratorNet(void);
+
+255 20 DatagramGeneratorNet 4 325 42 DatagramGeneratorNet::DatagramGeneratorNet 0 1 93 527
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::Constructor
+//       Access: Published
+//  Description: Creates a new DatagramGeneratorNet with the indicated
+//               number of threads to handle requests.  Normally
+//               num_threads should be either 0 or 1 to guarantee that
+//               datagrams are generated in the same order in which
+//               they were received.
+////////////////////////////////////////////////////////////////////
+88
+DatagramGeneratorNet::DatagramGeneratorNet(ConnectionManager *manager, int num_threads);
+
+256 21 ~DatagramGeneratorNet 4 325 43 DatagramGeneratorNet::~DatagramGeneratorNet 0 0 241
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::Destructor
+//       Access: Published, Virtual
+//  Description: 
+////////////////////////////////////////////////////////////////////
+58
+virtual DatagramGeneratorNet::~DatagramGeneratorNet(void);
+
+257 12 get_datagram 4 325 34 DatagramGeneratorNet::get_datagram 0 1 94 452
+// Inherited from DatagramGenerator
+
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::get_datagram
+//       Access: Published, Virtual
+//  Description: Reads the next datagram from the stream.  Blocks
+//               until a datagram is available.  Returns true on
+//               success, false on stream closed or error.
+////////////////////////////////////////////////////////////////////
+64
+virtual bool DatagramGeneratorNet::get_datagram(Datagram &data);
+
+258 6 is_eof 4 325 28 DatagramGeneratorNet::is_eof 0 1 95 430
+// Inherited from DatagramGenerator
+
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::is_eof
+//       Access: Published, Virtual
+//  Description: Returns true if the stream has been closed normally.
+//               This test may only be made after a call to
+//               get_datagram() has failed.
+////////////////////////////////////////////////////////////////////
+48
+virtual bool DatagramGeneratorNet::is_eof(void);
+
+259 8 is_error 4 325 30 DatagramGeneratorNet::is_error 0 1 96 289
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::is_error
+//       Access: Published, Virtual
+//  Description: Returns true if the stream has an error condition.
+////////////////////////////////////////////////////////////////////
+50
+virtual bool DatagramGeneratorNet::is_error(void);
+
+260 22 upcast_to_DatagramSink 12 328 39 DatagramSinkNet::upcast_to_DatagramSink 0 1 114 43
+upcast from DatagramSinkNet to DatagramSink
+60
+DatagramSink *DatagramSinkNet::upcast_to_DatagramSink(void);
+
+261 27 downcast_to_DatagramSinkNet 12 329 41 DatagramSink::downcast_to_DatagramSinkNet 0 1 115 45
+downcast from DatagramSink to DatagramSinkNet
+65
+DatagramSinkNet *DatagramSink::downcast_to_DatagramSinkNet(void);
+
+262 26 upcast_to_ConnectionWriter 12 328 43 DatagramSinkNet::upcast_to_ConnectionWriter 0 1 116 47
+upcast from DatagramSinkNet to ConnectionWriter
+68
+ConnectionWriter *DatagramSinkNet::upcast_to_ConnectionWriter(void);
+
+263 27 downcast_to_DatagramSinkNet 12 324 45 ConnectionWriter::downcast_to_DatagramSinkNet 0 1 117 49
+downcast from ConnectionWriter to DatagramSinkNet
+69
+DatagramSinkNet *ConnectionWriter::downcast_to_DatagramSinkNet(void);
+
+264 15 DatagramSinkNet 4 328 32 DatagramSinkNet::DatagramSinkNet 0 1 108 512
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::Constructor
+//       Access: Published
+//  Description: Creates a new DatagramSinkNet with the indicated
+//               number of threads to handle writing.  Normally
+//               num_threads should be either 0 or 1 to guarantee that
+//               datagrams are delivered in the same order in which
+//               they were sent.
+////////////////////////////////////////////////////////////////////
+78
+DatagramSinkNet::DatagramSinkNet(ConnectionManager *manager, int num_threads);
+
+265 10 set_target 4 328 27 DatagramSinkNet::set_target 0 1 109 804
+// Filename: datagramSinkNet.I
+// Created by:  drose (15Feb09)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::set_target
+//       Access: Published
+//  Description: Specifies the Connection that will receive all future
+//               Datagrams sent.
+////////////////////////////////////////////////////////////////////
+64
+inline void DatagramSinkNet::set_target(Connection *connection);
+
+266 10 get_target 4 328 27 DatagramSinkNet::get_target 0 1 110 345
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::get_target
+//       Access: Published
+//  Description: Returns the current target Connection, or NULL if the
+//               target has not yet been set.  See set_target().
+////////////////////////////////////////////////////////////////////
+59
+inline Connection *DatagramSinkNet::get_target(void) const;
+
+267 12 put_datagram 4 328 29 DatagramSinkNet::put_datagram 0 1 111 445
+// Inherited from DatagramSink
+
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::put_datagram
+//       Access: Published, Virtual
+//  Description: Sends the given datagram to the target.  Returns true
+//               on success, false if there is an error.  Blocks if
+//               necessary until the target is ready.
+////////////////////////////////////////////////////////////////////
+65
+virtual bool DatagramSinkNet::put_datagram(Datagram const &data);
+
+268 8 is_error 4 328 25 DatagramSinkNet::is_error 0 1 112 379
+// Inherited from DatagramSink
+
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::is_error
+//       Access: Published, Virtual
+//  Description: Returns true if there is an error on the target
+//               connection, or if the target has never been set.
+////////////////////////////////////////////////////////////////////
+45
+virtual bool DatagramSinkNet::is_error(void);
+
+269 5 flush 4 328 22 DatagramSinkNet::flush 0 1 113 321
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::flush
+//       Access: Public, Virtual
+//  Description: Ensures that all datagrams previously written will be
+//               visible on the stream.
+////////////////////////////////////////////////////////////////////
+42
+virtual void DatagramSinkNet::flush(void);
+
+270 16 ~DatagramSinkNet 4 328 33 DatagramSinkNet::~DatagramSinkNet 0 0 0
+40
+DatagramSinkNet::~DatagramSinkNet(void);
+
+271 28 upcast_to_ConnectionListener 12 330 54 QueuedConnectionListener::upcast_to_ConnectionListener 0 1 122 58
 upcast from QueuedConnectionListener to ConnectionListener
 81
 ConnectionListener *QueuedConnectionListener::upcast_to_ConnectionListener(void);
 
-208 36 downcast_to_QueuedConnectionListener 12 256 56 ConnectionListener::downcast_to_QueuedConnectionListener 0 1 89 60
+272 36 downcast_to_QueuedConnectionListener 12 320 56 ConnectionListener::downcast_to_QueuedConnectionListener 0 1 123 60
 downcast from ConnectionListener to QueuedConnectionListener
 89
 QueuedConnectionListener *ConnectionListener::downcast_to_QueuedConnectionListener(void);
 
-209 18 set_max_queue_size 4 262 58 QueuedReturn< ConnectionListenerData >::set_max_queue_size 0 1 92 0
+273 18 set_max_queue_size 4 331 58 QueuedReturn< ConnectionListenerData >::set_max_queue_size 0 1 126 0
 80
 void ::QueuedReturn< ConnectionListenerData >::set_max_queue_size(int max_size);
 
-210 18 get_max_queue_size 4 262 58 QueuedReturn< ConnectionListenerData >::get_max_queue_size 0 1 93 0
+274 18 get_max_queue_size 4 331 58 QueuedReturn< ConnectionListenerData >::get_max_queue_size 0 1 127 0
 77
 int ::QueuedReturn< ConnectionListenerData >::get_max_queue_size(void) const;
 
-211 22 get_current_queue_size 4 262 62 QueuedReturn< ConnectionListenerData >::get_current_queue_size 0 1 94 0
+275 22 get_current_queue_size 4 331 62 QueuedReturn< ConnectionListenerData >::get_current_queue_size 0 1 128 0
 81
 int ::QueuedReturn< ConnectionListenerData >::get_current_queue_size(void) const;
 
-212 17 get_overflow_flag 4 262 57 QueuedReturn< ConnectionListenerData >::get_overflow_flag 0 1 95 0
+276 17 get_overflow_flag 4 331 57 QueuedReturn< ConnectionListenerData >::get_overflow_flag 0 1 129 0
 77
 bool ::QueuedReturn< ConnectionListenerData >::get_overflow_flag(void) const;
 
-213 19 reset_overflow_flag 4 262 59 QueuedReturn< ConnectionListenerData >::reset_overflow_flag 0 1 96 0
+277 19 reset_overflow_flag 4 331 59 QueuedReturn< ConnectionListenerData >::reset_overflow_flag 0 1 130 0
 73
 void ::QueuedReturn< ConnectionListenerData >::reset_overflow_flag(void);
 
-214 45 upcast_to_QueuedReturn_ConnectionListenerData 12 261 71 QueuedConnectionListener::upcast_to_QueuedReturn_ConnectionListenerData 0 1 90 78
+278 45 upcast_to_QueuedReturn_ConnectionListenerData 12 330 71 QueuedConnectionListener::upcast_to_QueuedReturn_ConnectionListenerData 0 1 124 78
 upcast from QueuedConnectionListener to QueuedReturn< ConnectionListenerData >
 118
 QueuedReturn< ConnectionListenerData > *QueuedConnectionListener::upcast_to_QueuedReturn_ConnectionListenerData(void);
 
-215 36 downcast_to_QueuedConnectionListener 12 262 76 QueuedReturn< ConnectionListenerData >::downcast_to_QueuedConnectionListener 0 1 91 80
+279 36 downcast_to_QueuedConnectionListener 12 331 76 QueuedReturn< ConnectionListenerData >::downcast_to_QueuedConnectionListener 0 1 125 80
 downcast from QueuedReturn< ConnectionListenerData > to QueuedConnectionListener
 111
 QueuedConnectionListener *::QueuedReturn< ConnectionListenerData >::downcast_to_QueuedConnectionListener(void);
 
-216 24 QueuedConnectionListener 4 261 50 QueuedConnectionListener::QueuedConnectionListener 0 1 84 233
+280 24 QueuedConnectionListener 4 330 50 QueuedConnectionListener::QueuedConnectionListener 0 1 118 233
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionListener::Constructor
 //       Access: Public
@@ -976,7 +1295,7 @@ QueuedConnectionListener *::QueuedReturn< ConnectionListenerData >::downcast_to_
 96
 QueuedConnectionListener::QueuedConnectionListener(ConnectionManager *manager, int num_threads);
 
-217 25 ~QueuedConnectionListener 4 261 51 QueuedConnectionListener::~QueuedConnectionListener 0 0 241
+281 25 ~QueuedConnectionListener 4 330 51 QueuedConnectionListener::~QueuedConnectionListener 0 0 241
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionListener::Destructor
 //       Access: Public, Virtual
@@ -985,7 +1304,7 @@ QueuedConnectionListener::QueuedConnectionListener(ConnectionManager *manager, i
 66
 virtual QueuedConnectionListener::~QueuedConnectionListener(void);
 
-218 24 new_connection_available 4 261 50 QueuedConnectionListener::new_connection_available 0 1 85 414
+282 24 new_connection_available 4 330 50 QueuedConnectionListener::new_connection_available 0 1 119 414
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionListener::new_connection_available
 //       Access: Public
@@ -996,7 +1315,7 @@ virtual QueuedConnectionListener::~QueuedConnectionListener(void);
 62
 bool QueuedConnectionListener::new_connection_available(void);
 
-219 18 get_new_connection 4 261 44 QueuedConnectionListener::get_new_connection 0 2 86 87 1651
+283 18 get_new_connection 4 330 44 QueuedConnectionListener::get_new_connection 0 2 120 121 1651
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionListener::get_new_connection
 //       Access: Public
@@ -1027,50 +1346,51 @@ bool QueuedConnectionListener::new_connection_available(void);
 //               the rendezvous socket that originated it or the
 //               address it came from.
 ////////////////////////////////////////////////////////////////////
-149
+241
 bool QueuedConnectionListener::get_new_connection(PointerTo< Connection > &rendezvous, NetAddress &address, PointerTo< Connection > &new_connection);
+bool QueuedConnectionListener::get_new_connection(PointerTo< Connection > &new_connection);
 
-220 27 upcast_to_ConnectionManager 12 263 52 QueuedConnectionManager::upcast_to_ConnectionManager 0 1 100 56
+284 27 upcast_to_ConnectionManager 12 332 52 QueuedConnectionManager::upcast_to_ConnectionManager 0 1 134 56
 upcast from QueuedConnectionManager to ConnectionManager
 78
 ConnectionManager *QueuedConnectionManager::upcast_to_ConnectionManager(void);
 
-221 35 downcast_to_QueuedConnectionManager 12 259 54 ConnectionManager::downcast_to_QueuedConnectionManager 0 1 101 58
+285 35 downcast_to_QueuedConnectionManager 12 323 54 ConnectionManager::downcast_to_QueuedConnectionManager 0 1 135 58
 downcast from ConnectionManager to QueuedConnectionManager
 86
 QueuedConnectionManager *ConnectionManager::downcast_to_QueuedConnectionManager(void);
 
-222 18 set_max_queue_size 4 264 59 QueuedReturn< PointerTo< Connection > >::set_max_queue_size 0 1 104 0
+286 18 set_max_queue_size 4 333 59 QueuedReturn< PointerTo< Connection > >::set_max_queue_size 0 1 138 0
 81
 void ::QueuedReturn< PointerTo< Connection > >::set_max_queue_size(int max_size);
 
-223 18 get_max_queue_size 4 264 59 QueuedReturn< PointerTo< Connection > >::get_max_queue_size 0 1 105 0
+287 18 get_max_queue_size 4 333 59 QueuedReturn< PointerTo< Connection > >::get_max_queue_size 0 1 139 0
 78
 int ::QueuedReturn< PointerTo< Connection > >::get_max_queue_size(void) const;
 
-224 22 get_current_queue_size 4 264 63 QueuedReturn< PointerTo< Connection > >::get_current_queue_size 0 1 106 0
+288 22 get_current_queue_size 4 333 63 QueuedReturn< PointerTo< Connection > >::get_current_queue_size 0 1 140 0
 82
 int ::QueuedReturn< PointerTo< Connection > >::get_current_queue_size(void) const;
 
-225 17 get_overflow_flag 4 264 58 QueuedReturn< PointerTo< Connection > >::get_overflow_flag 0 1 107 0
+289 17 get_overflow_flag 4 333 58 QueuedReturn< PointerTo< Connection > >::get_overflow_flag 0 1 141 0
 78
 bool ::QueuedReturn< PointerTo< Connection > >::get_overflow_flag(void) const;
 
-226 19 reset_overflow_flag 4 264 60 QueuedReturn< PointerTo< Connection > >::reset_overflow_flag 0 1 108 0
+290 19 reset_overflow_flag 4 333 60 QueuedReturn< PointerTo< Connection > >::reset_overflow_flag 0 1 142 0
 74
 void ::QueuedReturn< PointerTo< Connection > >::reset_overflow_flag(void);
 
-227 43 upcast_to_QueuedReturn_PointerTo_Connection 12 263 68 QueuedConnectionManager::upcast_to_QueuedReturn_PointerTo_Connection 0 1 102 78
+291 43 upcast_to_QueuedReturn_PointerTo_Connection 12 332 68 QueuedConnectionManager::upcast_to_QueuedReturn_PointerTo_Connection 0 1 136 78
 upcast from QueuedConnectionManager to QueuedReturn< PointerTo< Connection > >
 116
 QueuedReturn< PointerTo< Connection > > *QueuedConnectionManager::upcast_to_QueuedReturn_PointerTo_Connection(void);
 
-228 35 downcast_to_QueuedConnectionManager 12 264 76 QueuedReturn< PointerTo< Connection > >::downcast_to_QueuedConnectionManager 0 1 103 80
+292 35 downcast_to_QueuedConnectionManager 12 333 76 QueuedReturn< PointerTo< Connection > >::downcast_to_QueuedConnectionManager 0 1 137 80
 downcast from QueuedReturn< PointerTo< Connection > > to QueuedConnectionManager
 110
 QueuedConnectionManager *::QueuedReturn< PointerTo< Connection > >::downcast_to_QueuedConnectionManager(void);
 
-229 23 QueuedConnectionManager 4 263 48 QueuedConnectionManager::QueuedConnectionManager 0 1 97 232
+293 23 QueuedConnectionManager 4 332 48 QueuedConnectionManager::QueuedConnectionManager 0 1 131 232
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionManager::Constructor
 //       Access: Public
@@ -1079,7 +1399,7 @@ QueuedConnectionManager *::QueuedReturn< PointerTo< Connection > >::downcast_to_
 55
 QueuedConnectionManager::QueuedConnectionManager(void);
 
-230 24 ~QueuedConnectionManager 4 263 49 QueuedConnectionManager::~QueuedConnectionManager 0 0 240
+294 24 ~QueuedConnectionManager 4 332 49 QueuedConnectionManager::~QueuedConnectionManager 0 0 240
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionManager::Destructor
 //       Access: Public, Virtual
@@ -1088,7 +1408,7 @@ QueuedConnectionManager::QueuedConnectionManager(void);
 64
 virtual QueuedConnectionManager::~QueuedConnectionManager(void);
 
-231 26 reset_connection_available 4 263 51 QueuedConnectionManager::reset_connection_available 0 1 98 1031
+295 26 reset_connection_available 4 332 51 QueuedConnectionManager::reset_connection_available 0 1 132 1031
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionManager::reset_connection_available
 //       Access: Public
@@ -1109,7 +1429,7 @@ virtual QueuedConnectionManager::~QueuedConnectionManager(void);
 69
 bool QueuedConnectionManager::reset_connection_available(void) const;
 
-232 20 get_reset_connection 4 263 45 QueuedConnectionManager::get_reset_connection 0 1 99 1253
+296 20 get_reset_connection 4 332 45 QueuedConnectionManager::get_reset_connection 0 1 133 1253
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionManager::get_reset_connection
 //       Access: Public
@@ -1135,47 +1455,47 @@ bool QueuedConnectionManager::reset_connection_available(void) const;
 88
 bool QueuedConnectionManager::get_reset_connection(PointerTo< Connection > &connection);
 
-233 26 upcast_to_ConnectionReader 12 265 50 QueuedConnectionReader::upcast_to_ConnectionReader 0 1 113 54
+297 26 upcast_to_ConnectionReader 12 334 50 QueuedConnectionReader::upcast_to_ConnectionReader 0 1 147 54
 upcast from QueuedConnectionReader to ConnectionReader
 75
 ConnectionReader *QueuedConnectionReader::upcast_to_ConnectionReader(void);
 
-234 34 downcast_to_QueuedConnectionReader 12 255 52 ConnectionReader::downcast_to_QueuedConnectionReader 0 1 114 56
+298 34 downcast_to_QueuedConnectionReader 12 319 52 ConnectionReader::downcast_to_QueuedConnectionReader 0 1 148 56
 downcast from ConnectionReader to QueuedConnectionReader
 83
 QueuedConnectionReader *ConnectionReader::downcast_to_QueuedConnectionReader(void);
 
-235 18 set_max_queue_size 4 266 47 QueuedReturn< NetDatagram >::set_max_queue_size 0 1 117 0
+299 18 set_max_queue_size 4 335 47 QueuedReturn< NetDatagram >::set_max_queue_size 0 1 151 0
 69
 void ::QueuedReturn< NetDatagram >::set_max_queue_size(int max_size);
 
-236 18 get_max_queue_size 4 266 47 QueuedReturn< NetDatagram >::get_max_queue_size 0 1 118 0
+300 18 get_max_queue_size 4 335 47 QueuedReturn< NetDatagram >::get_max_queue_size 0 1 152 0
 66
 int ::QueuedReturn< NetDatagram >::get_max_queue_size(void) const;
 
-237 22 get_current_queue_size 4 266 51 QueuedReturn< NetDatagram >::get_current_queue_size 0 1 119 0
+301 22 get_current_queue_size 4 335 51 QueuedReturn< NetDatagram >::get_current_queue_size 0 1 153 0
 70
 int ::QueuedReturn< NetDatagram >::get_current_queue_size(void) const;
 
-238 17 get_overflow_flag 4 266 46 QueuedReturn< NetDatagram >::get_overflow_flag 0 1 120 0
+302 17 get_overflow_flag 4 335 46 QueuedReturn< NetDatagram >::get_overflow_flag 0 1 154 0
 66
 bool ::QueuedReturn< NetDatagram >::get_overflow_flag(void) const;
 
-239 19 reset_overflow_flag 4 266 48 QueuedReturn< NetDatagram >::reset_overflow_flag 0 1 121 0
+303 19 reset_overflow_flag 4 335 48 QueuedReturn< NetDatagram >::reset_overflow_flag 0 1 155 0
 62
 void ::QueuedReturn< NetDatagram >::reset_overflow_flag(void);
 
-240 34 upcast_to_QueuedReturn_NetDatagram 12 265 58 QueuedConnectionReader::upcast_to_QueuedReturn_NetDatagram 0 1 115 65
+304 34 upcast_to_QueuedReturn_NetDatagram 12 334 58 QueuedConnectionReader::upcast_to_QueuedReturn_NetDatagram 0 1 149 65
 upcast from QueuedConnectionReader to QueuedReturn< NetDatagram >
 94
 QueuedReturn< NetDatagram > *QueuedConnectionReader::upcast_to_QueuedReturn_NetDatagram(void);
 
-241 34 downcast_to_QueuedConnectionReader 12 266 63 QueuedReturn< NetDatagram >::downcast_to_QueuedConnectionReader 0 1 116 67
+305 34 downcast_to_QueuedConnectionReader 12 335 63 QueuedReturn< NetDatagram >::downcast_to_QueuedConnectionReader 0 1 150 67
 downcast from QueuedReturn< NetDatagram > to QueuedConnectionReader
 96
 QueuedConnectionReader *::QueuedReturn< NetDatagram >::downcast_to_QueuedConnectionReader(void);
 
-242 22 QueuedConnectionReader 4 265 46 QueuedConnectionReader::QueuedConnectionReader 0 1 109 234
+306 22 QueuedConnectionReader 4 334 46 QueuedConnectionReader::QueuedConnectionReader 0 1 143 234
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionReader::Constructor
 //       Access: Published
@@ -1184,7 +1504,7 @@ QueuedConnectionReader *::QueuedReturn< NetDatagram >::downcast_to_QueuedConnect
 92
 QueuedConnectionReader::QueuedConnectionReader(ConnectionManager *manager, int num_threads);
 
-243 23 ~QueuedConnectionReader 4 265 47 QueuedConnectionReader::~QueuedConnectionReader 0 0 242
+307 23 ~QueuedConnectionReader 4 334 47 QueuedConnectionReader::~QueuedConnectionReader 0 0 242
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionReader::Destructor
 //       Access: Published, Virtual
@@ -1193,7 +1513,7 @@ QueuedConnectionReader::QueuedConnectionReader(ConnectionManager *manager, int n
 62
 virtual QueuedConnectionReader::~QueuedConnectionReader(void);
 
-244 14 data_available 4 265 38 QueuedConnectionReader::data_available 0 1 110 349
+308 14 data_available 4 334 38 QueuedConnectionReader::data_available 0 1 144 349
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionReader::data_available
 //       Access: Published
@@ -1203,7 +1523,7 @@ virtual QueuedConnectionReader::~QueuedConnectionReader(void);
 50
 bool QueuedConnectionReader::data_available(void);
 
-245 8 get_data 4 265 32 QueuedConnectionReader::get_data 0 2 111 112 1276
+309 8 get_data 4 334 32 QueuedConnectionReader::get_data 0 2 145 146 1276
 ////////////////////////////////////////////////////////////////////
 //     Function: QueuedConnectionReader::get_data
 //       Access: Published
@@ -1228,10 +1548,11 @@ bool QueuedConnectionReader::data_available(void);
 //               source Connection and/or NetAddress, but it is useful
 //               in all other respects.
 ////////////////////////////////////////////////////////////////////
-59
+116
 bool QueuedConnectionReader::get_data(NetDatagram &result);
+bool QueuedConnectionReader::get_data(Datagram &result);
 
-246 22 RecentConnectionReader 4 267 46 RecentConnectionReader::RecentConnectionReader 0 1 122 231
+310 22 RecentConnectionReader 4 336 46 RecentConnectionReader::RecentConnectionReader 0 1 156 231
 ////////////////////////////////////////////////////////////////////
 //     Function: RecentConnectionReader::Constructor
 //       Access: Public
@@ -1240,7 +1561,7 @@ bool QueuedConnectionReader::get_data(NetDatagram &result);
 75
 RecentConnectionReader::RecentConnectionReader(ConnectionManager *manager);
 
-247 14 data_available 4 267 38 RecentConnectionReader::data_available 0 1 123 346
+311 14 data_available 4 336 38 RecentConnectionReader::data_available 0 1 157 346
 ////////////////////////////////////////////////////////////////////
 //     Function: RecentConnectionReader::data_available
 //       Access: Public
@@ -1250,7 +1571,7 @@ RecentConnectionReader::RecentConnectionReader(ConnectionManager *manager);
 50
 bool RecentConnectionReader::data_available(void);
 
-248 8 get_data 4 267 32 RecentConnectionReader::get_data 0 2 124 125 1270
+312 8 get_data 4 336 32 RecentConnectionReader::get_data 0 2 158 159 1270
 ////////////////////////////////////////////////////////////////////
 //     Function: RecentConnectionReader::get_data
 //       Access: Public
@@ -1275,141 +1596,1011 @@ bool RecentConnectionReader::data_available(void);
 //               source Connection and/or NetAddress, but it is useful
 //               in all other respects.
 ////////////////////////////////////////////////////////////////////
-59
+116
 bool RecentConnectionReader::get_data(NetDatagram &result);
+bool RecentConnectionReader::get_data(Datagram &result);
 
-125
-1 14 Dtool_9ImMJLs6 7 6 269 129 14 Dtool_9ImMJLs6 1 3 ptr 1 268  
-2 14 Dtool_9ImM_abX 7 6 269 129 14 Dtool_9ImM_abX 0 
-3 14 Dtool_9ImMZI1Q 7 6 269 129 14 Dtool_9ImMZI1Q 1 4 copy 1 268  
-4 14 Dtool_9ImMHt8x 7 8 268 148 14 Dtool_9ImMHt8x 1 4 this 3 270  
-5 14 Dtool_9ImMKFDQ 6 9 269 0 14 Dtool_9ImMKFDQ 2 4 this 3 269  3 ptr 1 268  
-6 14 Dtool_9ImMvpYV 6 9 269 0 14 Dtool_9ImMvpYV 2 4 this 3 269  4 copy 1 268  
-7 14 Dtool_9ImMiZMY 6 10 272 0 14 Dtool_9ImMiZMY 1 4 this 3 270  
-8 14 Dtool_9ImMY1xp 4 11 273 0 14 Dtool_9ImMY1xp 1 4 this 3 269  
-9 14 Dtool_9ImMXxN0 4 4 273 0 14 Dtool_9ImMXxN0 1 4 this 3 274  
-10 14 Dtool_9ImMqs2I 4 5 273 0 14 Dtool_9ImMqs2I 2 4 this 3 275  3 out 1 277  
-11 14 Dtool_9ImM_XOH 7 13 279 146 14 Dtool_9ImM_XOH 0 
-12 14 Dtool_9ImM7tFa 7 13 279 146 14 Dtool_9ImM7tFa 1 4 addr 1 280  
-13 14 Dtool_9ImMDqM_ 6 14 272 0 14 Dtool_9ImMDqM_ 2 4 this 3 279  4 port 1 283  
-14 14 Dtool_9ImMPoxe 6 15 272 0 14 Dtool_9ImMPoxe 2 4 this 3 279  4 port 1 283  
-15 14 Dtool_9ImMhU_T 6 16 272 0 14 Dtool_9ImMhU_T 3 4 this 3 279  8 hostname 1 284  4 port 1 283  
-16 14 Dtool_9ImMCfpu 4 17 273 0 14 Dtool_9ImMCfpu 1 4 this 3 279  
-17 14 Dtool_9ImMhHNt 6 18 283 0 14 Dtool_9ImMhHNt 1 4 this 3 285  
-18 14 Dtool_9ImMzG63 4 19 273 0 14 Dtool_9ImMzG63 2 4 this 3 279  4 port 1 283  
-19 14 Dtool_9ImMM3mv 6 20 284 0 14 Dtool_9ImMM3mv 1 4 this 3 285  
-20 14 Dtool_9ImMAxhR 6 21 287 0 14 Dtool_9ImMAxhR 1 4 this 3 285  
-21 14 Dtool_9ImMD_kR 6 22 288 0 14 Dtool_9ImMD_kR 2 4 this 3 285  1 n 1 283  
-22 14 Dtool_9ImMJjjL 6 23 289 0 14 Dtool_9ImMJjjL 1 4 this 3 285  
-23 14 Dtool_9ImMBvAY 4 24 273 0 14 Dtool_9ImMBvAY 2 4 this 3 285  3 out 1 277  
-24 14 Dtool_9ImMR8ix 7 28 268 148 14 Dtool_9ImMR8ix 2 7 manager 1 290  6 socket 1 291  
-25 14 Dtool_9ImMF__C 7 30 279 146 14 Dtool_9ImMF__C 1 4 this 3 293  
-26 14 Dtool_9ImM2GOO 6 31 290 0 14 Dtool_9ImM2GOO 1 4 this 3 293  
-27 14 Dtool_9ImM8tyZ 6 32 291 0 14 Dtool_9ImM8tyZ 1 4 this 3 293  
-28 14 Dtool_9ImMKoGo 4 33 273 0 14 Dtool_9ImMKoGo 2 4 this 3 268  11 collect_tcp 1 272  
-29 14 Dtool_9ImMTIEw 6 34 272 0 14 Dtool_9ImMTIEw 1 4 this 3 293  
-30 14 Dtool_9ImMm8H_ 4 35 273 0 14 Dtool_9ImMm8H_ 2 4 this 3 268  8 interval 1 295  
-31 14 Dtool_9ImMpu1t 6 36 295 0 14 Dtool_9ImMpu1t 1 4 this 3 293  
-32 14 Dtool_9ImMyeve 6 37 272 0 14 Dtool_9ImMyeve 1 4 this 3 268  
-33 14 Dtool_9ImMQdru 6 38 272 0 14 Dtool_9ImMQdru 1 4 this 3 268  
-34 14 Dtool_9ImM6OUw 4 39 273 0 14 Dtool_9ImM6OUw 2 4 this 3 268  4 flag 1 272  
-35 14 Dtool_9ImMyOTH 4 40 273 0 14 Dtool_9ImMyOTH 3 4 this 3 268  4 flag 1 272  4 time 1 295  
-36 14 Dtool_9ImM87ZK 4 41 273 0 14 Dtool_9ImM87ZK 2 4 this 3 268  4 flag 1 272  
-37 14 Dtool_9ImMbmIV 4 42 273 0 14 Dtool_9ImMbmIV 2 4 this 3 268  4 flag 1 272  
-38 14 Dtool_9ImM_Glj 4 43 273 0 14 Dtool_9ImM_Glj 2 4 this 3 268  4 size 1 283  
-39 14 Dtool_9ImMTxS1 4 44 273 0 14 Dtool_9ImMTxS1 2 4 this 3 268  4 size 1 283  
-40 14 Dtool_9ImMQkWX 4 45 273 0 14 Dtool_9ImMQkWX 2 4 this 3 268  3 ttl 1 283  
-41 14 Dtool_9ImMCpUD 4 46 273 0 14 Dtool_9ImMCpUD 2 4 this 3 268  3 tos 1 283  
-42 14 Dtool_9ImMc5D7 4 47 273 0 14 Dtool_9ImMc5D7 2 4 this 3 268  4 flag 1 272  
-43 14 Dtool_9ImMdSC_ 4 48 273 0 14 Dtool_9ImMdSC_ 2 4 this 3 268  4 size 1 283  
-44 14 Dtool_9ImMrLA4 6 51 272 0 14 Dtool_9ImMrLA4 2 4 this 3 296  10 connection 1 268  
-45 14 Dtool_9ImMeUJ8 6 52 272 0 14 Dtool_9ImMeUJ8 2 4 this 3 296  10 connection 1 268  
-46 14 Dtool_9ImMNKeX 6 53 272 0 14 Dtool_9ImMNKeX 2 4 this 3 296  10 connection 1 268  
-47 14 Dtool_9ImMWxFz 4 54 273 0 14 Dtool_9ImMWxFz 1 4 this 3 296  
-48 14 Dtool_9ImMivcH 6 55 290 0 14 Dtool_9ImMivcH 1 4 this 3 297  
-49 14 Dtool_9ImMLEEA 6 56 272 0 14 Dtool_9ImMLEEA 1 4 this 3 297  
-50 14 Dtool_9ImM2jeO 6 57 283 0 14 Dtool_9ImM2jeO 1 4 this 3 297  
-51 14 Dtool_9ImM7duY 4 58 273 0 14 Dtool_9ImM7duY 2 4 this 3 296  4 mode 1 272  
-52 14 Dtool_9ImMCWld 6 59 272 0 14 Dtool_9ImMCWld 1 4 this 3 297  
-53 14 Dtool_9ImMWNcl 4 60 273 0 14 Dtool_9ImMWNcl 2 4 this 3 296  15 tcp_header_size 1 283  
-54 14 Dtool_9ImM9iEw 6 61 283 0 14 Dtool_9ImM9iEw 1 4 this 3 297  
-55 14 Dtool_9ImMFlXx 7 66 299 188 14 Dtool_9ImMFlXx 0 
-56 14 Dtool_9ImMrT0b 7 66 299 188 14 Dtool_9ImMrT0b 1 4 copy 1 300  
-57 14 Dtool_9ImMVk0H 7 66 299 188 14 Dtool_9ImMVk0H 1 4 copy 1 302  
-58 14 Dtool_9ImMVtlI 6 67 299 0 14 Dtool_9ImMVtlI 2 4 this 3 299  4 copy 1 300  
-59 14 Dtool_9ImMlg9z 6 67 299 0 14 Dtool_9ImMlg9z 2 4 this 3 299  4 copy 1 302  
-60 14 Dtool_9ImM_JK9 4 68 273 0 14 Dtool_9ImM_JK9 2 4 this 3 299  10 connection 1 268  
-61 14 Dtool_9ImMYxCi 7 69 268 148 14 Dtool_9ImMYxCi 1 4 this 3 302  
-62 14 Dtool_9ImMeaZL 4 70 273 0 14 Dtool_9ImMeaZL 2 4 this 3 299  7 address 1 285  
-63 14 Dtool_9ImMDIhL 6 71 285 0 14 Dtool_9ImMDIhL 1 4 this 3 302  
-64 14 Dtool_9ImMss1L 7 72 305 0 14 Dtool_9ImMss1L 0 
-65 14 Dtool_9ImMf_YP 7 75 290 190 14 Dtool_9ImMf_YP 0 
-66 14 Dtool_9ImMuiqs 7 77 268 148 14 Dtool_9ImMuiqs 2 4 this 3 290  4 port 1 283  
-67 14 Dtool_9ImMNLgh 7 77 268 148 14 Dtool_9ImMNLgh 1 4 this 3 290  
-68 14 Dtool_9ImMgDIi 7 78 268 148 14 Dtool_9ImMgDIi 3 4 this 3 290  4 port 1 283  7 backlog 1 283  
-69 14 Dtool_9ImMDKvU 7 79 268 148 14 Dtool_9ImMDKvU 3 4 this 3 290  7 address 1 285  10 timeout_ms 1 283  
-70 14 Dtool_9ImMnsPM 7 79 268 148 14 Dtool_9ImMnsPM 4 4 this 3 290  8 hostname 1 284  4 port 1 283  10 timeout_ms 1 283  
-71 14 Dtool_9ImMigqc 6 80 272 0 14 Dtool_9ImMigqc 2 4 this 3 290  10 connection 1 268  
-72 14 Dtool_9ImMCjTl 6 81 284 0 14 Dtool_9ImMCjTl 0 
-73 14 Dtool_9ImMwv9q 7 83 306 197 14 Dtool_9ImMwv9q 2 7 manager 1 290  11 num_threads 1 283  
-74 14 Dtool_9ImM5_fV 6 85 272 0 14 Dtool_9ImM5_fV 3 4 this 3 306  8 datagram 1 300  10 connection 1 268  
-75 14 Dtool_9ImM5Lcw 6 85 272 0 14 Dtool_9ImM5Lcw 4 4 this 3 306  8 datagram 1 300  10 connection 1 268  7 address 1 285  
-76 14 Dtool_9ImM1sIn 6 86 272 0 14 Dtool_9ImM1sIn 2 4 this 3 307  8 datagram 1 300  
-77 14 Dtool_9ImMTVbQ 6 87 290 0 14 Dtool_9ImMTVbQ 1 4 this 3 307  
-78 14 Dtool_9ImMK_Gm 6 88 272 0 14 Dtool_9ImMK_Gm 1 4 this 3 307  
-79 14 Dtool_9ImMm3eX 6 89 283 0 14 Dtool_9ImMm3eX 1 4 this 3 307  
-80 14 Dtool_9ImM4nth 4 90 273 0 14 Dtool_9ImM4nth 2 4 this 3 306  4 mode 1 272  
-81 14 Dtool_9ImM6jjm 6 91 272 0 14 Dtool_9ImM6jjm 1 4 this 3 307  
-82 14 Dtool_9ImMGRcu 4 92 273 0 14 Dtool_9ImMGRcu 2 4 this 3 306  15 tcp_header_size 1 283  
-83 14 Dtool_9ImM64D5 6 93 283 0 14 Dtool_9ImM64D5 1 4 this 3 307  
-84 14 Dtool_9ImMLgYr 7 105 309 217 14 Dtool_9ImMLgYr 2 7 manager 1 290  11 num_threads 1 283  
-85 14 Dtool_9ImMjF0a 6 107 272 0 14 Dtool_9ImMjF0a 1 4 this 3 309  
-86 14 Dtool_9ImMwbmC 6 108 272 0 14 Dtool_9ImMwbmC 2 4 this 3 309  14 new_connection 1 269  
-87 14 Dtool_9ImMieyI 6 108 272 0 14 Dtool_9ImMieyI 4 4 this 3 309  10 rendezvous 1 269  7 address 1 279  14 new_connection 1 269  
-88 14 Dtool_9ImMGcvf 6 95 310 0 14 Dtool_9ImMGcvf 1 4 this 3 309  
-89 14 Dtool_9ImMOFpL 6 96 309 0 14 Dtool_9ImMOFpL 1 4 this 3 310  
-90 14 Dtool_9ImM_bnE 6 103 311 0 14 Dtool_9ImM_bnE 1 4 this 3 309  
-91 14 Dtool_9ImMPSLm 6 104 309 0 14 Dtool_9ImMPSLm 1 4 this 3 311  
-92 14 Dtool_9ImMRXgW 4 98 273 0 14 Dtool_9ImMRXgW 2 4 this 3 311  8 max_size 1 283  
-93 14 Dtool_9ImM_qdb 6 99 283 0 14 Dtool_9ImM_qdb 1 4 this 3 312  
-94 14 Dtool_9ImMzNtc 6 100 283 0 14 Dtool_9ImMzNtc 1 4 this 3 312  
-95 14 Dtool_9ImMTAQd 6 101 272 0 14 Dtool_9ImMTAQd 1 4 this 3 312  
-96 14 Dtool_9ImMZTRQ 4 102 273 0 14 Dtool_9ImMZTRQ 1 4 this 3 311  
-97 14 Dtool_9ImM4UnC 7 120 314 230 14 Dtool_9ImM4UnC 0 
-98 14 Dtool_9ImM4mZr 6 122 272 0 14 Dtool_9ImM4mZr 1 4 this 3 315  
-99 14 Dtool_9ImMiC0F 6 123 272 0 14 Dtool_9ImMiC0F 2 4 this 3 314  10 connection 1 269  
-100 14 Dtool_9ImMuw7p 6 110 290 0 14 Dtool_9ImMuw7p 1 4 this 3 314  
-101 14 Dtool_9ImMO4Vo 6 111 314 0 14 Dtool_9ImMO4Vo 1 4 this 3 290  
-102 14 Dtool_9ImMv2GO 6 118 317 0 14 Dtool_9ImMv2GO 1 4 this 3 314  
-103 14 Dtool_9ImM9EdG 6 119 314 0 14 Dtool_9ImM9EdG 1 4 this 3 317  
-104 14 Dtool_9ImMGHvr 4 113 273 0 14 Dtool_9ImMGHvr 2 4 this 3 317  8 max_size 1 283  
-105 14 Dtool_9ImMCaPK 6 114 283 0 14 Dtool_9ImMCaPK 1 4 this 3 318  
-106 14 Dtool_9ImMtwOz 6 115 283 0 14 Dtool_9ImMtwOz 1 4 this 3 318  
-107 14 Dtool_9ImMhUKF 6 116 272 0 14 Dtool_9ImMhUKF 1 4 this 3 318  
-108 14 Dtool_9ImMFx0k 4 117 273 0 14 Dtool_9ImMFx0k 1 4 this 3 317  
-109 14 Dtool_9ImMg6wa 7 135 320 243 14 Dtool_9ImMg6wa 2 7 manager 1 290  11 num_threads 1 283  
-110 14 Dtool_9ImM36NV 6 137 272 0 14 Dtool_9ImM36NV 1 4 this 3 320  
-111 14 Dtool_9ImM4yzz 6 138 272 0 14 Dtool_9ImM4yzz 2 4 this 3 320  6 result 1 321  
-112 14 Dtool_9ImMX1An 6 138 272 0 14 Dtool_9ImMX1An 2 4 this 3 320  6 result 1 299  
-113 14 Dtool_9ImMH9pb 6 125 296 0 14 Dtool_9ImMH9pb 1 4 this 3 320  
-114 14 Dtool_9ImMHiXP 6 126 320 0 14 Dtool_9ImMHiXP 1 4 this 3 296  
-115 14 Dtool_9ImMpv2h 6 133 322 0 14 Dtool_9ImMpv2h 1 4 this 3 320  
-116 14 Dtool_9ImMAFb2 6 134 320 0 14 Dtool_9ImMAFb2 1 4 this 3 322  
-117 14 Dtool_9ImMTCal 4 128 273 0 14 Dtool_9ImMTCal 2 4 this 3 322  8 max_size 1 283  
-118 14 Dtool_9ImM2D9N 6 129 283 0 14 Dtool_9ImM2D9N 1 4 this 3 323  
-119 14 Dtool_9ImMHDe3 6 130 283 0 14 Dtool_9ImMHDe3 1 4 this 3 323  
-120 14 Dtool_9ImM3E__ 6 131 272 0 14 Dtool_9ImM3E__ 1 4 this 3 323  
-121 14 Dtool_9ImMHK5i 4 132 273 0 14 Dtool_9ImMHK5i 1 4 this 3 322  
-122 14 Dtool_9ImMA_Qe 7 140 325 168 14 Dtool_9ImMA_Qe 1 7 manager 1 290  
-123 14 Dtool_9ImMmPBT 6 141 272 0 14 Dtool_9ImMmPBT 1 4 this 3 325  
-124 14 Dtool_9ImMgnmx 6 142 272 0 14 Dtool_9ImMgnmx 2 4 this 3 325  6 result 1 321  
-125 14 Dtool_9ImMdb0k 6 142 272 0 14 Dtool_9ImMdb0k 2 4 this 3 325  6 result 1 299  
-77
-249 23 PointerTo< Connection > 26625 23 PointerTo< Connection > 23 PointerTo< Connection > 0 0 0 1 128 129 0 4 130 131 132 133 0 1 0 250 0 0 0 0 0
+159
+1 14 Dtool_9ImMJLs6 7 6 338 163 14 Dtool_9ImMJLs6 0 1 3 ptr 1 337  
+2 14 Dtool_9ImM_abX 7 6 338 163 14 Dtool_9ImM_abX 0 0 
+3 14 Dtool_9ImMZI1Q 7 6 338 163 14 Dtool_9ImMZI1Q 0 1 4 copy 1 337  
+4 14 Dtool_9ImMHt8x 7 8 337 0 14 Dtool_9ImMHt8x 663 // When downcasting to a derived class from a PointerTo<BaseClass>,
+// C++ would normally require you to cast twice: once to an actual
+// BaseClass pointer, and then again to your desired pointer.  You
+// can use the handy function p() to avoid this first cast and make
+// your code look a bit cleaner.
+// e.g. instead of (MyType *)(BaseClass *)ptr, use (MyType *)ptr.p()
+// If your base class is a derivative of TypedObject, you might want
+// to use the DCAST macro defined in typedObject.h instead,
+// e.g. DCAST(MyType, ptr).  This provides a clean downcast that
+// doesn't require .p() or any double-casting, and it can be
+// run-time checked for correctness. 1 4 this 3 339  
+5 14 Dtool_9ImMKFDQ 6 9 338 0 14 Dtool_9ImMKFDQ 0 2 4 this 3 338  3 ptr 1 337  
+6 14 Dtool_9ImMvpYV 6 9 338 0 14 Dtool_9ImMvpYV 0 2 4 this 3 338  4 copy 1 337  
+7 14 Dtool_9ImMiZMY 6 10 341 0 14 Dtool_9ImMiZMY 259 // These functions normally wouldn't need to be redefined here, but
+// we do so anyway just to help out interrogate (which doesn't seem
+// to want to automatically export the PointerToBase class).  When
+// this works again in interrogate, we can remove these. 1 4 this 3 339  
+8 14 Dtool_9ImMY1xp 4 11 342 0 14 Dtool_9ImMY1xp 259 // These functions normally wouldn't need to be redefined here, but
+// we do so anyway just to help out interrogate (which doesn't seem
+// to want to automatically export the PointerToBase class).  When
+// this works again in interrogate, we can remove these. 1 4 this 3 338  
+9 14 Dtool_9ImMXxN0 4 4 342 0 14 Dtool_9ImMXxN0 0 1 4 this 3 343  
+10 14 Dtool_9ImMqs2I 4 5 342 0 14 Dtool_9ImMqs2I 0 2 4 this 3 344  3 out 1 346  
+11 14 Dtool_9ImM_XOH 7 13 348 180 14 Dtool_9ImM_XOH 254 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::Constructor
+//       Access: Public
+//  Description: Constructs an unspecified address.
+//////////////////////////////////////////////////////////////////// 0 
+12 14 Dtool_9ImMAM4t 7 13 348 180 14 Dtool_9ImMAM4t 477 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::Constructor
+//       Access: Public
+//  Description: Constructs an address from a given Socket_Address.
+//               Normally, this constructor should not be used by user
+//               code; instead, create a default NetAddress and use
+//               one of the set_*() functions to set up an address.
+//////////////////////////////////////////////////////////////////// 1 4 addr 1 349  
+13 14 Dtool_9ImMDqM_ 6 14 341 0 14 Dtool_9ImMDqM_ 429 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::set_any
+//       Access: Public
+//  Description: Sets the address up to refer to a particular port,
+//               but not to any particular IP.  Returns true if
+//               successful, false otherwise (currently, this only
+//               returns true).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 348  4 port 1 352  
+14 14 Dtool_9ImMPoxe 6 15 341 0 14 Dtool_9ImMPoxe 303 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::set_localhost
+//       Access: Public
+//  Description: Sets the address up to refer to a particular port,
+//               on this host.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 348  4 port 1 352  
+15 14 Dtool_9ImMhU_T 6 16 341 0 14 Dtool_9ImMhU_T 379 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::set_host
+//       Access: Public
+//  Description: Sets the address up to refer to a particular port
+//               on a particular host.  Returns true if the hostname
+//               is known, false otherwise.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 348  8 hostname 1 353  4 port 1 352  
+16 14 Dtool_9ImMCfpu 4 17 342 0 14 Dtool_9ImMCfpu 257 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::clear
+//       Access: Public
+//  Description: Resets the NetAddress to its initial state.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 348  
+17 14 Dtool_9ImMhHNt 6 18 352 0 14 Dtool_9ImMhHNt 270 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::get_port
+//       Access: Public
+//  Description: Returns the port number to which this address refers.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 354  
+18 14 Dtool_9ImMzG63 4 19 342 0 14 Dtool_9ImMzG63 296 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::set_port
+//       Access: Public
+//  Description: Resets the port number without otherwise changing the
+//               address.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 348  4 port 1 352  
+19 14 Dtool_9ImMM3mv 6 20 353 0 14 Dtool_9ImMM3mv 314 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::get_ip_string
+//       Access: Public
+//  Description: Returns the IP address to which this address refers,
+//               formatted as a string.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 354  
+20 14 Dtool_9ImMAxhR 6 21 356 0 14 Dtool_9ImMAxhR 325 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::get_ip
+//       Access: Public
+//  Description: Returns the IP address to which this address refers,
+//               as a 32-bit integer, in host byte order.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 354  
+21 14 Dtool_9ImMD_kR 6 22 357 0 14 Dtool_9ImMD_kR 471 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::get_ip_component
+//       Access: Public
+//  Description: Returns the nth 8-bit component of the IP address.
+//               An IP address has four components; component 0 is the
+//               first (leftmost), and component 3 is the last
+//               (rightmost) in the dotted number convention.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 354  1 n 1 352  
+22 14 Dtool_9ImMJjjL 6 23 349 0 14 Dtool_9ImMJjjL 261 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::get_addr
+//       Access: Public
+//  Description: Returns the Socket_Address for this address.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 354  
+23 14 Dtool_9ImMBvAY 4 24 342 0 14 Dtool_9ImMBvAY 214 ////////////////////////////////////////////////////////////////////
+//     Function: NetAddress::output
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 354  3 out 1 346  
+24 14 Dtool_9ImMjl20 7 28 337 0 14 Dtool_9ImMjl20 434 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::Constructor
+//       Access: Published
+//  Description: Creates a connection.  Normally this constructor
+//               should not be used directly by user code; use one of
+//               the methods in ConnectionManager to make a new
+//               connection.
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  6 socket 1 359  
+25 14 Dtool_9ImMF__C 7 29 348 180 14 Dtool_9ImMF__C 312 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::get_address
+//       Access: Published
+//  Description: Returns the address bound to this connection, if it
+//               is a TCP connection.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 361  
+26 14 Dtool_9ImM2GOO 6 30 358 0 14 Dtool_9ImM2GOO 318 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::get_manager
+//       Access: Published
+//  Description: Returns a pointer to the ConnectionManager object
+//               that serves this connection.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 361  
+27 14 Dtool_9ImM8tyZ 6 31 359 0 14 Dtool_9ImM8tyZ 298 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::get_socket
+//       Access: Published
+//  Description: Returns the internal Socket_IP that defines the
+//               connection.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 361  
+28 14 Dtool_9ImMKoGo 4 32 342 0 14 Dtool_9ImMKoGo 1146 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_collect_tcp
+//       Access: Published
+//  Description: Enables or disables "collect-tcp" mode.  In this
+//               mode, individual TCP packets are not sent
+//               immediately, but rather they are collected together
+//               and accumulated to be sent periodically as one larger
+//               TCP packet.  This cuts down on overhead from the
+//               TCP/IP protocol, especially if many small packets
+//               need to be sent on the same connection, but it
+//               introduces additional latency (since packets must be
+//               held before they can be sent).
+//
+//               See set_collect_tcp_interval() to specify the
+//               interval of time for which to hold packets before
+//               sending them.
+//
+//               If you enable this mode, you may also need to
+//               periodically call consider_flush() to flush the queue
+//               if no packets have been sent recently.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  11 collect_tcp 1 341  
+29 14 Dtool_9ImMTIEw 6 33 341 0 14 Dtool_9ImMTIEw 317 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::get_collect_tcp
+//       Access: Published
+//  Description: Returns the current setting of "collect-tcp" mode.
+//               See set_collect_tcp().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 361  
+30 14 Dtool_9ImMm8H_ 4 34 342 0 14 Dtool_9ImMm8H_ 518 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_collect_tcp_interval
+//       Access: Published
+//  Description: Specifies the interval in time, in seconds, for which
+//               to hold TCP packets before sending all of the
+//               recently received packets at once.  This only has
+//               meaning if "collect-tcp" mode is enabled; see
+//               set_collect_tcp().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  8 interval 1 363  
+31 14 Dtool_9ImMpu1t 6 35 363 0 14 Dtool_9ImMpu1t 516 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::get_collect_tcp_interval
+//       Access: Published
+//  Description: Returns the interval in time, in seconds, for which
+//               to hold TCP packets before sending all of the
+//               recently received packets at once.  This only has
+//               meaning if "collect-tcp" mode is enabled; see
+//               set_collect_tcp().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 361  
+32 14 Dtool_9ImMyeve 6 36 341 0 14 Dtool_9ImMyeve 400 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::consider_flush
+//       Access: Published
+//  Description: Sends the most recently queued TCP datagram(s) if
+//               enough time has elapsed.  This only has meaning if
+//               set_collect_tcp() has been set to true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 337  
+33 14 Dtool_9ImMQdru 6 37 341 0 14 Dtool_9ImMQdru 367 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::flush
+//       Access: Published
+//  Description: Sends the most recently queued TCP datagram(s) now.
+//               This only has meaning if set_collect_tcp() has been
+//               set to true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 337  
+34 14 Dtool_9ImMyOTH 4 38 342 0 14 Dtool_9ImMyOTH 731 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_linger
+//       Access: Published
+//  Description: Sets the time to linger on close if data is present.
+//               If flag is false, when you close a socket with data
+//               available the system attempts to deliver the data to
+//               the peer (the default behavior).  If flag is false
+//               but time is zero, the system discards any undelivered
+//               data when you close the socket.  If flag is false but
+//               time is nonzero, the system waits up to time seconds
+//               to deliver the data.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 337  4 flag 1 341  4 time 1 363  
+35 14 Dtool_9ImM87ZK 4 39 342 0 14 Dtool_9ImM87ZK 270 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_reuse_addr
+//       Access: Published
+//  Description: Sets whether local address reuse is allowed.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 flag 1 341  
+36 14 Dtool_9ImMbmIV 4 40 342 0 14 Dtool_9ImMbmIV 322 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_keep_alive
+//       Access: Published
+//  Description: Sets whether the connection is periodically tested to
+//               see if it is still alive.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 flag 1 341  
+37 14 Dtool_9ImM_Glj 4 41 342 0 14 Dtool_9ImM_Glj 278 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_recv_buffer_size
+//       Access: Published
+//  Description: Sets the size of the receive buffer, in bytes.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 size 1 352  
+38 14 Dtool_9ImMTxS1 4 42 342 0 14 Dtool_9ImMTxS1 275 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_send_buffer_size
+//       Access: Published
+//  Description: Sets the size of the send buffer, in bytes.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 size 1 352  
+39 14 Dtool_9ImMQkWX 4 43 342 0 14 Dtool_9ImMQkWX 252 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_ip_time_to_live
+//       Access: Published
+//  Description: Sets IP time-to-live.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  3 ttl 1 352  
+40 14 Dtool_9ImMCpUD 4 44 342 0 14 Dtool_9ImMCpUD 273 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_ip_type_of_service
+//       Access: Published
+//  Description: Sets IP type-of-service and precedence.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  3 tos 1 352  
+41 14 Dtool_9ImMc5D7 4 45 342 0 14 Dtool_9ImMc5D7 343 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_no_delay
+//       Access: Published
+//  Description: If flag is true, this disables the Nagle algorithm,
+//               and prevents delaying of send to coalesce packets.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 flag 1 341  
+42 14 Dtool_9ImMdSC_ 4 46 342 0 14 Dtool_9ImMdSC_ 257 ////////////////////////////////////////////////////////////////////
+//     Function: Connection::set_max_segment
+//       Access: Published
+//  Description: Sets the maximum segment size.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 337  4 size 1 352  
+43 14 Dtool_9ImMFjVV 6 49 341 0 14 Dtool_9ImMFjVV 875 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::add_connection
+//       Access: Published
+//  Description: Adds a new socket to the list of sockets the
+//               ConnectionReader will monitor.  A datagram that comes
+//               in on any of the monitored sockets will be reported.
+//               In the case of a ConnectionListener, this adds a new
+//               rendezvous socket; any activity on any of the
+//               monitored sockets will cause a connection to be
+//               accepted.
+//
+//               The return value is true if the connection was added,
+//               false if it was already there.
+//
+//               add_connection() is thread-safe, and may be called at
+//               will by any thread.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 364  10 connection 1 337  
+44 14 Dtool_9ImMwDcJ 6 50 341 0 14 Dtool_9ImMwDcJ 561 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::remove_connection
+//       Access: Published
+//  Description: Removes a socket from the list of sockets being
+//               monitored.  Returns true if the socket was correctly
+//               removed, false if it was not on the list in the first
+//               place.
+//
+//               remove_connection() is thread-safe, and may be called
+//               at will by any thread.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 364  10 connection 1 337  
+45 14 Dtool_9ImMJc6R 6 51 341 0 14 Dtool_9ImMJc6R 658 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::is_connection_ok
+//       Access: Published
+//  Description: Returns true if the indicated connection has been
+//               added to the ConnectionReader and is being monitored
+//               properly, false if it is not known, or if there was
+//               some error condition detected on the connection.  (If
+//               there was an error condition, normally the
+//               ConnectionManager would have been informed and closed
+//               the connection.)
+//////////////////////////////////////////////////////////////////// 2 4 this 3 364  10 connection 1 337  
+46 14 Dtool_9ImMWxFz 4 52 342 0 14 Dtool_9ImMWxFz 628 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::poll
+//       Access: Published
+//  Description: Explicitly polls the available sockets to see if any
+//               of them have any noise.  This function does nothing
+//               unless this is a polling-type ConnectionReader,
+//               i.e. it was created with zero threads (and
+//               is_polling() will return true).
+//
+//               It is not necessary to call this explicitly for a
+//               QueuedConnectionReader.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 364  
+47 14 Dtool_9ImMivcH 6 53 358 0 14 Dtool_9ImMivcH 330 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::get_manager
+//       Access: Published
+//  Description: Returns a pointer to the ConnectionManager object
+//               that serves this ConnectionReader.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 365  
+48 14 Dtool_9ImMLEEA 6 54 341 0 14 Dtool_9ImMLEEA 808 // Filename: connectionReader.I
+// Created by:  drose (15Feb09)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::is_polling
+//       Access: Published
+//  Description: Returns true if the reader is a polling reader,
+//               i.e. it has no threads.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 365  
+49 14 Dtool_9ImM2jeO 6 55 352 0 14 Dtool_9ImM2jeO 323 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::get_num_threads
+//       Access: Published
+//  Description: Returns the number of threads the ConnectionReader
+//               has been created with.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 365  
+50 14 Dtool_9ImM7duY 4 56 342 0 14 Dtool_9ImM7duY 606 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::set_raw_mode
+//       Access: Published
+//  Description: Sets the ConnectionReader into raw mode (or turns off
+//               raw mode).  In raw mode, datagram headers are not
+//               expected; instead, all the data available on the pipe
+//               is treated as a single datagram.
+//
+//               This is similar to set_tcp_header_size(0), except that it
+//               also turns off headers for UDP packets.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 364  4 mode 1 341  
+51 14 Dtool_9ImMCWld 6 57 341 0 14 Dtool_9ImMCWld 316 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::get_raw_mode
+//       Access: Published
+//  Description: Returns the current setting of the raw mode flag.
+//               See set_raw_mode().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 365  
+52 14 Dtool_9ImMWNcl 4 58 342 0 14 Dtool_9ImMWNcl 555 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::set_tcp_header_size
+//       Access: Published
+//  Description: Sets the header size of TCP packets.  At the present,
+//               legal values for this are 0, 2, or 4; this specifies
+//               the number of bytes to use encode the datagram length
+//               at the start of each TCP datagram.  Sender and
+//               receiver must independently agree on this.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 364  15 tcp_header_size 1 352  
+53 14 Dtool_9ImM9iEw 6 59 352 0 14 Dtool_9ImM9iEw 328 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::get_tcp_header_size
+//       Access: Published
+//  Description: Returns the current setting of TCP header size.
+//               See set_tcp_header_size().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 365  
+54 14 Dtool_9ImME0it 4 60 342 0 14 Dtool_9ImME0it 392 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionReader::shutdown
+//       Access: Published
+//  Description: Terminates all threads cleanly.  Normally this is
+//               only called by the destructor, but it may be called
+//               explicitly before destruction.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 364  
+55 14 Dtool_9ImMFlXx 7 65 367 221 14 Dtool_9ImMFlXx 250 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::Constructor
+//       Access: Public
+//  Description: Constructs an empty datagram.
+//////////////////////////////////////////////////////////////////// 0 
+56 14 Dtool_9ImMrT0b 7 65 367 221 14 Dtool_9ImMrT0b 225 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::Copy Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 368  
+57 14 Dtool_9ImMVk0H 7 65 367 221 14 Dtool_9ImMVk0H 225 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::Copy Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 370  
+58 14 Dtool_9ImMVtlI 6 66 367 0 14 Dtool_9ImMVtlI 233 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::Copy Assignment Operator
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 367  4 copy 1 368  
+59 14 Dtool_9ImMlg9z 6 66 367 0 14 Dtool_9ImMlg9z 233 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::Copy Assignment Operator
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 367  4 copy 1 370  
+60 14 Dtool_9ImM_JK9 4 67 342 0 14 Dtool_9ImM_JK9 302 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::set_connection
+//       Access: Public
+//  Description: Specifies the socket to which the datagram should be
+//               written.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 367  10 connection 1 337  
+61 14 Dtool_9ImMYxCi 7 68 337 0 14 Dtool_9ImMYxCi 338 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::set_connection
+//       Access: Public
+//  Description: Retrieves the socket from which the datagram was
+//               read, or to which it is scheduled to be written.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 370  
+62 14 Dtool_9ImMeaZL 4 69 342 0 14 Dtool_9ImMeaZL 294 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::set_address
+//       Access: Public
+//  Description: Specifies the host to which the datagram should be
+//               sent.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 367  7 address 1 354  
+63 14 Dtool_9ImMDIhL 6 70 354 0 14 Dtool_9ImMDIhL 330 ////////////////////////////////////////////////////////////////////
+//     Function: NetDatagram::set_address
+//       Access: Public
+//  Description: Retrieves the host from which the datagram was
+//               read, or to which it is scheduled to be sent.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 370  
+64 14 Dtool_9ImMss1L 7 71 373 0 14 Dtool_9ImMss1L 0 0 
+65 14 Dtool_9ImMf_YP 7 74 358 223 14 Dtool_9ImMf_YP 226 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+66 14 Dtool_9ImMuiqs 7 76 337 0 14 Dtool_9ImMuiqs 636 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_UDP_connection
+//       Access: Public
+//  Description: Opens a socket for sending and/or receiving UDP
+//               packets.  If the port number is greater than zero,
+//               the UDP connection will be opened for listening on
+//               the indicated port; otherwise, it will be useful only
+//               for sending.
+//
+//               Use a ConnectionReader and ConnectionWriter to handle
+//               the actual communication.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 358  4 port 1 352  
+67 14 Dtool_9ImMNLgh 7 76 337 0 14 Dtool_9ImMNLgh 636 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_UDP_connection
+//       Access: Public
+//  Description: Opens a socket for sending and/or receiving UDP
+//               packets.  If the port number is greater than zero,
+//               the UDP connection will be opened for listening on
+//               the indicated port; otherwise, it will be useful only
+//               for sending.
+//
+//               Use a ConnectionReader and ConnectionWriter to handle
+//               the actual communication.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 358  
+68 14 Dtool_9ImMqscj 7 77 337 0 14 Dtool_9ImMqscj 791 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_server_rendezvous
+//       Access: Public
+//  Description: Creates a socket to be used as a rendezvous socket
+//               for a server to listen for TCP connections.  The
+//               socket returned by this call should only be added to
+//               a ConnectionListener (not to a generic
+//               ConnectionReader).
+//
+//               This variant of this method accepts a NetAddress,
+//               which allows you to specify a specific interface to
+//               listen to.
+//
+//               backlog is the maximum length of the queue of pending
+//               connections.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 358  7 address 1 354  7 backlog 1 352  
+69 14 Dtool_9ImM__6a 7 77 337 0 14 Dtool_9ImM__6a 986 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_server_rendezvous
+//       Access: Public
+//  Description: Creates a socket to be used as a rendezvous socket
+//               for a server to listen for TCP connections.  The
+//               socket returned by this call should only be added to
+//               a ConnectionListener (not to a generic
+//               ConnectionReader).
+//
+//               This variant of this method accepts a "hostname",
+//               which is usually just an IP address in dotted
+//               notation, and a port number.  It will listen on the
+//               interface indicated by the IP address.  If the IP
+//               address is empty string, it will listen on all
+//               interfaces.
+//
+//               backlog is the maximum length of the queue of pending
+//               connections.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 358  8 hostname 1 353  4 port 1 352  7 backlog 1 352  
+70 14 Dtool_9ImMgDIi 7 77 337 0 14 Dtool_9ImMgDIi 787 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_server_rendezvous
+//       Access: Public
+//  Description: Creates a socket to be used as a rendezvous socket
+//               for a server to listen for TCP connections.  The
+//               socket returned by this call should only be added to
+//               a ConnectionListener (not to a generic
+//               ConnectionReader).
+//
+//               This variant of this method accepts a single port,
+//               and will listen to that port on all available
+//               interfaces.
+//
+//               backlog is the maximum length of the queue of pending
+//               connections.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 358  4 port 1 352  7 backlog 1 352  
+71 14 Dtool_9ImMDKvU 7 78 337 0 14 Dtool_9ImMDKvU 477 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_client_connection
+//       Access: Public
+//  Description: Attempts to establish a TCP client connection to a
+//               server at the indicated address.  If the connection
+//               is not established within timeout_ms milliseconds, a
+//               null connection is returned.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 358  7 address 1 354  10 timeout_ms 1 352  
+72 14 Dtool_9ImMnsPM 7 78 337 0 14 Dtool_9ImMnsPM 382 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::open_TCP_client_connection
+//       Access: Public
+//  Description: This is a shorthand version of the function to
+//               directly establish communications to a named host and
+//               port.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 358  8 hostname 1 353  4 port 1 352  10 timeout_ms 1 352  
+73 14 Dtool_9ImMigqc 6 79 341 0 14 Dtool_9ImMigqc 1090 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::close_connection
+//       Access: Public
+//  Description: Terminates a UDP or TCP socket previously opened.
+//               This also removes it from any associated
+//               ConnectionReader or ConnectionListeners.
+//
+//               The socket itself may not be immediately closed--it
+//               will not be closed until all outstanding pointers to
+//               it are cleared, including any pointers remaining in
+//               NetDatagrams recently received from the socket.
+//
+//               The return value is true if the connection was marked
+//               to be closed, or false if close_connection() had
+//               already been called (or the connection did not belong
+//               to this ConnectionManager).  In neither case can you
+//               infer anything about whether the connection has
+//               *actually* been closed yet based on the return value.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 358  10 connection 1 337  
+74 14 Dtool_9ImMCjTl 6 80 353 0 14 Dtool_9ImMCjTl 402 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionManager::get_host_name
+//       Access: Public, Static
+//  Description: Returns the name of this particular machine on the
+//               network, if available, or the empty string if the
+//               hostname cannot be determined.
+//////////////////////////////////////////////////////////////////// 0 
+75 14 Dtool_9ImMw48M 7 82 374 230 14 Dtool_9ImMw48M 498 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::Constructor
+//       Access: Public
+//  Description: Creates a new ConnectionWriter with the indicated
+//               number of threads to handle output.
+//
+//               If num_threads is 0, all datagrams will be sent
+//               immediately instead of queueing for later
+//               transmission by a thread.
+//////////////////////////////////////////////////////////////////// 3 7 manager 1 358  11 num_threads 1 352  11 thread_name 1 353  
+76 14 Dtool_9ImMwv9q 7 82 374 230 14 Dtool_9ImMwv9q 498 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::Constructor
+//       Access: Public
+//  Description: Creates a new ConnectionWriter with the indicated
+//               number of threads to handle output.
+//
+//               If num_threads is 0, all datagrams will be sent
+//               immediately instead of queueing for later
+//               transmission by a thread.
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  11 num_threads 1 352  
+77 14 Dtool_9ImMBBlV 4 84 342 0 14 Dtool_9ImMBBlV 460 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::set_max_queue_size
+//       Access: Public
+//  Description: Limits the number of packets that may be pending on
+//               the outbound queue.  This only has an effect when
+//               using threads; if num_threads is 0, then all packets
+//               are sent immediately.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 374  8 max_size 1 352  
+78 14 Dtool_9ImMQHha 6 85 352 0 14 Dtool_9ImMQHha 334 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_max_queue_size
+//       Access: Public
+//  Description: Returns the maximum size the queue is allowed to grow
+//               to.  See set_max_queue_size().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+79 14 Dtool_9ImMchwb 6 86 352 0 14 Dtool_9ImMchwb 287 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_current_queue_size
+//       Access: Public
+//  Description: Returns the current number of things in the queue.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+80 14 Dtool_9ImM0RY7 6 87 341 0 14 Dtool_9ImM0RY7 1005 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::send
+//       Access: Public
+//  Description: Enqueues a datagram for transmittal on the indicated
+//               socket.  This form of the function allows the
+//               specification of a destination host address, and so
+//               is appropriate for UDP packets.  Use the other send()
+//               method for sending TCP packets.
+//
+//               Returns true if successful, false if there was an
+//               error.  In the normal, threaded case, this function
+//               only returns false if the send queue is filled; it's
+//               impossible to detect a transmission error at this
+//               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
+//////////////////////////////////////////////////////////////////// 5 4 this 3 374  8 datagram 1 368  10 connection 1 337  7 address 1 354  5 block 1 341  
+81 14 Dtool_9ImM5Lcw 6 87 341 0 14 Dtool_9ImM5Lcw 1005 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::send
+//       Access: Public
+//  Description: Enqueues a datagram for transmittal on the indicated
+//               socket.  This form of the function allows the
+//               specification of a destination host address, and so
+//               is appropriate for UDP packets.  Use the other send()
+//               method for sending TCP packets.
+//
+//               Returns true if successful, false if there was an
+//               error.  In the normal, threaded case, this function
+//               only returns false if the send queue is filled; it's
+//               impossible to detect a transmission error at this
+//               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 374  8 datagram 1 368  10 connection 1 337  7 address 1 354  
+82 14 Dtool_9ImMjvjZ 6 87 341 0 14 Dtool_9ImMjvjZ 999 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::send
+//       Access: Public
+//  Description: Enqueues a datagram for transmittal on the indicated
+//               socket.  Since the host address is not specified with
+//               this form, this function should only be used for
+//               sending TCP packets.  Use the other send() method for
+//               sending UDP packets.
+//
+//               Returns true if successful, false if there was an
+//               error.  In the normal, threaded case, this function
+//               only returns false if the send queue is filled; it's
+//               impossible to detect a transmission error at this
+//               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 374  8 datagram 1 368  10 connection 1 337  5 block 1 341  
+83 14 Dtool_9ImM5_fV 6 87 341 0 14 Dtool_9ImM5_fV 999 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::send
+//       Access: Public
+//  Description: Enqueues a datagram for transmittal on the indicated
+//               socket.  Since the host address is not specified with
+//               this form, this function should only be used for
+//               sending TCP packets.  Use the other send() method for
+//               sending UDP packets.
+//
+//               Returns true if successful, false if there was an
+//               error.  In the normal, threaded case, this function
+//               only returns false if the send queue is filled; it's
+//               impossible to detect a transmission error at this
+//               point.
+//
+//               If block is true, this will not return false if the
+//               send queue is filled; instead, it will wait until
+//               there is space available.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 374  8 datagram 1 368  10 connection 1 337  
+84 14 Dtool_9ImM1sIn 6 88 341 0 14 Dtool_9ImM1sIn 339 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::is_valid_for_udp
+//       Access: Public
+//  Description: Returns true if the datagram is small enough to be
+//               sent over a UDP packet, false otherwise.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 375  8 datagram 1 368  
+85 14 Dtool_9ImMTVbQ 6 89 358 0 14 Dtool_9ImMTVbQ 327 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_manager
+//       Access: Public
+//  Description: Returns a pointer to the ConnectionManager object
+//               that serves this ConnectionWriter.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+86 14 Dtool_9ImMK_Gm 6 90 341 0 14 Dtool_9ImMK_Gm 318 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::is_immediate
+//       Access: Public
+//  Description: Returns true if the writer is an immediate writer,
+//               i.e. it has no threads.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+87 14 Dtool_9ImMm3eX 6 91 352 0 14 Dtool_9ImMm3eX 320 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_num_threads
+//       Access: Public
+//  Description: Returns the number of threads the ConnectionWriter
+//               has been created with.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+88 14 Dtool_9ImM4nth 4 92 342 0 14 Dtool_9ImM4nth 789 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::set_raw_mode
+//       Access: Public
+//  Description: Sets the ConnectionWriter into raw mode (or turns off
+//               raw mode).  In raw mode, datagrams are not sent along
+//               with their headers; the bytes in the datagram are
+//               simply sent down the pipe.
+//
+//               Setting the ConnectionWriter to raw mode must be done
+//               with care.  This can only be done when the matching
+//               ConnectionReader is also set to raw mode, or when the
+//               ConnectionWriter is communicating to a process that
+//               does not expect datagrams.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 374  4 mode 1 341  
+89 14 Dtool_9ImM6jjm 6 93 341 0 14 Dtool_9ImM6jjm 313 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_raw_mode
+//       Access: Public
+//  Description: Returns the current setting of the raw mode flag.
+//               See set_raw_mode().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+90 14 Dtool_9ImMGRcu 4 94 342 0 14 Dtool_9ImMGRcu 552 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::set_tcp_header_size
+//       Access: Public
+//  Description: Sets the header size of TCP packets.  At the present,
+//               legal values for this are 0, 2, or 4; this specifies
+//               the number of bytes to use encode the datagram length
+//               at the start of each TCP datagram.  Sender and
+//               receiver must independently agree on this.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 374  15 tcp_header_size 1 352  
+91 14 Dtool_9ImM64D5 6 95 352 0 14 Dtool_9ImM64D5 325 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::get_tcp_header_size
+//       Access: Public
+//  Description: Returns the current setting of TCP header size.
+//               See set_tcp_header_size().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 375  
+92 14 Dtool_9ImMrvh2 4 96 342 0 14 Dtool_9ImMrvh2 402 ////////////////////////////////////////////////////////////////////
+//     Function: ConnectionWriter::shutdown
+//       Access: Published
+//  Description: Stops all the threads and cleans them up.  This is
+//               called automatically by the destructor, but it may be
+//               called explicitly before destruction.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 374  
+93 14 Dtool_9ImMkHyf 7 111 377 256 14 Dtool_9ImMkHyf 527 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::Constructor
+//       Access: Published
+//  Description: Creates a new DatagramGeneratorNet with the indicated
+//               number of threads to handle requests.  Normally
+//               num_threads should be either 0 or 1 to guarantee that
+//               datagrams are generated in the same order in which
+//               they were received.
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  11 num_threads 1 352  
+94 14 Dtool_9ImMAIYO 6 113 341 0 14 Dtool_9ImMAIYO 415 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::get_datagram
+//       Access: Published, Virtual
+//  Description: Reads the next datagram from the stream.  Blocks
+//               until a datagram is available.  Returns true on
+//               success, false on stream closed or error.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 377  4 data 1 378  
+95 14 Dtool_9ImMqcvu 6 114 341 0 14 Dtool_9ImMqcvu 393 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::is_eof
+//       Access: Published, Virtual
+//  Description: Returns true if the stream has been closed normally.
+//               This test may only be made after a call to
+//               get_datagram() has failed.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 377  
+96 14 Dtool_9ImMfNus 6 115 341 0 14 Dtool_9ImMfNus 289 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramGeneratorNet::is_error
+//       Access: Published, Virtual
+//  Description: Returns true if the stream has an error condition.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 377  
+97 14 Dtool_9ImMn9Tm 6 99 379 0 14 Dtool_9ImMn9Tm 0 1 4 this 3 377  
+98 14 Dtool_9ImMuiKx 6 100 377 0 14 Dtool_9ImMuiKx 0 1 4 this 3 379  
+99 14 Dtool_9ImMBg_B 6 101 364 0 14 Dtool_9ImMBg_B 0 1 4 this 3 377  
+100 14 Dtool_9ImMiEa8 6 102 377 0 14 Dtool_9ImMiEa8 0 1 4 this 3 364  
+101 14 Dtool_9ImMgFc6 6 109 380 0 14 Dtool_9ImMgFc6 0 1 4 this 3 377  
+102 14 Dtool_9ImMl8U5 6 110 377 0 14 Dtool_9ImMl8U5 0 1 4 this 3 380  
+103 14 Dtool_9ImMHF15 4 104 342 0 14 Dtool_9ImMHF15 0 2 4 this 3 380  8 max_size 1 352  
+104 14 Dtool_9ImMlTnN 6 105 352 0 14 Dtool_9ImMlTnN 0 1 4 this 3 381  
+105 14 Dtool_9ImMisuS 6 106 352 0 14 Dtool_9ImMisuS 0 1 4 this 3 381  
+106 14 Dtool_9ImMeg9U 6 107 341 0 14 Dtool_9ImMeg9U 0 1 4 this 3 381  
+107 14 Dtool_9ImM8u8g 4 108 342 0 14 Dtool_9ImM8u8g 0 1 4 this 3 380  
+108 14 Dtool_9ImMa5Ym 7 122 383 270 14 Dtool_9ImMa5Ym 512 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::Constructor
+//       Access: Published
+//  Description: Creates a new DatagramSinkNet with the indicated
+//               number of threads to handle writing.  Normally
+//               num_threads should be either 0 or 1 to guarantee that
+//               datagrams are delivered in the same order in which
+//               they were sent.
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  11 num_threads 1 352  
+109 14 Dtool_9ImMWcqv 4 123 342 0 14 Dtool_9ImMWcqv 804 // Filename: datagramSinkNet.I
+// Created by:  drose (15Feb09)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::set_target
+//       Access: Published
+//  Description: Specifies the Connection that will receive all future
+//               Datagrams sent.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 383  10 connection 1 337  
+110 14 Dtool_9ImMi2Qd 7 124 337 0 14 Dtool_9ImMi2Qd 345 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::get_target
+//       Access: Published
+//  Description: Returns the current target Connection, or NULL if the
+//               target has not yet been set.  See set_target().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 384  
+111 14 Dtool_9ImMn6vk 6 125 341 0 14 Dtool_9ImMn6vk 413 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::put_datagram
+//       Access: Published, Virtual
+//  Description: Sends the given datagram to the target.  Returns true
+//               on success, false if there is an error.  Blocks if
+//               necessary until the target is ready.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 383  4 data 1 368  
+112 14 Dtool_9ImMdo5D 6 126 341 0 14 Dtool_9ImMdo5D 347 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::is_error
+//       Access: Published, Virtual
+//  Description: Returns true if there is an error on the target
+//               connection, or if the target has never been set.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 383  
+113 14 Dtool_9ImMXodB 4 127 342 0 14 Dtool_9ImMXodB 321 ////////////////////////////////////////////////////////////////////
+//     Function: DatagramSinkNet::flush
+//       Access: Public, Virtual
+//  Description: Ensures that all datagrams previously written will be
+//               visible on the stream.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 383  
+114 14 Dtool_9ImMyzup 6 118 386 0 14 Dtool_9ImMyzup 0 1 4 this 3 383  
+115 14 Dtool_9ImMyn83 6 119 383 0 14 Dtool_9ImMyn83 0 1 4 this 3 386  
+116 14 Dtool_9ImMtQW_ 6 120 374 0 14 Dtool_9ImMtQW_ 0 1 4 this 3 383  
+117 14 Dtool_9ImMh9i4 6 121 383 0 14 Dtool_9ImMh9i4 0 1 4 this 3 374  
+118 14 Dtool_9ImMLgYr 7 140 387 281 14 Dtool_9ImMLgYr 233 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionListener::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  11 num_threads 1 352  
+119 14 Dtool_9ImMjF0a 6 142 341 0 14 Dtool_9ImMjF0a 414 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionListener::new_connection_available
+//       Access: Public
+//  Description: Returns true if a new connection was recently
+//               established; the connection information may then be
+//               retrieved via get_new_connection().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 387  
+120 14 Dtool_9ImMwbmC 6 143 341 0 14 Dtool_9ImMwbmC 467 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionListener::get_new_connection
+//       Access: Public
+//  Description: This flavor of get_new_connection() simply returns a
+//               new connection, assuming the user doesn't care about
+//               the rendezvous socket that originated it or the
+//               address it came from.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 387  14 new_connection 1 338  
+121 14 Dtool_9ImMieyI 6 143 341 0 14 Dtool_9ImMieyI 1182 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionListener::get_new_connection
+//       Access: Public
+//  Description: If a previous call to new_connection_available()
+//               returned true, this function will return information
+//               about the newly established connection.
+//
+//               The rendezvous parameter is the particular rendezvous
+//               socket this new connection originally communicated
+//               with; it is provided in case the ConnectionListener
+//               was monitorind more than one and you care which one
+//               it was.  The address parameter is the net address of
+//               the new client, and new_connection is the socket of
+//               the newly established connection.
+//
+//               The return value is true if a connection was
+//               successfully returned, or false if there was, in
+//               fact, no new connection.  (This may happen if there
+//               are multiple threads accessing the
+//               QueuedConnectionListener).
+//////////////////////////////////////////////////////////////////// 4 4 this 3 387  10 rendezvous 1 338  7 address 1 348  14 new_connection 1 338  
+122 14 Dtool_9ImMGcvf 6 130 388 0 14 Dtool_9ImMGcvf 0 1 4 this 3 387  
+123 14 Dtool_9ImMOFpL 6 131 387 0 14 Dtool_9ImMOFpL 0 1 4 this 3 388  
+124 14 Dtool_9ImM_bnE 6 138 389 0 14 Dtool_9ImM_bnE 0 1 4 this 3 387  
+125 14 Dtool_9ImMPSLm 6 139 387 0 14 Dtool_9ImMPSLm 0 1 4 this 3 389  
+126 14 Dtool_9ImMRXgW 4 133 342 0 14 Dtool_9ImMRXgW 0 2 4 this 3 389  8 max_size 1 352  
+127 14 Dtool_9ImM_qdb 6 134 352 0 14 Dtool_9ImM_qdb 0 1 4 this 3 390  
+128 14 Dtool_9ImMzNtc 6 135 352 0 14 Dtool_9ImMzNtc 0 1 4 this 3 390  
+129 14 Dtool_9ImMTAQd 6 136 341 0 14 Dtool_9ImMTAQd 0 1 4 this 3 390  
+130 14 Dtool_9ImMZTRQ 4 137 342 0 14 Dtool_9ImMZTRQ 0 1 4 this 3 389  
+131 14 Dtool_9ImM4UnC 7 155 392 294 14 Dtool_9ImM4UnC 232 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionManager::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+132 14 Dtool_9ImM4mZr 6 157 341 0 14 Dtool_9ImM4mZr 1031 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionManager::reset_connection_available
+//       Access: Public
+//  Description: Returns true if one of the readers/writers/listeners
+//               reported a connection reset recently.  If so, the
+//               particular connection that has been reset can be
+//               extracted via get_reset_connection().
+//
+//               Only connections which were externally reset are
+//               certain to appear in this list.  Those which were
+//               explicitly closed via a call to close_connection()
+//               may or may not be reported.  Furthermore, it is the
+//               responsibility of the caller to subsequently call
+//               close_connection() with any connection reported reset
+//               by this call.  (There is no harm in calling
+//               close_connection() more than once on a given socket.)
+//////////////////////////////////////////////////////////////////// 1 4 this 3 393  
+133 14 Dtool_9ImMiC0F 6 158 341 0 14 Dtool_9ImMiC0F 1253 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionManager::get_reset_connection
+//       Access: Public
+//  Description: If a previous call to reset_connection_available()
+//               returned true, this function will return information
+//               about the newly reset connection.
+//
+//               Only connections which were externally reset are
+//               certain to appear in this list.  Those which were
+//               explicitly closed via a call to close_connection()
+//               may or may not be reported.  Furthermore, it is the
+//               responsibility of the caller to subsequently call
+//               close_connection() with any connection reported reset
+//               by this call.  (There is no harm in calling
+//               close_connection() more than once on a given socket.)
+//
+//               The return value is true if a connection was
+//               successfully returned, or false if there was, in
+//               fact, no reset connection.  (This may happen if
+//               there are multiple threads accessing the
+//               QueuedConnectionManager).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 392  10 connection 1 338  
+134 14 Dtool_9ImMuw7p 6 145 358 0 14 Dtool_9ImMuw7p 0 1 4 this 3 392  
+135 14 Dtool_9ImMO4Vo 6 146 392 0 14 Dtool_9ImMO4Vo 0 1 4 this 3 358  
+136 14 Dtool_9ImMv2GO 6 153 395 0 14 Dtool_9ImMv2GO 0 1 4 this 3 392  
+137 14 Dtool_9ImM9EdG 6 154 392 0 14 Dtool_9ImM9EdG 0 1 4 this 3 395  
+138 14 Dtool_9ImMGHvr 4 148 342 0 14 Dtool_9ImMGHvr 0 2 4 this 3 395  8 max_size 1 352  
+139 14 Dtool_9ImMCaPK 6 149 352 0 14 Dtool_9ImMCaPK 0 1 4 this 3 396  
+140 14 Dtool_9ImMtwOz 6 150 352 0 14 Dtool_9ImMtwOz 0 1 4 this 3 396  
+141 14 Dtool_9ImMhUKF 6 151 341 0 14 Dtool_9ImMhUKF 0 1 4 this 3 396  
+142 14 Dtool_9ImMFx0k 4 152 342 0 14 Dtool_9ImMFx0k 0 1 4 this 3 395  
+143 14 Dtool_9ImMg6wa 7 170 398 307 14 Dtool_9ImMg6wa 234 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionReader::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 7 manager 1 358  11 num_threads 1 352  
+144 14 Dtool_9ImM36NV 6 172 341 0 14 Dtool_9ImM36NV 349 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionReader::data_available
+//       Access: Published
+//  Description: Returns true if a datagram is available on the queue;
+//               call get_data() to extract the datagram.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 398  
+145 14 Dtool_9ImM4yzz 6 173 341 0 14 Dtool_9ImM4yzz 593 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionReader::get_data
+//       Access: Published
+//  Description: This flavor of QueuedConnectionReader::get_data(),
+//               works like the other, except that it only fills a
+//               Datagram object, not a NetDatagram object.  This
+//               means that the Datagram cannot be queried for its
+//               source Connection and/or NetAddress, but it is useful
+//               in all other respects.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 398  6 result 1 378  
+146 14 Dtool_9ImMX1An 6 173 341 0 14 Dtool_9ImMX1An 681 ////////////////////////////////////////////////////////////////////
+//     Function: QueuedConnectionReader::get_data
+//       Access: Published
+//  Description: If a previous call to data_available() returned
+//               true, this function will return the datagram that has
+//               become available.
+//
+//               The return value is true if a datagram was
+//               successfully returned, or false if there was, in
+//               fact, no datagram available.  (This may happen if
+//               there are multiple threads accessing the
+//               QueuedConnectionReader).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 398  6 result 1 367  
+147 14 Dtool_9ImMH9pb 6 160 364 0 14 Dtool_9ImMH9pb 0 1 4 this 3 398  
+148 14 Dtool_9ImMHiXP 6 161 398 0 14 Dtool_9ImMHiXP 0 1 4 this 3 364  
+149 14 Dtool_9ImMpv2h 6 168 399 0 14 Dtool_9ImMpv2h 0 1 4 this 3 398  
+150 14 Dtool_9ImMAFb2 6 169 398 0 14 Dtool_9ImMAFb2 0 1 4 this 3 399  
+151 14 Dtool_9ImMTCal 4 163 342 0 14 Dtool_9ImMTCal 0 2 4 this 3 399  8 max_size 1 352  
+152 14 Dtool_9ImM2D9N 6 164 352 0 14 Dtool_9ImM2D9N 0 1 4 this 3 400  
+153 14 Dtool_9ImMHDe3 6 165 352 0 14 Dtool_9ImMHDe3 0 1 4 this 3 400  
+154 14 Dtool_9ImM3E__ 6 166 341 0 14 Dtool_9ImM3E__ 0 1 4 this 3 400  
+155 14 Dtool_9ImMHK5i 4 167 342 0 14 Dtool_9ImMHK5i 0 1 4 this 3 399  
+156 14 Dtool_9ImMA_Qe 7 175 402 200 14 Dtool_9ImMA_Qe 231 ////////////////////////////////////////////////////////////////////
+//     Function: RecentConnectionReader::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 7 manager 1 358  
+157 14 Dtool_9ImMmPBT 6 176 341 0 14 Dtool_9ImMmPBT 346 ////////////////////////////////////////////////////////////////////
+//     Function: RecentConnectionReader::data_available
+//       Access: Public
+//  Description: Returns true if a datagram is available on the queue;
+//               call get_data() to extract the datagram.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 402  
+158 14 Dtool_9ImMgnmx 6 177 341 0 14 Dtool_9ImMgnmx 590 ////////////////////////////////////////////////////////////////////
+//     Function: RecentConnectionReader::get_data
+//       Access: Public
+//  Description: This flavor of RecentConnectionReader::get_data(),
+//               works like the other, except that it only fills a
+//               Datagram object, not a NetDatagram object.  This
+//               means that the Datagram cannot be queried for its
+//               source Connection and/or NetAddress, but it is useful
+//               in all other respects.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 402  6 result 1 378  
+159 14 Dtool_9ImMdb0k 6 177 341 0 14 Dtool_9ImMdb0k 678 ////////////////////////////////////////////////////////////////////
+//     Function: RecentConnectionReader::get_data
+//       Access: Public
+//  Description: If a previous call to data_available() returned
+//               true, this function will return the datagram that has
+//               become available.
+//
+//               The return value is true if a datagram was
+//               successfully returned, or false if there was, in
+//               fact, no datagram available.  (This may happen if
+//               there are multiple threads accessing the
+//               RecentConnectionReader).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 402  6 result 1 367  
+90
+313 23 PointerTo< Connection > 26625 23 PointerTo< Connection > 23 PointerTo< Connection > 0 0 0 1 162 163 0 4 164 165 166 167 0 0 1 0 314 0 0 0 0 0
 
-250 27 PointerToBase< Connection > 43009 27 PointerToBase< Connection > 27 PointerToBase< Connection > 0 0 0 0 0 0 2 126 127 0 1 0 251 0 0 0 0 0
+314 27 PointerToBase< Connection > 43009 27 PointerToBase< Connection > 27 PointerToBase< Connection > 0 0 0 0 0 0 2 160 161 0 0 1 0 315 0 0 0 0 0
 
-251 13 PointerToVoid 2049 13 PointerToVoid 13 PointerToVoid 0 0 0 0 0 0 0 0 0 0 0 635
+315 13 PointerToVoid 2049 13 PointerToVoid 13 PointerToVoid 0 0 0 0 0 0 0 0 0 0 0 0 635
 ////////////////////////////////////////////////////////////////////
 //       Class : PointerToVoid
 // Description : This is the non-template part of the base class for
@@ -1422,21 +2613,16 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               This is the base class for PointerToBase<T>.
 ////////////////////////////////////////////////////////////////////
 
-252 10 NetAddress 141313 10 NetAddress 10 NetAddress 0 0 0 1 134 146 0 11 135 136 137 138 139 140 141 142 143 144 145 0 0 0 0 300
-////////////////////////////////////////////////////////////////////
-//       Class : NetAddress
-// Description : Represents a network address to which UDP packets may
-//               be sent or to which a TCP socket may be bound.
-////////////////////////////////////////////////////////////////////
+316 10 NetAddress 141313 10 NetAddress 10 NetAddress 0 0 0 1 168 180 0 11 169 170 171 172 173 174 175 176 177 178 179 0 0 0 0 0 0
 
-253 10 Connection 26625 10 Connection 10 Connection 0 0 0 1 147 148 0 19 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 0 1 0 254 0 0 0 0 258
+317 10 Connection 75777 10 Connection 10 Connection 0 0 0 1 181 0 0 18 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 0 0 1 0 318 0 0 0 0 258
 ////////////////////////////////////////////////////////////////////
 //       Class : Connection
 // Description : Represents a single TCP or UDP socket for input or
 //               output.
 ////////////////////////////////////////////////////////////////////
 
-254 14 ReferenceCount 2049 14 ReferenceCount 14 ReferenceCount 0 0 0 0 0 0 0 0 0 0 0 425
+318 14 ReferenceCount 2049 14 ReferenceCount 14 ReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 425
 ////////////////////////////////////////////////////////////////////
 //       Class : ReferenceCount
 // Description : A base class for all things that want to be
@@ -1445,7 +2631,7 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               objects when the last pointer to them goes away.
 ////////////////////////////////////////////////////////////////////
 
-255 16 ConnectionReader 26625 16 ConnectionReader 16 ConnectionReader 0 0 0 0 168 0 11 169 170 171 172 173 174 175 176 177 178 179 0 0 0 0 1261
+319 16 ConnectionReader 26625 16 ConnectionReader 16 ConnectionReader 0 0 0 0 200 0 12 201 202 203 204 205 206 207 208 209 210 211 212 0 0 0 0 0 1261
 ////////////////////////////////////////////////////////////////////
 //       Class : ConnectionReader
 // Description : This is an abstract base class for a family of
@@ -1469,7 +2655,7 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               rather than read datagrams.
 ////////////////////////////////////////////////////////////////////
 
-256 18 ConnectionListener 141313 18 ConnectionListener 18 ConnectionListener 0 0 0 0 180 0 0 0 1 0 255 0 0 0 0 609
+320 18 ConnectionListener 141313 18 ConnectionListener 18 ConnectionListener 0 0 0 0 213 0 0 0 0 1 0 319 0 0 0 0 609
 ////////////////////////////////////////////////////////////////////
 //       Class : ConnectionListener
 // Description : This is a special kind of ConnectionReader that waits
@@ -1482,7 +2668,7 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               QueuedConnectionListener.
 ////////////////////////////////////////////////////////////////////
 
-257 11 NetDatagram 141313 11 NetDatagram 11 NetDatagram 0 0 0 1 181 188 0 6 182 183 184 185 186 187 0 1 0 258 0 0 0 0 437
+321 11 NetDatagram 141313 11 NetDatagram 11 NetDatagram 0 0 0 1 214 221 0 6 215 216 217 218 219 220 0 0 1 0 322 0 0 0 0 437
 ////////////////////////////////////////////////////////////////////
 //       Class : NetDatagram
 // Description : A specific kind of Datagram, especially for sending
@@ -1491,7 +2677,7 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               NetAddress it is to be sent to or was received from.
 ////////////////////////////////////////////////////////////////////
 
-258 8 Datagram 2049 8 Datagram 8 Datagram 0 0 0 0 0 0 0 0 0 0 0 900
+322 8 Datagram 2049 8 Datagram 8 Datagram 0 0 0 0 0 0 0 0 0 0 0 0 900
 ////////////////////////////////////////////////////////////////////
 //       Class : Datagram
 // Description : An ordered list of data elements, formatted in memory
@@ -1510,7 +2696,7 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               collection of data elements.
 ////////////////////////////////////////////////////////////////////
 
-259 17 ConnectionManager 26625 17 ConnectionManager 17 ConnectionManager 0 0 0 1 189 190 0 5 191 192 193 194 195 0 0 0 0 918
+323 17 ConnectionManager 26625 17 ConnectionManager 17 ConnectionManager 0 0 0 1 222 223 0 5 224 225 226 227 228 0 0 0 0 0 918
 ////////////////////////////////////////////////////////////////////
 //       Class : ConnectionManager
 // Description : The primary interface to the low-level networking
@@ -1528,19 +2714,53 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               events properly).
 ////////////////////////////////////////////////////////////////////
 
-260 16 ConnectionWriter 26625 16 ConnectionWriter 16 ConnectionWriter 0 0 0 1 196 197 0 9 198 199 200 201 202 203 204 205 206 0 0 0 0 548
+324 16 ConnectionWriter 26625 16 ConnectionWriter 16 ConnectionWriter 0 0 0 1 229 230 0 13 231 232 233 234 235 236 237 238 239 240 241 242 243 0 0 0 0 0 545
 ////////////////////////////////////////////////////////////////////
 //       Class : ConnectionWriter
 // Description : This class handles threaded delivery of datagrams to
 //               various TCP or UDP sockets.
 //
 //               A ConnectionWriter may define an arbitrary number of
-//               threads (at least one) to write its datagrams to
+//               threads (0 or more) to write its datagrams to
 //               sockets.  The number of threads is specified at
 //               construction time and cannot be changed.
 ////////////////////////////////////////////////////////////////////
 
-261 24 QueuedConnectionListener 26625 24 QueuedConnectionListener 24 QueuedConnectionListener 0 0 0 1 216 217 0 2 218 219 0 2 3 256 207 208 3 262 214 215 0 0 360
+325 20 DatagramGeneratorNet 26625 20 DatagramGeneratorNet 20 DatagramGeneratorNet 0 0 0 1 255 256 0 3 257 258 259 0 0 3 3 326 244 245 3 319 246 247 3 327 253 254 0 0 413
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramGeneratorNet
+// Description : This class provides datagrams one-at-a-time as read
+//               directly from the net, via a TCP connection.  If a
+//               datagram is not available, get_datagram() will block
+//               until one is.
+////////////////////////////////////////////////////////////////////
+
+326 17 DatagramGenerator 2049 17 DatagramGenerator 17 DatagramGenerator 0 0 0 0 0 0 0 0 0 0 0 0 334
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramGenerator
+// Description : This class defines the abstract interace to any
+//               source of datagrams, whether it be from a file or
+//               from the net
+////////////////////////////////////////////////////////////////////
+
+327 24 QueuedReturn< Datagram > 43009 24 QueuedReturn< Datagram > 24 QueuedReturn< Datagram > 0 0 0 0 0 0 5 248 249 250 251 252 0 0 0 0 0 0
+
+328 15 DatagramSinkNet 141313 15 DatagramSinkNet 15 DatagramSinkNet 0 0 0 1 264 270 0 5 265 266 267 268 269 0 0 2 3 329 260 261 3 324 262 263 0 0 298
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramSinkNet
+// Description : This class accepts datagrams one-at-a-time and sends
+//               them over the net, via a TCP connection.
+////////////////////////////////////////////////////////////////////
+
+329 12 DatagramSink 2049 12 DatagramSink 12 DatagramSink 0 0 0 0 0 0 0 0 0 0 0 0 340
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramSink
+// Description : This class defines the abstract interface to sending
+//               datagrams to any target, whether it be into a file
+//               or across the net
+////////////////////////////////////////////////////////////////////
+
+330 24 QueuedConnectionListener 26625 24 QueuedConnectionListener 24 QueuedConnectionListener 0 0 0 1 280 281 0 2 282 283 0 0 2 3 320 271 272 3 331 278 279 0 0 360
 ////////////////////////////////////////////////////////////////////
 //       Class : QueuedConnectionListener
 // Description : This flavor of ConnectionListener will queue up all
@@ -1548,9 +2768,9 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               detection by the client code.
 ////////////////////////////////////////////////////////////////////
 
-262 38 QueuedReturn< ConnectionListenerData > 43009 38 QueuedReturn< ConnectionListenerData > 38 QueuedReturn< ConnectionListenerData > 0 0 0 0 0 0 5 209 210 211 212 213 0 0 0 0 0
+331 38 QueuedReturn< ConnectionListenerData > 43009 38 QueuedReturn< ConnectionListenerData > 38 QueuedReturn< ConnectionListenerData > 0 0 0 0 0 0 5 273 274 275 276 277 0 0 0 0 0 0
 
-263 23 QueuedConnectionManager 26625 23 QueuedConnectionManager 23 QueuedConnectionManager 0 0 0 1 229 230 0 2 231 232 0 2 3 259 220 221 3 264 227 228 0 0 726
+332 23 QueuedConnectionManager 26625 23 QueuedConnectionManager 23 QueuedConnectionManager 0 0 0 1 293 294 0 2 295 296 0 0 2 3 323 284 285 3 333 291 292 0 0 726
 ////////////////////////////////////////////////////////////////////
 //       Class : QueuedConnectionManager
 // Description : This flavor of ConnectionManager will queue up all of
@@ -1565,9 +2785,9 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               resources.
 ////////////////////////////////////////////////////////////////////
 
-264 39 QueuedReturn< PointerTo< Connection > > 43009 39 QueuedReturn< PointerTo< Connection > > 39 QueuedReturn< PointerTo< Connection > > 0 0 0 0 0 0 5 222 223 224 225 226 0 0 0 0 0
+333 39 QueuedReturn< PointerTo< Connection > > 43009 39 QueuedReturn< PointerTo< Connection > > 39 QueuedReturn< PointerTo< Connection > > 0 0 0 0 0 0 5 286 287 288 289 290 0 0 0 0 0 0
 
-265 22 QueuedConnectionReader 26625 22 QueuedConnectionReader 22 QueuedConnectionReader 0 0 0 1 242 243 0 2 244 245 0 2 3 255 233 234 3 266 240 241 0 0 551
+334 22 QueuedConnectionReader 26625 22 QueuedConnectionReader 22 QueuedConnectionReader 0 0 0 1 306 307 0 2 308 309 0 0 2 3 319 297 298 3 335 304 305 0 0 551
 ////////////////////////////////////////////////////////////////////
 //       Class : QueuedConnectionReader
 // Description : This flavor of ConnectionReader will read from its
@@ -1578,9 +2798,9 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               convenience.
 ////////////////////////////////////////////////////////////////////
 
-266 27 QueuedReturn< NetDatagram > 43009 27 QueuedReturn< NetDatagram > 27 QueuedReturn< NetDatagram > 0 0 0 0 0 0 5 235 236 237 238 239 0 0 0 0 0
+335 27 QueuedReturn< NetDatagram > 43009 27 QueuedReturn< NetDatagram > 27 QueuedReturn< NetDatagram > 0 0 0 0 0 0 5 299 300 301 302 303 0 0 0 0 0 0
 
-267 22 RecentConnectionReader 75777 22 RecentConnectionReader 22 RecentConnectionReader 0 0 0 1 246 168 0 2 247 248 0 1 0 255 0 0 0 0 718
+336 22 RecentConnectionReader 75777 22 RecentConnectionReader 22 RecentConnectionReader 0 0 0 1 310 200 0 2 311 312 0 0 1 0 319 0 0 0 0 718
 ////////////////////////////////////////////////////////////////////
 //       Class : RecentConnectionReader
 // Description : This flavor of ConnectionReader will read from its
@@ -1594,79 +2814,96 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               This class will always create one thread for itself.
 ////////////////////////////////////////////////////////////////////
 
-268 12 Connection * 8576 12 Connection * 12 Connection * 0 0 253 0 0 0 0 0 0 0 0 0
+337 12 Connection * 8576 12 Connection * 12 Connection * 0 0 317 0 0 0 0 0 0 0 0 0 0
 
-269 25 PointerTo< Connection > * 8576 25 PointerTo< Connection > * 25 PointerTo< Connection > * 0 0 249 0 0 0 0 0 0 0 0 0
+338 25 PointerTo< Connection > * 8576 25 PointerTo< Connection > * 25 PointerTo< Connection > * 0 0 313 0 0 0 0 0 0 0 0 0 0
 
-270 31 PointerTo< Connection > const * 8576 31 PointerTo< Connection > const * 31 PointerTo< Connection > const * 0 0 271 0 0 0 0 0 0 0 0 0
+339 31 PointerTo< Connection > const * 8576 31 PointerTo< Connection > const * 31 PointerTo< Connection > const * 0 0 340 0 0 0 0 0 0 0 0 0 0
 
-271 29 PointerTo< Connection > const 8832 29 PointerTo< Connection > const 29 PointerTo< Connection > const 0 0 249 0 0 0 0 0 0 0 0 0
+340 29 PointerTo< Connection > const 8832 29 PointerTo< Connection > const 29 PointerTo< Connection > const 0 0 313 0 0 0 0 0 0 0 0 0 0
 
-272 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0
+341 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
 
-273 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0
+342 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
 
-274 29 PointerToBase< Connection > * 8576 29 PointerToBase< Connection > * 29 PointerToBase< Connection > * 0 0 250 0 0 0 0 0 0 0 0 0
+343 29 PointerToBase< Connection > * 8576 29 PointerToBase< Connection > * 29 PointerToBase< Connection > * 0 0 314 0 0 0 0 0 0 0 0 0 0
 
-275 35 PointerToBase< Connection > const * 8576 35 PointerToBase< Connection > const * 35 PointerToBase< Connection > const * 0 0 276 0 0 0 0 0 0 0 0 0
+344 35 PointerToBase< Connection > const * 8576 35 PointerToBase< Connection > const * 35 PointerToBase< Connection > const * 0 0 345 0 0 0 0 0 0 0 0 0 0
 
-276 33 PointerToBase< Connection > const 8832 33 PointerToBase< Connection > const 33 PointerToBase< Connection > const 0 0 250 0 0 0 0 0 0 0 0 0
+345 33 PointerToBase< Connection > const 8832 33 PointerToBase< Connection > const 33 PointerToBase< Connection > const 0 0 314 0 0 0 0 0 0 0 0 0 0
 
-277 9 ostream * 8576 9 ostream * 9 ostream * 0 0 278 0 0 0 0 0 0 0 0 0
+346 9 ostream * 8576 9 ostream * 9 ostream * 0 0 347 0 0 0 0 0 0 0 0 0 0
 
-278 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0
+347 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
 
-279 12 NetAddress * 8576 12 NetAddress * 12 NetAddress * 0 0 252 0 0 0 0 0 0 0 0 0
+348 12 NetAddress * 8576 12 NetAddress * 12 NetAddress * 0 0 316 0 0 0 0 0 0 0 0 0 0
 
-280 17 PRNetAddr const * 8576 17 PRNetAddr const * 17 PRNetAddr const * 0 0 281 0 0 0 0 0 0 0 0 0
+349 22 Socket_Address const * 8576 22 Socket_Address const * 22 Socket_Address const * 0 0 350 0 0 0 0 0 0 0 0 0 0
 
-281 15 PRNetAddr const 8832 15 PRNetAddr const 15 PRNetAddr const 0 0 282 0 0 0 0 0 0 0 0 0
+350 20 Socket_Address const 8832 20 Socket_Address const 20 Socket_Address const 0 0 351 0 0 0 0 0 0 0 0 0 0
 
-282 9 PRNetAddr 4096 9 PRNetAddr 9 PRNetAddr 0 0 0 0 0 0 0 0 0 0 0 0
+351 14 Socket_Address 2048 14 Socket_Address 14 Socket_Address 0 0 0 0 0 0 0 0 0 0 0 0 0
 
-283 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0
+352 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-284 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0
+353 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
 
-285 18 NetAddress const * 8576 18 NetAddress const * 18 NetAddress const * 0 0 286 0 0 0 0 0 0 0 0 0
+354 18 NetAddress const * 8576 18 NetAddress const * 18 NetAddress const * 0 0 355 0 0 0 0 0 0 0 0 0 0
 
-286 16 NetAddress const 8832 16 NetAddress const 16 NetAddress const 0 0 252 0 0 0 0 0 0 0 0 0
+355 16 NetAddress const 8832 16 NetAddress const 16 NetAddress const 0 0 316 0 0 0 0 0 0 0 0 0 0
 
-287 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0
+356 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
 
-288 13 unsigned char 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0
+357 13 unsigned char 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0 0
 
-289 11 PRNetAddr * 8576 11 PRNetAddr * 11 PRNetAddr * 0 0 282 0 0 0 0 0 0 0 0 0
+358 19 ConnectionManager * 8576 19 ConnectionManager * 19 ConnectionManager * 0 0 323 0 0 0 0 0 0 0 0 0 0
 
-290 19 ConnectionManager * 8576 19 ConnectionManager * 19 ConnectionManager * 0 0 259 0 0 0 0 0 0 0 0 0
+359 11 Socket_IP * 8576 11 Socket_IP * 11 Socket_IP * 0 0 360 0 0 0 0 0 0 0 0 0 0
 
-291 12 PRFileDesc * 8576 12 PRFileDesc * 12 PRFileDesc * 0 0 292 0 0 0 0 0 0 0 0 0
+360 9 Socket_IP 2048 9 Socket_IP 9 Socket_IP 0 0 0 0 0 0 0 0 0 0 0 0 676
+/////////////////////////////////////////////////////////////////////
+// Class : Socket_IP
+//
+// Description : Base functionality for a INET domain Socket
+//     this call should be the starting point for all other
+//     unix domain sockets
+//
+//
+//                                       SocketIP
+//                                          |
+//       -------------------------------------------------------------------
+//       |             |                       |                           |
+//     SocketTCP     SocketTCP_Listen    SocketUDP_Incoming   SocketUDP_OutBound
+//
+//
+//
+// socket_fdset
+//
+/////////////////////////////////////////////////////////////////////
 
-292 10 PRFileDesc 1024 10 PRFileDesc 10 PRFileDesc 0 0 0 0 0 0 0 0 0 0 0 0
+361 18 Connection const * 8576 18 Connection const * 18 Connection const * 0 0 362 0 0 0 0 0 0 0 0 0 0
 
-293 18 Connection const * 8576 18 Connection const * 18 Connection const * 0 0 294 0 0 0 0 0 0 0 0 0
+362 16 Connection const 8832 16 Connection const 16 Connection const 0 0 317 0 0 0 0 0 0 0 0 0 0
 
-294 16 Connection const 8832 16 Connection const 16 Connection const 0 0 253 0 0 0 0 0 0 0 0 0
+363 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
 
-295 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0
+364 18 ConnectionReader * 8576 18 ConnectionReader * 18 ConnectionReader * 0 0 319 0 0 0 0 0 0 0 0 0 0
 
-296 18 ConnectionReader * 8576 18 ConnectionReader * 18 ConnectionReader * 0 0 255 0 0 0 0 0 0 0 0 0
+365 24 ConnectionReader const * 8576 24 ConnectionReader const * 24 ConnectionReader const * 0 0 366 0 0 0 0 0 0 0 0 0 0
 
-297 24 ConnectionReader const * 8576 24 ConnectionReader const * 24 ConnectionReader const * 0 0 298 0 0 0 0 0 0 0 0 0
+366 22 ConnectionReader const 8832 22 ConnectionReader const 22 ConnectionReader const 0 0 319 0 0 0 0 0 0 0 0 0 0
 
-298 22 ConnectionReader const 8832 22 ConnectionReader const 22 ConnectionReader const 0 0 255 0 0 0 0 0 0 0 0 0
+367 13 NetDatagram * 8576 13 NetDatagram * 13 NetDatagram * 0 0 321 0 0 0 0 0 0 0 0 0 0
 
-299 13 NetDatagram * 8576 13 NetDatagram * 13 NetDatagram * 0 0 257 0 0 0 0 0 0 0 0 0
+368 16 Datagram const * 8576 16 Datagram const * 16 Datagram const * 0 0 369 0 0 0 0 0 0 0 0 0 0
 
-300 16 Datagram const * 8576 16 Datagram const * 16 Datagram const * 0 0 301 0 0 0 0 0 0 0 0 0
+369 14 Datagram const 8832 14 Datagram const 14 Datagram const 0 0 322 0 0 0 0 0 0 0 0 0 0
 
-301 14 Datagram const 8832 14 Datagram const 14 Datagram const 0 0 258 0 0 0 0 0 0 0 0 0
+370 19 NetDatagram const * 8576 19 NetDatagram const * 19 NetDatagram const * 0 0 371 0 0 0 0 0 0 0 0 0 0
 
-302 19 NetDatagram const * 8576 19 NetDatagram const * 19 NetDatagram const * 0 0 303 0 0 0 0 0 0 0 0 0
+371 17 NetDatagram const 8832 17 NetDatagram const 17 NetDatagram const 0 0 321 0 0 0 0 0 0 0 0 0 0
 
-303 17 NetDatagram const 8832 17 NetDatagram const 17 NetDatagram const 0 0 257 0 0 0 0 0 0 0 0 0
-
-304 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 1098
+372 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
 ////////////////////////////////////////////////////////////////////
 //       Class : TypeHandle
 // Description : TypeHandle is the identifier used to differentiate
@@ -1686,47 +2923,66 @@ bool RecentConnectionReader::get_data(NetDatagram &result);
 //               type name may be retrieved for run-time display.
 ////////////////////////////////////////////////////////////////////
 
-305 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 304 0 0 0 0 0 0 0 0 0
+373 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 372 0 0 0 0 0 0 0 0 0 0
 
-306 18 ConnectionWriter * 8576 18 ConnectionWriter * 18 ConnectionWriter * 0 0 260 0 0 0 0 0 0 0 0 0
+374 18 ConnectionWriter * 8576 18 ConnectionWriter * 18 ConnectionWriter * 0 0 324 0 0 0 0 0 0 0 0 0 0
 
-307 24 ConnectionWriter const * 8576 24 ConnectionWriter const * 24 ConnectionWriter const * 0 0 308 0 0 0 0 0 0 0 0 0
+375 24 ConnectionWriter const * 8576 24 ConnectionWriter const * 24 ConnectionWriter const * 0 0 376 0 0 0 0 0 0 0 0 0 0
 
-308 22 ConnectionWriter const 8832 22 ConnectionWriter const 22 ConnectionWriter const 0 0 260 0 0 0 0 0 0 0 0 0
+376 22 ConnectionWriter const 8832 22 ConnectionWriter const 22 ConnectionWriter const 0 0 324 0 0 0 0 0 0 0 0 0 0
 
-309 26 QueuedConnectionListener * 8576 26 QueuedConnectionListener * 26 QueuedConnectionListener * 0 0 261 0 0 0 0 0 0 0 0 0
+377 22 DatagramGeneratorNet * 8576 22 DatagramGeneratorNet * 22 DatagramGeneratorNet * 0 0 325 0 0 0 0 0 0 0 0 0 0
 
-310 20 ConnectionListener * 8576 20 ConnectionListener * 20 ConnectionListener * 0 0 256 0 0 0 0 0 0 0 0 0
+378 10 Datagram * 8576 10 Datagram * 10 Datagram * 0 0 322 0 0 0 0 0 0 0 0 0 0
 
-311 40 QueuedReturn< ConnectionListenerData > * 8576 40 QueuedReturn< ConnectionListenerData > * 40 QueuedReturn< ConnectionListenerData > * 0 0 262 0 0 0 0 0 0 0 0 0
+379 19 DatagramGenerator * 8576 19 DatagramGenerator * 19 DatagramGenerator * 0 0 326 0 0 0 0 0 0 0 0 0 0
 
-312 46 QueuedReturn< ConnectionListenerData > const * 8576 46 QueuedReturn< ConnectionListenerData > const * 46 QueuedReturn< ConnectionListenerData > const * 0 0 313 0 0 0 0 0 0 0 0 0
+380 26 QueuedReturn< Datagram > * 8576 26 QueuedReturn< Datagram > * 26 QueuedReturn< Datagram > * 0 0 327 0 0 0 0 0 0 0 0 0 0
 
-313 44 QueuedReturn< ConnectionListenerData > const 8832 44 QueuedReturn< ConnectionListenerData > const 44 QueuedReturn< ConnectionListenerData > const 0 0 262 0 0 0 0 0 0 0 0 0
+381 32 QueuedReturn< Datagram > const * 8576 32 QueuedReturn< Datagram > const * 32 QueuedReturn< Datagram > const * 0 0 382 0 0 0 0 0 0 0 0 0 0
 
-314 25 QueuedConnectionManager * 8576 25 QueuedConnectionManager * 25 QueuedConnectionManager * 0 0 263 0 0 0 0 0 0 0 0 0
+382 30 QueuedReturn< Datagram > const 8832 30 QueuedReturn< Datagram > const 30 QueuedReturn< Datagram > const 0 0 327 0 0 0 0 0 0 0 0 0 0
 
-315 31 QueuedConnectionManager const * 8576 31 QueuedConnectionManager const * 31 QueuedConnectionManager const * 0 0 316 0 0 0 0 0 0 0 0 0
+383 17 DatagramSinkNet * 8576 17 DatagramSinkNet * 17 DatagramSinkNet * 0 0 328 0 0 0 0 0 0 0 0 0 0
 
-316 29 QueuedConnectionManager const 8832 29 QueuedConnectionManager const 29 QueuedConnectionManager const 0 0 263 0 0 0 0 0 0 0 0 0
+384 23 DatagramSinkNet const * 8576 23 DatagramSinkNet const * 23 DatagramSinkNet const * 0 0 385 0 0 0 0 0 0 0 0 0 0
 
-317 41 QueuedReturn< PointerTo< Connection > > * 8576 41 QueuedReturn< PointerTo< Connection > > * 41 QueuedReturn< PointerTo< Connection > > * 0 0 264 0 0 0 0 0 0 0 0 0
+385 21 DatagramSinkNet const 8832 21 DatagramSinkNet const 21 DatagramSinkNet const 0 0 328 0 0 0 0 0 0 0 0 0 0
 
-318 47 QueuedReturn< PointerTo< Connection > > const * 8576 47 QueuedReturn< PointerTo< Connection > > const * 47 QueuedReturn< PointerTo< Connection > > const * 0 0 319 0 0 0 0 0 0 0 0 0
+386 14 DatagramSink * 8576 14 DatagramSink * 14 DatagramSink * 0 0 329 0 0 0 0 0 0 0 0 0 0
 
-319 45 QueuedReturn< PointerTo< Connection > > const 8832 45 QueuedReturn< PointerTo< Connection > > const 45 QueuedReturn< PointerTo< Connection > > const 0 0 264 0 0 0 0 0 0 0 0 0
+387 26 QueuedConnectionListener * 8576 26 QueuedConnectionListener * 26 QueuedConnectionListener * 0 0 330 0 0 0 0 0 0 0 0 0 0
 
-320 24 QueuedConnectionReader * 8576 24 QueuedConnectionReader * 24 QueuedConnectionReader * 0 0 265 0 0 0 0 0 0 0 0 0
+388 20 ConnectionListener * 8576 20 ConnectionListener * 20 ConnectionListener * 0 0 320 0 0 0 0 0 0 0 0 0 0
 
-321 10 Datagram * 8576 10 Datagram * 10 Datagram * 0 0 258 0 0 0 0 0 0 0 0 0
+389 40 QueuedReturn< ConnectionListenerData > * 8576 40 QueuedReturn< ConnectionListenerData > * 40 QueuedReturn< ConnectionListenerData > * 0 0 331 0 0 0 0 0 0 0 0 0 0
 
-322 29 QueuedReturn< NetDatagram > * 8576 29 QueuedReturn< NetDatagram > * 29 QueuedReturn< NetDatagram > * 0 0 266 0 0 0 0 0 0 0 0 0
+390 46 QueuedReturn< ConnectionListenerData > const * 8576 46 QueuedReturn< ConnectionListenerData > const * 46 QueuedReturn< ConnectionListenerData > const * 0 0 391 0 0 0 0 0 0 0 0 0 0
 
-323 35 QueuedReturn< NetDatagram > const * 8576 35 QueuedReturn< NetDatagram > const * 35 QueuedReturn< NetDatagram > const * 0 0 324 0 0 0 0 0 0 0 0 0
+391 44 QueuedReturn< ConnectionListenerData > const 8832 44 QueuedReturn< ConnectionListenerData > const 44 QueuedReturn< ConnectionListenerData > const 0 0 331 0 0 0 0 0 0 0 0 0 0
 
-324 33 QueuedReturn< NetDatagram > const 8832 33 QueuedReturn< NetDatagram > const 33 QueuedReturn< NetDatagram > const 0 0 266 0 0 0 0 0 0 0 0 0
+392 25 QueuedConnectionManager * 8576 25 QueuedConnectionManager * 25 QueuedConnectionManager * 0 0 332 0 0 0 0 0 0 0 0 0 0
 
-325 24 RecentConnectionReader * 8576 24 RecentConnectionReader * 24 RecentConnectionReader * 0 0 267 0 0 0 0 0 0 0 0 0
+393 31 QueuedConnectionManager const * 8576 31 QueuedConnectionManager const * 31 QueuedConnectionManager const * 0 0 394 0 0 0 0 0 0 0 0 0 0
 
+394 29 QueuedConnectionManager const 8832 29 QueuedConnectionManager const 29 QueuedConnectionManager const 0 0 332 0 0 0 0 0 0 0 0 0 0
+
+395 41 QueuedReturn< PointerTo< Connection > > * 8576 41 QueuedReturn< PointerTo< Connection > > * 41 QueuedReturn< PointerTo< Connection > > * 0 0 333 0 0 0 0 0 0 0 0 0 0
+
+396 47 QueuedReturn< PointerTo< Connection > > const * 8576 47 QueuedReturn< PointerTo< Connection > > const * 47 QueuedReturn< PointerTo< Connection > > const * 0 0 397 0 0 0 0 0 0 0 0 0 0
+
+397 45 QueuedReturn< PointerTo< Connection > > const 8832 45 QueuedReturn< PointerTo< Connection > > const 45 QueuedReturn< PointerTo< Connection > > const 0 0 333 0 0 0 0 0 0 0 0 0 0
+
+398 24 QueuedConnectionReader * 8576 24 QueuedConnectionReader * 24 QueuedConnectionReader * 0 0 334 0 0 0 0 0 0 0 0 0 0
+
+399 29 QueuedReturn< NetDatagram > * 8576 29 QueuedReturn< NetDatagram > * 29 QueuedReturn< NetDatagram > * 0 0 335 0 0 0 0 0 0 0 0 0 0
+
+400 35 QueuedReturn< NetDatagram > const * 8576 35 QueuedReturn< NetDatagram > const * 35 QueuedReturn< NetDatagram > const * 0 0 401 0 0 0 0 0 0 0 0 0 0
+
+401 33 QueuedReturn< NetDatagram > const 8832 33 QueuedReturn< NetDatagram > const 33 QueuedReturn< NetDatagram > const 0 0 335 0 0 0 0 0 0 0 0 0 0
+
+402 24 RecentConnectionReader * 8576 24 RecentConnectionReader * 24 RecentConnectionReader * 0 0 336 0 0 0 0 0 0 0 0 0 0
+
+0
 0
 0

@@ -10,15 +10,9 @@ framebuffer-mode rgba double-buffer depth hardware
 notify-level warning
 default-directnotify-level warning
 
-model-path    .
-model-path    $THIS_PRC_DIR/..
-model-path    $THIS_PRC_DIR/../models
-sound-path    .
-sound-path    $THIS_PRC_DIR/..
-sound-path    $THIS_PRC_DIR/../models
-texture-path  .
-texture-path  $THIS_PRC_DIR/..
-texture-path  $THIS_PRC_DIR/../models
+model-path    models/
+sound-path    models/
+texture-path  models/
 
 want-directtools  #f
 want-tk           #f
@@ -35,7 +29,6 @@ download-server http://s3.amazonaws.com/ttadls/
 eventlog-host 127.0.0.1
 server-version 1.0.1
 
-dc-file tth.dc
 want-dev #f
 
 audio-library-name p3fmod_audio

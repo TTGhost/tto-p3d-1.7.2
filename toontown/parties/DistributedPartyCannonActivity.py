@@ -539,7 +539,8 @@ class DistributedPartyCannonActivity(DistributedPartyActivity):
                 if not isToonFlyingHorizontal:
                     self.flyingToonOffsetY -= OFFSET
             if self.gui.downPressed:
-                isToonFlyingHorizontal and angVel += CANNON_ANGLE_VEL
+                if isToonFlyingHorizontal:
+                    angVel += CANNON_ANGLE_VEL
             else:
                 self.flyingToonOffsetY += OFFSET
         self.flyingToonOffsetAngle += angVel * globalClock.getDt()

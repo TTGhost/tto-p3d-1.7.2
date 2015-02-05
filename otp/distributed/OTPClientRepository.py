@@ -59,7 +59,8 @@ class OTPClientRepository(ClientRepositoryBase):
      'Rejected'])
 
     def __init__(self, serverVersion, launcher = None, playGame = None):
-        ClientRepositoryBase.__init__(self)
+        dcFileNames = ['phase_3/etc/otp.dc', 'phase_3/etc/toon.dc']
+        ClientRepositoryBase.__init__(self, dcFileNames)
         self.handler = None
         self.launcher = launcher
         base.launcher = launcher
