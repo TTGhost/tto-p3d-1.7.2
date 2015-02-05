@@ -1,10 +1,3 @@
-"""This module implements a minimum task manager.  It is similar in
-principle to the full-featured task manager implemented in Task.py,
-but it has a sharply reduced feature set--completely bare-bones, in
-fact--and it is designed to be a pure-python implementation that does
-not require any C++ Panda support, so that it can be loaded before
-Panda has been fully downloaded. """
-
 __all__ = ['MiniTask', 'MiniTaskManager']
 
 class MiniTask:
