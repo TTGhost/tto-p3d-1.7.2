@@ -26,7 +26,7 @@ cull-bin gui-popup 60 unsorted
 
 paranoid-clock 1
 
-window-title Toontown Online
+window-title Toontown
 
 air-connect 127.0.0.1
 eventlog-host 127.0.0.1
